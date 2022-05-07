@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="memberns">
+    
+    <!-- 회원저장(예시) -->
+<!--     <insert id="member_join" parameterType="member">
+     insert into join_member (join_code,join_id,join_pwd,join_name,
+     join_zip1,join_addr1,join_addr2,join_tel,join_phone,join_email,join_profile,
+     join_regdate,join_state) values(join_member_joincode_seq.nextval,
+     #{join_id},#{join_pwd},#{join_name},
+     #{join_zip1},#{join_addr1},#{join_addr2},#{join_tel},
+     #{join_phone},#{join_email},#{join_profile, jdbcType=VARCHAR},sysdate,1)
+    </insert>
+     -->
+
+    
+</mapper>
+
+
+
+
+
+
+
+

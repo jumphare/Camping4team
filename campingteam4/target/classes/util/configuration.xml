@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="member" type="camping.model.member" />
+		<typeAlias alias="chat" type="camping.model.chat" />
+		<typeAlias alias="msg" type="camping.model.msg" />
+		<typeAlias alias="notice" type="camping.model.notice" />
+		<typeAlias alias="payment" type="camping.model.payment" />
+		<typeAlias alias="member" type="camping.model.member" />
+		<typeAlias alias="member" type="camping.model.member" />
+		<typeAlias alias="member" type="camping.model.member" />
+		<typeAlias alias="member" type="camping.model.member" />
+		<typeAlias alias="member" type="camping.model.member" />
+		<typeAlias alias="member" type="camping.model.member" />
+	</typeAliases>	
+	
+
+</configuration>
