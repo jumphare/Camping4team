@@ -10,12 +10,15 @@
 		<typeAlias alias="msg" type="camping.model.msg" />
 		<typeAlias alias="notice" type="camping.model.notice" />
 		<typeAlias alias="payment" type="camping.model.payment" />
-		<typeAlias alias="member" type="camping.model.member" />
-		<typeAlias alias="member" type="camping.model.member" />
-		<typeAlias alias="member" type="camping.model.member" />
-		<typeAlias alias="member" type="camping.model.member" />
-		<typeAlias alias="member" type="camping.model.member" />
-		<typeAlias alias="member" type="camping.model.member" />
+		
+		<typeAlias alias="partner" type="camping.model.partner" />
+		<typeAlias alias="partner_comment" type="camping.model.parter_comment" />
+		<typeAlias alias="review" type="camping.model.review" />
+		<typeAlias alias="camp_loc" type="camping.model.camp_loc" />
+		<typeAlias alias="spot" type="camping.model.spot" />
+		<typeAlias alias="equipment" type="camping.model.equipment" />
+		<typeAlias alias="reservation" type="camping.model.reservation" />
+		<typeAlias alias="entry" type="camping.model.entry" />
 	</typeAliases>	
 	
 
