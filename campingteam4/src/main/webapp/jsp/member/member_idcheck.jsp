@@ -1,6 +1,6 @@
-<%@page import="member.dao.MemberDAOImpl"%>
+<%@page import="camping.dao.MemberDAOImpl"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%@ page import="member.dao.*" %>
+<%@ page import="camping.dao.*" %>
 <%
  request.setCharacterEncoding("utf-8");
  

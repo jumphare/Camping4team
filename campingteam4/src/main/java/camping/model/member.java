@@ -2,117 +2,111 @@ package camping.model;
 
 public class member {
 
-	private int join_code;
-	private String join_id;
-	private String join_pwd;
-	private String join_name;
-	private String join_zip1;
-	private String join_zip2;
-	private String join_addr1;
-	private String join_addr2;
-	private String join_tel;
-	private String join_phone;
-	private String join_email;
-	private String join_profile;
-	private String join_regdate;
-	private int join_state;
-	private String join_delcont;
-	private String join_deldate;
+	private String id;
+	private String pwd;
+	private String name;
+	private String zip1;
+	private String zip2;
+	private String jumin;
+	private String addr1;
+	private String addr2;
+	private String phone;
+	private String email;
+	private String profile;
+	private String regdate;
+	private int state;
+	private String delcont;
+	private String deldate;
 	
-	public int getJoin_code() {
-		return join_code;
+	public String getId() {
+		return id;
 	}
-	public void setJoin_code(int join_code) {
-		this.join_code = join_code;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getJoin_id() {
-		return join_id;
+	public String getPasswd() {
+		return pwd;
 	}
-	public void setJoin_id(String join_id) {
-		this.join_id = join_id;
+	public void setPasswd(String pwd) {
+		this.pwd = pwd;
 	}
-	public String getJoin_pwd() {
-		return join_pwd;
+	public String getName() {
+		return name;
 	}
-	public void setJoin_pwd(String join_pwd) {
-		this.join_pwd = join_pwd;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getJoin_name() {
-		return join_name;
+	public String getZip1() {
+		return zip1;
 	}
-	public void setJoin_name(String join_name) {
-		this.join_name = join_name;
+	public void setZip1(String zip1) {
+		this.zip1 = zip1;
 	}
-	public String getJoin_zip1() {
-		return join_zip1;
+	public String getZip2() {
+		return zip2;
 	}
-	public void setJoin_zip1(String join_zip1) {
-		this.join_zip1 = join_zip1;
+	public void setZip2(String zip2) {
+		this.zip2 = zip2;
 	}
-	public String getJoin_zip2() {
-		return join_zip2;
+	public String getJumin() {
+		return jumin;
 	}
-	public void setJoin_zip2(String join_zip2) {
-		this.join_zip2 = join_zip2;
+	public void setJumin(String jumin) {
+		this.jumin = jumin;
 	}
-	public String getJoin_addr1() {
-		return join_addr1;
+	public String getAddr1() {
+		return addr1;
 	}
-	public void setJoin_addr1(String join_addr1) {
-		this.join_addr1 = join_addr1;
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
 	}
-	public String getJoin_addr2() {
-		return join_addr2;
+	public String getAddr2() {
+		return addr2;
 	}
-	public void setJoin_addr2(String join_addr2) {
-		this.join_addr2 = join_addr2;
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
 	}
-	public String getJoin_tel() {
-		return join_tel;
+	public String getPhone() {
+		return phone;
 	}
-	public void setJoin_tel(String join_tel) {
-		this.join_tel = join_tel;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
-	public String getJoin_phone() {
-		return join_phone;
+	public String getEmail() {
+		return email;
 	}
-	public void setJoin_phone(String join_phone) {
-		this.join_phone = join_phone;
+	public void setEmail(String email) {
+		this.email = email;
 	}
-	public String getJoin_email() {
-		return join_email;
+	public String getProfile() {
+		return profile;
 	}
-	public void setJoin_email(String join_email) {
-		this.join_email = join_email;
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
-	public String getJoin_profile() {
-		return join_profile;
+	public String getRegdate() {
+		return regdate;
 	}
-	public void setJoin_profile(String join_profile) {
-		this.join_profile = join_profile;
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
-	public String getJoin_regdate() {
-		return join_regdate;
+	public int getState() {
+		return state;
 	}
-	public void setJoin_regdate(String join_regdate) {
-		this.join_regdate = join_regdate;
+	public void setState(int state) {
+		this.state = state;
 	}
-	public int getJoin_state() {
-		return join_state;
+	public String getDelcont() {
+		return delcont;
 	}
-	public void setJoin_state(int join_state) {
-		this.join_state = join_state;
+	public void setDelcont(String delcont) {
+		this.delcont = delcont;
 	}
-	public String getJoin_delcont() {
-		return join_delcont;
+	public String getDeldate() {
+		return deldate;
 	}
-	public void setJoin_delcont(String join_delcont) {
-		this.join_delcont = join_delcont;
+	public void setDeldate(String deldate) {
+		this.deldate = deldate;
 	}
-	public String getJoin_deldate() {
-		return join_deldate;
-	}
-	public void setJoin_deldate(String join_deldate) {
-		this.join_deldate = join_deldate;
-	}	
+	
 }

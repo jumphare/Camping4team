@@ -42,11 +42,11 @@
     <tr>
      <th>프로필사진</th>
      <td>
-       <c:if test="${empty join_profile}">
+       <c:if test="${empty profile}">
        &nbsp;
        </c:if>
-       <c:if test="${!empty join_profile}">
-       <img src="<%=request.getContextPath() %>/upload/${join_profile}" height="100" width="100" />
+       <c:if test="${!empty profile}">
+       <img src="<%=request.getContextPath() %>/upload/${profile}" height="100" width="100" />
        </c:if>
      </td>
     </tr>

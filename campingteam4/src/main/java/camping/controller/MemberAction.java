@@ -77,16 +77,16 @@ public class MemberAction {
 			// Mail Server 설정
 			String charSet = "utf-8";
 			String hostSMTP = "smtp.naver.com";
-			String hostSMTPid = "giduck23@naver.com";
+			String hostSMTPid = "itta841@naver.com";
 			String hostSMTPpwd = "0000"; // 비밀번호 입력해야함
 
 			// 보내는 사람 EMail, 제목, 내용
-			String fromEmail = "giduck23@naver.com";
+			String fromEmail = "itta841@naver.com";
 			String fromName = "관리자";
 			String subject = "비밀번호 찾기";
 
 			// 받는 사람 E-Mail 주소
-			String mail = member.getJoin_email();
+			String mail = member.getEmail();
 
 			try {
 				HtmlEmail email = new HtmlEmail();
@@ -102,7 +102,7 @@ public class MemberAction {
 				email.setFrom(fromEmail, fromName, charSet);
 				email.setSubject(subject);
 				email.setHtmlMsg("<p align = 'center'>비밀번호 찾기</p><br>" + "<div align='center'> 비밀번호 : "
-						+ member.getJoin_pwd() + "</div>");
+						+ member.getPasswd() + "</div>");
 				email.send();
 			} catch (Exception e) {
 				System.out.println(e);
@@ -169,7 +169,7 @@ public class MemberAction {
 
 	/* 회원 가입 저장(fileupload) */
 	@RequestMapping(value = "/member_join_ok.nhn", method = RequestMethod.POST)
-	public String member_join_ok(@RequestParam("join_profile1") MultipartFile mf, member member,
+	public String member_join_ok(@RequestParam("profile1") MultipartFile mf, member member,
 			HttpServletRequest request, Model model) throws Exception {
 
 		String filename = mf.getOriginalFilename();
@@ -226,22 +226,21 @@ public class MemberAction {
 
 		}
 
-		String join_tel1 = request.getParameter("join_tel1").trim();
-		String join_tel2 = request.getParameter("join_tel2").trim();
-		String join_tel3 = request.getParameter("join_tel3").trim();
-		String join_tel = join_tel1 + "-" + join_tel2 + "-" + join_tel3;
-		String join_phone1 = request.getParameter("join_phone1").trim();
-		String join_phone2 = request.getParameter("join_phone2").trim();
-		String join_phone3 = request.getParameter("join_phone3").trim();
-		String join_phone = join_phone1 + "-" + join_phone2 + "-" + join_phone3;
-		String join_mailid = request.getParameter("join_mailid").trim();
-		String join_maildomain = request.getParameter("join_maildomain").trim();
-		String join_email = join_mailid + "@" + join_maildomain;
+		String jumin1 = request.getParameter("jumin1").trim();
+		String jumin2 = request.getParameter("jumin2").trim();
+		String jumin = jumin1 + "-" + jumin2;
+		String phone1 = request.getParameter("phone1").trim();
+		String phone2 = request.getParameter("phone2").trim();
+		String phone3 = request.getParameter("phone3").trim();
+		String join_phone = phone1 + "-" + phone2 + "-" + phone3;
+		String mailid = request.getParameter("mailid").trim();
+		String maildomain = request.getParameter("maildomain").trim();
+		String email = mailid + "@" + maildomain;
 
-		member.setJoin_tel(join_tel);
-		member.setJoin_phone(join_phone);
-		member.setJoin_email(join_email);
-		member.setJoin_profile(newfilename);
+		member.setJumin(jumin);
+		member.setPhone(join_phone);
+		member.setEmail(email);
+		member.setProfile(newfilename);
 
 		memberService.insertMember(member);
 
@@ -263,14 +262,14 @@ public class MemberAction {
 			return "member/loginResult";
 
 		} else { // 등록된 회원일때
-			if (m.getJoin_pwd().equals(pwd)) {// 비번이 같을때
+			if (m.getPasswd().equals(pwd)) {// 비번이 같을때
 				session.setAttribute("id", id);
 
-				String join_name = m.getJoin_name();
-				String join_profile = m.getJoin_profile();
+				String name = m.getName();
+				String profile = m.getProfile();
 
-				model.addAttribute("join_name", join_name);
-				model.addAttribute("join_profile", join_profile);
+				model.addAttribute("name", name);
+				model.addAttribute("join_profile", profile);
 
 				return "member/main";
 
@@ -292,38 +291,36 @@ public class MemberAction {
 
 		camping.model.member editm = memberService.userCheck(id);
 
-		String join_tel = editm.getJoin_tel();
-		StringTokenizer st01 = new StringTokenizer(join_tel, "-");
+		String jumin = editm.getJumin();
+		StringTokenizer st01 = new StringTokenizer(jumin, "-");
 		// java.util 패키지의 StringTokenizer 클래스는 첫번째 전달인자를
 		// 두번째 -를 기준으로 문자열을 파싱해준다.
-		String join_tel1 = st01.nextToken();// 첫번째 전화번호 저장
-		String join_tel2 = st01.nextToken(); // 두번째 전번 저장
-		String join_tel3 = st01.nextToken();// 세번째 전번 저장
+		String jumin1 = st01.nextToken();// 첫번째 주민번호 저장
+		String jumin2 = st01.nextToken(); // 두번째 주민번호 저장
 
-		String join_phone = editm.getJoin_phone();
-		StringTokenizer st02 = new StringTokenizer(join_phone, "-");
+		String phone = editm.getPhone();
+		StringTokenizer st02 = new StringTokenizer(phone, "-");
 		// java.util 패키지의 StringTokenizer 클래스는 첫번째 전달인자를
 		// 두번째 -를 기준으로 문자열을 파싱해준다.
-		String join_phone1 = st02.nextToken();// 첫번째 전화번호 저장
-		String join_phone2 = st02.nextToken(); // 두번째 전번 저장
-		String join_phone3 = st02.nextToken();// 세번째 전번 저장
+		String phone1 = st02.nextToken();// 첫번째 전화번호 저장
+		String phone2 = st02.nextToken(); // 두번째 전번 저장
+		String phone3 = st02.nextToken();// 세번째 전번 저장
 
-		String join_email = editm.getJoin_email();
-		StringTokenizer st03 = new StringTokenizer(join_email, "@");
+		String email = editm.getEmail();
+		StringTokenizer st03 = new StringTokenizer(email, "@");
 		// java.util 패키지의 StringTokenizer 클래스는 첫번째 전달인자를
 		// 두번째 @를 기준으로 문자열을 파싱해준다.
-		String join_mailid = st03.nextToken();// 첫번째 전화번호 저장
-		String join_maildomain = st03.nextToken(); // 두번째 전번 저장
+		String mailid = st03.nextToken();// 첫번째 전화번호 저장
+		String maildomain = st03.nextToken(); // 두번째 전번 저장
 
 		m.addAttribute("editm", editm);
-		m.addAttribute("join_tel1", join_tel1);
-		m.addAttribute("join_tel2", join_tel2);
-		m.addAttribute("join_tel3", join_tel3);
-		m.addAttribute("join_phone1", join_phone1);
-		m.addAttribute("join_phone2", join_phone2);
-		m.addAttribute("join_phone3", join_phone3);
-		m.addAttribute("join_mailid", join_mailid);
-		m.addAttribute("join_maildomain", join_maildomain);
+		m.addAttribute("jumin1", jumin1);
+		m.addAttribute("jumin2", jumin2);
+		m.addAttribute("phone1", phone1);
+		m.addAttribute("phone2", phone2);
+		m.addAttribute("phone3", phone3);
+		m.addAttribute("mailid", mailid);
+		m.addAttribute("maildomain", maildomain);
 
 		return "member/member_edit";
 	}
@@ -400,7 +397,7 @@ public class MemberAction {
 
 	/* 회원정보 수정(fileupload) */
 	@RequestMapping(value = "/member_edit_ok.nhn", method = RequestMethod.POST)
-	public String member_edit_ok(@RequestParam("join_profile1") MultipartFile mf, camping.model.member member,
+	public String member_edit_ok(@RequestParam("profile") MultipartFile mf, camping.model.member member,
 			HttpServletRequest request, HttpSession session, Model model) throws Exception {
 
 		String filename = mf.getOriginalFilename();
@@ -457,35 +454,34 @@ public class MemberAction {
 
 		String id = (String) session.getAttribute("id");
 
-		String join_tel1 = request.getParameter("join_tel1").trim();
-		String join_tel2 = request.getParameter("join_tel2").trim();
-		String join_tel3 = request.getParameter("join_tel3").trim();
-		String join_tel = join_tel1 + "-" + join_tel2 + "-" + join_tel3;
-		String join_phone1 = request.getParameter("join_phone1").trim();
-		String join_phone2 = request.getParameter("join_phone2").trim();
-		String join_phone3 = request.getParameter("join_phone3").trim();
-		String join_phone = join_phone1 + "-" + join_phone2 + "-" + join_phone3;
-		String join_mailid = request.getParameter("join_mailid").trim();
-		String join_maildomain = request.getParameter("join_maildomain").trim();
-		String join_email = join_mailid + "@" + join_maildomain;
+		String jumin1 = request.getParameter("jumin1").trim();
+		String jumin2 = request.getParameter("jumin2").trim();
+		String jumin = jumin1 + "-" + jumin2;
+		String phone1 = request.getParameter("phone1").trim();
+		String phone2 = request.getParameter("phone2").trim();
+		String phone3 = request.getParameter("phone3").trim();
+		String phone = phone1 + "-" + phone2 + "-" + phone3;
+		String mailid = request.getParameter("mailid").trim();
+		String maildomain = request.getParameter("maildomain").trim();
+		String email = mailid + "@" + maildomain;
 
 		member editm = this.memberService.userCheck(id);
 
 		if (size > 0) { // 첨부 파일이 수정되면
-			member.setJoin_profile(newfilename);
+			member.setProfile(newfilename);
 		} else { // 첨부파일이 수정되지 않으면
-			member.setJoin_profile(editm.getJoin_profile());
+			member.setProfile(editm.getProfile());
 		}
 
-		member.setJoin_id(id);
-		member.setJoin_tel(join_tel);
-		member.setJoin_phone(join_phone);
-		member.setJoin_email(join_email);
+		member.setId(id);
+		member.setJumin(jumin);
+		member.setPhone(phone);
+		member.setEmail(email);
 
 		memberService.updateMember(member);// 수정 메서드 호출
 
-		model.addAttribute("join_name", member.getJoin_name());
-		model.addAttribute("join_profile", member.getJoin_profile());
+		model.addAttribute("name", member.getName());
+		model.addAttribute("profile", member.getProfile());
 
 		return "member/main";
 	}
@@ -497,7 +493,7 @@ public class MemberAction {
 		String id = (String) session.getAttribute("id");
 		camping.model.member deleteM = memberService.userCheck(id);
 		dm.addAttribute("d_id", id);
-		dm.addAttribute("d_name", deleteM.getJoin_name());
+		dm.addAttribute("d_name", deleteM.getName());
 
 		return "member/member_del";
 	}
@@ -510,14 +506,14 @@ public class MemberAction {
 		String id = (String) session.getAttribute("id");
 		camping.model.member member = this.memberService.userCheck(id);
 
-		if (!member.getJoin_pwd().equals(pass)) {
+		if (!member.getPasswd().equals(pass)) {
 
 			return "member/deleteResult";
 
 		} else { // 비번이 같은 경우
 
 			String up = session.getServletContext().getRealPath("upload");
-			String fname = member.getJoin_profile();
+			String fname = member.getProfile();
 			System.out.println("up:" + up);
 
 			// 디비에 저장된 기존 이진파일명을 가져옴
@@ -526,8 +522,8 @@ public class MemberAction {
 				delFile.delete();// 기존 이진파일을 삭제
 			}
 			camping.model.member delm = new camping.model.member();
-			delm.setJoin_id(id);
-			delm.setJoin_delcont(del_cont);
+			delm.setId(id);
+			delm.setDelcont(del_cont);
 
 			memberService.deleteMember(delm);// 삭제 메서드 호출
 

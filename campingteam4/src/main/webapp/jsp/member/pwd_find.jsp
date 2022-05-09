@@ -35,12 +35,12 @@
    <table id="pwd_t">
     <tr>
      <th>아이디</th>
-     <td><input name="join_id" id="id" size="14" class="input_box" /></td>
+     <td><input name="id" id="id" size="14" class="input_box" /></td>
     </tr>
     
     <tr>
      <th>회원이름</th>
-     <td><input name="join_name" id="name" size="14" class="input_box" /></td>
+     <td><input name="name" id="name" size="14" class="input_box" /></td>
     </tr>
    </table>
    <div id="pwd_menu">
