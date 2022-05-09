@@ -1,97 +1,118 @@
 package camping.model;
 
-import java.util.Date;
-
 public class member {
-	private String id;/* 아이디 */
-	public String getId() {
-		return id;
+
+	private int join_code;
+	private String join_id;
+	private String join_pwd;
+	private String join_name;
+	private String join_zip1;
+	private String join_zip2;
+	private String join_addr1;
+	private String join_addr2;
+	private String join_tel;
+	private String join_phone;
+	private String join_email;
+	private String join_profile;
+	private String join_regdate;
+	private int join_state;
+	private String join_delcont;
+	private String join_deldate;
+	
+	public int getJoin_code() {
+		return join_code;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setJoin_code(int join_code) {
+		this.join_code = join_code;
 	}
-	public String getPasswd() {
-		return passwd;
+	public String getJoin_id() {
+		return join_id;
 	}
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+	public void setJoin_id(String join_id) {
+		this.join_id = join_id;
 	}
-	public String getName() {
-		return name;
+	public String getJoin_pwd() {
+		return join_pwd;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setJoin_pwd(String join_pwd) {
+		this.join_pwd = join_pwd;
 	}
-	public int getAge() {
-		return age;
+	public String getJoin_name() {
+		return join_name;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setJoin_name(String join_name) {
+		this.join_name = join_name;
 	}
-	public String getGender() {
-		return gender;
+	public String getJoin_zip1() {
+		return join_zip1;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setJoin_zip1(String join_zip1) {
+		this.join_zip1 = join_zip1;
 	}
-	public int getZip() {
-		return zip;
+	public String getJoin_zip2() {
+		return join_zip2;
 	}
-	public void setZip(int zip) {
-		this.zip = zip;
+	public void setJoin_zip2(String join_zip2) {
+		this.join_zip2 = join_zip2;
 	}
-	public String getAddr1() {
-		return addr1;
+	public String getJoin_addr1() {
+		return join_addr1;
 	}
-	public void setAddr1(String addr1) {
-		this.addr1 = addr1;
+	public void setJoin_addr1(String join_addr1) {
+		this.join_addr1 = join_addr1;
 	}
-	public String getAddr2() {
-		return addr2;
+	public String getJoin_addr2() {
+		return join_addr2;
 	}
-	public void setAddr2(String addr2) {
-		this.addr2 = addr2;
+	public void setJoin_addr2(String join_addr2) {
+		this.join_addr2 = join_addr2;
 	}
-	public String getEmail() {
-		return email;
+	public String getJoin_tel() {
+		return join_tel;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setJoin_tel(String join_tel) {
+		this.join_tel = join_tel;
 	}
-	public String getCal() {
-		return cal;
+	public String getJoin_phone() {
+		return join_phone;
 	}
-	public void setCal(String cal) {
-		this.cal = cal;
+	public void setJoin_phone(String join_phone) {
+		this.join_phone = join_phone;
 	}
-	public String getImage() {
-		return image;
+	public String getJoin_email() {
+		return join_email;
 	}
-	public void setImage(String image) {
-		this.image = image;
+	public void setJoin_email(String join_email) {
+		this.join_email = join_email;
 	}
-	public Date getM_date() {
-		return m_date;
+	public String getJoin_profile() {
+		return join_profile;
 	}
-	public void setM_date(Date m_date) {
-		this.m_date = m_date;
+	public void setJoin_profile(String join_profile) {
+		this.join_profile = join_profile;
 	}
-	public int getDel() {
-		return del;
+	public String getJoin_regdate() {
+		return join_regdate;
 	}
-	public void setDel(int del) {
-		this.del = del;
+	public void setJoin_regdate(String join_regdate) {
+		this.join_regdate = join_regdate;
 	}
-	private String passwd; /* 비밀번호 */
-	private String name; /* 이름 */
-	private int age; /* 나이 */
-	private String gender; /* 성별 */
-	private int zip; /* 우편번호 */
-	private String addr1;/* 주소 */
-	private String addr2;/* 상세주소 */
-	private String email; /* 이메일 */
-	private String cal;/* 핸드폰 */
-	private String image; /* 프로필사진 */
-	private Date m_date; /* 가입일 */
-	private int del;/* 탈퇴여부 */
+	public int getJoin_state() {
+		return join_state;
+	}
+	public void setJoin_state(int join_state) {
+		this.join_state = join_state;
+	}
+	public String getJoin_delcont() {
+		return join_delcont;
+	}
+	public void setJoin_delcont(String join_delcont) {
+		this.join_delcont = join_delcont;
+	}
+	public String getJoin_deldate() {
+		return join_deldate;
+	}
+	public void setJoin_deldate(String join_deldate) {
+		this.join_deldate = join_deldate;
+	}	
 }

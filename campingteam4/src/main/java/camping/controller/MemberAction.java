@@ -1,4 +1,4 @@
-package member.controller;
+package camping.controller;
 
 import java.io.File;
 import java.io.PrintWriter;
@@ -19,21 +19,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import member.model.MemberBean;
-import member.service.MemberServiceImpl;
-
+import camping.model.member;
+import camping.service.MemberServiceImpl;
 
 @Controller
 public class MemberAction {
 
 	@Autowired
-	private member.service.MemberServiceImpl memberService;
+	private camping.service.MemberServiceImpl memberService;
 
 	// ID중복검사 ajax함수로 처리부분
 	@RequestMapping(value = "/member_idcheck.nhn", method = RequestMethod.POST)
 	public String member_idcheck(@RequestParam("memid") String id, Model model) throws Exception {
-		System.out.println("id:"+id);
-		
+		System.out.println("id:" + id);
+
 		int result = memberService.checkMemberId(id);
 		model.addAttribute("result", result);
 
@@ -61,15 +60,13 @@ public class MemberAction {
 		// member 폴더의 member_join.jsp 뷰 페이지 실행
 	}
 
-	
 	/* 비번찾기 완료 */
 	@RequestMapping(value = "/pwd_find_ok.nhn", method = RequestMethod.POST)
-	public String pwd_find_ok(@ModelAttribute MemberBean mem, HttpServletResponse response, Model model)
-			throws Exception {
+	public String pwd_find_ok(@ModelAttribute member mem, HttpServletResponse response, Model model) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
-		MemberBean member = memberService.findpwd(mem);
+		member member = memberService.findpwd(mem);
 
 		if (member == null) {// 값이 없는 경우
 
@@ -172,60 +169,56 @@ public class MemberAction {
 
 	/* 회원 가입 저장(fileupload) */
 	@RequestMapping(value = "/member_join_ok.nhn", method = RequestMethod.POST)
-	public String member_join_ok(@RequestParam("join_profile1") MultipartFile mf, 
-								 MemberBean member,
-								 HttpServletRequest request,
-								 Model model) throws Exception {
+	public String member_join_ok(@RequestParam("join_profile1") MultipartFile mf, member member,
+			HttpServletRequest request, Model model) throws Exception {
 
 		String filename = mf.getOriginalFilename();
-		int size = (int) mf.getSize(); 	// 첨부파일의 크기 (단위:Byte) 
+		int size = (int) mf.getSize(); // 첨부파일의 크기 (단위:Byte)
 
 		String path = request.getRealPath("upload");
 		System.out.println("mf=" + mf);
 		System.out.println("filename=" + filename); // filename="Koala.jpg"
 		System.out.println("size=" + size);
 		System.out.println("Path=" + path);
-		int result=0;
-		
+		int result = 0;
+
 		String file[] = new String[2];
 //		file = filename.split(".");
 //		System.out.println(file.length);
 //		System.out.println("file0="+file[0]);
 //		System.out.println("file1="+file[1]);
-		
+
 		String newfilename = "";
-	
-	if(filename != ""){	 // 첨부파일이 전송된 경우	
-		
-		// 파일 중복문제 해결
-		String extension = filename.substring(filename.lastIndexOf("."), filename.length());
-		System.out.println("extension:"+extension);
-		
-		UUID uuid = UUID.randomUUID();
-		
-		newfilename = uuid.toString() + extension;
-		System.out.println("newfilename:"+newfilename);		
-		
-		StringTokenizer st = new StringTokenizer(filename, ".");
-		file[0] = st.nextToken();		// 파일명		Koala
-		file[1] = st.nextToken();		// 확장자	    jpg
-		
-		if(size > 100000){				// 100KB
-			result=1;
-			model.addAttribute("result", result);
-			
-			return "member/uploadResult";
-			
-		}else if(!file[1].equals("jpg") &&
-				 !file[1].equals("gif") &&
-				 !file[1].equals("png") ){
-			
-			result=2;
-			model.addAttribute("result", result);
-			
-			return "member/uploadResult";
+
+		if (filename != "") { // 첨부파일이 전송된 경우
+
+			// 파일 중복문제 해결
+			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
+			System.out.println("extension:" + extension);
+
+			UUID uuid = UUID.randomUUID();
+
+			newfilename = uuid.toString() + extension;
+			System.out.println("newfilename:" + newfilename);
+
+			StringTokenizer st = new StringTokenizer(filename, ".");
+			file[0] = st.nextToken(); // 파일명 Koala
+			file[1] = st.nextToken(); // 확장자 jpg
+
+			if (size > 100000) { // 100KB
+				result = 1;
+				model.addAttribute("result", result);
+
+				return "member/uploadResult";
+
+			} else if (!file[1].equals("jpg") && !file[1].equals("gif") && !file[1].equals("png")) {
+
+				result = 2;
+				model.addAttribute("result", result);
+
+				return "member/uploadResult";
+			}
 		}
-	}	
 
 		if (size > 0) { // 첨부파일이 전송된 경우
 
@@ -255,24 +248,21 @@ public class MemberAction {
 		return "redirect:member_login.nhn";
 	}
 
-	
 	/* 로그인 인증 */
 	@RequestMapping(value = "/member_login_ok.nhn", method = RequestMethod.POST)
-	public String member_login_ok(@RequestParam("id") String id, 
-			                      @RequestParam("pwd") String pwd,
-			                      HttpSession session, 
-			                      Model model) throws Exception {
-		int result=0;		
-		member.model.MemberBean m = memberService.userCheck(id);
+	public String member_login_ok(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession session,
+			Model model) throws Exception {
+		int result = 0;
+		camping.model.member m = memberService.userCheck(id);
 
-		if (m == null) {	// 등록되지 않은 회원일때
-			
+		if (m == null) { // 등록되지 않은 회원일때
+
 			result = 1;
 			model.addAttribute("result", result);
-			
+
 			return "member/loginResult";
-			
-		} else {			// 등록된 회원일때
+
+		} else { // 등록된 회원일때
 			if (m.getJoin_pwd().equals(pwd)) {// 비번이 같을때
 				session.setAttribute("id", id);
 
@@ -283,12 +273,12 @@ public class MemberAction {
 				model.addAttribute("join_profile", join_profile);
 
 				return "member/main";
-				
+
 			} else {// 비번이 다를때
 				result = 2;
 				model.addAttribute("result", result);
-				
-				return "member/loginResult";				
+
+				return "member/loginResult";
 			}
 		}
 
@@ -300,7 +290,7 @@ public class MemberAction {
 
 		String id = (String) session.getAttribute("id");
 
-		member.model.MemberBean editm = memberService.userCheck(id);
+		camping.model.member editm = memberService.userCheck(id);
 
 		String join_tel = editm.getJoin_tel();
 		StringTokenizer st01 = new StringTokenizer(join_tel, "-");
@@ -408,69 +398,62 @@ public class MemberAction {
 	// return "member/main";
 	// }
 
-	
 	/* 회원정보 수정(fileupload) */
 	@RequestMapping(value = "/member_edit_ok.nhn", method = RequestMethod.POST)
-	public String member_edit_ok(@RequestParam("join_profile1") MultipartFile mf, 
-								 member.model.MemberBean member,
-								 HttpServletRequest request, 
-								 HttpSession session, 
-								 Model model) throws Exception {
+	public String member_edit_ok(@RequestParam("join_profile1") MultipartFile mf, camping.model.member member,
+			HttpServletRequest request, HttpSession session, Model model) throws Exception {
 
 		String filename = mf.getOriginalFilename();
-		int size = (int) mf.getSize();		
-		
+		int size = (int) mf.getSize();
+
 		String path = request.getRealPath("upload");
-		System.out.println("path:"+path);
-		
-		int result=0;		
+		System.out.println("path:" + path);
+
+		int result = 0;
 		String file[] = new String[2];
 //		file = filename.split(".");
 //		System.out.println(file.length);
 //		System.out.println("file0="+file[0]);
 //		System.out.println("file1="+file[1]);
-		
+
 		String newfilename = "";
-		
-	if(filename != ""){	 // 첨부파일이 전송된 경우		
-		
-		// 파일 중복문제 해결
-		String extension = filename.substring(filename.lastIndexOf("."), filename.length());
-		System.out.println("extension:"+extension);
-				
-		UUID uuid = UUID.randomUUID();
-				
-		newfilename = uuid.toString() + extension;
-		System.out.println("newfilename:"+newfilename);			
-		
-		StringTokenizer st = new StringTokenizer(filename, ".");
-		file[0] = st.nextToken();		// 파일명
-		file[1] = st.nextToken();		// 확장자	
-		
-		if(size > 100000){
-			result=1;
-			model.addAttribute("result", result);
-			
-			return "member/uploadResult";
-			
-		}else if(!file[1].equals("jpg") &&
-				 !file[1].equals("gif") &&
-				 !file[1].equals("png") ){
-			
-			result=2;
-			model.addAttribute("result", result);
-			
-			return "member/uploadResult";
-		}	
-		
-	}
-		
+
+		if (filename != "") { // 첨부파일이 전송된 경우
+
+			// 파일 중복문제 해결
+			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
+			System.out.println("extension:" + extension);
+
+			UUID uuid = UUID.randomUUID();
+
+			newfilename = uuid.toString() + extension;
+			System.out.println("newfilename:" + newfilename);
+
+			StringTokenizer st = new StringTokenizer(filename, ".");
+			file[0] = st.nextToken(); // 파일명
+			file[1] = st.nextToken(); // 확장자
+
+			if (size > 100000) {
+				result = 1;
+				model.addAttribute("result", result);
+
+				return "member/uploadResult";
+
+			} else if (!file[1].equals("jpg") && !file[1].equals("gif") && !file[1].equals("png")) {
+
+				result = 2;
+				model.addAttribute("result", result);
+
+				return "member/uploadResult";
+			}
+
+		}
+
 		if (size > 0) { // 첨부파일이 전송된 경우
 
 			mf.transferTo(new File(path + "/" + newfilename));
 
-		}		
-		
+		}
 
 		String id = (String) session.getAttribute("id");
 
@@ -486,11 +469,11 @@ public class MemberAction {
 		String join_maildomain = request.getParameter("join_maildomain").trim();
 		String join_email = join_mailid + "@" + join_maildomain;
 
-		MemberBean editm = this.memberService.userCheck(id);		
-		
-		if (size > 0 ) { 			// 첨부 파일이 수정되면
-			member.setJoin_profile(newfilename);			
-		} else { 					// 첨부파일이 수정되지 않으면
+		member editm = this.memberService.userCheck(id);
+
+		if (size > 0) { // 첨부 파일이 수정되면
+			member.setJoin_profile(newfilename);
+		} else { // 첨부파일이 수정되지 않으면
 			member.setJoin_profile(editm.getJoin_profile());
 		}
 
@@ -512,7 +495,7 @@ public class MemberAction {
 	public String member_del(HttpSession session, Model dm) throws Exception {
 
 		String id = (String) session.getAttribute("id");
-		member.model.MemberBean deleteM = memberService.userCheck(id);
+		camping.model.member deleteM = memberService.userCheck(id);
 		dm.addAttribute("d_id", id);
 		dm.addAttribute("d_name", deleteM.getJoin_name());
 
@@ -521,35 +504,34 @@ public class MemberAction {
 
 	/* 회원정보 삭제 완료 */
 	@RequestMapping(value = "/member_del_ok.nhn", method = RequestMethod.POST)
-	public String member_del_ok(@RequestParam("pwd") String pass, 
-							    @RequestParam("del_cont") String del_cont,
-							    HttpSession session) throws Exception {
+	public String member_del_ok(@RequestParam("pwd") String pass, @RequestParam("del_cont") String del_cont,
+			HttpSession session) throws Exception {
 
 		String id = (String) session.getAttribute("id");
-		member.model.MemberBean member = this.memberService.userCheck(id);
+		camping.model.member member = this.memberService.userCheck(id);
 
 		if (!member.getJoin_pwd().equals(pass)) {
 
 			return "member/deleteResult";
-			
-		} else {				// 비번이 같은 경우
-			
+
+		} else { // 비번이 같은 경우
+
 			String up = session.getServletContext().getRealPath("upload");
 			String fname = member.getJoin_profile();
-			System.out.println("up:"+up);
-			
+			System.out.println("up:" + up);
+
 			// 디비에 저장된 기존 이진파일명을 가져옴
 			if (fname != null) {// 기존 이진파일이 존재하면
-				File delFile = new File(up +"/"+fname);
+				File delFile = new File(up + "/" + fname);
 				delFile.delete();// 기존 이진파일을 삭제
 			}
-			member.model.MemberBean delm = new member.model.MemberBean();
+			camping.model.member delm = new camping.model.member();
 			delm.setJoin_id(id);
 			delm.setJoin_delcont(del_cont);
 
 			memberService.deleteMember(delm);// 삭제 메서드 호출
 
-			session.invalidate();	// 세션만료
+			session.invalidate(); // 세션만료
 
 			return "redirect:member_login.nhn";
 		}
