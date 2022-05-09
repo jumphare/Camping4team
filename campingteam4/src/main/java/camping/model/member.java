@@ -5,7 +5,7 @@ public class member {
 	private String id;
 	private String pwd;
 	private String name;
-	private String zip1;
+	private int zip1;
 	private String jumin;
 	private String addr1;
 	private String addr2;
@@ -21,10 +21,10 @@ public class member {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPasswd() {
+	public String getPwd() {
 		return pwd;
 	}
-	public void setPasswd(String pwd) {
+	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
 	public String getName() {
@@ -33,17 +33,17 @@ public class member {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getZip1() {
+	public int getZip1() {
 		return zip1;
 	}
-	public void setZip1(String zip1) {
+	public void setZip1(int zip1) {
 		this.zip1 = zip1;
 	}
 	public String getJumin() {
 		return jumin;
 	}
-	public void setJumin(String jumin) {
-		this.jumin = jumin;
+	public void setJumin(String jumin2) {
+		this.jumin = jumin2;
 	}
 	public String getAddr1() {
 		return addr1;

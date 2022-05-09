@@ -15,7 +15,7 @@
 <c:if test="${sessionScope.id == null }"> 
   <script>
    alert("다시 로그인 해주세요!");
-   location.href="<%=request.getContextPath()%>/member/member_login.do";
+   location.href="<%=request.getContextPath()%>/member_login.do";
   </script>
 </c:if>
 

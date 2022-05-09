@@ -29,39 +29,39 @@ public class MemberAction {
 	private camping.service.MemberServiceImpl memberService;
 
 	// ID중복검사 ajax함수로 처리부분
-	@RequestMapping(value = "/member_idcheck.do", method = RequestMethod.POST)
+	@RequestMapping(value = "member_idcheck.do", method = RequestMethod.POST)
 	public String member_idcheck(@RequestParam("memid") String id, Model model) throws Exception {
 		System.out.println("id:" + id);
 
 		int result = memberService.checkMemberId(id);
 		model.addAttribute("result", result);
 
-		return "jsp/member/idcheckResult";
+		return "member/jsp/idcheckResult";
 	}
 
 	/* 로그인 폼 뷰 */
-	@RequestMapping(value = "/member_login.do")
+	@RequestMapping(value = "member_login.do")
 	public String member_login() {
-		return "member/member_login";
+		return "member/jsp/member_login";
 		// member 폴더의 member_login.jsp 뷰 페이지 실행
 	}
 
 	/* 비번찾기 폼 */
-	@RequestMapping(value = "/pwd_find.do")
+	@RequestMapping(value = "pwd_find.do")
 	public String pwd_find() {
-		return "member/pwd_find";
+		return "member/jsp/pwd_find";
 		// member 폴더의 pwd_find.jsp 뷰 페이지 실행
 	}
 
 	/* 회원가입 폼 */
-	@RequestMapping(value = "/member_join.do")
+	@RequestMapping(value = "member_join.do")
 	public String member_join() {
-		return "member/member_join";
+		return "member/jsp/member_join";
 		// member 폴더의 member_join.jsp 뷰 페이지 실행
 	}
 
 	/* 비번찾기 완료 */
-	@RequestMapping(value = "/pwd_find_ok.do", method = RequestMethod.POST)
+	@RequestMapping(value = "pwd_find_ok.do", method = RequestMethod.POST)
 	public String pwd_find_ok(@ModelAttribute member mem, HttpServletResponse response, Model model) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -70,7 +70,7 @@ public class MemberAction {
 
 		if (member == null) {// 값이 없는 경우
 
-			return "member/pwdResult";
+			return "member/jsp/pwdResult";
 
 		} else {
 
@@ -102,14 +102,14 @@ public class MemberAction {
 				email.setFrom(fromEmail, fromName, charSet);
 				email.setSubject(subject);
 				email.setHtmlMsg("<p align = 'center'>비밀번호 찾기</p><br>" + "<div align='center'> 비밀번호 : "
-						+ member.getPasswd() + "</div>");
+						+ member.getPwd() + "</div>");
 				email.send();
 			} catch (Exception e) {
 				System.out.println(e);
 			}
 
 			model.addAttribute("pwdok", "등록된 email을 확인 하세요~!!");
-			return "member/pwd_find";
+			return "member/jsp/pwd_find";
 
 		}
 
@@ -168,7 +168,7 @@ public class MemberAction {
 	// }
 
 	/* 회원 가입 저장(fileupload) */
-	@RequestMapping(value = "/member_join_ok.do", method = RequestMethod.POST)
+	@RequestMapping(value = "member_join_ok.do", method = RequestMethod.POST)
 	public String member_join_ok(@RequestParam("profile1") MultipartFile mf, member member,
 			HttpServletRequest request, Model model) throws Exception {
 
@@ -209,14 +209,14 @@ public class MemberAction {
 				result = 1;
 				model.addAttribute("result", result);
 
-				return "member/uploadResult";
+				return "member/jsp/uploadResult";
 
 			} else if (!file[1].equals("jpg") && !file[1].equals("gif") && !file[1].equals("png")) {
 
 				result = 2;
 				model.addAttribute("result", result);
 
-				return "member/uploadResult";
+				return "member/jsp/uploadResult";
 			}
 		}
 
@@ -232,13 +232,13 @@ public class MemberAction {
 		String phone1 = request.getParameter("phone1").trim();
 		String phone2 = request.getParameter("phone2").trim();
 		String phone3 = request.getParameter("phone3").trim();
-		String join_phone = phone1 + "-" + phone2 + "-" + phone3;
+		String phone = phone1 + "-" + phone2 + "-" + phone3;
 		String mailid = request.getParameter("mailid").trim();
 		String maildomain = request.getParameter("maildomain").trim();
 		String email = mailid + "@" + maildomain;
 
 		member.setJumin(jumin);
-		member.setPhone(join_phone);
+		member.setPhone(phone);
 		member.setEmail(email);
 		member.setProfile(newfilename);
 
@@ -248,7 +248,7 @@ public class MemberAction {
 	}
 
 	/* 로그인 인증 */
-	@RequestMapping(value = "/member_login_ok.do", method = RequestMethod.POST)
+	@RequestMapping(value = "member_login_ok.do", method = RequestMethod.POST)
 	public String member_login_ok(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession session,
 			Model model) throws Exception {
 		int result = 0;
@@ -259,32 +259,32 @@ public class MemberAction {
 			result = 1;
 			model.addAttribute("result", result);
 
-			return "member/loginResult";
+			return "member/jsp/loginResult";
 
 		} else { // 등록된 회원일때
-			if (m.getPasswd().equals(pwd)) {// 비번이 같을때
+			if (m.getPwd().equals(pwd)) {// 비번이 같을때
 				session.setAttribute("id", id);
 
 				String name = m.getName();
 				String profile = m.getProfile();
 
 				model.addAttribute("name", name);
-				model.addAttribute("join_profile", profile);
+				model.addAttribute("profile", profile);
 
-				return "member/main";
+				return "member/jsp/main";
 
 			} else {// 비번이 다를때
 				result = 2;
 				model.addAttribute("result", result);
 
-				return "member/loginResult";
+				return "member/jsp/loginResult";
 			}
 		}
 
 	}
 
 	/* 회원정보 수정 폼 */
-	@RequestMapping(value = "/member_edit.do")
+	@RequestMapping(value = "member_edit.do")
 	public String member_edit(HttpSession session, Model m) throws Exception {
 
 		String id = (String) session.getAttribute("id");
@@ -322,7 +322,7 @@ public class MemberAction {
 		m.addAttribute("mailid", mailid);
 		m.addAttribute("maildomain", maildomain);
 
-		return "member/member_edit";
+		return "member/jsp/member_edit";
 	}
 
 	/* 회원정보 수정(cos) */
@@ -396,7 +396,7 @@ public class MemberAction {
 	// }
 
 	/* 회원정보 수정(fileupload) */
-	@RequestMapping(value = "/member_edit_ok.do", method = RequestMethod.POST)
+	@RequestMapping(value = "member_edit_ok.do", method = RequestMethod.POST)
 	public String member_edit_ok(@RequestParam("profile") MultipartFile mf, camping.model.member member,
 			HttpServletRequest request, HttpSession session, Model model) throws Exception {
 
@@ -434,14 +434,14 @@ public class MemberAction {
 				result = 1;
 				model.addAttribute("result", result);
 
-				return "member/uploadResult";
+				return "member/jsp/uploadResult";
 
 			} else if (!file[1].equals("jpg") && !file[1].equals("gif") && !file[1].equals("png")) {
 
 				result = 2;
 				model.addAttribute("result", result);
 
-				return "member/uploadResult";
+				return "member/jsp/uploadResult";
 			}
 
 		}
@@ -483,11 +483,11 @@ public class MemberAction {
 		model.addAttribute("name", member.getName());
 		model.addAttribute("profile", member.getProfile());
 
-		return "member/main";
+		return "member/jsp/main";
 	}
 
 	/* 회원정보 삭제 폼 */
-	@RequestMapping(value = "/member_del.do")
+	@RequestMapping(value = "member_del.do")
 	public String member_del(HttpSession session, Model dm) throws Exception {
 
 		String id = (String) session.getAttribute("id");
@@ -495,20 +495,20 @@ public class MemberAction {
 		dm.addAttribute("d_id", id);
 		dm.addAttribute("d_name", deleteM.getName());
 
-		return "member/member_del";
+		return "member/jsp/member_del";
 	}
 
 	/* 회원정보 삭제 완료 */
-	@RequestMapping(value = "/member_del_ok.do", method = RequestMethod.POST)
+	@RequestMapping(value = "member_del_ok.do", method = RequestMethod.POST)
 	public String member_del_ok(@RequestParam("pwd") String pass, @RequestParam("del_cont") String del_cont,
 			HttpSession session) throws Exception {
 
 		String id = (String) session.getAttribute("id");
 		camping.model.member member = this.memberService.userCheck(id);
 
-		if (!member.getPasswd().equals(pass)) {
+		if (!member.getPwd().equals(pass)) {
 
-			return "member/deleteResult";
+			return "member/jsp/deleteResult";
 
 		} else { // 비번이 같은 경우
 
@@ -538,7 +538,7 @@ public class MemberAction {
 	public String logout(HttpSession session) {
 		session.invalidate();
 
-		return "member/member_logout";
+		return "member/jsp/member_logout";
 	}
 
 }

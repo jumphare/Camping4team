@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입폼</title>
-<link rel="stylesheet" type="text/css" href="./css/admin.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/admin.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/member.css" />
 <!-- <script src="/springmember/js/jquery.js"></script> -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
@@ -20,8 +20,8 @@ function openDaumPostcode() {
 		oncomplete : function(data) {				
 			// 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 			// 우편번호와 주소 정보를 해당 필드에 넣고, 커서를 상세주소 필드로 이동한다.
-			document.getElementById('join_zip1').value = data.zonecode;
-			document.getElementById('join_addr1').value = data.address;				
+			document.getElementById('zip1').value = data.zonecode;
+			document.getElementById('addr1').value = data.address;				
 		}
 	}).open();
 }
@@ -31,7 +31,7 @@ function openDaumPostcode() {
 <body>
  <div id="join_wrap">
   <h2 class="join_title">회원가입</h2>
-  <form name="f" method="post" action="member_join_ok.do"
+  <form name="f" method="post" action="/member_join_ok.do"
   		onsubmit="return check()" enctype="multipart/form-data">
    <!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
    <table id="join_t">
@@ -107,7 +107,7 @@ function openDaumPostcode() {
     <tr>
      <th>휴대전화번호</th>
      <td>
-     <%@ include file="../../jsp/include/phone_number.jsp" %>
+     <%@ include file="../jsp/phone_number.jsp" %>
      <select name="phone1">
       <c:forEach var="p" items="${phone}" begin="0" end="5">
        <option value="${p}">${p}</option>

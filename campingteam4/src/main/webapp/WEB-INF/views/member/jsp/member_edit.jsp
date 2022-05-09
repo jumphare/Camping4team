@@ -105,7 +105,7 @@ function openDaumPostcode() {
     <tr>
      <th>휴대전화번호</th>
      <td>
-     <%@ include file="../../jsp/include/phone_number.jsp" %>
+     <%@ include file="../jsp/phone_number.jsp" %>
      <select name="phone1">
       <c:forEach var="p" items="${phone}" begin="0" end="5">
        <option value="${p}" <c:if test="${phone1 == p}">${'selected'}
