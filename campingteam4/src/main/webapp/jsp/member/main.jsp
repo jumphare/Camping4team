@@ -15,21 +15,21 @@
 <c:if test="${sessionScope.id == null }"> 
   <script>
    alert("다시 로그인 해주세요!");
-   location.href="<%=request.getContextPath()%>/member/member_login.nhn";
+   location.href="<%=request.getContextPath()%>/member/member_login.do";
   </script>
 </c:if>
 
 <c:if test="${sessionScope.id != null }">  
  <div id="main_wrap">
    <h2 class="main_title">사용자 메인화면</h2>  
-   <form method="post" action="member_logout.nhn"> 
+   <form method="post" action="member_logout.do"> 
    <table id="main_t">
     <tr>
      <th colspan="2">
      <input type="button" value="정보수정" class="input_button"
-     		onclick="location='member_edit.nhn'" />
+     		onclick="location='member_edit.do'" />
      <input type="button" value="회원탈퇴" class="input_button"
-     		onclick="location='member_del.nhn'" />
+     		onclick="location='member_del.do'" />
      <input type="submit" value="로그아웃" class="input_button" />     
      </th>
     </tr>

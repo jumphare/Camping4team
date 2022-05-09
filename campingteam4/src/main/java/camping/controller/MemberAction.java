@@ -29,39 +29,39 @@ public class MemberAction {
 	private camping.service.MemberServiceImpl memberService;
 
 	// ID중복검사 ajax함수로 처리부분
-	@RequestMapping(value = "/member_idcheck.nhn", method = RequestMethod.POST)
+	@RequestMapping(value = "/member_idcheck.do", method = RequestMethod.POST)
 	public String member_idcheck(@RequestParam("memid") String id, Model model) throws Exception {
 		System.out.println("id:" + id);
 
 		int result = memberService.checkMemberId(id);
 		model.addAttribute("result", result);
 
-		return "member/idcheckResult";
+		return "jsp/member/idcheckResult";
 	}
 
 	/* 로그인 폼 뷰 */
-	@RequestMapping(value = "/member_login.nhn")
+	@RequestMapping(value = "/member_login.do")
 	public String member_login() {
 		return "member/member_login";
 		// member 폴더의 member_login.jsp 뷰 페이지 실행
 	}
 
 	/* 비번찾기 폼 */
-	@RequestMapping(value = "/pwd_find.nhn")
+	@RequestMapping(value = "/pwd_find.do")
 	public String pwd_find() {
 		return "member/pwd_find";
 		// member 폴더의 pwd_find.jsp 뷰 페이지 실행
 	}
 
 	/* 회원가입 폼 */
-	@RequestMapping(value = "/member_join.nhn")
+	@RequestMapping(value = "/member_join.do")
 	public String member_join() {
 		return "member/member_join";
 		// member 폴더의 member_join.jsp 뷰 페이지 실행
 	}
 
 	/* 비번찾기 완료 */
-	@RequestMapping(value = "/pwd_find_ok.nhn", method = RequestMethod.POST)
+	@RequestMapping(value = "/pwd_find_ok.do", method = RequestMethod.POST)
 	public String pwd_find_ok(@ModelAttribute member mem, HttpServletResponse response, Model model) throws Exception {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -116,7 +116,7 @@ public class MemberAction {
 	}
 
 	// /* 회원 가입 저장 */
-	// @RequestMapping(value = "/member_join_ok.nhn", method =
+	// @RequestMapping(value = "/member_join_ok.do", method =
 	// RequestMethod.POST)
 	// public String member_join_ok(HttpServletRequest request,
 	// HttpServletResponse response) throws Exception {
@@ -164,11 +164,11 @@ public class MemberAction {
 	//
 	// memberService.insertMember(m);
 	//
-	// return "redirct:member_login.nhn";
+	// return "redirct:member_login.do";
 	// }
 
 	/* 회원 가입 저장(fileupload) */
-	@RequestMapping(value = "/member_join_ok.nhn", method = RequestMethod.POST)
+	@RequestMapping(value = "/member_join_ok.do", method = RequestMethod.POST)
 	public String member_join_ok(@RequestParam("profile1") MultipartFile mf, member member,
 			HttpServletRequest request, Model model) throws Exception {
 
@@ -244,11 +244,11 @@ public class MemberAction {
 
 		memberService.insertMember(member);
 
-		return "redirect:member_login.nhn";
+		return "redirect:member_login.do";
 	}
 
 	/* 로그인 인증 */
-	@RequestMapping(value = "/member_login_ok.nhn", method = RequestMethod.POST)
+	@RequestMapping(value = "/member_login_ok.do", method = RequestMethod.POST)
 	public String member_login_ok(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession session,
 			Model model) throws Exception {
 		int result = 0;
@@ -284,7 +284,7 @@ public class MemberAction {
 	}
 
 	/* 회원정보 수정 폼 */
-	@RequestMapping(value = "/member_edit.nhn")
+	@RequestMapping(value = "/member_edit.do")
 	public String member_edit(HttpSession session, Model m) throws Exception {
 
 		String id = (String) session.getAttribute("id");
@@ -326,7 +326,7 @@ public class MemberAction {
 	}
 
 	/* 회원정보 수정(cos) */
-	// @RequestMapping(value = "/member_edit_ok.nhn", method =
+	// @RequestMapping(value = "/member_edit_ok.do", method =
 	// RequestMethod.POST)
 	// public String member_edit_ok(HttpServletRequest request,
 	// HttpSession session,
@@ -396,7 +396,7 @@ public class MemberAction {
 	// }
 
 	/* 회원정보 수정(fileupload) */
-	@RequestMapping(value = "/member_edit_ok.nhn", method = RequestMethod.POST)
+	@RequestMapping(value = "/member_edit_ok.do", method = RequestMethod.POST)
 	public String member_edit_ok(@RequestParam("profile") MultipartFile mf, camping.model.member member,
 			HttpServletRequest request, HttpSession session, Model model) throws Exception {
 
@@ -487,7 +487,7 @@ public class MemberAction {
 	}
 
 	/* 회원정보 삭제 폼 */
-	@RequestMapping(value = "/member_del.nhn")
+	@RequestMapping(value = "/member_del.do")
 	public String member_del(HttpSession session, Model dm) throws Exception {
 
 		String id = (String) session.getAttribute("id");
@@ -499,7 +499,7 @@ public class MemberAction {
 	}
 
 	/* 회원정보 삭제 완료 */
-	@RequestMapping(value = "/member_del_ok.nhn", method = RequestMethod.POST)
+	@RequestMapping(value = "/member_del_ok.do", method = RequestMethod.POST)
 	public String member_del_ok(@RequestParam("pwd") String pass, @RequestParam("del_cont") String del_cont,
 			HttpSession session) throws Exception {
 
@@ -529,12 +529,12 @@ public class MemberAction {
 
 			session.invalidate(); // 세션만료
 
-			return "redirect:member_login.nhn";
+			return "redirect:member_login.do";
 		}
 	}
 
 	// 로그아웃
-	@RequestMapping("member_logout.nhn")
+	@RequestMapping("member_logout.do")
 	public String logout(HttpSession session) {
 		session.invalidate();
 

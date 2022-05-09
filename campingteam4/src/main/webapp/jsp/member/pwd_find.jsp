@@ -30,7 +30,7 @@
  
  <c:if test="${empty pwdok}"> 
   <h2 class="pwd_title">비번찾기</h2>
-  <form method="post" action="pwd_find_ok.nhn"
+  <form method="post" action="pwd_find_ok.do"
   		onsubmit="return check()">  
    <table id="pwd_t">
     <tr>

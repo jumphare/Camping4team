@@ -29,7 +29,7 @@ function openDaumPostcode() {
 <body>
   <div id="join_wrap">
   <h2 class="join_title">회원수정</h2>
-  <form name="f" method="post" action="member_edit_ok.nhn"
+  <form name="f" method="post" action="member_edit_ok.do"
   		onsubmit="return edit_check()" enctype="multipart/form-data">
    <!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
    <table id="join_t">
