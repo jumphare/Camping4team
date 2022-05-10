@@ -7,9 +7,10 @@
 <title>insert title here</title>
 </head>
 <body>
-<script>
-	location.href="member_login.do"
-</script>
+
+<a href="member_login.do">로그인</a><br>
+<a href="resmain.do">예약(임시)</a>
+
 
 
 </body>
