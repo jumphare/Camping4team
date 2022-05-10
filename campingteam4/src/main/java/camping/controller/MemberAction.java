@@ -500,7 +500,7 @@ public class MemberAction {
 
 	/* 회원정보 삭제 완료 */
 	@RequestMapping(value = "member_del_ok.do", method = RequestMethod.POST)
-	public String member_del_ok(@RequestParam("pwd") String pass, @RequestParam("del_cont") String del_cont,
+	public String member_del_ok(@RequestParam("pwd") String pass,
 			HttpSession session) throws Exception {
 
 		String id = (String) session.getAttribute("id");
@@ -523,7 +523,6 @@ public class MemberAction {
 			}
 			camping.model.member delm = new camping.model.member();
 			delm.setId(id);
-			delm.setDelcont(del_cont);
 
 			memberService.deleteMember(delm);// 삭제 메서드 호출
 

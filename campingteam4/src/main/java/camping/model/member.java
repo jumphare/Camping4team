@@ -12,7 +12,6 @@ public class member {
 	private String phone;
 	private String email;
 	private String profile;
-	private String delcont;
 	private String deldate;
 	
 	public String getId() {
@@ -74,12 +73,6 @@ public class member {
 	}
 	public void setProfile(String profile) {
 		this.profile = profile;
-	}
-	public String getDelcont() {
-		return delcont;
-	}
-	public void setDelcont(String delcont) {
-		this.delcont = delcont;
 	}
 	public String getDeldate() {
 		return deldate;
