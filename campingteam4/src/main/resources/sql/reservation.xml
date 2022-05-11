@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reserve">
+    
+    <!-- 장소 DB -->
+    <select id="loc_sel" parameterType="int" resultType="camp_loc">
+    	select * from camp_loc where camp_no=#{camp_no}
+    </select>
+    <!-- 자리 DB -->
+    <select id="sp_sel" parameterType="int" resultType="spot">
+    	select * from spot where sp_no=#{sp_no}
+    </select>
+    <!-- 장비 DB -->
+    <select id="eqm_sel" parameterType="int" resultType="equipment">
+    	select * from equipment where camp_no=#{camp_no}
+    </select>
+	<!-- 저장 -->
+	<insert id="res_save" parameterType="reservation" >
+		insert into reservation (res_no,camp_no,sp_no,eq_no,res_date,
+		start_date,end_date,num,price,payment,state,id,eq_num)
+		values(0,#{camp_no},#{sp_no},#{eq_no},
+		sysdate, sysdate+10, sysdate+12, #{num},#{price},0,0,#{id},#{eq_num})
+	</insert>
+
+    
+</mapper>
