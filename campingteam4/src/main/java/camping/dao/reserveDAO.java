@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import camping.model.camp_loc;
 import camping.model.equipment;
+import camping.model.member;
 import camping.model.reservation;
 import camping.model.spot;
 
@@ -31,5 +32,17 @@ public class reserveDAO {
 	//저장 (결제대기)
 	public int res_save(reservation res) {
 		return session.insert("reserve.res_save", res);
+	}
+	//예약목록
+	public List<reservation> reslist(String id){
+		return session.selectList("reserve.reslist", id);
+	}
+	//예약상세
+	public reservation resdetail(int res_no) {
+		return session.selectOne("reserve.resdetail", res_no);
+	}
+	//멤버 DB
+	public member memdetail(String id) {
+		return session.selectOne("reserve.memdetail",id);
 	}
 }

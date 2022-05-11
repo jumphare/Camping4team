@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import camping.dao.reserveDAO;
 import camping.model.camp_loc;
 import camping.model.equipment;
+import camping.model.member;
 import camping.model.reservation;
 import camping.model.spot;
 
@@ -31,5 +32,17 @@ public class reserveService {
 	//저장(결제대기)
 	public int res_save(reservation res) throws Exception {
 		return dao.res_save(res);
+	}
+	//예약목록
+	public List<reservation> reslist(String id){
+		return dao.reslist(id);
+	}
+	//예약상세
+	public reservation resdetail(int res_no) {
+		return dao.resdetail(res_no);
+	}
+	//멤버 DB
+	public member memdetail(String id) {
+		return dao.memdetail(id);
 	}
 }

@@ -22,6 +22,16 @@
 		values(0,#{camp_no},#{sp_no},#{eq_no},
 		sysdate, sysdate+10, sysdate+12, #{num},#{price},0,0,#{id},#{eq_num})
 	</insert>
-
-    
+	<!-- 예약목록 (id로 검색) -->
+	<select id="reslist" parameterType="String" resultType="reservation">
+		select * from reservation where id=#{id} order by res_date desc
+	</select>
+	<!-- 예약상세 (res_no) -->
+	<select id="resdetail" parameterType="int" resultType="reservation">
+		select * from reservation where res_no=#{res_no}
+	</select>
+    <!-- 멤버 DB -->
+    <select id="memdetail" parameterType="String" resultType="member">
+    	select * from member where id=#{id}
+    </select>
 </mapper>
