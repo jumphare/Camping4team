@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="noticens">
+
+	<insert id="insert" parameterType="notice">
+		insert into notice values(notice_num_seq.nextval, '공지게시판',#{subject},#{content},sysdate,#{not_file,jdbcType=VARCHAR} )
+	</insert>
+
+	<select id="count" resultType="int">
+	  select count(*) from notice
+	</select>
+
+	 <select id="list" parameterType="int" resultType="notice">
+		<![CDATA[
+		select * from (select rownum rnum, notice.* from (
+		select * from notice order by not_no desc) notice )
+		where rnum >= ((#{page}-1) * 10 + 1) and rnum <= (#{page} * 10)
+		]]>
+	</select>
+	
+	<select id="content" parameterType="int" resultType="notice">
+	  select * from notice where not_no = #{not_no}
+	</select>
+	
+	<update id="update" parameterType="notice">
+		update notice set subject=#{subject}, content=#{content}, no_date=sysdate, not_file=#{not_file}  where not_no=#{not_no} 
+	</update>
+
+	<delete id="delete" parameterType="int">
+	    delete from notice where not_no = #{not_no}
+	</delete>
+
+</mapper>
