@@ -1,6 +1,26 @@
 package camping.model;
 
 public class spot {
+	private int sp_no; /* 자리번호 */
+	private int camp_no; /* 장소번호 */
+	private String type; /* 종류 */
+	private int standard_num;/* 기준인원 */
+	private int max_num; /* 최대인원 */
+	private int price; /* 가격 */
+	private String memo; /* 주요사항 */
+	private String image;
+	private String imagedetail;
+	private String imagedetail2;
+	private int hightprice;
+	private String sp_name;
+	private int reservecheck;
+	
+	public int getReservecheck() {
+		return reservecheck;
+	}
+	public void setReservecheck(int reservecheck) {
+		this.reservecheck = reservecheck;
+	}
 	public int getSp_no() {
 		return sp_no;
 	}
@@ -43,11 +63,34 @@ public class spot {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
-	private int sp_no; /* 자리번호 */
-	private int camp_no; /* 장소번호 */
-	private String type; /* 종류 */
-	private int standard_num;/* 기준인원 */
-	private int max_num; /* 최대인원 */
-	private int price; /* 가격 */
-	private String memo; /* 소개 */
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getImagedetail() {
+		return imagedetail;
+	}
+	public void setImagedetail(String imagedetail) {
+		this.imagedetail = imagedetail;
+	}
+	public String getImagedetail2() {
+		return imagedetail2;
+	}
+	public void setImagedetail2(String imagedetail2) {
+		this.imagedetail2 = imagedetail2;
+	}
+	public String getSp_name() {
+		return sp_name;
+	}
+	public void setSp_name(String sp_name) {
+		this.sp_name = sp_name;
+	}
+	public int getHightprice() {
+		return hightprice;
+	}
+	public void setHightprice(int hightprice) {
+		this.hightprice = hightprice;
+	}
 }

@@ -21,10 +21,10 @@ public class reservation {
 	public void setSp_no(int sp_no) {
 		this.sp_no = sp_no;
 	}
-	public int getEq_no() {
+	public String getEq_no() {
 		return eq_no;
 	}
-	public void setEq_no(int eq_no) {
+	public void setEq_no(String eq_no) {
 		this.eq_no = eq_no;
 	}
 	public Date getRes_date() {
@@ -75,10 +75,17 @@ public class reservation {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public String getEq_num() {
+		return eq_num;
+	}
+	public void setEq_num(String eq_num) {
+		this.eq_num = eq_num;
+	}
+
 	private int res_no; /* 예약번호 */
 	private int camp_no; /* 장소번호 */
 	private int sp_no; /* 자리번호 */
-	private int eq_no; /* 장비번호 */
+	private String eq_no; /* 장비번호 */
 	private Date res_date; /* 예약일 */
 	private Date start_date; /* 시작일 */
 	private Date end_date; /* 종료일 */
@@ -87,4 +94,6 @@ public class reservation {
 	private int payment; /* 결제여부 */
 	private int state; /* 예약상태 */
 	private String id; /* 아이디 */
+	private String eq_num; /*장비 개수*/
+	
 }

@@ -1,20 +1,30 @@
 package camping.model;
 
-import java.util.Date;
-
 public class member {
-	private String id;/* 아이디 */
+
+	private String id;
+	private String pwd;
+	private String name;
+	private int zip1;
+	private String jumin;
+	private String addr1;
+	private String addr2;
+	private String phone;
+	private String email;
+	private String profile;
+	private String deldate;
+	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPasswd() {
-		return passwd;
+	public String getPwd() {
+		return pwd;
 	}
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 	public String getName() {
 		return name;
@@ -22,23 +32,17 @@ public class member {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getAge() {
-		return age;
+	public int getZip1() {
+		return zip1;
 	}
-	public void setAge(int age) {
-		this.age = age;
+	public void setZip1(int zip1) {
+		this.zip1 = zip1;
 	}
-	public String getGender() {
-		return gender;
+	public String getJumin() {
+		return jumin;
 	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public int getZip() {
-		return zip;
-	}
-	public void setZip(int zip) {
-		this.zip = zip;
+	public void setJumin(String jumin2) {
+		this.jumin = jumin2;
 	}
 	public String getAddr1() {
 		return addr1;
@@ -52,46 +56,29 @@ public class member {
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getCal() {
-		return cal;
+	public String getProfile() {
+		return profile;
 	}
-	public void setCal(String cal) {
-		this.cal = cal;
+	public void setProfile(String profile) {
+		this.profile = profile;
 	}
-	public String getImage() {
-		return image;
+	public String getDeldate() {
+		return deldate;
 	}
-	public void setImage(String image) {
-		this.image = image;
+	public void setDeldate(String deldate) {
+		this.deldate = deldate;
 	}
-	public Date getM_date() {
-		return m_date;
-	}
-	public void setM_date(Date m_date) {
-		this.m_date = m_date;
-	}
-	public int getDel() {
-		return del;
-	}
-	public void setDel(int del) {
-		this.del = del;
-	}
-	private String passwd; /* 비밀번호 */
-	private String name; /* 이름 */
-	private int age; /* 나이 */
-	private String gender; /* 성별 */
-	private int zip; /* 우편번호 */
-	private String addr1;/* 주소 */
-	private String addr2;/* 상세주소 */
-	private String email; /* 이메일 */
-	private String cal;/* 핸드폰 */
-	private String image; /* 프로필사진 */
-	private Date m_date; /* 가입일 */
-	private int del;/* 탈퇴여부 */
+	
 }

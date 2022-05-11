@@ -21,6 +21,5 @@
 		<typeAlias alias="camp_select" type="camping.model.camp_select" />
 		
 	</typeAliases>		
-	
 
 </configuration>

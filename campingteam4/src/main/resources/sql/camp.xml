@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="campns">
+    
+    <!-- 회원저장(예시) -->
+<!--     <insert id="member_join" parameterType="member">
+     insert into join_member (join_code,join_id,join_pwd,join_name,
+     join_zip1,join_addr1,join_addr2,join_tel,join_phone,join_email,join_profile,
+     join_regdate,join_state) values(join_member_joincode_seq.nextval,
+     #{join_id},#{join_pwd},#{join_name},
+     #{join_zip1},#{join_addr1},#{join_addr2},#{join_tel},
+     #{join_phone},#{join_email},#{join_profile, jdbcType=VARCHAR},sysdate,1)
+    </insert>
+     -->
+     <!-- 부등호 인식시키는 방법 두가지 -->
+			<!-- 첫번째 방법 부등호 인식 못하기때문에 &lt;(<) &gt;(>)로 변경한다 -->
+			<!-- 두번째 방법 xml 코드로 크다작다 연산자를 인식시키는것 -->
+     
+     <!-- 리스트 출력 -->
+	<select id="list" parameterType="camp_select" resultType="spot">
+		<![CDATA[
+		select * from spot s,camp_loc c where s.type=#{type} and c.area=#{loc} and #{memcount}<=max_num and c.camp_no=s.camp_no
+		]]>	
+	</select>
+
+	<!-- 글작성 -->
+	<insert id="insert" parameterType="spot">
+		insert into spot values(spot_num_seq.nextval,#{camp_no},
+			#{type}, #{standard_num}, #{max_num}, #{price}, #{memo}, #{image},
+			#{imagedetail}, #{imagedetail2}, #{hightprice}, #{sp_name})
+	</insert>
+	
+	<!-- 예약 가능여부 확인 -->
+	<update id="resevcheck" parameterType="camp_select">
+		<![CDATA[
+	           	Merge into spot s using reservation r on (s.sp_no = r.sp_no ) 
+                    when matched then update set s.reservecheck = 1 where r.sp_no = s.sp_no and
+                    to_char(r.start_date,'YYYY-MM-DD')<= #{startDate} and #{startDate} <=to_char(r.end_date,'YYYY-MM-DD')
+                    or to_char(r.start_date,'YYYY-MM-DD')<= #{endDate} and #{endDate} <=to_char(r.end_date,'YYYY-MM-DD')
+		]]>	
+	</update>
+	<!-- 예약 초기화 -->
+	<update id = "resetcheck">
+		update spot set reservecheck = 0
+	</update>
+    
+</mapper>
+
+
+
+
+
+
+
+
