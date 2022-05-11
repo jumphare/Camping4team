@@ -3,16 +3,23 @@ package camping.model;
 import java.util.Date;
 
 public class notice{
+	private int not_no;/* 글번호 */
+	private String board; /* 게시판 */
+	private String subject;/* 제목 */
+	private String content; /* 내용 */
+	private Date no_date;/* 날짜 */
+	private String not_file; /* 첨부 */
+	
 	public int getNot_no() {
 		return not_no;
 	}
 	public void setNot_no(int not_no) {
 		this.not_no = not_no;
 	}
-	public int getBoard() {
+	public String getBoard() {
 		return board;
 	}
-	public void setBoard(int board) {
+	public void setBoard(String board) {
 		this.board = board;
 	}
 	public String getSubject() {
@@ -39,10 +46,5 @@ public class notice{
 	public void setNot_file(String not_file) {
 		this.not_file = not_file;
 	}
-	private int not_no;/* 글번호 */
-	private int board; /* 게시판 */
-	private String subject;/* 제목 */
-	private String content; /* 내용 */
-	private Date no_date;/* 날짜 */
-	private String not_file; /* 첨부 */
+	
 }

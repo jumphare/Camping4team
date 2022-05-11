@@ -20,10 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import camping.model.member;
-import camping.service.MemberServiceImpl;
 
 @Controller
-public class MemberAction {
+public class MemberController {
 
 	@Autowired
 	private camping.service.MemberServiceImpl memberService;
@@ -397,16 +396,19 @@ public class MemberAction {
 
 	/* 회원정보 수정(fileupload) */
 	@RequestMapping(value = "member_edit_ok.do", method = RequestMethod.POST)
-	public String member_edit_ok(@RequestParam("profile") MultipartFile mf, camping.model.member member,
+	public String member_edit_ok(@RequestParam("profile1") MultipartFile mf, member member,
 			HttpServletRequest request, HttpSession session, Model model) throws Exception {
 
 		String filename = mf.getOriginalFilename();
 		int size = (int) mf.getSize();
-
+		
 		String path = request.getRealPath("upload");
+		System.out.println("mf=" + mf);
+		System.out.println("filename=" + filename); // filename="Koala.jpg"
+		System.out.println("size=" + size);
 		System.out.println("path:" + path);
-
 		int result = 0;
+		
 		String file[] = new String[2];
 //		file = filename.split(".");
 //		System.out.println(file.length);
@@ -453,7 +455,7 @@ public class MemberAction {
 		}
 
 		String id = (String) session.getAttribute("id");
-
+		
 		String jumin1 = request.getParameter("jumin1").trim();
 		String jumin2 = request.getParameter("jumin2").trim();
 		String jumin = jumin1 + "-" + jumin2;
@@ -465,7 +467,7 @@ public class MemberAction {
 		String maildomain = request.getParameter("maildomain").trim();
 		String email = mailid + "@" + maildomain;
 
-		member editm = this.memberService.userCheck(id);
+		member editm = this.memberService.userCheck(id);	
 
 		if (size > 0) { // 첨부 파일이 수정되면
 			member.setProfile(newfilename);
@@ -482,6 +484,7 @@ public class MemberAction {
 
 		model.addAttribute("name", member.getName());
 		model.addAttribute("profile", member.getProfile());
+		
 
 		return "member/jsp/main";
 	}

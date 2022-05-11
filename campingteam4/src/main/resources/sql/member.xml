@@ -24,10 +24,9 @@
     
     <!-- 회원수정 -->
     <update id="member_edit" parameterType="member">
-     update member set pwd1=#{pwd1},pwd2=#{pwd2}, name=#{name},
-      zip1=#{zip1}, addr1=#{addr1},addr2=#{addr2}, 
-      jumin1=#{jumin1},jumin2=#{jumin2},phone2=#{phone2},phone3=#{phone3},
-      email=#{email}, profile=#{profile,jdbcType=VARCHAR} 
+     update member set pwd=#{pwd},name=#{name},
+      zip1=#{zip1},jumin=#{jumin},addr1=#{addr1},addr2=#{addr2}, 
+      phone=#{phone},email=#{email}, profile=#{profile,jdbcType=VARCHAR} 
      where  id=#{id}
     </update>    
     

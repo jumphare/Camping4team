@@ -9,22 +9,20 @@ import camping.model.member;
 
 @Repository
 public class MemberDAOImpl {
-	
-	@Autowired
-	private SqlSession sqlSession;	
 
+	@Autowired
+	private SqlSession sqlSession;
 
 	/***** 아이디 중복 체크 *****/
 //	@Transactional
 	public int checkMemberId(String id) throws Exception {
 //		getSession();
-		int re = -1;	// 사용 가능한 ID
+		int re = -1; // 사용 가능한 ID
 		camping.model.member mb = sqlSession.selectOne("login_check", id);
 		if (mb != null)
-			re = 1; 	// 중복id
+			re = 1; // 중복id
 		return re;
 	}
-	
 
 	/* 비번 검색 */
 //	@Transactional
@@ -50,7 +48,7 @@ public class MemberDAOImpl {
 	/* 회원수정 */
 //	@Transactional
 	public void updateMember(camping.model.member member) throws Exception {
-//		getSession();
+		
 		sqlSession.update("member_edit", member);
 	}
 
@@ -61,8 +59,3 @@ public class MemberDAOImpl {
 		sqlSession.update("member_delete", delm);
 	}
 }
-
-
-
-
-
