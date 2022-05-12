@@ -79,7 +79,7 @@
 					
 			<form method=post id="selectdata" action="<%=request.getContextPath()%>/reservePage.do">
 			<input type="hidden" id="start_date" name="start_date" value="${camsel.startDate}">
-			<input type="hidden" id="start_date" name="start_date" value="${camsel.endDate}">
+			<input type="hidden" id="end_date" name="end_date" value="${camsel.endDate}">
 			<input type="hidden" id="num" name="num" value="${camsel.memcount}">
 			<input type="hidden" id="camp_no" name="camp_no" value="${spot.camp_no}">
 			<input type="hidden" id="sp_no" name="sp_no" value="${spot.sp_no}">
