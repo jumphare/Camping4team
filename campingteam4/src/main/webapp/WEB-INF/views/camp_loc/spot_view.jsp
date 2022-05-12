@@ -77,12 +77,12 @@
 				<input type="button" value="목록"
 					onClick="location.href='type_list.do?loc=${camsel.loc}&startDate=${camsel.startDate}&endDate=${camsel.endDate}&memcount=${memcount}&type=${camsel.type}'">
 					
-			<form method=post id="selectdata" action="<%=request.getContextPath()%>~~.do">
+			<form method=post id="selectdata" action="<%=request.getContextPath()%>/reservePage.do">
 			<input type="hidden" id="start_date" name="start_date" value="${camsel.startDate}">
 			<input type="hidden" id="start_date" name="start_date" value="${camsel.endDate}">
 			<input type="hidden" id="num" name="num" value="${camsel.memcount}">
-			<input type="hidden" id="camp_no" name="camp_no" value="${spot.sp_no}">
-			<input type="hidden" id="sp_no" name="sp_no" value="${spot.camp_no}">
+			<input type="hidden" id="camp_no" name="camp_no" value="${spot.camp_no}">
+			<input type="hidden" id="sp_no" name="sp_no" value="${spot.sp_no}">
 			<input type="submit" value="예약하기!!">
 			</form>
 			</td>
