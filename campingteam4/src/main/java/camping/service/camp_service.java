@@ -35,6 +35,10 @@ public class camp_service {
 	public int resetcheck() {
 		return campdao.resetcheck();
 	}
+	//상세페이지
+	public spot getspot(int sp_no) {
+		return campdao.getspot(sp_no);
+	}
 	
 	
 }

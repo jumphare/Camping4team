@@ -3,6 +3,9 @@ package camping.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,13 +22,15 @@ public class camp_Controller {
 	@Autowired
 	private camp_service camp_service;
 	
+	//임의 메인 페이지 - 로그인 세션 공유 위해 생성
 	@RequestMapping("date_sel.do")
-	public String date_sel(){
+	public String date_sel(HttpServletRequest request, Model model){
 		System.out.println("컨트롤러 들어옴");
-		
+		HttpSession session=request.getSession();
+		session.setAttribute("id", "test");
 		return "camp_loc/date_sel";
 	}
-	
+	//날짜, 인원선택
 	@RequestMapping("camp_sel.do")
 	public String camp_sel(String startDate, String endDate,String memcount, Model model){
 		
@@ -46,7 +51,7 @@ public class camp_Controller {
 		model.addAttribute("endDate",endDate);
 		return "camp_loc/camp_loc_sel";
 	}
-	
+	//(날짜, 인원선택)+ 지역선택
 	@RequestMapping("loc_check.do")
 	public String loc_check(String loc, String startDate, String endDate,String memcount, Model model){
 		System.out.println("loc : " + loc);
@@ -61,7 +66,7 @@ public class camp_Controller {
 		return "camp_loc/camp_type";
 	}
 	
-	
+	//(날짜, 인원선택, 지역선택)+캠핑타입선택 후 그에 맞는 리스트 출력
 	@RequestMapping("type_list.do")
 	public String type_list(String loc, String type, String startDate, String endDate,String memcount, Model model){	
 		
@@ -85,6 +90,7 @@ public class camp_Controller {
 			List<spot> spotlist = camp_service.camplist(camsel);
 			System.out.println("spotlist"+spotlist);
 			
+			model.addAttribute("camsel", camsel);
 			model.addAttribute("memcount",memcount);
 			model.addAttribute("spotlist", spotlist);
 			model.addAttribute("loc", loc);
@@ -93,13 +99,13 @@ public class camp_Controller {
 	     return "camp_loc/camp_list";
 		
 	}
-	//글작성 폼
+	//캠핑스팟 등록 폼
 	@RequestMapping("spotwriteform.do")
 	public String spotwriteform() {
 		return "camp_loc/spot_write";	//이렇게만 작성해도 넘어간다~
 	}
 	
-	//글작성
+	//캠핑스팟 등록
 	@RequestMapping("spotwrite.do")
 	public String spotwrite(spot spot, Model model) {
 		
@@ -111,5 +117,22 @@ public class camp_Controller {
 		
 		return "camp_loc/insert_result";
 	}
-	
+	//캠프 상세
+	@RequestMapping("spotview.do")
+	public String spotview(String loc, String type, String startDate, String endDate,String memcount, int sp_no, Model model) {
+		camp_select camsel = new camp_select();
+    	camsel.setStartDate(startDate);
+    	camsel.setEndDate(endDate);
+		camsel.setLoc(loc);
+		camsel.setMemcount(Integer.parseInt(memcount));
+		camsel.setType(type);
+		
+		spot spot = camp_service.getspot(sp_no);
+		
+		model.addAttribute("memcount", memcount);
+		model.addAttribute("camsel",camsel);
+		model.addAttribute("spot",spot);
+		
+		return "camp_loc/spot_view";	//이렇게만 작성해도 넘어간다~
+	}
 }

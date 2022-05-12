@@ -28,7 +28,7 @@
 	<insert id="insert" parameterType="spot">
 		insert into spot values(spot_num_seq.nextval,#{camp_no},
 			#{type}, #{standard_num}, #{max_num}, #{price}, #{memo}, #{image},
-			#{imagedetail}, #{imagedetail2}, #{hightprice}, #{sp_name})
+			#{imagedetail}, #{imagedetail2}, #{hightprice}, #{sp_name},0)
 	</insert>
 	
 	<!-- 예약 가능여부 확인 -->
@@ -44,6 +44,11 @@
 	<update id = "resetcheck">
 		update spot set reservecheck = 0
 	</update>
+	
+	<!-- 스팟 상세정보 구하기 -->
+	<select id="getspot" parameterType="int" resultType="spot">
+		select * from spot where sp_no = #{sp_no}
+	</select>
     
 </mapper>
 

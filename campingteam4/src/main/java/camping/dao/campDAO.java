@@ -32,4 +32,9 @@ public class campDAO {
 		public int resetcheck() {
 			return session.update("campns.resetcheck");
 		}
+	//상세
+		public spot getspot(int sp_no) {
+			return session.selectOne("campns.getspot",sp_no);
+		}
+		
 }
