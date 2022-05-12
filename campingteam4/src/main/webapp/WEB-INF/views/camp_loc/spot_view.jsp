@@ -9,11 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script>
-	function history_go{
-		history.go(-1);
-	}
-</script>
+
 <table border=1 width=400 align=center>
 	<caption>상세</caption>
 		<tr>
@@ -29,7 +25,7 @@
 		<tr>
 			<td>지역</td>
 			<td>
-				${spot.camp_no}
+				${camsel.loc}
 			</td>
 		</tr>
 		<tr>
@@ -82,11 +78,11 @@
 					onClick="location.href='type_list.do?loc=${camsel.loc}&startDate=${camsel.startDate}&endDate=${camsel.endDate}&memcount=${memcount}&type=${camsel.type}'">
 					
 			<form method=post id="selectdata" action="<%=request.getContextPath()%>~~.do">
-			<input type="hidden" id="startDate" name="startDate" value="${camsel.startDate}">
-			<input type="hidden" id="endDate" name="endDate" value="${camsel.endDate}">
-			<input type="hidden" id="loc" name="loc" value="${camsel.loc}">
-			<input type="hidden" id="memcount" name="memcount" value="${camsel.memcount}">
-			<input type="hidden" id="type" name="type" value="${camsel.type}">
+			<input type="hidden" id="start_date" name="start_date" value="${camsel.startDate}">
+			<input type="hidden" id="start_date" name="start_date" value="${camsel.endDate}">
+			<input type="hidden" id="num" name="num" value="${camsel.memcount}">
+			<input type="hidden" id="camp_no" name="camp_no" value="${spot.sp_no}">
+			<input type="hidden" id="sp_no" name="sp_no" value="${spot.camp_no}">
 			<input type="submit" value="예약하기!!">
 			</form>
 			</td>

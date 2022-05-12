@@ -130,6 +130,7 @@ public class camp_Controller {
 		spot spot = camp_service.getspot(sp_no);
 		
 		model.addAttribute("memcount", memcount);
+		
 		model.addAttribute("camsel",camsel);
 		model.addAttribute("spot",spot);
 		
