@@ -17,10 +17,13 @@
     </select>
 	<!-- 저장 -->
 	<insert id="res_save" parameterType="reservation" >
-		insert into reservation (res_no,camp_no,sp_no,eq_no,res_date,
-		start_date,end_date,num,price,payment,state,id,eq_num)
-		values(0,#{camp_no},#{sp_no},#{eq_no},
-		sysdate, sysdate+10, sysdate+12, #{num},#{price},0,0,#{id},#{eq_num})
+	<selectKey keyProperty="res_no" order="BEFORE" resultType="int">
+      select nvl(max(res_no),0) + 1 from reservation
+   </selectKey>
+		insert into reservation 
+		values(#{res_no},#{camp_no},#{sp_no},#{eq_no},
+		sysdate, sysdate+12 , sysdate+14,
+		 #{num},#{price},#{payment},#{state},#{id},#{eq_num})
 	</insert>
 	<!-- 예약목록 (id로 검색) -->
 	<select id="reslist" parameterType="String" resultType="reservation">

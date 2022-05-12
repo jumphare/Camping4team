@@ -9,8 +9,9 @@
 <title>예약 상세내역</title>
 </head>
 <body>
+
 ${id }님의 예약정보<br>
-	<div>예약번호 ${res.res_no}</div>
+	<div>예약번호 ${res.res_no}</div> <!-- 이거 말고 결제하고 받는 번호로 -->
 	<div>예약일자 <fmt:formatDate value="${res.res_date}" pattern="yyyy.MM.dd"/></div>
 	<span>예약상태</span>
 	<span><c:if test="${res.payment eq '0'}" >결제대기</c:if>
@@ -40,7 +41,6 @@ ${id }님의 예약정보<br>
 		<td>
 		<c:forEach var="eqm" items="${eqlist }">
 			<c:if test="${eqm_num[i]!=0 }" >
-
 					${eqm.name} (${eqm.price })   X   ${eqm_num[i]} <br>
 			</c:if>
 			<c:set var="i" value="${i+1 }"/>
@@ -75,10 +75,17 @@ ${id }님의 예약정보<br>
 <table>
 	<tr>
 		<td colspan=2>
-			<c:if test="${res.payment eq '0'}" ><input type="button" value="결제">
-			<input type="button" value="삭제"></c:if>
-			 <c:if test="${res.payment eq '1'}" ><input type="button" value="예약취소"></c:if>
-			 <input type="button" value="목록">
+			<c:if test="${res.payment eq '0'}" >
+			<form method="post">
+			 	<input type=hidden name="eqm_no" value="${eqm.eq_no }">
+				<input type=hidden name="eqm_num" value="${eqm.eq_num }">
+				<input type=hidden name="camp_no" value="${camp.camp_no }">
+				<input type=hidden name="sp_no" value="${spot.sp_no }">
+				<input type="submit" value="결제"  formaction="./res_pay.do">
+			</form>
+			<input type="button" value="삭제" onclick="./res_del.do?res_no=${res.res_no }"></c:if>
+			 <c:if test="${res.payment eq '1'}" ><input type="button" value="예약취소" onclick="./res_cancel.do?res_no=${res.res_no}"></c:if>
+			 <input type="button" value="목록" onclick="history.back()">
 		</td>
 	</tr>
 </table>
