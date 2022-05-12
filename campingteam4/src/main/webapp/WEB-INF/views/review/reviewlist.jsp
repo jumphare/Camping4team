@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
+<body> 
 	<div class="">
 		<table class="">
 			<th>캠핑종류</th>

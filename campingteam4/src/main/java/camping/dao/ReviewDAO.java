@@ -1,5 +1,5 @@
 package camping.dao;
 
-public class ReviewDAO {
+public class ReviewDAO { 
 
 }

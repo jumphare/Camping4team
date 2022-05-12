@@ -54,7 +54,7 @@
 //	  public String res_save(reservation res, String[] eqm_no, String[] eqm_num, Model model) throws Exception {
 //		  String eq_no=String.join("-",eqm_no);
 //		  String eq_num=String.join("-",eqm_num);
-//
+// 
 //		  int result=0;
 //		  res.setEq_no(eq_no);
 //		  res.setEq_num(eq_num);
