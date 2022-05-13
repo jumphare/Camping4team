@@ -48,11 +48,11 @@
 		
 		<div class="c_r_write_btn">
 		<s:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
-			<a href="${path}/comm_reviewinsertform" class="btn btn-dark">글작성</a>
+			<a href="${path}/" class="btn btn-dark">글작성</a>
 		</s:authorize>
 	</div>
 	<!-- 페이징 -->
-		<div class="c_r_paging">
+<!-- 		<div class="c_r_paging">
 			<c:if test="${not empty keyword}">
 				<c:if test="${pp.startPage > pp.pagePerBlk }">
 					<li><a href="${path }/reviewlist/pageNum/${pp.startPage - 1}?search=${search}&keyword=${keyword}">이전</a></li>
@@ -77,7 +77,7 @@
 					<li><a href="${path }/reviewlist/pageNum/${pp.endPage + 1}">다음</a></li>
 				</c:if>
 		  </c:if>
-		  </div>
+		  </div> 
 		  <!-- 검색기능 --> 
 <!--  	<div class="c_r_search" >
 		<form align="center" action="${path}/reviewlist/pageNum/1">
