@@ -108,7 +108,6 @@
 			<div class="r_view_btns">
 				<input type="button" value="목록" class="btn btn-dark"
 					onClick="location.href='/reviewlist/pageNum/${pageNum}' ">
-				<s:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
 					<form
 						action="${path}/reviewupdateform/re_no/${review.re_no}/pageNum/${pageNum}"
 						method="post" name="chk" id="chk1">
@@ -120,15 +119,12 @@
 						method="post" name="chk" id="chk2">
 						<input class="btn btn-dark" type="submit" value="삭제">
 					</form>
-				</s:authorize>
-				<s:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
 					<form
-						action="/revlike?review_no=${review.review_no}&pageNum=${pageNum}"
+						action="/revlike?re_no=${review.re_no}&pageNum=${pageNum}"
 						method="post" id="like">
 
 						<input class="btn btn-dark" type="submit" value="좋아요">
 					</form>
-				</s:authorize>
 			</div>
 		</div>
 
@@ -136,18 +132,16 @@
 		<!-- 댓글 작성 -->
 		<div class="r_view_repl" align=center>
 			<form name="frm" id="frm">
-				<input type="hidden" name="member_id" value="${username}"> <input
-					type="hidden" name="review_fno" value="${review.review_no}">
+				<input type="hidden" name="id" value="${id}"> <input
+					type="hidden" name="review_fno" value="${review.re_no}">
 				<p>댓글쓰기 :</p>
 				<div>
 					<textarea class="form-control" rows="3" cols="50"
-						name="review_re_content"></textarea>
+						name="review_content"></textarea>
 				</div>
 				<div>
-				<s:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
 					<input class="btn btn-outline-secondary" type="button" value="확인"
 						id="review_reply_insert">
-				</s:authorize>
 				</div>
 			</form>
 		</div>
