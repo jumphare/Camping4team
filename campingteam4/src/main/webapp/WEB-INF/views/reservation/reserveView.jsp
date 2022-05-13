@@ -20,8 +20,7 @@ ${id }님의 예약정보<br>
 
 <table>
 	<tr>
-		<td>캠핑일</td><td><fmt:formatDate value="${res.start_date }" pattern="MM-dd(E)"/>  ~ 
-		<fmt:formatDate value="${res.end_date }" pattern="MM-dd(E)"/></td>
+		<td>캠핑일</td><td>${res.start_date }  ~  ${res.end_date }</td>
 	</tr>
 	<tr>		<td>예약자명</td><td>${mem.name }</td>	</tr>
 	<tr>		<td>휴대전화</td><td>${mem.phone }</td>	</tr>
@@ -81,6 +80,7 @@ ${id }님의 예약정보<br>
 				<input type=hidden name="eqm_num" value="${eqm.eq_num }">
 				<input type=hidden name="camp_no" value="${camp.camp_no }">
 				<input type=hidden name="sp_no" value="${spot.sp_no }">
+				<input type=hidden name="price" value="${res.price}">
 				<input type="submit" value="결제"  formaction="./res_pay.do">
 			</form>
 			<input type="button" value="삭제" onclick="./res_del.do?res_no=${res.res_no }"></c:if>

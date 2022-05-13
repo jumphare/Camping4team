@@ -73,7 +73,7 @@ $(document).ready(function(){
 					msg += '에러 : ' + rsp.error_msg;
 	                alert(msg);
 					//실패시 다시 예약페이지로
-	                location.href="/reservePage.do?camp_no=${res.camp_no}&spot_no=${res.sp_no}";
+	                location.href="./reservePage.do?camp_no=${res.camp_no}&sp_no=${res.sp_no}";
 				}
 				console.log(msg);
 			});//pay

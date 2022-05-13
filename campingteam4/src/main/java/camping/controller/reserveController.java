@@ -93,7 +93,7 @@ public class reserveController {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		int i = 0;
-		Date date=new Date();
+
 		// id의 예약내역
 		List<reservation> reslist = sv.reslist(id);
 		// 리스트 크기만큼 배열 생성
@@ -106,12 +106,13 @@ public class reserveController {
 			cname[i] = loc.getName();
 			sname[i] = spot.getType();
 			System.out.println(res.getRes_date());
+			i++;
 		}
 		System.out.println(reslist);
 		System.out.println(cname);
 		System.out.println(sname);
-		System.out.println(date);
-		model.addAttribute("date", date);
+		System.out.println(reslist.size());
+		
 		model.addAttribute("rlist", reslist);
 		model.addAttribute("cname", cname);
 		model.addAttribute("sname", sname);
