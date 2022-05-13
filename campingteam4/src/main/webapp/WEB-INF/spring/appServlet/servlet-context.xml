@@ -35,6 +35,11 @@
 			<mapping path="/member_del.do"/>
 			<mapping path="/member_del_ok.do"/>
 			<mapping path="/member_logout.do"/>
+			<mapping path="/reservePage.do"/>
+			<mapping path="/res_save.do"/>
+			<mapping path="/reserveList.do"/>
+			<mapping path="/reserveView.do"/>
+			<mapping path="/res_pay.do"/>
 			<beans:ref bean="sessionChk"/>
 		</interceptor>
 	</interceptors>	 
