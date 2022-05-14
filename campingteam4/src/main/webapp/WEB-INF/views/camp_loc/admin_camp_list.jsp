@@ -10,18 +10,16 @@
 </head>
 <body>
 
-<h5 align="center">인원( ${memcount} )에 맞는  ${loc} 지역의  ${type} 의 목록입니다.</h5><br>
+
+<a href = "spotwriteform.do">글작성</a><br>
 	<table border=1 align=center width=1000>
 		<caption>목록</caption>
 		
 		<tr>
 			<th>이미지</th>
 			<th>이름</th>
-			<th>기준인원</th>
-			<th>최대인원</th>
-			<th>기본금액</th>
-			<th>예약가능여부</th>
-			
+			<th>지역</th>
+			<th>종류</th>	
 		</tr>
 		<!-- 화면출력 번호 -->
 		<c:forEach var = "s" items="${spotlist}">
@@ -30,21 +28,21 @@
 			<img src="<%=request.getContextPath() %>/campupload/${s.image}" height="300" width="300" />
 			</td>
 			<td>
-				<a href="spotview.do?&loc=${loc}&startDate=${camsel.startDate}&endDate=${camsel.endDate}&memcount=${camsel.memcount}&type=${type}&sp_no=${s.sp_no}">
+				<a href="spotview.do?&sp_no=${s.sp_no}">
 				${s.sp_name}</a>
 			</td>
-			<td>${s.standard_num}</td>
-			<td>${s.max_num}</td>
-			<td>${s.price}</td>
 			<td>
-			<c:if test="${s.reservecheck == 1}">
-				<span style="color:red">!해당일 마감!</span>
+			<c:if test="${s.camp_no == 1}">
+				서울
 			</c:if>
-			<c:if test="${s.reservecheck == 0}">
-				<span style="color:blue">!예약가능!</span>
+			<c:if test="${s.camp_no == 2}">
+				천안
+			</c:if>
+			<c:if test="${s.camp_no == 3}">
+				대전
 			</c:if>
 			</td>
-			
+			<td>${s.type}</td>
 		</tr>
 		</c:forEach>
 	</table>

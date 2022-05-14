@@ -36,5 +36,9 @@ public class campDAO {
 		public spot getspot(int sp_no) {
 			return session.selectOne("campns.getspot",sp_no);
 		}
+	//관리자 캠프리스트
+		public  List<spot> admin_camplist(){
+			return session.selectList("campns.admin_list");
+		}
 		
 }

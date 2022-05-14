@@ -1,7 +1,13 @@
 package camping.controller;
 
 
+import java.io.File;
+import java.io.IOException;
+
 import java.util.List;
+
+import java.util.StringTokenizer;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,6 +16,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import camping.model.camp_select;
 import camping.model.spot;
@@ -99,6 +108,20 @@ public class camp_Controller {
 	     return "camp_loc/camp_list";
 		
 	}
+	//관리자 캠핑장 리스트
+		@RequestMapping("admin_camp_list.do")
+		public String admin_camp_list(Model model){	
+			
+		 
+				List<spot> spotlist = camp_service.admin_camplist();
+				System.out.println("spotlist"+spotlist);
+				
+			
+				model.addAttribute("spotlist", spotlist);
+
+		     return "camp_loc/admin_camp_list";
+			
+		}
 	//캠핑스팟 등록 폼
 	@RequestMapping("spotwriteform.do")
 	public String spotwriteform() {
@@ -107,19 +130,122 @@ public class camp_Controller {
 	
 	//캠핑스팟 등록
 	@RequestMapping("spotwrite.do")
-	public String spotwrite(spot spot, Model model) {
+	public String spotwrite(@RequestParam("image1") MultipartFile mf1,
+							MultipartHttpServletRequest mf2,
+							spot spot,
+							HttpServletRequest request,
+							Model model) {
+		//--------대표이미지
+		String filename1 = mf1.getOriginalFilename();
+		int size = (int)mf1.getSize();
+		//--------추가 이미지
+		List<MultipartFile> imagelist = mf2.getFiles("imagelist");
 		
-		int result = camp_service.insert(spot);
-		System.out.println("result :"+result);
-	
+		String path = request.getRealPath("campupload");
+		int result = 0;
+
+		String file1[] = new String[2];
+//		file = filename.split(".");
+//		System.out.println(file.length);
+//		System.out.println("file0="+file[0]);
+//		System.out.println("file1="+file[1]);
+//-------------대표이미지
+		String newfilename1 = "";
+		if (filename1 != null) { // 첨부파일이 전송된 경우
+
+			// 파일 중복문제 해결
+			String extension = filename1.substring(filename1.lastIndexOf("."), filename1.length());
+			System.out.println("extension:" + extension);
+
+			UUID uuid = UUID.randomUUID();
+
+			newfilename1 = uuid.toString() + extension;
+			System.out.println("newfilename:" + newfilename1);
+
+			StringTokenizer st = new StringTokenizer(filename1, ".");
+			file1[0] = st.nextToken(); // 파일명 Koala
+			file1[1] = st.nextToken(); // 확장자 jpg
+
+			if (size > 1000000) { // 1000KB
+				result = 1;
+				model.addAttribute("result", result);
+
+				return "camp_loc/updateResult";
+
+			} else if (!file1[1].equals("jpg") && !file1[1].equals("gif") && !file1[1].equals("png")) {
+
+				result = 2;
+				model.addAttribute("result", result);
+
+				return "camp_loc/updateResult";
+			}
+		}
+		if (size > 0) { // 첨부파일이 전송된 경우
 		
-		model.addAttribute("result",result);
+				try {
+					mf1.transferTo(new File(path + "/" + newfilename1));
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+//----------추가 이미지
+		String newfilename2 = "";
+		String spot_image2 = "";
+		 for (MultipartFile mf : imagelist) {
+	            newfilename2 = mf.getOriginalFilename(); // 원본 파일 명
+	            long fileSize = mf.getSize(); // 파일 사이즈
+
+	            System.out.println("originFileName : " + newfilename2);
+	            System.out.println("fileSize : " + fileSize);
+	            
+	            
+	            String safeFile2 = System.currentTimeMillis() + newfilename2;
+	            spot_image2 += safeFile2 + "-";
+	            
+	            try {
+	                mf.transferTo(new File(path + "/" + safeFile2));
+	            } catch (IllegalStateException e) {
+	                // TODO Auto-generated catch block
+	                e.printStackTrace();
+	            } catch (IOException e) {
+	                // TODO Auto-generated catch block
+	                e.printStackTrace();
+	            }
+	        }
+		spot.setImagedetail(spot_image2);
+		spot.setImage(newfilename1);
+		
+		int insertresult = camp_service.insert(spot);
+		System.out.println("result :"+ insertresult);
+		
+		System.out.println("mf1=" + mf1);
+		System.out.println("mf2=" + mf2);
+		System.out.println("filename1=" + newfilename1);
+		System.out.println("filename2=" + newfilename2);
+		System.out.println("size=" + size);
+		System.out.println("Path=" + path);
+		model.addAttribute("result",insertresult);
 		
 		return "camp_loc/insert_result";
 	}
 	//캠프 상세
 	@RequestMapping("spotview.do")
 	public String spotview(String loc, String type, String startDate, String endDate,String memcount, int sp_no, Model model) {
+		if(loc == null && type==null) {
+			spot spot = camp_service.getspot(sp_no);
+			
+			String imagedetail = spot.getImagedetail();
+			String[] i = imagedetail.split("-");
+			
+			model.addAttribute("spot",spot);
+			model.addAttribute("i", i);
+			return "camp_loc/admin_spot_view";
+		}else {
+		
 		camp_select camsel = new camp_select();
     	camsel.setStartDate(startDate);
     	camsel.setEndDate(endDate);
@@ -128,12 +254,15 @@ public class camp_Controller {
 		camsel.setType(type);
 		
 		spot spot = camp_service.getspot(sp_no);
+		String imagedetail = spot.getImagedetail();
+		String[] i = imagedetail.split("-");
 		
 		model.addAttribute("memcount", memcount);
-		
+		model.addAttribute("i", i);
 		model.addAttribute("camsel",camsel);
 		model.addAttribute("spot",spot);
 		
 		return "camp_loc/spot_view";	//이렇게만 작성해도 넘어간다~
+		}
 	}
 }

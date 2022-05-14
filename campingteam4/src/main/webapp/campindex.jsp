@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<script>location.href ="date_sel.do";  </script>
+    <a href="date_sel.do">예약하기</a><br>
+    <a href="admin_camp_list.do">관리자 캠핑장 관리</a><br>
 </body>
 </html>

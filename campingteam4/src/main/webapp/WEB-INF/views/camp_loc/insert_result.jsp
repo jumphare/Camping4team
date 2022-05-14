@@ -11,7 +11,7 @@
 <c:if test="${result==1}">
 	<script>
 	alert("캠핑장 등록 성공");
-	location.href="date_sel.do";
+	location.href="admin_camp_list.do";
 	</script>
 	</c:if>
 <c:if test="${result!=1}">

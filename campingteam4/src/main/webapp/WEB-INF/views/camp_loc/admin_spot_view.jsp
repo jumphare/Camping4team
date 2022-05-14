@@ -14,7 +14,7 @@
 	<caption>상세</caption>
 		<tr>
 			<td>대표이미지</td>
-		<td>
+			<td>
 			<img src="<%=request.getContextPath() %>/campupload/${spot.image}" height="400" width="400" />
 			</td>
 		</tr>	
@@ -25,7 +25,15 @@
 		<tr>
 			<td>지역</td>
 			<td>
-				${camsel.loc}
+			<c:if test="${spot.camp_no == 1}">
+				서울
+			</c:if>
+			<c:if test="${spot.camp_no == 2}">
+				천안
+			</c:if>
+			<c:if test="${spot.camp_no == 3}">
+				대전
+			</c:if>
 			</td>
 		</tr>
 		<tr>
@@ -58,11 +66,12 @@
 			<td>상세 이미지</td>
 			<td>
 			<c:forEach items="${i}" var="num">
+			${num} <br>
 			<img src="<%=request.getContextPath() %>/campupload/${num}" height="500" width="800" />
 			<br>
 			</c:forEach>
 			</td>
-		</tr>		
+		</tr>			
 		<tr>
 			<td>성수기 날짜 및 주요사항</td>
 			<td>
@@ -72,20 +81,13 @@
 		<tr>
 			<td colspan=2 align=center>
 				<input type="button" value="목록"
-					onClick="location.href='type_list.do?loc=${camsel.loc}&startDate=${camsel.startDate}&endDate=${camsel.endDate}&memcount=${memcount}&type=${camsel.type}'">
-					
-			<form method=post id="selectdata" action="<%=request.getContextPath()%>~~.do">
-			<input type="hidden" id="start_date" name="start_date" value="${camsel.startDate}">
-			<input type="hidden" id="start_date" name="start_date" value="${camsel.endDate}">
-			<input type="hidden" id="num" name="num" value="${camsel.memcount}">
-			<input type="hidden" id="camp_no" name="camp_no" value="${spot.camp_no}">
-			<input type="hidden" id="sp_no" name="sp_no" value="${spot.sp_no}">
-			<input type="submit" value="예약하기!!">
-			</form>
+					onClick="location.href='admin_camp_list.do'">
+				<input type="button" value="수정"
+				onclick="location.href=''">
+				<input type="button" value="삭제"
+				onclick="location.href=''">				
 			</td>
-		</tr>
-	
-			
+		</tr>			
 </table>
 
 </body>
