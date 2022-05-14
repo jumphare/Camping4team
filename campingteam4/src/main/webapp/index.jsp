@@ -9,7 +9,7 @@
 <body>
 	
     <a href="member_login.do">로그인</a><br>
-    <a href="resmain.do">예약(임시)</a><br>
+    <a href="#">예약(임시)</a><br>
     <a href="noticelist.do">공지사항 목록</a><br>
 	
 </body>

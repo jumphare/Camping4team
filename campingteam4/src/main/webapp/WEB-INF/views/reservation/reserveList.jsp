@@ -18,12 +18,11 @@
 	<tr>
 		<td><fmt:formatDate value="${r.res_date}" pattern="yyyy.MM.dd"/></td>
 		<td>
-		<fmt:formatDate value="${r.start_date }" pattern="MM월 dd일"/>  ~ 
-		<fmt:formatDate value="${r.end_date }" pattern="MM월 dd일"/> <br> 
+		${r.start_date }  ~ ${r.end_date } <br> 
 		<a href='./reserveView.do?res_no=${r.res_no}'>${cname[i]}</a> <br> ${sname[i]} <br>
-		<c:if test="${r.payment eq '0' }" >결제 대기</c:if>
-		<c:if test="${r.payment eq '1' }" >예약 완료</c:if>
-		<c:if test="${r.payment eq '2'}" >예약 취소</c:if></td>
+		<c:if test="${r.state eq '0' }" >결제 대기</c:if>
+		<c:if test="${r.state eq '1' }" >예약 완료</c:if>
+		<c:if test="${r.state eq '2'}" >예약 취소</c:if></td>
 		<td> <input type="button" value="상세내역" onclick="location.href='./reserveView.do?res_no=${r.res_no}';"><br>
 		<input type="button" value="취소"></td>
 	</tr>

@@ -38,14 +38,15 @@ public class reserveController {
 
 	// 임의 장소, 자리 페이지 - DB값 받아서 예약 페이지로 넘기는 과정 위해 생성
 	@RequestMapping("/reservePage.do")
-	public String loc(int camp_no, int sp_no, Model model) {
+	public String loc(reservation res, Model model) {
 		// 장소 DB
-		camp_loc loc = sv.loc(camp_no); // 임의의 1번 장소 DB 불러오기
+		camp_loc loc = sv.loc(res.getCamp_no()); // 임의의 1번 장소 DB 불러오기
 		// 자리 DB
-		spot spot = sv.spot(sp_no);
+		spot spot = sv.spot(res.getSp_no());
 		// 옵션 DB
-		List<equipment> list = sv.eqm(camp_no);
+		List<equipment> list = sv.eqm(res.getCamp_no());
 
+		model.addAttribute("res", res);
 		model.addAttribute("loc", loc);
 		model.addAttribute("spot", spot);
 		model.addAttribute("list", list);
@@ -56,14 +57,20 @@ public class reserveController {
 	// 저장 - 예약내역에서 '결제 대기' 상태로 확인 가능
 	@RequestMapping("/res_save.do")
 	public String res_save(reservation res, String[] eqm_no, String[] eqm_num, Model model) throws Exception {
-		String eq_no = String.join("-", eqm_no);
-		String eq_num = String.join("-", eqm_num);
-
 		int result = 0;
+		String eq_no;
+		String eq_num;
+		if(eqm_no!=null) {
+			eq_no = String.join("-", eqm_no);
+			eq_num = String.join("-", eqm_num);
+		} else {
+			eq_no="0";
+			eq_num="0";
+		}
 		res.setEq_no(eq_no);
 		res.setEq_num(eq_num);
-		res.setPayment(0);
-		res.setState(0);
+		res.setPayment(0);   //결제 안 함
+		res.setState(0);  //결제대기상태
 
 		System.out.println(res.getEq_no());
 		System.out.println(res.getEq_num());
@@ -86,7 +93,7 @@ public class reserveController {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		int i = 0;
-		Date date=new Date();
+
 		// id의 예약내역
 		List<reservation> reslist = sv.reslist(id);
 		// 리스트 크기만큼 배열 생성
@@ -99,12 +106,13 @@ public class reserveController {
 			cname[i] = loc.getName();
 			sname[i] = spot.getType();
 			System.out.println(res.getRes_date());
+			i++;
 		}
 		System.out.println(reslist);
 		System.out.println(cname);
 		System.out.println(sname);
-		System.out.println(date);
-		model.addAttribute("date", date);
+		System.out.println(reslist.size());
+		
 		model.addAttribute("rlist", reslist);
 		model.addAttribute("cname", cname);
 		model.addAttribute("sname", sname);
@@ -124,9 +132,18 @@ public class reserveController {
 		reservation res = sv.resdetail(res_no);
 		camp_loc loc = sv.loc(res.getCamp_no());
 		spot spot = sv.spot(res.getSp_no());
+		
+		String[] eqm_no;
+		String[] eqm_num;
 		// 장비 옵션
-		String[] eqm_no=res.getEq_no().split("-");
-		String[] eqm_num=res.getEq_num().split("-");
+		if(res.getEq_no().equals("0")) {
+			eqm_no=null;
+			eqm_num=null;
+		} else {
+			eqm_no=res.getEq_no().split("-");
+			eqm_num=res.getEq_num().split("-");
+		}
+
 		List<equipment> eqlist = sv.eqm(res.getCamp_no());
 		
 		model.addAttribute("mem", mem);
@@ -138,6 +155,28 @@ public class reserveController {
 		model.addAttribute("eqlist", eqlist);
 
 		return "/reservation/reserveView";
+	}
+	
+	//결제페이지
+	@RequestMapping("/res_pay.do")
+	public String res_pay(HttpServletRequest request, reservation res, String[] eqm_no, String[] eqm_num, Model model) {
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
+		member mem=sv.memdetail(id);
+		
+		camp_loc loc = sv.loc(res.getCamp_no());
+		spot spot = sv.spot(res.getSp_no());
+		List<equipment> eqlist = sv.eqm(res.getCamp_no());
+		
+		model.addAttribute("mem", mem);
+		model.addAttribute("camp", loc);
+		model.addAttribute("spot", spot);
+		model.addAttribute("res", res);
+		model.addAttribute("eqm_no", eqm_no);
+		model.addAttribute("eqm_num", eqm_num);
+		model.addAttribute("eqlist", eqlist);
+		
+		return "/reservation/payPage";
 	}
 
 }
