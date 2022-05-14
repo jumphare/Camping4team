@@ -12,89 +12,67 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link defer rel='stylesheet' media='screen' href='/css/comm/review_list.css'>
 </head>
 <body>
-	<div class="">
-		<table id="" class="">
-			<h2>후기 게시판</h2>
-			&nbsp;
-			<thead>
-				<th>번호</th>
+		<table border="1" align=center width=700>
+			<caption>후기 게시판</caption>
+			<tr>
+				<th>대표이미지</th>
 				<th>제목</th>
-				<th>작성자</th>
-				<th>작성일</th>
-				<th>조회수</th>
+				<th>장소</th>
 				<th>좋아요</th>
-			</thead>
-			<tbody>
-				<c:set var="no" value="${re_no}"></c:set>
-				<c:forEach var="n" items="${list}">
-					<tr>
-						<td>${n.re_no}</td>
-							<td><a href="${path}/reviewview/re_no/${n.re_no}/pageNum/${pp.currentPage}">
-								${n.subject}
-								</a></td>
-							<td>${n.id}</td>
-							<td><fmt:formatDate value="${n.date}" 
-						pattern="yyyy-MM-dd HH:mm:ss"/></td>
-							<td>${n.readcount}</td>
-							<td>${n.like}</td>
-					</tr>
-					<c:set var="no1" value="${no-1}"></c:set>
-				</c:forEach>
-				</tbody>
+				<th>작성자</th>
+				<th>조회수</th>
+			</tr>
+		<c:forEach var = "r" items="${relist}" varStatus="status">
+
+
+		<tr>
+			<td>
+				${r.re_file}
+			</td>
+			<td>
+				<a href="reviewdetail.do?re_no=${r.re_no}&page=${page}&res_no=${r.res_no}">
+				${r.subject}
+				</a>
+			</td>
+			<td>
+				${splist[status.index].sp_name}
+			</td>
+			<td>${r.rev_like}</td>
+			<td>${r.id}</td>	
+			<td>${r.readcount}</td>
+		</tr>
+		</c:forEach>
+	
 		</table>
-		
-		<div class="c_r_write_btn">
-		<s:authorize access="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
-			<a href="${path}/" class="btn btn-dark">글작성</a>
-		</s:authorize>
-	</div>
-	<!-- 페이징 -->
-<!-- 		<div class="c_r_paging">
-			<c:if test="${not empty keyword}">
-				<c:if test="${pp.startPage > pp.pagePerBlk }">
-					<li><a href="${path }/reviewlist/pageNum/${pp.startPage - 1}?search=${search}&keyword=${keyword}">이전</a></li>
-				</c:if>
-				<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
-					<li <c:if test="${pp.currentPage==i}">class="active"</c:if>><a
-						href="${path }/reviewlist/pageNum/${i}?search=${search}&keyword=${keyword}">&nbsp;${i}&nbsp;</a></li>
-				</c:forEach>
-				<c:if test="${pp.endPage < pp.totalPage}">
-					<li><a href="${path }/reviewlist/pageNum/${pp.endPage + 1}?search=${search}&keyword=${keyword}">다음</a></li>
-				</c:if>
-			</c:if>
-			<c:if test="${empty keyword}">
-				<c:if test="${pp.startPage > pp.pagePerBlk }">
-					<li><a href="${path }/reviewlist/pageNum/${pp.startPage - 1}">이전</a></li>
-				</c:if>
-				<c:forEach var="i" begin="${pp.startPage}" end="${pp.endPage}">
-					<li <c:if test="${pp.currentPage==i}">class="active"</c:if>><a
-						href="${path }/reviewlist/pageNum/${i}">${i}</a></li>
-				</c:forEach>
-				<c:if test="${pp.endPage < pp.totalPage}">
-					<li><a href="${path }/reviewlist/pageNum/${pp.endPage + 1}">다음</a></li>
-				</c:if>
-		  </c:if>
-		  </div> 
-		  <!-- 검색기능 --> 
-<!--  	<div class="c_r_search" >
-		<form align="center" action="${path}/reviewlist/pageNum/1">
-			<select name="search">
-				<option value="review_title"
-					<c:if test="${search=='review_title'}">selected="selected" </c:if>>제목</option>
-				<option value="review_content"
-					<c:if test="${search=='review_content'}">selected="selected" </c:if>>내용</option>
-				<option value="member_id"
-					<c:if test="${search=='member_id'}">selected="selected" </c:if>>작성자</option>
-				<option value="subcon"
-					<c:if test="${search=='subcon'}">selected="selected" </c:if>>제목+내용</option>
-			</select> 
-			<input type="text" name="keyword"> 
-			<input class="btn btn-dark" type="submit" value="검색">
-		</form>
-		</div>-->
-</div>
+<!-- 페이지처리 -->
+<center>
+<c:if test="${listcount>0}">
+	
+<!-- 1페이지로 이동              //   text-decoration은 밑줄 없애기-->
+<a href="boardlist.do?page=1" style="text-decoration:none"> << </a>
+<!-- 이전 블럭으로 이동 -->
+<c:if test="${startPage > 10}">
+	<a href="boardlist.do?page=${startPage-10}">[이전]</a>
+</c:if>
+<!-- 각 블럭에 10개의 페이지 출력 -->
+<c:forEach var="i" begin="${startPage}" end="${endPage}">
+	<c:if test="${i == page}">				<!-- 현재 페이지 -->
+		[${i}]	
+	</c:if>
+	<c:if test="${i != page}">				<!-- 현재 페이지가 아닌 경우 -->
+		<a href="boardlist.do?page=${i}">[${i}]</a>	
+	</c:if>
+</c:forEach>
+
+<!-- 다음 블럭으로 이동 -->	
+<c:if test="${endPage < pageCount}">
+	<a href="boardlist.do?page=${startPage+10}">[다음]</a>
+</c:if>
+<!-- 마지막 페이지로 이동 -->
+<a href="boardlist.do?page=${pageCount}" style="text-decoration:none"> >> </a>
+</c:if>	
+</center>
 </body>
 </html>
