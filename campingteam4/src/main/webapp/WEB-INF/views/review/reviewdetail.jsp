@@ -82,13 +82,17 @@
 	<div class="reviewlist_center">
 
 		<div class="review_view_table">
-			<table id="r_view_table1" class="table table-hover">
+			<table border=1 align=center width=700>
 				<h2>후기 게시판</h2>
 				&nbsp;
 				<tbody>
 					<tr>
 						<td width="90">제목</td>
 						<td>${review.subject}</td>
+					</tr>
+					<tr>
+						<td>장소</td>
+						<td>${spname}</td>
 					</tr>
 					<tr>
 						<td>작성자</td>
@@ -107,12 +111,9 @@
 
 			<div class="r_view_btns">
 				<input type="button" value="목록" class="btn btn-dark"
-					onClick="location.href='/reviewlist/pageNum/${pageNum}' ">
-					<form
-						action="${path}/reviewupdateform/re_no/${review.re_no}/pageNum/${pageNum}"
-						method="post" name="chk" id="chk1">
-						<input class="btn btn-dark" type="submit" value="수정">
-					</form>
+					onClick="location.href='reviewlist.do?page=${page}' ">
+				<input type="button" value="수정" class="btn btn-dark"
+					onClick="location.href='reviewupdateform.do?re_no=${review.re_no}&page=${page}' ">
 
 					<form
 						action="${path}/reviewdelete/re_no/${review.re_no}/pageNum/${pageNum}"

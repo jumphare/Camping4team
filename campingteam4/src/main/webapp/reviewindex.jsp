@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-    <a href="date_sel.do">예약하기</a><br>
-    <a href="admin_camp_list.do">관리자 캠핑장 관리</a><br>
+
+    <a href="reviewlist.do">리뷰 목록</a><br>
 </body>
 </html>

@@ -39,6 +39,10 @@ public class camp_service {
 	public spot getspot(int sp_no) {
 		return campdao.getspot(sp_no);
 	}
+	//관리자 리스트 출력
+	public  List<spot> admin_camplist(){
+		return campdao.admin_camplist();
+	}
 	
 	
 }

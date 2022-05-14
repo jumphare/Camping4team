@@ -4,46 +4,44 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>글작성</title>
 </head>
 <body>
-<div class="reviewupdate_table">
-		<form action="${path}/reviewupdate/pageNum/${pageNum}" method="post">
-		<input type="hidden" name="re_no" value="${review.re_no}"> 
-			<!-- onsubmit="return chk()"> -->
-			<table id="r_up_table1" class="table table-hover" >
-            <h2>후기 글수정</h2>
-            &nbsp;
-				<tr>
-					<td>번호</td>
-					<td>${review.re_no}</td>
-				</tr>
-				<tr>
-					<td>제목</td>
-					<td><input type="text" name="subject" required="required" size="60"
-						value="${review.subject}"></td>
-				</tr>
-				<tr>
-					<td>작성자</td>
-					<td>${review.id}</td>
-				</tr>
-				<tr>
-					<td>내용</td>
+ <div class="review_insert_table" >
+<form method=post action="reviewupdate.do">
+<input type="hidden" name="re_no" value="${review.re_no}">
+<input type="hidden" name="page" value="${page}">
+<table id="r_inert_table1" class="table table-hover">
+	<h2>후기 글수정</h2>
 
-			<td><textarea rows="25" cols="70" name="content" required="required" maxlength="284" id="content">
-		     ${review.content}</textarea>
-<!--		<script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능
-			CKEDITOR.replace('content',
-			{filebrowserUploadUrl:'/comm/imageupload'
-			});
-		    </script>
- -->			</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center"><input class="btn btn-dark" type="submit" value="확인"></td>
-				</tr>
-			</table>
-		</form>
-	</div>
+	<tr><th>제목</th>
+		<td><input type=text id="subject" name="subject" value="${review.subject }" required="required" size="60" maxlength="29" placeholder="제목(최대 29자)"></td>
+	</tr>
+	<tr><th>별점(1~5)</th>
+		<td><input type=text id="score" name="score" value="${review.score}"></td>
+	</tr>
+	<tr><th>내용</th>
+		<td><textarea cols=40 rows=5 id="content" name="content" requrired="required" autofocus="autofocus">${review.content}</textarea></td>
+	</tr>
+	<tr><th>메인사진</th>
+		<td><input type=file id="re_file" name="re_file" value="${review.re_file}" required="required" size="60" maxlength="29" ></td>
+	</tr>
+	<tr><th>첨부</th>
+		<td><input type=file id="re_file2" name="re_file2" value="${review.re_file2}"required="required" size="60" maxlength="29" ></td>
+	</tr>
+
+	
+	<tr><td colspan=2 align=center>
+			<input class="btn btn-dark" type=button value="글목록"
+			onClick="location.href='reviewlist.do?page=${page}' ">
+			<input class="btn btn-dark" type=submit value="수정하기">
+			<input class="btn btn-dark" type=reset value="취소">
+		</td>
+	</tr>
+
+</table>
+</form>
+
+</div>
 </body>
 </html>
