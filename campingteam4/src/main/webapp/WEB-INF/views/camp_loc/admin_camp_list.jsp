@@ -16,7 +16,7 @@
 		<caption>목록</caption>
 		
 		<tr>
-			<th>이미지</th>
+			<th>이미지 </th>
 			<th>이름</th>
 			<th>지역</th>
 			<th>종류</th>	
