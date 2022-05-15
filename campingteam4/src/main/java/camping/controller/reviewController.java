@@ -126,5 +126,8 @@ public class reviewController {
 				return "review/updateresult";
 			}
 			
+			//댓글기능
+			
+			
 
 }
