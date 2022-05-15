@@ -19,7 +19,7 @@ public class replyController {
 	@Autowired
 	private replyService service;
 
-	//후기 조회
+	//후기 조회 
 			@RequestMapping("readreview.do")
 			public String read(review review, int re_no, Model model) {
 				

@@ -15,6 +15,6 @@ public class replyDAO {
 	// 댓글 리스트
 	public List<review_reply> readreply(int re_no){
 		return session.selectList("replyns.list", re_no);
-		
+		 
 	}
 }

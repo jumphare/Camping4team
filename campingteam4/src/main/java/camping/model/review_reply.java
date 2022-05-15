@@ -9,7 +9,7 @@ public class review_reply {
 	private String writer;	//작성자
 	private String content; //리뷰내용
 	private Date re_date;	//리뷰작성일
-	
+	 
 	public int getReply_no() {
 		return reply_no;
 	}
