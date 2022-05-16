@@ -3,6 +3,20 @@ package camping.model;
 import java.util.Date;
 
 public class reservation {
+	private int res_no; /* 예약번호 */
+	private int camp_no; /* 장소번호 */
+	private int sp_no; /* 자리번호 */
+	private String eq_no; /* 장비번호 */
+	private Date res_date; /* 예약일 */
+	private String start_date; /* 시작일 */
+	private String end_date; /* 종료일 */
+	private int num; /* 인원 */
+	private int price; /* 총가격 */
+	private int payment; /* 결제여부 */
+	private int state; /* 예약상태 */
+	private String id; /* 아이디 */
+	private String eq_num; /*장비 개수*/
+	
 	public int getRes_no() {
 		return res_no;
 	}
@@ -33,16 +47,16 @@ public class reservation {
 	public void setRes_date(Date res_date) {
 		this.res_date = res_date;
 	}
-	public Date getStart_date() {
+	public String getStart_date() {
 		return start_date;
 	}
-	public void setStart_date(Date start_date) {
+	public void setStart_date(String start_date) {
 		this.start_date = start_date;
 	}
-	public Date getEnd_date() {
+	public String getEnd_date() {
 		return end_date;
 	}
-	public void setEnd_date(Date end_date) {
+	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
 	}
 	public int getNum() {
@@ -82,18 +96,6 @@ public class reservation {
 		this.eq_num = eq_num;
 	}
 
-	private int res_no; /* 예약번호 */
-	private int camp_no; /* 장소번호 */
-	private int sp_no; /* 자리번호 */
-	private String eq_no; /* 장비번호 */
-	private Date res_date; /* 예약일 */
-	private Date start_date; /* 시작일 */
-	private Date end_date; /* 종료일 */
-	private int num; /* 인원 */
-	private int price; /* 총가격 */
-	private int payment; /* 결제여부 */
-	private int state; /* 예약상태 */
-	private String id; /* 아이디 */
-	private String eq_num; /*장비 개수*/
+
 	
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="replyns">
+
+	<!-- 댓글 조회 -->
+	<select id="list" parameterType="int" resultType="review_reply">
+		SELECT
+    		  reply_no, content, writer, re_date
+    	 FROM review_reply
+    	WHERE re_no = #{re_no}
+	</select>
+	
+</mapper>
+
+
+
+
+
+
+
+

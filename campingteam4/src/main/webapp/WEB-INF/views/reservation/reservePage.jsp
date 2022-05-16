@@ -92,7 +92,8 @@ spot_no:${spot.sp_no }<br>
 <c:forEach var="eqm" items="${list}">
 eq_no: ${eqm.eq_no }<br>
 </c:forEach>
-
+시작일: ${res.start_date }<br>
+종료일: ${res.end_date }<br>
 
 <table>
 	<tr>
@@ -104,6 +105,7 @@ eq_no: ${eqm.eq_no }<br>
 		<td>옵션 선택</td>
 		<td>수량</td>
 	</tr>
+	<c:if test="${empty eqm.eq_no }"> <td colspan=3>옵션이 존재하지 않는 상품입니다.</td></c:if>
 	<c:forEach var="eqm" items="${list }"> 
 	<span style="display:none" id="eqname_${eqm.eq_no }">${eqm.name }</span>
 	<span style="display:none" id="eqprice_${eqm.eq_no }">${eqm.price }</span>
@@ -124,7 +126,9 @@ eq_no: ${eqm.eq_no }<br>
 <input type=hidden name="id" value=${id }>
 <input type=hidden name="camp_no" value="${loc.camp_no }">
 <input type=hidden name="sp_no" value="${spot.sp_no }">
-<input type=hidden name="num" value="4">
+<input type=hidden name="start_date" value="${res.start_date}">
+<input type=hidden name="end_date" value="${res.end_date}">
+<input type=hidden name="num" value="${res.num}">
 <input type=hidden id="price" name="price" value="${spot.price }">
 <br><br><br>
 <table border=1 id="total">
@@ -135,7 +139,6 @@ eq_no: ${eqm.eq_no }<br>
 		<td colspan=2>${spot.type }</td>		<td>${spot.price }</td>
 	</tr>
 	<c:forEach var="eqm" items="${list }"> 
-	<!-- 컨트롤러에서 받을 땐 String[] eqm_no=request.getParameterValues("eqm_no"); 로 받을 것, eqm_num이랑 둘이 -->
  	<input type=hidden name="eqm_no" value="${eqm.eq_no }">
 	<input type=hidden id="ii_${eqm.eq_no }" name="eqm_num" value="0"> 
 	<tr id="p_${eqm.eq_no }" class="p">
@@ -150,7 +153,7 @@ eq_no: ${eqm.eq_no }<br>
 </table>
 
 <input type="submit" value="저장" formaction="./res_save.do">
-<input type="submit" value="결제"  formaction="./res_pay.do">
+<input type="submit" value="다음"  formaction="./res_pay.do">
 </form>
 </body>
 </html>

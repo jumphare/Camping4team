@@ -11,8 +11,7 @@
 <body>
 
 <h5 align="center">인원( ${memcount} )에 맞는  ${loc} 지역의  ${type} 의 목록입니다.</h5><br>
-<a href = "spotwriteform.do">글작성</a><br>
-	<table border=1 align=center width=700>
+	<table border=1 align=center width=1000>
 		<caption>목록</caption>
 		
 		<tr>
@@ -27,9 +26,11 @@
 		<!-- 화면출력 번호 -->
 		<c:forEach var = "s" items="${spotlist}">
 		<tr>
-			<td>${s.image}</td>
 			<td>
-				<a href="spotview.do?sp_no=${s.sp_no}">
+			<img src="<%=request.getContextPath() %>/campupload/${s.image}" height="300" width="300" />
+			</td>
+			<td>
+				<a href="spotview.do?&loc=${loc}&startDate=${camsel.startDate}&endDate=${camsel.endDate}&memcount=${camsel.memcount}&type=${type}&sp_no=${s.sp_no}">
 				${s.sp_name}</a>
 			</td>
 			<td>${s.standard_num}</td>

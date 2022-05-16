@@ -35,6 +35,22 @@ public class camp_service {
 	public int resetcheck() {
 		return campdao.resetcheck();
 	}
+	//상세페이지
+	public spot getspot(int sp_no) {
+		return campdao.getspot(sp_no);
+	}
+	//관리자 리스트 출력
+	public  List<spot> admin_camplist(){
+		return campdao.admin_camplist();
+	}
+	//장소 수정
+	public int modify(spot spot) {
+		return campdao.modify(spot);
+	}
+	//장소 삭제
+	public int delete(int sp_no) {
+		return campdao.delete(sp_no);
+	}
 	
 	
 }

@@ -10,7 +10,6 @@ public class spot {
 	private String memo; /* 주요사항 */
 	private String image;
 	private String imagedetail;
-	private String imagedetail2;
 	private int hightprice;
 	private String sp_name;
 	private int reservecheck;
@@ -75,12 +74,7 @@ public class spot {
 	public void setImagedetail(String imagedetail) {
 		this.imagedetail = imagedetail;
 	}
-	public String getImagedetail2() {
-		return imagedetail2;
-	}
-	public void setImagedetail2(String imagedetail2) {
-		this.imagedetail2 = imagedetail2;
-	}
+
 	public String getSp_name() {
 		return sp_name;
 	}

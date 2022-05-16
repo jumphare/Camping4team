@@ -113,7 +113,7 @@ function openDaumPostcode() {
         </option>
       </c:forEach>
      </select>-<input name="phone2" id="phone2" size="4"
-     maxlength="4" class="input_box" value="${phone2}"/>-<input name="join_phone3"
+     maxlength="4" class="input_box" value="${phone2}"/>-<input name="phone3"
      id="phone3" size="4" maxlength="4" class="input_box" 
      value="${phone3}"/>
      </td>

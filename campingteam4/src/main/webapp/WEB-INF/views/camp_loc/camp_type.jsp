@@ -8,10 +8,10 @@
 </head>
 <body>
 <form method="post" action="<%=request.getContextPath()%>/type_list.do?loc=${loc}&startDate=${startDate}&endDate=${endDate}&memcount=${memcount}">
-    <input type ="submit" name ="type" value="camping"><br>
- 	<input type ="submit" name ="type" value="carbak"><br>
- 	<input type ="submit" name ="type" value="gramping"><br>
- 	<input type ="submit" name ="type" value="caraban"><br>
+    <input type ="submit" name ="type" value="캠핑"><br>
+ 	<input type ="submit" name ="type" value="차박"><br>
+ 	<input type ="submit" name ="type" value="글램핑"><br>
+ 	<input type ="submit" name ="type" value="카라반"><br>
 </form>
 </body>
 </html>

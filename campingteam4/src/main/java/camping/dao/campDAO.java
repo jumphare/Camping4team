@@ -32,4 +32,21 @@ public class campDAO {
 		public int resetcheck() {
 			return session.update("campns.resetcheck");
 		}
+	//상세
+		public spot getspot(int sp_no) {
+			return session.selectOne("campns.getspot",sp_no);
+		}
+	//관리자 캠프리스트
+		public  List<spot> admin_camplist(){
+			return session.selectList("campns.admin_list");
+		}
+	//관리자 수정
+		public int modify(spot spot) {
+			return session.update("campns.update",spot);
+		}
+	//장소 삭제
+		public int delete(int sp_no) {
+			return session.delete("campns.delete",sp_no);
+		}
+		
 }
