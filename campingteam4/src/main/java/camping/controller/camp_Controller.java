@@ -26,6 +26,8 @@ import camping.service.camp_service;
 
 
 
+
+
 @Controller
 public class camp_Controller {
 	@Autowired
@@ -265,4 +267,40 @@ public class camp_Controller {
 		return "camp_loc/spot_view";	//이렇게만 작성해도 넘어간다~
 		}
 	}
+	
+	//캠프 수정 폼
+	@RequestMapping("spotupdateform.do")
+	public String boardupdateform(int sp_no, Model model) {
+		spot spot = camp_service.getspot(sp_no);
+		
+		model.addAttribute("spot",spot);
+	
+		
+		return "camp_loc/spot_update";
+	}
+	
+	//수정
+	@RequestMapping("spotupdate.do")
+	public String boardupdate(spot spot, Model model) {
+		int result = 0;
+
+			result = camp_service.modify(spot);
+	
+		model.addAttribute("result", result);
+		model.addAttribute("spot", spot);
+		
+		return "camp_loc/modifyresult";
+	}
+	
+	//삭제
+			@RequestMapping("spotdelete.do")
+			public String spotdeleteform(int sp_no) {
+			
+				camp_service.delete(sp_no);
+				
+				
+			return "redirect:/admin_camp_list.do";
+			}
+			
+	
 }

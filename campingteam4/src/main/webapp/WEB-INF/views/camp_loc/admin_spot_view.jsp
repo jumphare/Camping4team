@@ -7,6 +7,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script>
+function removeCheck() {
+
+	 if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+
+		 location.href="spotdelete.do?sp_no=${spot.sp_no}";
+
+	 }else{   //취소
+
+	     return false;
+
+	 }
+
+	}
+</script>
 </head>
 <body>
 
@@ -83,9 +98,9 @@
 				<input type="button" value="목록"
 					onClick="location.href='admin_camp_list.do'">
 				<input type="button" value="수정"
-				onclick="location.href=''">
+				onclick="location.href='spotupdateform.do?sp_no=${spot.sp_no}'">
 				<input type="button" value="삭제"
-				onclick="location.href=''">				
+				onclick="removeCheck()">				
 			</td>
 		</tr>			
 </table>

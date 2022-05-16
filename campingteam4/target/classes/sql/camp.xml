@@ -53,7 +53,14 @@
 	<select id="admin_list" resultType="spot">
 		select * from spot
 	</select>
-    
+    <!-- 수정하기 -->
+    <update id = "update" parameterType="spot">
+		update spot set sp_name=#{sp_name}, camp_no=#{camp_no}, type=#{type}, standard_num=#{standard_num},
+		 			max_num=#{max_num}, price=#{price}, hightprice=#{hightprice}, memo=#{memo} where sp_no=#{sp_no}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from spot where sp_no=#{sp_no}
+	</delete>
 </mapper>
 
 

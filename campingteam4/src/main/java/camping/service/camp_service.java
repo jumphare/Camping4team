@@ -43,6 +43,14 @@ public class camp_service {
 	public  List<spot> admin_camplist(){
 		return campdao.admin_camplist();
 	}
+	//장소 수정
+	public int modify(spot spot) {
+		return campdao.modify(spot);
+	}
+	//장소 삭제
+	public int delete(int sp_no) {
+		return campdao.delete(sp_no);
+	}
 	
 	
 }

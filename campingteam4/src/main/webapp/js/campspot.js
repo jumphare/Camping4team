@@ -35,11 +35,7 @@
 		$("#hightprice").val("").focus();
 		return false;
 	}
-	if ($.trim($("#image").val()) == "") {
-		alert("대표 이미지를 입력하세요!");
-		$("#image").val("").focus();
-		return false;
-	}
+
 	if ($.trim($("#memo").val()) == "") {
 		alert("성수기 날짜 및 주요사항을 입력하세요!");
 		$("#memo").val("").focus();
