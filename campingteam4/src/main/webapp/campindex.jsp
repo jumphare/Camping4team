@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Insert title her e</title>
 </head>
 <body>
     <a href="date_sel.do">예약하기</a><br>
