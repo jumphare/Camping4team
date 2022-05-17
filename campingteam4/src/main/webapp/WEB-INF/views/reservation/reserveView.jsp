@@ -2,13 +2,32 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
+  <script type="text/javascript" src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+ <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+ 
 <meta charset="UTF-8">
 <title>예약 상세내역</title>
 </head>
 <body>
+<script>
+function cancelPay() {
+	console.log("취소함수 진입");
+	var imp_uid="${res.imp_uid}";
+      $.ajax({
+      	type : "POST",
+      	url : "./imp_cancel.do?price=${res.price}", // 예: http://www.myservice.com/payments/cancel
+      	data : { "imp_uid": imp_uid  }
+      }).done(function(data) {
+      	console.log(data);	        	
+      	alert("예약이 정상적으로 취소되었습니다.");
+      	location.href="./res_cancel.do?res_no=${res.res_no}";
+      });
+  }
+</script>
 
 ${id }님의 예약정보<br>
 	<div>예약번호 ${res.res_no}</div> <!-- 이거 말고 결제하고 받는 번호로 -->
@@ -68,9 +87,6 @@ ${id }님의 예약정보<br>
 		<td>총 합계</td> <td style="text-align:right"> ${res.price }</td>
 	</tr>
 </table>
-
-만약 결제완료인 상태라면 이쪽에 결제내역 테이블 추가할 것
-
 <table>
 	<tr>
 		<td colspan=2>
@@ -81,15 +97,16 @@ ${id }님의 예약정보<br>
 				<input type=hidden name="camp_no" value="${camp.camp_no }">
 				<input type=hidden name="sp_no" value="${spot.sp_no }">
 				<input type=hidden name="price" value="${res.price}">
+				<input type=hidden name="res_no" value="${res.res_no}">
 				<input type="submit" value="결제"  formaction="./res_pay.do">
 			</form>
-			<input type="button" value="삭제" onclick="./res_del.do?res_no=${res.res_no }"></c:if>
-			 <c:if test="${res.payment eq '1'}" ><input type="button" value="예약취소" onclick="./res_cancel.do?res_no=${res.res_no}"></c:if>
+			</c:if>
+			<c:if test="${r.state eq '0' || r.state eq '2'}" ><input type="button" value="내역삭제" onclick="location.href='./res_del.do?res_no=${res.res_no}';" ></c:if>
+			 <c:if test="${res.state eq '1'}" ><input type="button" value="예약취소"  onclick="cancelPay()"></c:if>
 			 <input type="button" value="목록" onclick="history.back()">
 		</td>
 	</tr>
 </table>
-
 
 
 </body>

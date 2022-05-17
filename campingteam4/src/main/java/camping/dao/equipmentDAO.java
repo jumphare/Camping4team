@@ -35,4 +35,7 @@ public class equipmentDAO {
 	public void eq_delete(String chk) {
 		session.delete("equip.delete", chk);
 	}
+	public void eq_rm(equipment eqm) {
+		session.update("equip.rm", eqm);
+	}
 }

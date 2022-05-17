@@ -9,6 +9,7 @@ import camping.dao.reserveDAO;
 import camping.model.camp_loc;
 import camping.model.equipment;
 import camping.model.member;
+import camping.model.pay;
 import camping.model.reservation;
 import camping.model.spot;
 
@@ -44,5 +45,29 @@ public class reserveService {
 	//멤버 DB
 	public member memdetail(String id) {
 		return dao.memdetail(id);
+	}
+	//id로 예약테이블 검색
+	public reservation recentone(String id) {
+		return dao.recentone(id);
+	}
+	//예약테이블 수정
+	public void resUpdate(reservation res) {
+		dao.resUpdate(res);
+	}
+	//결제 테이블 저장
+	public void payinsert(pay pay) {
+		dao.payinsert(pay);
+	}
+	//예약테이블 삭제
+	public void res_del(int res_no) {
+		dao.res_del(res_no);
+	}
+	//예약취소 상태변경
+	public void res_cancel(int res_no) {
+		dao.res_cancel(res_no);
+	}
+	//결제테이블 날짜변경
+	public void pay_cancel(String imp_uid) {
+		dao.pay_cancel(imp_uid);
 	}
 }
