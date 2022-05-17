@@ -4,19 +4,19 @@
 <mapper namespace="replyns">
 
 	<!-- 댓글 조회 -->
-	<select id="list" parameterType="int" resultType="review_reply">
+	<select id="replylist" parameterType="int" resultType="review_reply">
 		SELECT
-    		  reply_no, content, writer, re_date
+    		  reply_no, content, writer, re_date, id
     	 FROM review_reply
     	WHERE re_no = #{re_no}
 	</select>
 	
+	<!-- 댓글 작성 -->
+	<insert id="insert" parameterType="review_reply">
+		INSERT INTO review_reply
+		values(review_reply_seq.nextval, #{re_no}, #{writer},
+		#{content}, sysdate, #{id})	
+	</insert>
+	
 </mapper>
-
-
-
-
-
-
-
 

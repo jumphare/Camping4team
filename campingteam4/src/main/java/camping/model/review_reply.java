@@ -9,6 +9,7 @@ public class review_reply {
 	private String writer;	//작성자
 	private String content; //리뷰내용
 	private Date re_date;	//리뷰작성일
+	private String id;
 	 
 	public int getReply_no() {
 		return reply_no;
@@ -39,6 +40,12 @@ public class review_reply {
 	}
 	public void setRe_date(Date re_date) {
 		this.re_date = re_date;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }

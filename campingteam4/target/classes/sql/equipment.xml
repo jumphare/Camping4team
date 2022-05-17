@@ -53,4 +53,8 @@
 	<delete id="delete" parameterType="String">
 		delete from equipment where eq_no=#{chk}
 	</delete>
+	<!-- 여분수량 변경 -->
+	<update id="rm" parameterType="equipment">
+		update equipment set rm_num=#{rm_num} where eq_no=#{eq_no}
+	</update>
 </mapper>
