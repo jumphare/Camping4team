@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="partnerns">
+
+		<!-- 글작성 -->
+	<insert id="insert" parameterType="partner">
+	  insert into partner values(partner_seq.nextval,#{subject},
+	                      #{content},0,sysdate,#{start_date},
+	                      #{end_date},#{camp_area},#{camp_type},
+	                      #{want_num},0,#{id},0)
+	</insert>
+	
+	<select id="count" resultType="int">
+	  select count(*) from partner
+	</select>
+	
+	<!-- 글목록 -->
+	<select id="pbList" parameterType="int" resultType="partner">
+		<![CDATA[
+		select * from (select rownum rnum, board.* from (
+		select * from partner order by par_no desc) board )
+		where rnum >= ((#{page}-1) * 10 + 1) and rnum <= (#{page} * 10)
+		]]>
+	</select>
+	
+	<!-- 조회수 증가 -->
+	<update id="hit" parameterType="int">
+	   update partner set readcount=readcount+1 where par_no=#{par_no}
+	</update>
+	
+	<!-- 상세정보 구하기 -->
+	<select id="content" parameterType="int" resultType="partner">
+	  select * from partner where par_no = #{par_no}
+	</select>
+	
+	<!-- 글수정 -->
+	<update id="update" parameterType="partner">
+		update partner set subject=#{subject},
+		content=#{content}, start_date=#{start_date},
+		end_date=#{end_date}, camp_area=#{camp_area}, camp_type=#{camp_type},
+		want_num=#{want_num} where par_no=#{par_no} 
+	</update>
+	
+	<!-- 글삭제 -->
+	<delete id="delete" parameterType="int">
+	    delete from partner where par_no = #{par_no}
+	</delete>
+</mapper>

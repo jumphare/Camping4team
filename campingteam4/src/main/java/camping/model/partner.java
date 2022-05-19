@@ -3,11 +3,11 @@ package camping.model;
 import java.util.Date;
 
 public class partner {
-		public int getPar_nop() {
-		return par_nop;
+		public int getPar_no() {
+		return par_no;
 	}
-	public void setPar_nop(int par_nop) {
-		this.par_nop = par_nop;
+	public void setPar_no(int par_no) {
+		this.par_no = par_no;
 	}
 	public String getSubject() {
 		return subject;
@@ -45,10 +45,10 @@ public class partner {
 	public void setEnd_date(Date end_date) {
 		this.end_date = end_date;
 	}
-	public int getCamp_area() {
+	public String getCamp_area() {
 		return camp_area;
 	}
-	public void setCamp_area(int camp_area) {
+	public void setCamp_area(String camp_area) {
 		this.camp_area = camp_area;
 	}
 	public String getCamp_type() {
@@ -81,14 +81,14 @@ public class partner {
 	public void setDel(int del) {
 		this.del = del;
 	}
-		private int par_nop; /* 글번호 */
+		private int par_no; /* 글번호 */
 	    private String subject; /* 제목 */
 	    private String content; /* 내용 */
 	    private int readcount; /* 조회수*/
 	    private Date p_date; /* 작성일 */
 	    private Date start_date; /* 시작일 */
 	    private Date end_date; /* 종료일 */
-	    private int camp_area; /* 캠핑지역 */
+	    private String camp_area; /* 캠핑지역 */
 	    private String camp_type; /* 캠핑종류 */
 	    private int want_num; /* 동행인원 */
 	    private int now_num; /* 현재인원  */
