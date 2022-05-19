@@ -6,6 +6,7 @@
 
 	<typeAliases>
 		<typeAlias alias="member" type="camping.model.member" />
+		<typeAlias alias="revlike" type="camping.model.revlike" />
 		<typeAlias alias="review_reply" type="camping.model.review_reply" />
 		<typeAlias alias="chat" type="camping.model.chat" />
 		<typeAlias alias="msg" type="camping.model.msg" />

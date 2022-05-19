@@ -5,13 +5,16 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.validator.constraints.ParameterScriptAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import camping.model.review;
 import camping.model.review_reply;
+import camping.model.revlike;
 
 @Controller
 public class reviewController {
@@ -98,7 +101,7 @@ public class reviewController {
 
 	// 상세 페이지 : 조회수 1 증가 + 상세정보 구하기
 	@RequestMapping("reviewdetail.do")
-	public String reviewdetail(int re_no, int page, HttpSession session, Model model) {
+	public String reviewdetail(@RequestParam int re_no, @RequestParam int page, HttpSession session, Model model) {
 
 		String id = (String) session.getAttribute("id");
 		System.out.println("id=" + id);
@@ -106,13 +109,25 @@ public class reviewController {
 		service.updatecount(re_no); // 조회수 1 증가
 
 		review review = service.reviewdetail(re_no); // 상세정보 구하기
-
+		
 		int res_no = review.getRes_no();
 
 		List<review_reply> list = service.replylist(re_no);
 
 		String spname = service.spname(res_no);
+		
+		int likecount = service.likecount(re_no);
+		System.out.println("likecount"+likecount);
 
+		revlike rl = new revlike();
+		
+		rl.setId(id);
+		rl.setRe_no(re_no);
+		
+		int likecheck = service.likecheck(rl);
+		
+		model.addAttribute("likecheck", likecheck);
+		model.addAttribute("likecount", likecount);
 		model.addAttribute("id", id);
 		model.addAttribute("re_no", re_no);
 		model.addAttribute("list", list);

@@ -52,10 +52,10 @@
 <c:if test="${listcount>0}">
 	
 <!-- 1페이지로 이동              //   text-decoration은 밑줄 없애기-->
-<a href="boardlist.do?page=1" style="text-decoration:none"> << </a>
+<a href="reviewlist.do?page=1" style="text-decoration:none"> << </a>
 <!-- 이전 블럭으로 이동 -->
 <c:if test="${startPage > 10}">
-	<a href="boardlist.do?page=${startPage-10}">[이전]</a>
+	<a href="reviewlist.do?page=${startPage-10}">[이전]</a>
 </c:if>
 <!-- 각 블럭에 10개의 페이지 출력 -->
 <c:forEach var="i" begin="${startPage}" end="${endPage}">
@@ -63,16 +63,16 @@
 		[${i}]	
 	</c:if>
 	<c:if test="${i != page}">				<!-- 현재 페이지가 아닌 경우 -->
-		<a href="boardlist.do?page=${i}">[${i}]</a>	
+		<a href="reviewlist.do?page=${i}">[${i}]</a>	
 	</c:if>
 </c:forEach>
 
 <!-- 다음 블럭으로 이동 -->	
 <c:if test="${endPage < pageCount}">
-	<a href="boardlist.do?page=${startPage+10}">[다음]</a>
+	<a href="reviewlist.do?page=${startPage+10}">[다음]</a>
 </c:if>
 <!-- 마지막 페이지로 이동 -->
-<a href="boardlist.do?page=${pageCount}" style="text-decoration:none"> >> </a>
+<a href="reviewlist.do?page=${pageCount}" style="text-decoration:none"> >> </a>
 </c:if>	
 </center>
 </body>

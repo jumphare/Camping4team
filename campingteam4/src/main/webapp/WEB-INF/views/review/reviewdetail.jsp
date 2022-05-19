@@ -53,15 +53,61 @@
 	});
 </script>
 <script type="text/javascript">
-function fn_replydelete(reply_no){
-    if (!confirm("삭제하시겠습니까?")) {
-        return;
-    }
-    $("#form2").attr("action", "fn_replydelete");
-    $("#reno2").val(reply_no);
-    $("#form2").submit();   
-}
-	</script>
+	function fn_replydelete(reply_no) {
+		if (!confirm("삭제하시겠습니까?")) {
+			return;
+		}
+		$("#form2").attr("action", "fn_replydelete");
+		$("#reno2").val(reply_no);
+		$("#form2").submit();
+	}
+</script>
+
+<!-- 좋아요 -->
+<script>
+	$(document).ready(function() {
+
+		var heartval = $
+		{
+			heart
+		}
+		;
+
+		if (heartval > 0) {
+			console.log(heartval);
+			$("#heart").prop("src", "/resources/images/like2.png");
+			$(".heart").prop('name', heartval)
+		} else {
+			console.log(heartval);
+			$("#heart").prop("src", "/resources/images/like1.png");
+			$(".heart").prop('name', heartval)
+		}
+
+		$(".heart").on("click", function() {
+
+			var that = $(".heart");
+
+			var sendData = {
+				'boardId' : '${boardVO.boardId}',
+				'heart' : that.prop('name')
+			};
+			$.ajax({
+				url : '/board/heart',
+				type : 'POST',
+				data : sendData,
+				success : function(data) {
+					that.prop('name', data);
+					if (data == 1) {
+						$('#heart').prop("src", "/resources/images/like2.png");
+					} else {
+						$('#heart').prop("src", "/resources/images/like1.png");
+					}
+
+				}
+			});
+		});
+	});
+</script>
 <!-- 댓글 작성 jQuery문 -->
 <%-- <script type="text/javascript">
 	$(function() {
@@ -115,46 +161,63 @@ function fn_replydelete(reply_no){
 						<td>내용</td>
 						<td><pre>${review.content}</pre></td>
 					</tr>
-					<tr><td colspan=2 align="center">
-						<input type="button" value="목록" class="btn btn-dark"
-							onClick="location.href='reviewlist.do?page=${page}' ">
-						<c:if test="${id == review.id || id == 'admin'}"> 
-						<input type="button" value="수정" class="btn btn-dark"
-							onClick="location.href='reviewupdateform.do?re_no=${review.re_no}&page=${page}' ">
-						<input type="button" value="삭제" 
-							onClick="location.href='reviewdeleteform.do?re_no=${review.re_no}&page=${page}' ">
-						</c:if>
-						<form action="/revlike?re_no=${review.re_no}&pageNum=${pageNum}"
-							method="post" id="like">
-
-							<input class="btn btn-dark" type="submit" value="좋아요">
-
-						</form>
-					</td></tr>
+					<tr>
+						<td colspan=2 align="center"><input type="button" value="목록"
+							class="btn btn-dark"
+							onClick="location.href='reviewlist.do?page=${page}' "> <c:if
+								test="${id == review.id || id == 'admin'}">
+								<input type="button" value="수정" class="btn btn-dark"
+									onClick="location.href='reviewupdateform.do?re_no=${review.re_no}&page=${page}' ">
+								<input type="button" value="삭제"
+									onClick="location.href='reviewdeleteform.do?re_no=${review.re_no}&page=${page}' ">
+							</c:if>
+							<form action="/revlike?re_no=${review.re_no}&pageNum=${pageNum}"
+								method="post" id="like">
+								좋아요 수: ${likecount}
+								<c:if test="${likecheck==0}">
+									<input class="btn btn-dark" type="button" value="좋아요"
+										onclick="location.href='reviewlike.do?re_no=${review.re_no}&page=${page}'">
+								</c:if>
+								<c:if test="${likecheck==1}">
+									<input class="btn btn-dark" type="button" value="좋아요취소"
+										onclick="location.href='reviewdelete.do?re_no=${review.re_no}&page=${page}'">
+								</c:if>
+							</form></td>
+					</tr>
 				</tbody>
 			</table>
-			
+
 			<!-- 댓글 작성 -->
 			<form align="center" method="post" action="replywrite.do">
-				<input type="hidden" name="id" value="${id}">
-				<input type="hidden" id="re_no" name="re_no" value="${review.re_no}">
+				<input type="hidden" name="id" value="${id}"> <input
+					type="hidden" id="re_no" name="re_no" value="${review.re_no}">
 				<input type="hidden" id="page" name="page" value="${page}">
-				<input type="hidden" id="res_no" name="res_no" value="${review.res_no}"> 
+				<input type="hidden" id="res_no" name="res_no"
+					value="${review.res_no}">
 				<p>댓글쓰기 :</p>
 				<textarea class="form-control" rows="3" cols="50" name="content"></textarea>
 				<input type="submit" value="확인">
 
-			<!-- 댓글 list 불러오는곳 --> 
-			<c:forEach items="${list}" var="l">
-				<li align="center">${l.id} &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp;
-					&nbsp; &nbsp; ${l.content} <br /> 작성 날짜 : <fmt:formatDate
-						value="${l.re_date}" pattern="yyyy-MM-dd" />
- 			<c:if test="${id == l.id}"> 
-			<input type="button" value="삭제" 
-			onclick="location.href='replydelete.do?reply_no=${l.reply_no}&re_no=${review.re_no}&page=${page}'" />
-			</c:if>
-				</li>
-			</c:forEach>
-		</form>
+				<!-- 댓글 list 불러오는곳 -->
+				
+					<table border=1 align=center width=700>
+					<tr><th>id</th>
+						<th>댓글</th>
+						<th>작성일</th>
+						<th>삭제</th>
+						<c:forEach items="${list}" var="l">
+						<tr>
+							<td>${l.id}</td>
+							<td>${l.content}</td>
+							<td><fmt:formatDate value="${l.re_date}" pattern="yyyy-MM-dd" /></td>
+							<td><c:if test="${id == l.id}">
+								<input type="button" value="삭제"
+									onclick="location.href='replydelete.do?reply_no=${l.reply_no}&re_no=${review.re_no}&page=${page}'" />
+							</c:if></td>
+						</tr>
+						</c:forEach>
+					</table>
+				
+			</form>
 </body>
 </html>
