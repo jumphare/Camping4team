@@ -24,7 +24,8 @@
 		<c:if test="${r.state eq '1' }" >예약 완료</c:if>
 		<c:if test="${r.state eq '2'}" >예약 취소</c:if></td>
 		<td> <input type="button" value="상세내역" onclick="location.href='./reserveView.do?res_no=${r.res_no}';"><br>
-		<input type="button" value="취소"></td>
+		<c:if test="${r.state eq '0' || r.state eq '2'}" ><input type="button" value="삭제" onclick="location.href='./res_del.do?res_no=${r.res_no}';" ></c:if>
+		</td>
 	</tr>
 	<c:set var="i" value="${i+1 }"/>
 </table>

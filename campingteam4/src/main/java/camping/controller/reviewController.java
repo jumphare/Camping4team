@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import camping.model.review;
+import camping.model.review_reply;
 
 @Controller
 public class reviewController {
@@ -79,8 +80,11 @@ public class reviewController {
 				
 				review review = service.reviewdetail(re_no);	//상세정보 구하기
 				
+				List<review_reply> list = service.replylist(re_no);
+				
 				String spname = service.spname(res_no);
 				
+				model.addAttribute("list", list);
 				model.addAttribute("review", review);
 				model.addAttribute("spname",spname);
 				model.addAttribute("page", page);
