@@ -58,4 +58,8 @@ public class ReviewService {
 	public List<review_reply> replylist(int re_no) {
 		return dao.replylist(re_no);
 	}
+	
+	public int delete(int re_no) {
+		return dao.delete(re_no);
+	}
 }

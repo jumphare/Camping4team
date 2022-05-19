@@ -16,5 +16,19 @@ public class replyService {
 		public List<review_reply> readreply(int re_no) {
 			return dao.readreply(re_no);
 		}
+		
+		//댓글 작성
+		public int insert(review_reply re) {
+			return dao.insert(re);
+		}
+		
+		//댓글 삭제
+		public int delete(int reply_no) {
+			return dao.delete(reply_no);
+		}
+		
+		public review_reply select(int reply_no) {
+			return dao.select(reply_no);
+		}
 
 }

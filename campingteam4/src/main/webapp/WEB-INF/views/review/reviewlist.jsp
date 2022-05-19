@@ -14,6 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+		 <a href="re_insertform.do">글작성</a>
 		<table border="1" align=center width=700>
 			<caption>후기 게시판</caption>
 			<tr>
