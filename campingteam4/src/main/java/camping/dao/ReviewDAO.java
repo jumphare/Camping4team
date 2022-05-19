@@ -32,7 +32,7 @@ public class ReviewDAO {
 		//장소출력
 		public List<review> splist(){
 			return session.selectList("reviewns.splist");
-		}
+		} 
 		//조회수증가
 		public void updatecount(int re_no) {
 			session.update("reviewns.updatecount", re_no);

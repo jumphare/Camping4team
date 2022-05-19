@@ -7,7 +7,7 @@
 		insert into revlike(id, re_no)
 		values(#{id}, #{re_no})
 	</insert>
-	
+	 
 	<delete id="delete">
 		delete from revlike
 		where re_no = #{re_no} and id = #{id}

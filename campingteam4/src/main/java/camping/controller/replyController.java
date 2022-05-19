@@ -47,7 +47,7 @@ public class replyController {
 		}else {
 			
 			re.setId(id);
-			
+			 
 			result = service.insert(re);
 			System.out.println("result :" + result);
 

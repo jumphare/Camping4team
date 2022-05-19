@@ -64,7 +64,7 @@ public class reviewController {
 
 		int page = 1; // 페이지 초기값
 		int limit = 10; // 한화면에 나올 데이터 개수 정의
-
+ 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}

@@ -186,7 +186,7 @@
 					</tr>
 				</tbody>
 			</table>
-
+ 
 			<!-- 댓글 작성 -->
 			<form align="center" method="post" action="replywrite.do">
 				<input type="hidden" name="id" value="${id}"> <input

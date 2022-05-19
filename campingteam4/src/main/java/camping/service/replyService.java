@@ -15,7 +15,7 @@ public class replyService {
 	// 리스트 출력
 		public List<review_reply> readreply(int re_no) {
 			return dao.readreply(re_no);
-		}
+		} 
 		
 		//댓글 작성
 		public int insert(review_reply re) {

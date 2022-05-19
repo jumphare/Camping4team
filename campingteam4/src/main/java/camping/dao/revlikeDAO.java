@@ -9,7 +9,7 @@ import camping.model.revlike;
 @Repository
 public class revlikeDAO {
 
-	@Autowired
+	@Autowired 
 	private SqlSession session;
 
 	// 좋아요 추가

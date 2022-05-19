@@ -10,7 +10,7 @@ import camping.model.revlike;
 public class revlikeService {
 	@Autowired
 	private revlikeDAO dao;
-
+ 
 		//좋아요 추가
 		public int insert(revlike rl) {
 			return dao.insert(rl);

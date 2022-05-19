@@ -17,7 +17,7 @@
 		 <a href="re_insertform.do">글작성</a>
 		<table border="1" align=center width=700>
 			<caption>후기 게시판</caption>
-			<tr>
+			<tr> 
 				<th>대표이미지</th>
 				<th>제목</th>
 				<th>장소</th>

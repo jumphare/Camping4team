@@ -35,7 +35,7 @@ public class ReviewService {
 	public List<review> splist() {
 		return dao.splist();
 	}
-
+ 
 	// 조회수 증가(값을 돌려주지 않기 때문에 void로 반환)
 	public void updatecount(int re_no) {
 		dao.updatecount(re_no);

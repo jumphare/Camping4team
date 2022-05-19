@@ -24,7 +24,7 @@ public class revlikeController {
 		String id = (String) session.getAttribute("id");
 
 		revlike rl = new revlike();
-
+ 
 		rl.setId(id);
 		rl.setRe_no(re_no);
 

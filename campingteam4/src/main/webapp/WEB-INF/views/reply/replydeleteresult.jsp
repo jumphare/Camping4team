@@ -7,7 +7,7 @@
 		alert("댓글 삭제 성공");
 		location.href = "reviewdetail.do?re_no=${re.re_no}&page=${page}";
 	</script>
-</c:if>
+</c:if> 
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
 		alert("댓글 삭제 실패");
