@@ -4,20 +4,20 @@
 
 <c:if test="${result == 1 }">
 	<script type="text/javascript">
-		alert("댓글 입력 성공");
+		alert("댓글 삭제 성공");
 		location.href = "reviewdetail.do?re_no=${re.re_no}&page=${page}";
 	</script>
 </c:if>
 <c:if test="${result == 0 }">
 	<script type="text/javascript">
-		alert("댓글 입력 실패");
+		alert("댓글 삭제 실패");
 		history.go(-1);
 	</script>
 </c:if>
 
 <c:if test="${result == 2 }">
 	<script type="text/javascript">
-		alert("로그인을 해주세요.");
+		alert("권한이 없습니다.");
 		history.go(-1);
 	</script>
 </c:if>

@@ -52,4 +52,8 @@ public class ReviewDAO {
 		public List<review_reply> replylist(int re_no) {
 			return session.selectList("replyns.replylist", re_no);
 		}
+		//후기 삭제
+		public int delete(int re_no) {
+			return session.delete("reviewns.delete", re_no);
+		}
 }

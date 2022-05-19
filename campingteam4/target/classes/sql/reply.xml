@@ -6,7 +6,7 @@
 	<!-- 댓글 조회 -->
 	<select id="replylist" parameterType="int" resultType="review_reply">
 		SELECT
-    		  reply_no, content, writer, re_date, id
+    		  reply_no, content, re_date, id
     	 FROM review_reply
     	WHERE re_no = #{re_no}
 	</select>
@@ -14,9 +14,14 @@
 	<!-- 댓글 작성 -->
 	<insert id="insert" parameterType="review_reply">
 		INSERT INTO review_reply
-		values(review_reply_seq.nextval, #{re_no}, #{writer},
+		values(review_reply_seq.nextval, #{re_no},
 		#{content}, sysdate, #{id})	
 	</insert>
 	
+	<!-- 댓글 삭제 -->
+	<delete id="delete" parameterType="int">
+      delete from review_reply
+       where  reply_no=#{reply_no}
+    </delete>
 </mapper>
 
