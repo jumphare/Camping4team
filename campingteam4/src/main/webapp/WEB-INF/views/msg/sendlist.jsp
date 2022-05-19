@@ -1,0 +1,105 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<style>
+p{
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+width:350px;
+height:18px;
+padding: 0;
+margin: 0px 5px 0 5px;
+position: relative;
+}
+a {
+text-decoration:none;
+}
+</style>
+<meta charset="UTF-8">
+<title>보낸 메시지</title>
+</head>
+<body>
+<h2>보관함</h2><br>
+<span><a href="./recvlist.do?recv_id=${id }" >받은 메시지</a></span>
+<span><a href="./sendlist.do?id=${id }" >보낸 메시지</a></span> <br>
+총 메시지 : ${cnt } <br>
+<form name="sdform" id="sdform" method="post">
+<input type="button" id="mdel"  value="삭제"> <br>
+<input type="hidden" name="page" value="${page }">
+<table>
+	<tr>
+		<th><input type="checkbox" id="allchk" name="allchk" ></th> <td><i class="fa-solid fa-inbox"></i></td> <th>ID</th> <th>내용</th> <th>날짜</th>
+	</tr>
+
+	<c:if test="${empty msg }"><tr><td colspan=5>보낸 쪽지가 없습니다</td></tr></c:if>
+	<c:if test="${not empty msg }">
+		<c:forEach var="rcv" items="${msg }">
+			<tr><td><input type="checkbox" name="chk" value="${rcv.msg_no }"></td> 
+			<td><c:if test="${rcv.msg_check==0 }"><i class="fa-solid fa-envelope"></i></c:if>
+				 <c:if test="${rcv.msg_check==1 }"><i class="fa-solid fa-envelope-open"></i></c:if></td> 
+			<td>${rcv.id }</td> 
+			<td><p><a href="./readmsg.do?msg_no=${rcv.msg_no }&page=${page}">${rcv.content }</a><p></td> 
+			<td><fmt:formatDate value="${rcv.msg_date }" pattern="yy.MM.dd"/></td></tr>
+		</c:forEach>
+	</c:if>
+</table>
+</form>
+
+<!-- 페이지 블록 -->
+<div>
+	<a href="javascript:;" onclick="pagin(this)" id="1" }><i class="fa-solid fa-angles-left"></i></a>
+	<c:if test="${spage !=1 }">
+		<a href="javascript:;" onclick="pagin(this)" id="${spage-1 }" ><i class="fa-solid fa-angle-left"></i></a>
+	</c:if>
+	<c:forEach var="i" begin="${spage }" end="${epage }">
+			<a href="javascript:;" onclick="pagin(this)"  id="${i}" ><i class="fa-solid fa-${i}"></i></a>
+	</c:forEach>
+	<c:if test="${epage !=pcnt}">
+		<a href="javascript:;" onclick="pagin(this)" id="${epage+1 }"><i class="fa-solid fa-angle-right"></i></a>	
+	</c:if>
+	<a href="javascript:;" onclick="pagin(this)" id="${epage }"><i class="fa-solid fa-angles-right"></i></a>
+</div>
+
+
+
+<script>
+function muldel(){
+	console.log("muldel");
+	$("#sdform").attr("action", "./muldel.do?num=0").submit();
+	return false;
+}
+function pagin(value){
+	var url = "./sendlist.do?id=${id}&page=";
+	var id = value.id;
+	console.log(id);
+	location.href=url+id;
+}
+
+ $(function() {
+	$("#allchk").click(function(){
+		if($("#allchk").is(":checked")) $("input[name=chk]").prop("checked", true);
+		else $("input[name=chk]").prop("checked", false);
+	});
+	$("#mdel").click(function(){
+		if($("input:checkbox[name=chk]:checked").length < 1){
+			alert("쪽지를 체크해주세요");
+			return false;
+		}
+		if($("input:checkbox[name=chk]:checked").length >=1){
+			var del=confirm("삭제하시겠습니까?");
+			if(del) muldel();
+			else return false;
+		}
+	});
+}); 
+</script>
+</body>
+</html>
