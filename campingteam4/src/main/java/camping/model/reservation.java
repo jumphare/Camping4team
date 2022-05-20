@@ -17,6 +17,14 @@ public class reservation {
 	private String id; /* 아이디 */
 	private String eq_num; /*장비 개수*/
 	
+	private String imp_uid;  /*결제 고유번호*/
+	
+	public String getImp_uid() {
+		return imp_uid;
+	}
+	public void setImp_uid(String imp_uid) {
+		this.imp_uid = imp_uid;
+	}
 	public int getRes_no() {
 		return res_no;
 	}

@@ -52,8 +52,10 @@
 		subject=#{subject}, score=#{score}, content=#{content},
 		re_file=#{re_file}, re_file2=#{re_file2} where re_no=#{re_no}
 	</update>
-	<!-- 댓글 -->
-
+	<delete id="delete" parameterType="int">
+		delete from review
+        where  re_no=#{re_no}
+	</delete>
 </mapper>
 
 

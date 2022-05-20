@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import camping.model.review;
+import camping.model.review_reply;
 
 @Repository
 public class ReviewDAO {
@@ -46,5 +47,13 @@ public class ReviewDAO {
 		//보드 수정
 		public int update(review review) {
 			return session.update("reviewns.update",review);
+		}
+		//댓글
+		public List<review_reply> replylist(int re_no) {
+			return session.selectList("replyns.replylist", re_no);
+		}
+		//후기 삭제
+		public int delete(int re_no) {
+			return session.delete("reviewns.delete", re_no);
 		}
 }

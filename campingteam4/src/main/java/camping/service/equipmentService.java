@@ -41,4 +41,8 @@ public class equipmentService {
 	public void eq_delete(String chk) {
 		dao.eq_delete(chk); 
 	}
+	//여분수량 변경
+	public void eq_rm(equipment eqm) {
+		dao.eq_rm(eqm);
+	}
 }

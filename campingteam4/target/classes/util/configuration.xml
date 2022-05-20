@@ -10,7 +10,7 @@
 		<typeAlias alias="chat" type="camping.model.chat" />
 		<typeAlias alias="msg" type="camping.model.msg" />
 		<typeAlias alias="notice" type="camping.model.notice" />
-		<typeAlias alias="payment" type="camping.model.payment" />
+		<typeAlias alias="pay" type="camping.model.pay" />
 		<typeAlias alias="partner" type="camping.model.partner" />
 		<typeAlias alias="partner_comment" type="camping.model.partner_comment" />
 		<typeAlias alias="review" type="camping.model.review" />

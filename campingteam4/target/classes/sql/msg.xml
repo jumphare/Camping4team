@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="msgns">
+
+<!-- 메시지 전송 -->
+<insert id="sendmsg" parameterType="msg">
+	<selectKey keyProperty="msg_no" order="BEFORE" resultType="int">
+      select nvl(max(msg_no),0) + 1 from msg
+   </selectKey>
+	insert into msg values(#{id},#{recv_id},#{content},sysdate,0,1,1,#{msg_no})
+</insert>
+<!-- 받은 쪽지 목록 -->
+<select id="recvlist" parameterType="String" resultType="msg">
+<!-- 	select * from msg where recv_id=#{recv_id} and read_st=1 order by msg_date desc -->
+	select * from (select board.*, rownum rn from (
+		select * from msg where recv_id=#{recv_id} and read_st=1 order by msg_date desc ) board )
+	where rn between #{startRow} and #{endRow}
+</select>
+<!-- 보낸 쪽지 목록 -->
+<select id="sendlist" parameterType="String" resultType="msg">
+<!-- 	select * from msg where id=#{id} and recv_st=1 order by msg_date desc -->
+	select * from (select board.*, rownum rn from (
+		select * from msg where id=#{id} and recv_st=1 order by msg_date desc ) board )
+	where rn between #{startRow} and #{endRow}
+</select>
+<!-- 받은 카운트 -->
+<select id="allcnt_rd"  parameterType="String" resultType="int">
+	select count(*) from msg where recv_id=#{recv_id} and recv_st=1
+</select>
+<!-- 보낸 카운트 -->
+<select id="allcnt_sd" parameterType="String"  resultType="int">
+	select count(*) from msg where id=#{id} and read_st=1
+</select>
+<!-- 미열람 카운트 -->
+<select id="msgcnt" parameterType="String" resultType="int">
+	select count(*) from msg where recv_id=#{id} and msg_check=0 and read_st=1
+</select>
+<!-- 쪽지 내용 -->
+<select id="msgdetail" parameterType="int" resultType="msg">
+	select * from msg where msg_no=#{msg_no}
+</select>
+<!-- 읽음처리 -->
+<update id="msgchk" parameterType="int">
+	update msg set msg_check=1 where msg_no=#{msg_no}
+</update>
+<!-- 받은 메시지 삭제 (recv_id=본인) : read_st=0 -->
+<update id="del_rd" parameterType="int">
+	update msg set read_st=0 where msg_no=#{msg_no}
+</update>
+<!-- 보낸 메시지 삭제 (id=본인이고 읽은 메시지) : recv_st=0 -->
+<update id="del_sd" parameterType="int">
+	update msg set recv_st=0 where msg_no=#{msg_no}
+</update>
+<!-- 상대가 읽지 않은 내가 보낸 메시지 : delete -->
+<delete id="delmsg" parameterType="int">
+	delete from msg where msg_no=#{msg_no}
+</delete>
+
+</mapper>

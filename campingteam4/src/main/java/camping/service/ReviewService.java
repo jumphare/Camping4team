@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import camping.dao.ReviewDAO;
 import camping.model.review;
+import camping.model.review_reply;
 
 @Service
 public class ReviewService {
@@ -51,5 +52,14 @@ public class ReviewService {
 	//보드수정
 	public int update(review review) {
 		return dao.update(review);
+	}
+	
+	//댓글
+	public List<review_reply> replylist(int re_no) {
+		return dao.replylist(re_no);
+	}
+	
+	public int delete(int re_no) {
+		return dao.delete(re_no);
 	}
 }

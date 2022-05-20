@@ -105,14 +105,14 @@ eq_no: ${eqm.eq_no }<br>
 		<td>옵션 선택</td>
 		<td>수량</td>
 	</tr>
-	<c:if test="${empty eqm.eq_no }"> <td colspan=3>옵션이 존재하지 않는 상품입니다.</td></c:if>
+	<c:if test="${not empty eqm.eq_no}"> <td colspan=3>옵션이 존재하지 않는 상품입니다.</td></c:if>
 	<c:forEach var="eqm" items="${list }"> 
 	<span style="display:none" id="eqname_${eqm.eq_no }">${eqm.name }</span>
 	<span style="display:none" id="eqprice_${eqm.eq_no }">${eqm.price }</span>
-	<span style="display:none" id="eqnum_${eqm.eq_no }">${eqm.num }</span>
+	<span style="display:none" id="eqnum_${eqm.eq_no }">${eqm.rm_num }</span>
 	<tr>
 		<td>
-			${eqm.name }   (+${eqm.price }원)
+			${eqm.name }   (+${eqm.price }원)   [현재 수량 : ${eqm.rm_num }]
 		</td> 
 		<td>
 			<a href="javascript:;" class="minus" id="${eqm.eq_no }" ><i class="fa-solid fa-minus"></i></a>

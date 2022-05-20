@@ -52,11 +52,20 @@
 		});
 	});
 </script>
-<!-- 댓글 작성 jQuery문 -->
 <script type="text/javascript">
+function fn_replydelete(reply_no){
+    if (!confirm("삭제하시겠습니까?")) {
+        return;
+    }
+    $("#form2").attr("action", "fn_replydelete");
+    $("#reno2").val(reply_no);
+    $("#form2").submit();   
+}
+	</script>
+<!-- 댓글 작성 jQuery문 -->
+<%-- <script type="text/javascript">
 	$(function() {
-		$('#review_reply').load(
-				'${path}/review_reply/re_no/${review.re_no}')
+		$('#review_reply').load('${path}/review_reply/re_no/${review.re_no}')
 
 		$('#review_reply_insert').click(function() {
 			if (!frm.review_re_content.value) {
@@ -70,8 +79,8 @@
 				frm.review_re_content.value = '';
 			});
 		});
-	});
-</script>
+	}); 
+</script> --%>
 
 </head>
 <body>
@@ -106,52 +115,46 @@
 						<td>내용</td>
 						<td><pre>${review.content}</pre></td>
 					</tr>
+					<tr><td colspan=2 align="center">
+						<input type="button" value="목록" class="btn btn-dark"
+							onClick="location.href='reviewlist.do?page=${page}' ">
+						<c:if test="${id == review.id || id == 'admin'}"> 
+						<input type="button" value="수정" class="btn btn-dark"
+							onClick="location.href='reviewupdateform.do?re_no=${review.re_no}&page=${page}' ">
+						<input type="button" value="삭제" 
+							onClick="location.href='reviewdeleteform.do?re_no=${review.re_no}&page=${page}' ">
+						</c:if>
+						<form action="/revlike?re_no=${review.re_no}&pageNum=${pageNum}"
+							method="post" id="like">
+
+							<input class="btn btn-dark" type="submit" value="좋아요">
+
+						</form>
+					</td></tr>
 				</tbody>
 			</table>
-
-			<div class="r_view_btns">
-				<input type="button" value="목록" class="btn btn-dark"
-					onClick="location.href='reviewlist.do?page=${page}' ">
-				<input type="button" value="수정" class="btn btn-dark"
-					onClick="location.href='reviewupdateform.do?re_no=${review.re_no}&page=${page}' ">
-
-					<form
-						action="${path}/reviewdelete/re_no/${review.re_no}/pageNum/${pageNum}"
-						method="post" name="chk" id="chk2">
-						<input class="btn btn-dark" type="submit" value="삭제">
-					</form>
-					<form
-						action="/revlike?re_no=${review.re_no}&pageNum=${pageNum}"
-						method="post" id="like">
-
-						<input class="btn btn-dark" type="submit" value="좋아요">
-					</form>
-			</div>
-		</div>
-
-
-		<!-- 댓글 작성 -->
-		<div class="r_view_repl" align=center>
-			<form name="frm" id="frm">
-				<input type="hidden" name="id" value="${id}"> <input
-					type="hidden" name="review_fno" value="${review.re_no}">
+			
+			<!-- 댓글 작성 -->
+			<form align="center" method="post" action="replywrite.do">
+				<input type="hidden" name="id" value="${id}">
+				<input type="hidden" id="re_no" name="re_no" value="${review.re_no}">
+				<input type="hidden" id="page" name="page" value="${page}">
+				<input type="hidden" id="res_no" name="res_no" value="${review.res_no}"> 
 				<p>댓글쓰기 :</p>
-				<div>
-					<textarea class="form-control" rows="3" cols="50"
-						name="review_content"></textarea>
-				</div>
-				<div>
-					<input class="btn btn-outline-secondary" type="button" value="확인"
-						id="review_reply_insert">
-				</div>
-			</form>
-		</div>
+				<textarea class="form-control" rows="3" cols="50" name="content"></textarea>
+				<input type="submit" value="확인">
 
-		<!-- 댓글 list 불러오는곳 -->
-		<div class="view_rep_list" id="review_reply"></div>
-
-	</div>
-
-
+			<!-- 댓글 list 불러오는곳 --> 
+			<c:forEach items="${list}" var="l">
+				<li align="center">${l.id} &nbsp; &nbsp; &nbsp; &nbsp; : &nbsp; &nbsp;
+					&nbsp; &nbsp; ${l.content} <br /> 작성 날짜 : <fmt:formatDate
+						value="${l.re_date}" pattern="yyyy-MM-dd" />
+ 			<c:if test="${id == l.id}"> 
+			<input type="button" value="삭제" 
+			onclick="location.href='replydelete.do?reply_no=${l.reply_no}&re_no=${review.re_no}&page=${page}'" />
+			</c:if>
+				</li>
+			</c:forEach>
+		</form>
 </body>
 </html>
