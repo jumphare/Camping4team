@@ -542,5 +542,7 @@ public class MemberController {
 
 		return "member/jsp/member_logout";
 	}
+	
+
 
 }
