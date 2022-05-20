@@ -70,4 +70,12 @@ public class reserveDAO {
 	public void pay_cancel(String imp_uid) {
 		session.update("reserve.pay_cancel", imp_uid);
 	}
+	//현재 예약 카운트
+	public int curcnt(String sort) {
+		return session.selectOne("reserve.curcnt", sort);
+	}
+	
+	public List<reservation> curlist(reservation res) {
+		return session.selectList("reserve.curlist", res);
+	}
 }

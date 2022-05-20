@@ -70,4 +70,12 @@ public class reserveService {
 	public void pay_cancel(String imp_uid) {
 		dao.pay_cancel(imp_uid);
 	}
+	//현재 예약 카운트
+	public int curcnt(String sort) {
+		return dao.curcnt(sort);
+	}
+	//현재 예약 목록
+	public List<reservation> curlist(reservation res) {
+		return dao.curlist(res);
+	}
 }

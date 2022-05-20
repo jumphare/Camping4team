@@ -349,6 +349,7 @@ public class reserveController {
 		redirect.addAttribute("sort", "res_date");
 		return "redirect:/res_cur.do";
 	}
+	
 	//현재예약 페이지로
 	@RequestMapping("/res_cur.do")
 	public String res_cur(@RequestParam("page") int page, String sort, Model model) {
@@ -359,7 +360,7 @@ public class reserveController {
 		res.setStartRow(startRow);
 		res.setEndRow(endRow);
 		res.setSort(sort);
-		int cnt=sv.rescnt(sort);
+		int cnt=sv.curcnt(sort);
 		List<reservation> list = sv.curlist(res);
 	
 		// 총페이지수 (페이지 당 20개씩)
@@ -373,7 +374,7 @@ public class reserveController {
 
 		model.addAttribute("sort",sort);
 		model.addAttribute("cnt", cnt);
-		model.addAttribute("list", list);
+//		model.addAttribute("list", list);
 		
 		model.addAttribute("pcnt", pageCount);
 		model.addAttribute("spage", startPage);

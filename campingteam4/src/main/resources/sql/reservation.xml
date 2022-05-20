@@ -63,4 +63,25 @@
     <update id="pay_cancel" parameterType="String">
     	update payment set pay_date=sysdate where imp_uid=#{imp_uid}
     </update>
+    
+    <!-- 현재 예약 카운트 -->
+    <select id="curcnt" parameterType="String" resultType="int">
+    	select count(*) from reservation where end_date &gt;= sysdate order by #{sort} desc
+    </select>  
+    <!-- 현재 예약 목록 -->
+    <select id="curlist" parameterType="reservation" resultType="reservation">	
+		select * from (select board.*,rownum rn from (
+			select * from reservation where end_date &gt;= sysdate order by #{sort} desc) board )
+			where rn between #{startRow} and #{endRow}
+	</select>
+    <!-- 지난 예약 카운트 -->
+    <select id="pstcnt" parameterType="String" resultType="int">
+    	select count(*) from reservation where end_date &lt; sysdate order by #{sort} desc
+    </select>
+    <!-- 지난 예약 목록 -->
+    <select id="pstlist" parameterType="reservation" resultType="reservation">	
+		select * from (select board.*,rownum rn from (
+			select * from reservation  where end_date &lt; sysdate order by #{sort} desc) board )
+			where rn between #{startRow} and #{endRow}
+	</select>
 </mapper>
