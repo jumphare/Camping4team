@@ -11,6 +11,6 @@
     <a href="member_login.do">로그인</a><br>
     <a href="eq_admin.do">장비</a><br>
     <a href="noticelist.do">공지사항 목록</a><br>
-	
+	<a href="res_admin.do">예약관리</a><br>
 </body>
 </html>

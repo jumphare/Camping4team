@@ -19,6 +19,29 @@ public class reservation {
 	
 	private String imp_uid;  /*결제 고유번호*/
 	
+	private int startRow;
+	private int endRow;
+	
+	private String sort;
+	
+	public String getSort() {
+		return sort;
+	}
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+	public int getStartRow() {
+		return startRow;
+	}
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+	public int getEndRow() {
+		return endRow;
+	}
+	public void setEndRow(int endRow) {
+		this.endRow = endRow;
+	}
 	public String getImp_uid() {
 		return imp_uid;
 	}

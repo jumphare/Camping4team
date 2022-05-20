@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.siot.IamportRestClient.IamportClient;
 import com.siot.IamportRestClient.exception.IamportResponseException;
@@ -337,8 +338,55 @@ public class reserveController {
 				eqv.eq_rm(eqm);
 			}
 		}
-		
 		return "redirect:/reserveList.do";
 	}
+	
+	///////////예약관리(admin)
+	//예약관리 페이지로(기본: 현재예약)
+	@RequestMapping("/res_admin.do")
+	public String res_admin(RedirectAttributes redirect, Model model) {
+		redirect.addAttribute("page", 1);
+		redirect.addAttribute("sort", "res_date");
+		return "redirect:/res_cur.do";
+	}
+	//현재예약 페이지로
+	@RequestMapping("/res_cur.do")
+	public String res_cur(@RequestParam("page") int page, String sort, Model model) {
+		int startRow=(page-1)*20+1;
+		int endRow=startRow+20-1;
+		
+		reservation res=new reservation();
+		res.setStartRow(startRow);
+		res.setEndRow(endRow);
+		res.setSort(sort);
+		int cnt=sv.rescnt(sort);
+		List<reservation> list = sv.curlist(res);
+	
+		// 총페이지수 (페이지 당 20개씩)
+		int pageCount = cnt / 20 + ((cnt % 20 == 0) ? 0 : 1);
+
+		int startPage = ((page - 1) / 10) * 20 + 1; 
+		int endPage = startPage + 20 - 1; 
+
+		if (endPage > pageCount)
+			endPage = pageCount;
+
+		model.addAttribute("sort",sort);
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("list", list);
+		
+		model.addAttribute("pcnt", pageCount);
+		model.addAttribute("spage", startPage);
+		model.addAttribute("epage", endPage);
+		model.addAttribute("page", page);
+		return "/reservation/res_cur";
+	}
+	//지난예약 페이지로
+	
+	//예약 상세정보(관리자)
+	
+	//장비 건별반납
+	
+	//장비 일괄반납
 	
 }//ctrler

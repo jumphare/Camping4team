@@ -4,12 +4,30 @@
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
-
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/> <!-- 부트스트랩 -->
 <head>
 <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<style>
+/* 이미지 뱃지 다는 css */
+.item {
+    position:relative;
+    padding-top:20px;
+    display:inline-block;
+}
+.notify-badge{
+    position: absolute;
+    right:-8px;  
+    top:13px;    
+    background:red;    
+    text-align: center;
+    border-radius: 30px 30px 30px 30px;
+    color:white;
+    padding:3px 5px;
+    font-size:10px;
+}
+</style>
 </head>
 <body>
 <script>
@@ -33,7 +51,13 @@ function msgbox(){
  
  <div><a href="javascript:;" onclick="msgbox()" >안 읽은 메시지 : ${cnt }</a></div>
 <br>
-<!-- 이미지 출력방법~! 위의 path 경로 잡은 거 꼭 header에 포함시킬 것! -->
-<div class="ima"><img src="${path }/images/mail0.png" width="20px" height="20px" ></div><br>
+<div class="col-sm-4">
+    <div class="item">
+        <a href="#" onclick="msgbox()">
+            <span class="notify-badge">${cnt }</span>
+            <img src="${pageContext.request.contextPath }/images/mail0.png"  alt="" width=30px height=30px />
+        </a>
+    </div>
+</div>
 </body>
 </html>
