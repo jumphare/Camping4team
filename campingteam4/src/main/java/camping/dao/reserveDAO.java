@@ -71,11 +71,27 @@ public class reserveDAO {
 		session.update("reserve.pay_cancel", imp_uid);
 	}
 	//현재 예약 카운트
-	public int curcnt(String sort) {
-		return session.selectOne("reserve.curcnt", sort);
+	public int curcnt(reservation res) {
+		return session.selectOne("reserve.curcnt", res);
 	}
-	
+	//현재 예약 목록
 	public List<reservation> curlist(reservation res) {
 		return session.selectList("reserve.curlist", res);
+	}
+	//지난 예약 카운트
+	public int pastcnt(reservation res) {
+		return session.selectOne("reserve.pastcnt", res);
+	}
+	//지난 예약 목록
+	public List<reservation> pastlist(reservation res){
+		return session.selectList("reserve.pastlist", res);
+	}
+	//장비 반납
+	public void eqrt(int res_no) {
+		session.update("reserve.eqrt", res_no);
+	}
+	//장비 반납 취소
+	public void ccrt(int res_no) {
+		session.update("reserve.ccrt", res_no);
 	}
 }

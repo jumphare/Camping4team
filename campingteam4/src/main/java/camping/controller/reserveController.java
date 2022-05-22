@@ -154,7 +154,7 @@ public class reserveController {
 		reservation res = sv.resdetail(res_no);
 		camp_loc loc = sv.loc(res.getCamp_no());
 		spot spot = sv.spot(res.getSp_no());
-		
+			
 		String[] eqm_no;
 		String[] eqm_num;
 		// 장비 옵션
@@ -165,8 +165,13 @@ public class reserveController {
 			eqm_no=res.getEq_no().split("-");
 			eqm_num=res.getEq_num().split("-");
 		}
-
-		List<equipment> eqlist = sv.eqm(res.getCamp_no());
+		//예약 때 추가한 장비에 대한 정보만 가져와 리스트에 저장
+//		List<equipment> eqlist = sv.eqm(res.getCamp_no());
+		List<equipment> eqlist=new ArrayList<equipment>();
+		for(int i=0; i<eqm_no.length; i++) {
+			equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
+			eqlist.add(eqm);
+		}
 		
 		model.addAttribute("mem", mem);
 		model.addAttribute("camp", loc);
@@ -341,10 +346,12 @@ public class reserveController {
 		return "redirect:/reserveList.do";
 	}
 	
-	///////////예약관리(admin)
+	///////////예약관리(admin)////////
+	
 	//예약관리 페이지로(기본: 현재예약)
 	@RequestMapping("/res_admin.do")
 	public String res_admin(RedirectAttributes redirect, Model model) {
+		redirect.addAttribute("camp_no", 0);
 		redirect.addAttribute("page", 1);
 		redirect.addAttribute("sort", "res_date");
 		return "redirect:/res_cur.do";
@@ -352,16 +359,16 @@ public class reserveController {
 	
 	//현재예약 페이지로
 	@RequestMapping("/res_cur.do")
-	public String res_cur(@RequestParam("page") int page, String sort, Model model) {
+	public String res_cur(@RequestParam("page") int page, reservation res, Model model) {
 		int startRow=(page-1)*20+1;
 		int endRow=startRow+20-1;
 		
-		reservation res=new reservation();
+		//페이징 dto에 저장
 		res.setStartRow(startRow);
 		res.setEndRow(endRow);
-		res.setSort(sort);
-		int cnt=sv.curcnt(sort);
-		List<reservation> list = sv.curlist(res);
+		System.out.println(res.getSort());  //정렬 방식 저장
+		int cnt=sv.curcnt(res);   //게시글 카운트
+		List<reservation> list = sv.curlist(res);   //list
 	
 		// 총페이지수 (페이지 당 20개씩)
 		int pageCount = cnt / 20 + ((cnt % 20 == 0) ? 0 : 1);
@@ -372,9 +379,10 @@ public class reserveController {
 		if (endPage > pageCount)
 			endPage = pageCount;
 
-		model.addAttribute("sort",sort);
+		model.addAttribute("sort",res.getSort());
+		model.addAttribute("camp_no", res.getCamp_no());
 		model.addAttribute("cnt", cnt);
-//		model.addAttribute("list", list);
+		model.addAttribute("list", list);
 		
 		model.addAttribute("pcnt", pageCount);
 		model.addAttribute("spage", startPage);
@@ -383,11 +391,199 @@ public class reserveController {
 		return "/reservation/res_cur";
 	}
 	//지난예약 페이지로
+	@RequestMapping("/res_past.do")
+	public String res_past(@RequestParam("page") int page, reservation res, Model model) {
+		int startRow=(page-1)*20+1;
+		int endRow=startRow+20-1;
+		
+		//페이징 dto에 저장
+		res.setStartRow(startRow);
+		res.setEndRow(endRow);
+		System.out.println(res.getSort());  //정렬 방식 저장
+		int cnt=sv.pastcnt(res);   //게시글 카운트
+		List<reservation> list = sv.pastlist(res);   //list
 	
-	//예약 상세정보(관리자)
-	
+		// 총페이지수 (페이지 당 20개씩)
+		int pageCount = cnt / 20 + ((cnt % 20 == 0) ? 0 : 1);
+
+		int startPage = ((page - 1) / 10) * 20 + 1; 
+		int endPage = startPage + 20 - 1; 
+
+		if (endPage > pageCount)
+			endPage = pageCount;
+
+		model.addAttribute("sort",res.getSort());
+		model.addAttribute("camp_no", res.getCamp_no());
+		model.addAttribute("cnt", cnt);
+		model.addAttribute("list", list);
+		
+		model.addAttribute("pcnt", pageCount);
+		model.addAttribute("spage", startPage);
+		model.addAttribute("epage", endPage);
+		model.addAttribute("page", page);
+		return "/reservation/res_past";
+	}
 	//장비 건별반납
-	
+	@RequestMapping("/eq_return.do")
+	public String eq_return(RedirectAttributes redirect, reservation res, int page, Model model) {
+		int res_no=res.getRes_no();
+		reservation rs=sv.resdetail(res_no);
+		String[] eqm_no;
+		String[] eqm_num;
+		// 장비 옵션 분리
+		if(rs.getEq_no().equals("0")) {
+			eqm_no=null;
+			eqm_num=null;
+		} else {
+			eqm_no=rs.getEq_no().split("-");
+			eqm_num=rs.getEq_num().split("-");
+		}
+		
+		if(rs.getState()==1) {	//반납보류 상태 -> 반납처리
+			//장비 반납 -> rm_num에 eqm_num만큼 더해줌
+			for(int i=0; i<eqm_no.length; i++) {
+				equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
+				int rm=eqm.getRm_num();  //기존 장비 여분수량
+				eqm.setRm_num(rm+Integer.parseInt(eqm_num[i]));  //rm_num=rm+eqm_num
+				eqv.eq_rm(eqm);  //수량 업데이트
+			}	
+			//반납처리
+			sv.eqrt(res_no);
+		}
+		if(rs.getState()==3) {	//반납완료 상태 -> 반납취소
+			//반납 취소 -> rm_num에 eqm_num만큼 빼줌
+			for(int i=0; i<eqm_no.length; i++) {
+				equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
+				int rm=eqm.getRm_num();  //기존 장비 여분수량
+				eqm.setRm_num(rm-Integer.parseInt(eqm_num[i]));  //rm_num=rm-eqm_num
+				eqv.eq_rm(eqm);  //수량 업데이트
+			}	
+			//취소처리
+			sv.ccrt(res_no);
+		}
+		redirect.addAttribute("camp_no", res.getCamp_no());
+		redirect.addAttribute("page", page);
+		redirect.addAttribute("sort", res.getSort());
+		return "redirect:/res_past.do";
+	}
 	//장비 일괄반납
-	
+	@RequestMapping("eq_allrt.do")
+	public String eq_allrt(RedirectAttributes redirect, reservation res, int page, Model model) {
+		int startRow=(page-1)*20+1;
+		int endRow=startRow+20-1;
+
+		res.setStartRow(startRow);
+		res.setEndRow(endRow);
+		List<reservation> list = sv.pastlist(res);   //그 페이지의 예약 목록 불러옴
+		
+		for(reservation rs:list) {
+			if(rs.getState()!=1)	//예약보류 상태가 아닌 예약은 넘김
+				continue;
+			else if(rs.getState()==1) {	//예약보류 상태만 예약처리
+				String[] eqm_no;
+				String[] eqm_num;
+				// 장비 옵션 분리
+				if(rs.getEq_no().equals("0")) {
+					eqm_no=null;
+					eqm_num=null;
+				} else {
+					eqm_no=rs.getEq_no().split("-");
+					eqm_num=rs.getEq_num().split("-");
+				}
+				for(int i=0; i<eqm_no.length; i++) {
+					equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
+					int rm=eqm.getRm_num();  //기존 장비 여분수량
+					eqm.setRm_num(rm+Integer.parseInt(eqm_num[i]));  //rm_num=rm+eqm_num
+					eqv.eq_rm(eqm);  //수량 업데이트
+				}	
+				sv.eqrt(rs.getRes_no());
+			}
+		}
+		redirect.addAttribute("camp_no", res.getCamp_no());
+		redirect.addAttribute("page", page);
+		redirect.addAttribute("sort", res.getSort());
+		return "redirect:/res_past.do";
+	}
+	//예약 상세 (관리자 view)
+	@RequestMapping("/res_adminview.do")
+	public String res_adminview(reservation res, Model model) {
+		System.out.println("관리자 예약 상세 페이지 진입");
+		reservation rs=sv.resdetail(res.getRes_no());	//해당 예약 정보
+		member mem=sv.memdetail(rs.getId());		//예약자 정보
+		camp_loc loc = sv.loc(rs.getCamp_no());	//장소 정보
+		spot spot = sv.spot(rs.getSp_no());	//구역 정보
+		
+		String[] eqm_no;
+		String[] eqm_num;
+		// 장비 옵션
+		if(rs.getEq_no().equals("0")) {
+			eqm_no=null;
+			eqm_num=null;
+		} else {
+			eqm_no=rs.getEq_no().split("-");
+			eqm_num=rs.getEq_num().split("-");
+		}
+		//예약 때 추가한 장비에 대한 정보만 가져와 리스트에 저장
+//		List<equipment> eqlist = sv.eqm(res.getCamp_no());
+		List<equipment> eqlist=new ArrayList<equipment>();
+		for(int i=0; i<eqm_no.length; i++) {
+			equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
+			eqlist.add(eqm);
+		}
+		
+		model.addAttribute("res", rs);
+		model.addAttribute("mem", mem);
+		model.addAttribute("camp", loc);
+		model.addAttribute("spot", spot);
+		model.addAttribute("eqlist", eqlist);
+		model.addAttribute("eqm_no", eqm_no);
+		model.addAttribute("eqm_num", eqm_num);
+		/*
+		 * model.addAttribute("page",page); 
+		 * model.addAttribute("sort",res.getSort());
+		 * model.addAttribute("camp_no", res.getCamp_no());
+		 */
+		return "/reservation/res_adminView";
+	}
+	//상세페이지 반납
+	@RequestMapping("/eq_returnview.do")
+	public String eq_returnview(RedirectAttributes redirect, reservation res, Model model) {
+		int res_no=res.getRes_no();
+		reservation rs=sv.resdetail(res_no);
+		String[] eqm_no;
+		String[] eqm_num;
+		// 장비 옵션 분리
+		if(rs.getEq_no().equals("0")) {
+			eqm_no=null;
+			eqm_num=null;
+		} else {
+			eqm_no=rs.getEq_no().split("-");
+			eqm_num=rs.getEq_num().split("-");
+		}
+		if(rs.getState()==1) {	//반납보류 상태 -> 반납처리
+			//장비 반납 -> rm_num에 eqm_num만큼 더해줌
+			for(int i=0; i<eqm_no.length; i++) {
+				equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
+				int rm=eqm.getRm_num();  //기존 장비 여분수량
+				eqm.setRm_num(rm+Integer.parseInt(eqm_num[i]));  //rm_num=rm+eqm_num
+				eqv.eq_rm(eqm);  //수량 업데이트
+			}	
+			//반납처리
+			sv.eqrt(res_no);
+		}
+		if(rs.getState()==3) {	//반납완료 상태 -> 반납취소
+			//반납 취소 -> rm_num에 eqm_num만큼 빼줌
+			for(int i=0; i<eqm_no.length; i++) {
+				equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
+				int rm=eqm.getRm_num();  //기존 장비 여분수량
+				eqm.setRm_num(rm-Integer.parseInt(eqm_num[i]));  //rm_num=rm-eqm_num
+				eqv.eq_rm(eqm);  //수량 업데이트
+			}	
+			//취소처리
+			sv.ccrt(res_no);
+		}
+
+		redirect.addAttribute("res_no", res_no);
+		return "redirect:/res_adminview.do";
+	}
 }//ctrler

@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/> <!-- 부트스트랩 -->
 <head>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
 <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -41,6 +41,10 @@ function msgbox(){
 	window.open("./recvlist.do?recv_id=${id}", "쪽지 보관함", "width=600, height=500, left=100, top=50");
 }
 </script>
+<div>
+<a href="./reserveList.do">예약내역</a>
+</div>
+
 <c:if test="${id eq 'test' }"><div>test로 로그인</div>
 <div><a href="javascript:;" onclick="msgsending1()">aaaa에게 쪽지 보내기</a></div><br>
 </c:if>

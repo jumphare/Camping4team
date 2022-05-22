@@ -71,11 +71,27 @@ public class reserveService {
 		dao.pay_cancel(imp_uid);
 	}
 	//현재 예약 카운트
-	public int curcnt(String sort) {
-		return dao.curcnt(sort);
+	public int curcnt(reservation res) {
+		return dao.curcnt(res);
 	}
 	//현재 예약 목록
 	public List<reservation> curlist(reservation res) {
 		return dao.curlist(res);
+	}
+	//지난 예약 카운트
+	public int pastcnt(reservation res) {
+		return dao.pastcnt(res);
+	}
+	//지난 예약 목록
+	public List<reservation> pastlist(reservation res){
+		return dao.pastlist(res);
+	}
+	//장비 반납
+	public void eqrt(int res_no) {
+		dao.eqrt(res_no);
+	}
+	//장비 반납 취소
+	public void ccrt(int res_no) {
+		dao.ccrt(res_no);
 	}
 }

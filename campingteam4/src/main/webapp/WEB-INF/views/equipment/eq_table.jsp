@@ -27,29 +27,42 @@ $("#allchk").click(function(){
 	if($("#allchk").is(":checked")) $("input[name=chk]").prop("checked", true);
 	else $("input[name=chk]").prop("checked", false);
 });
+
 </script>
 </head>
 <body>
 <script>
 $(function() {
 	$("#camp").val("${eqm.type}").prop("selected", true);
+	var cp=${eqm.camp_no};
+	$("#cp_"+cp).attr("checked",true);
 });
+
+function table(value){
+	console.log("camp_no: "+value);
+	location.href='./eq_table.do?camp_no='+value;
+};
 function tp(value){
 	console.log('option: '+value);
-	$('#eqlist').load('./eq_table.do?camp_no=${eqm.camp_no}&type='+value);
+	var formData = "camp_no=${eqm.camp_no}&type="+value;
+	$.post('./eq_table.do',formData, function(data) {
+		$('#eql').html(data);
+	});
+//	location.href='./eq_table.do?camp_no=${eqm.camp_no}&type='+value;
 };
 function pagin(value){
 	console.log(value);
 	var type='${eqm.type}';
-	if(type=='all'){
-		$('#eqlist').load('./eq_table.do?camp_no=${eqm.camp_no}&pnum='+value);		
-	}
-
-	if(type!='all'){
-		$('#eqlist').load('./eq_table.do?camp_no=${eqm.camp_no}&type='+type+'&pnum='+value);
-	}
+	if(type=='all')		location.href='./eq_table.do?camp_no=${eqm.camp_no}&pnum='+value;		
+	if(type!='all')		location.href='./eq_table.do?camp_no=${eqm.camp_no}&type='+type+'&pnum='+value;
 };
 </script>
+<div id="eql">
+<div>
+<input type="radio" id="cp_1" value="1" onclick="table(1)">서울
+<input type="radio" id="cp_2" value="2" onclick="table(2)">천안
+<input type="radio" id="cp_3" value="3" onclick="table(3)">대전
+</div>
 <div> <select id="camp" name="type" onchange="tp(this.value)">
 			<option value="all">전체</option>
 			<option value="글램핑">글램핑</option>
@@ -96,6 +109,7 @@ function pagin(value){
 		<a href="javascript:;" onclick="pagin(${epage+1 })"><i class="fa-solid fa-angle-right"></i></a>	
 	</c:if>
 	<a href="javascript:;" onclick="pagin(${epage })"><i class="fa-solid fa-angles-right"></i></a>
+</div>
 </div>
 </body>
 </html>

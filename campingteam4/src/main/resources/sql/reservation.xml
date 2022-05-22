@@ -65,23 +65,79 @@
     </update>
     
     <!-- 현재 예약 카운트 -->
-    <select id="curcnt" parameterType="String" resultType="int">
-    	select count(*) from reservation where end_date &gt;= sysdate order by #{sort} desc
+    <select id="curcnt" parameterType="reservation" resultType="int">
+    	select count(*) from reservation
+    	<where>
+			<if test="camp_no==0 or camp_no==null">
+				end_date &gt;= sysdate
+			</if>
+			<if test="camp_no!=0">
+				end_date &gt;= sysdate and camp_no=#{camp_no}
+			</if>
+		</where> 
     </select>  
     <!-- 현재 예약 목록 -->
     <select id="curlist" parameterType="reservation" resultType="reservation">	
 		select * from (select board.*,rownum rn from (
-			select * from reservation where end_date &gt;= sysdate order by #{sort} desc) board )
-			where rn between #{startRow} and #{endRow}
+			select * from reservation
+			<where>
+			<if test="camp_no==0 or camp_no==null">
+				end_date &gt;= sysdate
+			</if>
+			<if test="camp_no!=0">
+				end_date &gt;= sysdate and camp_no=#{camp_no}
+			</if>
+		</where> 
+			<choose>
+				<when test = "sort=='res_date'">order by res_date desc </when>
+				<when test = "sort=='start_date'">order by start_date desc </when>
+				<when test = "sort=='end_date'">order by end_date desc </when>
+				<otherwise>	and state=1 order by res_date desc </otherwise>
+			</choose>
+			) board ) 	where rn between #{startRow} and #{endRow}
 	</select>
     <!-- 지난 예약 카운트 -->
-    <select id="pstcnt" parameterType="String" resultType="int">
-    	select count(*) from reservation where end_date &lt; sysdate order by #{sort} desc
+    <select id="pastcnt" parameterType="String" resultType="int">
+	    select count(*) from reservation
+	    	<where>
+				<if test="camp_no==0 or camp_no==null">
+					end_date &lt; sysdate and (state=1 
+				</if>
+				<if test="camp_no!=0">
+					end_date &lt; sysdate and camp_no=#{camp_no} and (state=1 
+				</if>
+			</where>
+			<choose>
+				<when test="sort=='state'">) </when>
+				<otherwise>or state=3) </otherwise>
+			</choose> 
     </select>
     <!-- 지난 예약 목록 -->
-    <select id="pstlist" parameterType="reservation" resultType="reservation">	
-		select * from (select board.*,rownum rn from (
-			select * from reservation  where end_date &lt; sysdate order by #{sort} desc) board )
-			where rn between #{startRow} and #{endRow}
+    <select id="pastlist" parameterType="reservation" resultType="reservation">	
+			select * from (select board.*,rownum rn from (
+			select * from reservation
+			<where>
+			<if test="camp_no==0 or camp_no==null">
+				end_date &lt; sysdate and (state=1 
+			</if>
+			<if test="camp_no!=0">
+				end_date &lt; sysdate and camp_no=#{camp_no} and (state=1
+			</if>
+		</where> 
+			<choose>
+				<when test = "sort=='res_date'"> or state=3) order by res_date desc </when>
+				<when test = "sort=='start_date'"> or state=3) order by start_date desc </when>
+				<when test = "sort=='end_date'"> or state=3) order by end_date desc </when>
+				<otherwise>	) order by end_date desc </otherwise>
+			</choose>
+			) board ) 	where rn between #{startRow} and #{endRow}
 	</select>
+	<!-- 장비 반납 -->
+	<update id="eqrt" parameterType="int">
+		update reservation set state=3 where res_no=#{res_no}
+	</update>
+	<!-- 장비 반납 취소 -->
+	<update id="ccrt" parameterType="int">
+		update reservation set state=1 where res_no=#{res_no}
+	</update>
 </mapper>
