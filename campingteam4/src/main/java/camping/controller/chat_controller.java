@@ -5,17 +5,25 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class chat_controller {
 	//채팅방
+	@RequestMapping("chatlist.do")
+	public String chatlist() {
+
+		return "chat/chatlist";
+	}	
 	@RequestMapping("chat.do")
-	public String home(HttpSession session, Model model) {
+	public String chat(String loc,HttpSession session, Model model) {
 		String id = (String)session.getAttribute("id");
-		//DB연결
 		
+		model.addAttribute("loc", loc);
 		model.addAttribute("id",id);
 		return "chat/chat";
-	}	
+	}
 }

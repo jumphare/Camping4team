@@ -8,9 +8,6 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-
-
-
 public class WebChatHandler extends TextWebSocketHandler { 
 	Map<String, WebSocketSession> users = new HashMap<String, WebSocketSession>();
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -27,8 +24,5 @@ public class WebChatHandler extends TextWebSocketHandler {
 		for (WebSocketSession wss : list) {
 			wss.sendMessage(tMsg);
 		}
-		
-		
 	}
-	
 }

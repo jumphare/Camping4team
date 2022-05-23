@@ -7,6 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 <script type="text/javascript">
 var websock;
 $(function() {
@@ -33,7 +35,7 @@ function send() {
 	$('#message').val('');
 }
 function connect() {
-	websock = new WebSocket("ws://localhost:80/spring/chat-ws.do");
+	websock = new WebSocket("ws://localhost:80/campingteam4/chat-ws.do");
 	websock.onopen = onOpen;
 //	websock.onclose = onClose;
 	websock.onmessage = onMessage;
@@ -48,10 +50,14 @@ function send() {
 	$('#message').val('');
 }
 function onOpen(event) {
-	appendMessage("연결되었습니다.");
+	var nickName = $('#nickName').val();
+	websock.send('msg:'+nickName + " 님이 연결되었습니다.");
+	$('#message').val('');
 }
 function onClose(event) {
-	appendMessage("연결이 종료되었니다.");
+	var nickName = $('#nickName').val();
+	websock.send('msg:'+nickName + "님의 연결이 종료되었니다.");
+	$('#message').val('');
 }
 function onMessage(event) {
 	var data = event.data;
@@ -63,21 +69,27 @@ function appendMessage(msg) {
 	var maxscroll = $('#chatMessageArea').height() - chatAreaheight;
 	$('#chatArea').scrollTop(maxscroll);
 }
-</script>
+
+	</script>
 </head>
 <body>
 	현재 아이디 : ${id}
-	<div class="container">
+
+
+		
+			
+		<div class="container">
 		별명 : <input type="text" id="nickName"> 
 		     <input type="button" value="입장" id="enterBtn" class="btn btn-success"> 
 		     <input	type="button" value="퇴장" id="exitBtn" class="btn btn-danger">
 		     
-			 <h2 class="text-primary">대화영역</h2>
+			 <h2 class="text-primary">${loc} 지역의 대화영역</h2>
+			 
 			 <input type="text" id="message" required="required"> 
 			 <input	type="button" value="전송" id="sendBtn" class="btn btn-info">
 			 <div id="chatArea">
 				<div id="chatMessageArea"></div>
 			 </div>
-	</div>
+		</div>
 </body>
 </html>
