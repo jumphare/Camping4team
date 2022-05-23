@@ -25,7 +25,7 @@ public class msgController {
 	private msgService sv;
 	@Autowired
 	private MemberServiceImpl msv;
-	
+
 	//임의의 로그인 메인
 	@RequestMapping("/msglogin.do")
 	public String msglogin(HttpSession session, String id, Model model) {
