@@ -4,17 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<<<<<<< HEAD
+
 <title>Insert title here</title>
-=======
-<title>Insert title here</title> 
 
-
->>>>>>> branch 'master' of https://github.com/simjin1212/camping4team
 </head>
 <body>
-<<<<<<< HEAD
-	<div align="center"
+	 <div align="center"
 		style="width: 60%; height: 100px; border: 1px solid orange; border-radius: 2em;">
 		<div style="float: left; width: 25%;">
 			<a href="type_list.do?type=캠핑"><img
@@ -38,14 +33,9 @@
 		</div>
 
 	</div>
-	<br>
-	<a href="date_sel.do">예약하기</a>
-	<br>
-	<a href="admin_camp_list.do">관리자 캠핑장 관리</a>
-	<br>
-=======
+
     <a href="date_sel.do">예약하기</a> <br>
     <a href="admin_camp_list.do">관리자 캠핑장 관리</a><br>
->>>>>>> branch 'master' of https://github.com/simjin1212/camping4team
+
 </body>
 </html>
