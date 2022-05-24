@@ -22,8 +22,6 @@ public class review {
 	public void setSp_name(String sp_name) {
 		this.sp_name = sp_name;
 	}
-	
-	
 	private int del; /* 삭제 */
 	
 	public int getRe_no() {

@@ -23,7 +23,7 @@
 		select * from (select rownum rnum, review.* from (
 			select * from review order by re_no desc) review ) 
 			where rnum >= ((#{page}-1)*10+1) and rnum <= (#{page} *10)		
-		]]>
+		]]> 
 	</select>
 	<!-- 리스트음 장소이름 -->
 	<select id="splist" resultType="review">
@@ -56,12 +56,13 @@
 		delete from review
         where  re_no=#{re_no}
 	</delete>
+	<!-- 리스트 좋아요수 출력 -->
+	<update id="getlike">
+		UPDATE review A SET A.rev_like = (
+    	SELECT count(B.re_no)
+    	FROM revlike B
+    	WHERE 
+    	A.re_no = B.re_no
+    	)
+	</update>
 </mapper>
-
-
-
-
-
-
-
-

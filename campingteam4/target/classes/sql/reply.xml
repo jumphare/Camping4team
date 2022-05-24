@@ -10,7 +10,7 @@
     	 FROM review_reply
     	WHERE re_no = #{re_no}
 	</select>
-	
+	 
 	<!-- 댓글 작성 -->
 	<insert id="insert" parameterType="review_reply">
 		INSERT INTO review_reply

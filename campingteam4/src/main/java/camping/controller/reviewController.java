@@ -1,17 +1,25 @@
 package camping.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.StringTokenizer;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.validator.constraints.ParameterScriptAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import camping.model.review;
 import camping.model.review_reply;
+import camping.model.revlike;
 
 @Controller
 public class reviewController {
@@ -28,12 +36,68 @@ public class reviewController {
 
 	// 글작성
 	@RequestMapping("re_insert.do")
-	public String re_insert(review review, HttpSession session, Model model) {
+	public String re_insert(@RequestParam("re_file1") MultipartFile mf, review review, 
+			HttpServletRequest request, HttpSession session, Model model) {
 
 		String id = (String) session.getAttribute("id");
 
+		System.out.println("content"+review.getContent());
+		//대표이미지
+		String filename = mf.getOriginalFilename();
+		int size = (int) mf.getSize();
+		String path = request.getRealPath("reviewupload");
+		String file[] = new String[2];
+		
 		int result = 0;
+		//이미지 등록
+		String newfilename = "";
+		if (filename != null) { // 첨부파일이 전송된 경우
 
+			// 파일 중복문제 해결
+			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
+			System.out.println("extension:" + extension);
+
+			UUID uuid = UUID.randomUUID();
+
+			newfilename = uuid.toString() + extension;
+			System.out.println("newfilename:" + newfilename);
+
+			StringTokenizer st = new StringTokenizer(filename, ".");
+			file[0] = st.nextToken(); // 파일명 Koala
+			file[1] = st.nextToken(); // 확장자 jpg
+
+			if (size > 1000000) { // 1000KB
+				result = 1;
+				model.addAttribute("result", result);
+
+				return "review/fileresult";
+
+			} else if (!file[1].equals("jpg") && !file[1].equals("gif") && !file[1].equals("png")) {
+
+				result = 2;
+				model.addAttribute("result", result);
+
+				return "review/fileresult";
+			}
+		}
+		if (size > 0) { // 첨부파일이 전송된 경우
+		
+				try {
+					mf.transferTo(new File(path + "/" + newfilename));
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		//-----------------------------
+		review.setRe_file(newfilename);
+		//임시 dto 저장
+		review.setRes_no(0);
+		review.setRe_file2("22");
+		
 		if (id == null) {
 
 			result = 2;
@@ -58,10 +122,14 @@ public class reviewController {
 		String id = (String) session.getAttribute("id");
 
 		System.out.println("id" + id);
+		
+		//리스트에 좋아요 수 출력
+		service.getlike();
+		
 
 		int page = 1; // 페이지 초기값
 		int limit = 10; // 한화면에 나올 데이터 개수 정의
-
+ 
 		if (request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
@@ -98,21 +166,35 @@ public class reviewController {
 
 	// 상세 페이지 : 조회수 1 증가 + 상세정보 구하기
 	@RequestMapping("reviewdetail.do")
-	public String reviewdetail(int re_no, int page, HttpSession session, Model model) {
+	public String reviewdetail(@RequestParam int re_no, @RequestParam int page, String ch, HttpSession session, Model model) {
 
 		String id = (String) session.getAttribute("id");
 		System.out.println("id=" + id);
 
-		service.updatecount(re_no); // 조회수 1 증가
+		if(ch != null) {
+			service.updatecount(re_no); // 조회수 1 증가
+		}
 
 		review review = service.reviewdetail(re_no); // 상세정보 구하기
-
+		
 		int res_no = review.getRes_no();
 
 		List<review_reply> list = service.replylist(re_no);
 
 		String spname = service.spname(res_no);
+		
+		int likecount = service.likecount(re_no);
+		System.out.println("likecount"+likecount);
 
+		revlike rl = new revlike();
+		
+		rl.setId(id);
+		rl.setRe_no(re_no);
+		
+		int likecheck = service.likecheck(rl);
+		
+		model.addAttribute("likecheck", likecheck);
+		model.addAttribute("likecount", likecount);
 		model.addAttribute("id", id);
 		model.addAttribute("re_no", re_no);
 		model.addAttribute("list", list);
@@ -136,20 +218,76 @@ public class reviewController {
 
 	// 수정
 	@RequestMapping("reviewupdate.do")
-	public String reviewupdate(review review, int page, Model model) {
-		int result = 0;
+	public String reviewupdate(@RequestParam("re_file1") MultipartFile mf, review review, 
+			HttpServletRequest request, int page, Model model) {
 //				review old = service.getBoard(board.getNo());
 //				if(old.getPasswd().equals(board.getPasswd())) {
 //					result = service.update(board);
 //				}else {
 //					result = -1;
 //				}
+		//대표이미지
+				String filename = mf.getOriginalFilename();
+				int size = (int) mf.getSize();
+				String path = request.getRealPath("reviewupload");
+				String file[] = new String[2];
+				
+				int result = 0;
+				//이미지 등록
+				String newfilename = "";
+				if (filename != null) { // 첨부파일이 전송된 경우
+
+					// 파일 중복문제 해결
+					String extension = filename.substring(filename.lastIndexOf("."), filename.length());
+					System.out.println("extension:" + extension);
+
+					UUID uuid = UUID.randomUUID();
+
+					newfilename = uuid.toString() + extension;
+					System.out.println("newfilename:" + newfilename);
+
+					StringTokenizer st = new StringTokenizer(filename, ".");
+					file[0] = st.nextToken(); // 파일명 Koala
+					file[1] = st.nextToken(); // 확장자 jpg
+
+					if (size > 1000000) { // 1000KB
+						result = 1;
+						model.addAttribute("result", result);
+
+						return "review/fileresult";
+
+					} else if (!file[1].equals("jpg") && !file[1].equals("gif") && !file[1].equals("png")) {
+ 
+						result = 2;
+						model.addAttribute("result", result);
+
+						return "review/fileresult";
+					}
+				}
+				if (size > 0) { // 첨부파일이 전송된 경우
+				
+						try {
+							mf.transferTo(new File(path + "/" + newfilename));
+						} catch (IllegalStateException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+				}
+				
+				review.setRe_file(newfilename);
+				//임시 dto 저장
+				review.setRes_no(0);
+				review.setRe_file2("22");
+				
 		System.out.println("reno" + review.getRe_no());
 		System.out.println("sub" + review.getSubject());
 		System.out.println("con" + review.getContent());
 		System.out.println("scor" + review.getScore());
 		System.out.println("c첨" + review.getRe_file());
-		System.out.println("c첨2" + review.getRe_file2());
+//		System.out.println("c첨2" + review.getRe_file2());
 
 		result = service.update(review);
 
