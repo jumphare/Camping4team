@@ -50,6 +50,11 @@
        </c:if>
      </td>
     </tr>
+    <tr>
+    	<td>
+    	<a href="pbList.do">동행찾기</a>
+    	</td>
+    </tr>
    </table>   
    </form>
  </div>

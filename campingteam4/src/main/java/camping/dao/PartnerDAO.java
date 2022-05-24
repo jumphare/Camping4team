@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import camping.model.partner;
+import camping.model.pb_join;
 
 @Repository
 public class PartnerDAO {
@@ -34,10 +35,29 @@ public class PartnerDAO {
 		return session.selectOne("partnerns.content", par_no);
 	}
 	
+	public int delete(int par_no) {
+		return session.delete("partnerns.delete", par_no);
+	}
 	
+	public int update(partner partner) {
+		return session.update("partnerns.update", partner);
+	}
+
+	public int join(pb_join pb_join) {
+		return session.insert("partnerns.join", pb_join);
+	}
+
+	public void cancel(int par_no) {
+		session.update("partnerns.cancel", par_no);
+	}
 	
-	
-	
+	public int pb_count(int par_no) {
+		return session.selectOne("partnerns.pb_count", par_no);
+	}
+
+	public int chkID(pb_join pb_join) {
+		return session.selectOne("partnerns.chkID", pb_join);
+	}
 	
 	
 }

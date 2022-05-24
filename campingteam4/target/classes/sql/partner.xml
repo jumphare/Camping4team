@@ -8,7 +8,7 @@
 	  insert into partner values(partner_seq.nextval,#{subject},
 	                      #{content},0,sysdate,#{start_date},
 	                      #{end_date},#{camp_area},#{camp_type},
-	                      #{want_num},0,#{id},0)
+	                      #{want_num},1,#{id},0)
 	</insert>
 	
 	<select id="count" resultType="int">
@@ -46,4 +46,25 @@
 	<delete id="delete" parameterType="int">
 	    delete from partner where par_no = #{par_no}
 	</delete>
+	
+	<insert id = "join" parameterType= "pb_join">
+		insert into pb_join values(#{par_no},#{join_id})
+	</insert>
+	
+	<update id = "pb_count" parameterType = "int">
+		update partner set now_num = 1 + (select count(*) from pb_join where par_no = #{par_no}) where par_no = #{par_no}
+	</update>
+	
+	<select id = "chkID" parameterType = "pb_join"  resultType = "string">
+		select join_id from pb_join where join_id = #{join_id} and par_no = #{par_no}
+	</select>
+<!--	
+	<update id = "cancle" parameterType = "int">
+	    update partner set chk=chk-1, now_num=now_num-1 where par_no=#{par_no}
+	</update>
+	
+	<delete id = "cancle" parameterType = "int">
+		delete from pb_join where par_no = #{par_no}
+	</delete>
+	-->
 </mapper>

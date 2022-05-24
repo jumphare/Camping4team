@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import camping.dao.PartnerDAO;
 import camping.model.partner;
+import camping.model.pb_join;
 
 @Service
 public class PartnerService {
@@ -32,5 +33,29 @@ public class PartnerService {
 	
 	public partner getBoard(int par_no) {
 		return PBdao.getBoard(par_no);
+	}
+	
+	public int delete(int par_no) {
+		return PBdao.delete(par_no);
+	}
+	
+	public int update(partner partner) {
+		return PBdao.update(partner);
+	}
+
+	public int join(pb_join pb_join) {
+		return PBdao.join(pb_join);
+	}
+	
+	public int pb_count(int par_no) {
+		return PBdao.pb_count(par_no);
+	}
+
+	public void cancel(int par_no) {
+		PBdao.cancel(par_no);
+	}
+
+	public int chkID(pb_join pb_join) {
+		return PBdao.chkID(pb_join);
 	}
 }

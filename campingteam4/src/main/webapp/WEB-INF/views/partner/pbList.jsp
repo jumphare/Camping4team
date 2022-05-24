@@ -46,13 +46,32 @@
 						<td>
 						<fmt:formatDate value="${boardpb.p_date}" pattern="yyyy/MM/dd"/></td>
 						<td>
-						<fmt:formatDate value="${boardpb.start_date}" pattern="yyyy/MM/dd"/></td>
+						${boardpb.start_date}
+						</td>
 						<td>
-						<fmt:formatDate value="${boardpb.end_date}" pattern="yyyy/MM/dd"/></td>
+						${boardpb.end_date}
+						</td>
 						<td>${boardpb.camp_area}</td>
 						<td>${boardpb.camp_type}</td>
 						<td>${boardpb.want_num }</td>
-						<td>${boardpb.now_num }</td>
+						<td>${boardpb.now_num }
+							<c:choose>
+								<c:when test = "${result == 0}">
+									<c:if test="">
+										<input type = button value = "신청" 
+										onClick="location.href='pbJoin.do?par_no=${boardpb.par_no }&page=${page}' ">
+									</c:if>
+								</c:when>
+								<c:when test = "${result == 1}">
+									<input type = button value = "취소" 
+									onClick="location.href='pbCancle.do?par_no=${boardpb.par_no }&page=${page}' ">
+								</c:when>
+								<c:when test = "${boardpb.now_num == boardpb.want_num }">
+									<input type = button value = "마감">
+								</c:when>
+								</c:choose>
+							
+						</td>
 						<td>${boardpb.readcount}</td>
 					</tr>
 					
