@@ -1,16 +1,71 @@
-@charset "UTF-8";
-
-.star_rating {font-size:0; letter-spacing:-4px;}
-.star_rating a {
-    font-size:22px;
-    letter-spacing:0;
-    display:inline-block;
-    margin-left:5px;
-    color:#ccc;
-    text-decoration:none;
+html,body, .container{
+    margin: 0;
+    height: 100%;
 }
-.star_rating a:first-child {margin-left:0;}
-.star_rating a.on {color:#777;}
+.container {
+    display: grid;
+}
 
+.score{
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top:100px;
+    font-size: 20px;
+}
 
-출처: https://uidevelop.tistory.com/36# [UI Develop]
+.stars{
+    position: absolute;
+    top: 150px;
+    display: inline-block;
+    left: 0;
+    right: 0;
+    margin: auto;
+    height: 52px;
+    cursor: pointer;
+    width:fit-content;
+    border: 3px solid #111;
+    border-radius: 10px;
+}
+
+.stars .star{
+    width: 48px;
+    height: 48px;
+    padding: 2px;
+    display: inline-block;
+}
+
+.star.empty{
+    background: url("./img/starrr.png") no-repeat;
+}
+
+.star.half{
+    background: url("./img/starrr3.png") no-repeat;
+}
+
+.star.full{
+    background: url("./img/starrr5.png") no-repeat;
+}
+.btns {
+    top: 210px;
+    left: 0;
+    right: 0;
+    cursor: pointer;
+    margin: auto;
+    border: none;
+}
+.reset{
+    display: inline-block;
+    margin:auto;
+    width: 30px;
+    height: 30px;
+    border:none;
+}
+
+.grade_btn{
+    display: inline-block;
+    margin: auto;
+    width: 30px;
+    height: 30px;
+    border: none;
+}

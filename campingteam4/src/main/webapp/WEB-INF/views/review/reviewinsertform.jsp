@@ -21,10 +21,14 @@
 							placeholder="제목(최대 29자)"></td>
 					</tr>
 
-					<tr><th>별점(1~5)</th><p class="star_rating">
-						<a href="#" class="on">★</a> <a href="#" class="on">★</a> <a
-							href="#" class="on">★</a> <a href="#">★</a> <a href="#">★</a>
-					</p>
+					<div class="container">
+        <span class="score"></span>
+        <div class="stars"></div>
+        <div class="btns">
+            <button class="reset">X</button>
+            <button type="submit" class="grade_btn">O</button>
+        </div>  
+    </div>
 					<!-- 	<tr><th>별점(1~5)</th>
 		<td><input type=text id="score" name="score"></td>
 	</tr> -->
