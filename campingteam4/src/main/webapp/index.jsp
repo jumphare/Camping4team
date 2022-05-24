@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
     <a href="member_login.do">로그인</a><br>
     <a href="eq_table.do">장비</a><br>
     <a href="noticelist.do">공지사항 목록</a><br>

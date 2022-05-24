@@ -26,6 +26,9 @@
 		<td> <input type="button" value="상세내역" onclick="location.href='./reserveView.do?res_no=${r.res_no}';"><br>
 		<c:if test="${r.state eq '0' || r.state eq '2'}" ><input type="button" value="삭제" onclick="location.href='./res_del.do?res_no=${r.res_no}';" ></c:if>
 		</td>
+		<td>
+		<input type="button" value="리뷰 작성하러 가기!" onclick="location.href='./re_insertform.do?res_no=${r.res_no}&sp_no=${r.sp_no}' ">
+		</td>
 	</tr>
 	<c:set var="i" value="${i+1 }"/>
 </table>

@@ -14,7 +14,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-		 <a href="re_insertform.do">글작성</a>
+		 
 		<table border="1" align=center width=700>
 			<caption>후기 게시판</caption>
 			<tr> 
@@ -38,7 +38,7 @@
 				</a>
 			</td>
 			<td>
-				${splist[status.index].sp_name}
+				${r.sp_name}
 			</td>
 			<td>${r.rev_like}</td>
 			<td>${r.id}</td>	

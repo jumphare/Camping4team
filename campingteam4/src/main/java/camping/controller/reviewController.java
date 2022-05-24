@@ -29,8 +29,12 @@ public class reviewController {
 
 	// 글작성 폼
 	@RequestMapping("re_insertform.do")
-	public String re_insertform() {
-
+	public String re_insertform(int res_no,int sp_no, Model model) {
+		
+		
+		String sp_name=service.getspname(sp_no);
+		model.addAttribute("sp_name", sp_name);
+		model.addAttribute("res_no", res_no);
 		return "review/reviewinsertform";
 	}
 
@@ -95,7 +99,6 @@ public class reviewController {
 		//-----------------------------
 		review.setRe_file(newfilename);
 		//임시 dto 저장
-		review.setRes_no(0);
 		review.setRe_file2("22");
 		
 		if (id == null) {
@@ -142,7 +145,7 @@ public class reviewController {
 		List<review> relist = service.reList(page); // Dao까지 두개의 값을 전달할 수 있지만 mybatise는 한개만 전달가능
 		System.out.println("relist : " + relist);
 
-		List<review> splist = service.splist();
+		
 
 		// 총 페이지 수
 		int pageCount = listcount / limit + ((listcount % limit == 0) ? 0 : 1);
@@ -155,7 +158,6 @@ public class reviewController {
 
 		model.addAttribute("page", page);
 		model.addAttribute("relist", relist);
-		model.addAttribute("splist", splist);
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("pageCount", pageCount);
 		model.addAttribute("startPage", startPage);

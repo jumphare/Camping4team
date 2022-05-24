@@ -1,83 +1,63 @@
-﻿const score = document.querySelector('.score');
-const stars = document.querySelector('.stars');
-const reset = document.querySelector('.reset');
-const grade_btn = document.querySelector('.grade_btn');
+﻿var locked = 0;
 
-const MAX = 5; 
+function show(star) {
+	if (locked)
+		return;
+	var i;
+	var image;
+	var el;
+	var e = document.getElemantById('startext');
+	var stateMsg;
 
-let state = {
-    score: 0
+	for (i = 1; i <= star; i++) {
+		image = 'image' + 1;
+		el = document.getElementById(image);
+		el.src = "img/star1.png"
+	}
+
+	switch (star) {
+	case 1:
+		stateMsg = "별로에요";
+		break;
+	case 2:
+		stateMsg = "기대는 마세요";
+		break;
+	case 3:
+		stateMsg = "보통이에요";
+		break;
+	case 4:
+		stateMsg = "나쁘지 않아요";
+		break;
+	case 5:
+		stateMsg = "최고에요!!!!";
+		break;
+	default:
+		stateMsg = "";
+	}
+	e.innerHTML = stateMsg;
 }
 
-let score_list = [];
-
-//원소의 개수가 5개인 빈 배열을 생성한다 
-let stararray = Array(MAX).fill();
-//각각의 원소에 접근해서 element요소를 만들어 star div에 하나씩 추가한다
-stararray.forEach(() => {
-    const star = document.createElement('div');
-    star.className = 'star empty';
-    stars.appendChild(star);
-});
+function noshow(star) {
+	if (locked)
+		return;
+	var i;
+	var image;
+	var el;
 
 
-//별 개수를 계산하는 함수 
-function calculateScore(e){
-    const {width, left} = e.currentTarget.getBoundingClientRect();
-    //왼쪽 끝 부터 마우스로 누른 곳 까지의 길이
-    const x = e.clientX - left;
-    //별 반개
-    const half_score = width / MAX / 2;
-    //마우스를 누른 위치까지의 별 개수 return
-    return Math.floor(x / half_score + 1) /2;
-}
-//별을 채우는 함수 
-function fillStar(star_index){
-    const starList = [...stars.children];
-    starList.forEach((star,index) => {
-        //user가 누른 별의 인덱스가 starList의 인덱스보다 크면 
-        //그만큼의 별을 채워야 한다 
-        if(star_index > index){
-            //만약 둘의 차의 결과가 0.5이면 반만 채운다 
-            if(star_index - index === 0.5){
-                star.className = 'star half';
-            }else{
-                star.className = 'star full';
-            }
-        }else{
-            star.className = 'star empty';
-        }
-    });
-    //현재의 별 점수 상태를 별 개수의 점수로 저장한다
-    state.score = star_index;
-    //점수를 표기해주기 위해서 score에 저장한다
-    score.innerText = state.score;
+	for (i = 1; i <= star; i++) {
+		image = 'image' + 1;
+		el = document.getElementById(image);
+		el.src = "img/star0.png"
+	}
 }
 
-//state.score로 점수를 얻어와서 score_list에 저장한다
-function saveScore() {
-    score_list.push(state.score);
-    console.log(score_list);
+function lock(star){
+	show(star);
+	locked=1;
 }
-
-//별들을 클릭했을 때에 별들의 색깔이 채워지도록 한다 
-stars.addEventListener("click",(e) => {
-    fillStar(calculateScore(e));
-});
-//별들 위에서 손가락을 움직이면 별이 채워질 수 있도록 한다 
-stars.addEventListener("mousemove", (e) => {
-    fillStar(calculateScore(e));
-});
-//mouse를 떠났을 경우
-stars.addEventListener("mouseleave", (e) => {
-    fillStar(state.score);
-    score.textContent = state.score;
-});
-//reset 'x'버튼을 클릭하면 0으로 초기화 된다 
-reset.addEventListener('click', () => {
-    fillStar(0);
-    state.score = 0;
-    score.innerText = 0;
-});
-//0를 클릭하면 별 점수가 리스트에 저장이 된다 
-grade_btn.addEventListener('click', saveScore);
+function mark(star){
+	lock(star);
+	alert("선택2"+star);
+	document.cmtform.star.value=star;
+}

@@ -8,7 +8,7 @@
 		insert into review
 		values(review_seq.nextval,#{res_no},
 		#{subject},
-		#{content},0,sysdate,#{re_file},#{score},0,#{id},0,#{re_file2})
+		#{content},0,sysdate,#{re_file},#{score},0,#{id},0,#{re_file2},#{sp_name})
 	</insert>
 	<!-- 전체 글 개수 -->
 	<select id="count" resultType="int">
@@ -25,11 +25,7 @@
 			where rnum >= ((#{page}-1)*10+1) and rnum <= (#{page} *10)		
 		]]> 
 	</select>
-	<!-- 리스트음 장소이름 -->
-	<select id="splist" resultType="review">
-		select sp_name from spot s,
-		reservation r where r.sp_no = s.sp_no
-	</select>
+
 	<!-- 조회수 증가 -->
 	<update id="updatecount" parameterType="int">
 		update review set
@@ -41,6 +37,7 @@
 		resultType="review">
 		select * from review where re_no = #{re_no}
 	</select>
+	<!-- 장소이름 -->
 	<select id="spname" parameterType="int" resultType="String">
 		select
 		sp_name from spot s, reservation r where r.sp_no = s.sp_no and
@@ -65,4 +62,8 @@
     	A.re_no = B.re_no
     	)
 	</update>
+	<!-- 장소 출력 -->
+	<select id="getspname" parameterType="int" resultType="String">
+		select DISTINCT s.sp_name from reservation r, spot s where s.sp_no = #{sp_no}
+	</select>
 </mapper>

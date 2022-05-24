@@ -29,10 +29,7 @@ public class ReviewDAO {
 		public List<review> reList(int page){
 			return session.selectList("reviewns.list", page);
 		}
-		//장소출력
-		public List<review> splist(){
-			return session.selectList("reviewns.splist");
-		} 
+		
 		//조회수증가
 		public void updatecount(int re_no) {
 			session.update("reviewns.updatecount", re_no);
@@ -67,5 +64,9 @@ public class ReviewDAO {
 		public int getlike() {
 			// TODO Auto-generated method stub
 			return session.update("reviewns.getlike");
+		}
+		public String getspname(int sp_no) {
+			// TODO Auto-generated method stub
+			return session.selectOne("reviewns.getspname", sp_no);
 		}
 }
