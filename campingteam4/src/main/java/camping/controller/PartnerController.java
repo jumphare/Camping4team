@@ -75,7 +75,7 @@ public class PartnerController {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		
-		
+		 
 		pb_join pb = new pb_join(); 
 		pb.setJoin_id(id);
 		pb.setPar_no(23);
