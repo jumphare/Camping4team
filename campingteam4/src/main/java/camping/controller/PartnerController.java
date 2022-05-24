@@ -87,7 +87,7 @@ public class PartnerController {
 		System.out.println("result:"+result);
 		List<partner> pbList = PBService.getPBList(page);
 		System.out.println("pbList:" + pbList);
-		
+		 
 		int pageCount = listcount / limit + ((listcount%limit==0) ? 0:1);
 		int startPage = ((page - 1) / 10) * limit + 1;
 		int endPage = startPage + 10 - 1;
