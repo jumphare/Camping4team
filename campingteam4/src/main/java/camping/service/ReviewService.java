@@ -70,4 +70,9 @@ public class ReviewService {
 	public int likecheck(revlike rl) {
 		return dao.likecheck(rl);
 	}
+
+	public int getlike() {
+		return dao.getlike();
+		
+	}
 }

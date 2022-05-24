@@ -56,12 +56,13 @@
 		delete from review
         where  re_no=#{re_no}
 	</delete>
+	<!-- 리스트 좋아요수 출력 -->
+	<update id="getlike">
+		UPDATE review A SET A.rev_like = (
+    	SELECT count(B.re_no)
+    	FROM revlike B
+    	WHERE 
+    	A.re_no = B.re_no
+    	)
+	</update>
 </mapper>
-
-
-
-
-
-
-
-

@@ -30,10 +30,10 @@
 
 		<tr>
 			<td>
-				${r.re_file}
+				<img src="<%=request.getContextPath() %>/reviewupload/${r.re_file}" height="300" width="300" />
 			</td>
 			<td>
-				<a href="reviewdetail.do?re_no=${r.re_no}&page=${page}&res_no=${r.res_no}">
+				<a href="reviewdetail.do?re_no=${r.re_no}&page=${page}&res_no=${r.res_no}&ch=1">
 				${r.subject}
 				</a>
 			</td>

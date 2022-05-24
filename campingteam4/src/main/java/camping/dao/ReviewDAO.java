@@ -64,4 +64,8 @@ public class ReviewDAO {
 		public int likecheck(revlike rl) {
 			return session.selectOne("revlikens.likecheck", rl);
 		}
+		public int getlike() {
+			// TODO Auto-generated method stub
+			return session.update("reviewns.getlike");
+		}
 }

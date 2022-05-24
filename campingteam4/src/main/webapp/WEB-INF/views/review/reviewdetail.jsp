@@ -142,6 +142,10 @@
 				&nbsp;
 				<tbody>
 					<tr>
+						<td>대표이미지</td>
+						<td><img src="<%=request.getContextPath() %>/reviewupload/${review.re_file}" height="300" width="300" /></td>
+					</tr>
+					<tr>
 						<td width="90">제목</td>
 						<td>${review.subject}</td>
 					</tr>
