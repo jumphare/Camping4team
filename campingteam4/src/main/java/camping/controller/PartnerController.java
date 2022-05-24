@@ -83,7 +83,7 @@ public class PartnerController {
 		System.out.println("getno"+pb.getPar_no());
 		System.out.println("id:"+id);
 		result = PBService.chkID(pb);	// model로 추가해주기
-		
+		 
 		System.out.println("result:"+result);
 		List<partner> pbList = PBService.getPBList(page);
 		System.out.println("pbList:" + pbList);
