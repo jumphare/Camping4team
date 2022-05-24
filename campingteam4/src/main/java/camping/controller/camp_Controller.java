@@ -4,6 +4,9 @@ package camping.controller;
 import java.io.File;
 import java.io.IOException;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import java.util.StringTokenizer;
@@ -81,6 +84,24 @@ public class camp_Controller {
 	@RequestMapping("type_list.do")
 	public String type_list(String loc, String type, String startDate, String endDate,String memcount, Model model){	
 		
+	SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+	Calendar cal = Calendar.getInstance(); 
+		if(loc==null) {
+			loc="서울";
+		}
+		if(memcount == null) {
+			memcount = "2";
+		}
+		if(startDate == null) {
+			cal.add(cal.DATE, +1); //기본으로 내일날짜
+			startDate = sf.format(cal.getTime());
+			System.out.println("st"+startDate);
+		}
+		if(endDate == null) {
+			cal.add(cal.DATE, +2); //기본으로 내일모레날짜
+			endDate = sf.format(cal.getTime());
+			System.out.println("et"+endDate);
+		}
 	    	camp_select camsel = new camp_select();
 	    	camsel.setStartDate(startDate);
 	    	camsel.setEndDate(endDate);

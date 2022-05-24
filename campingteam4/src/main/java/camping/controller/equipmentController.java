@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import camping.model.equipment;
 import camping.model.notice;
@@ -21,27 +23,39 @@ public class equipmentController {
 	@Autowired
 	private equipmentService sv;
 	
-	//장비 관리 페이지
-	@RequestMapping("/eq_admin.do")
-	public String eq_admin(HttpServletRequest request, Model model) {
-		return "/equipment/eq_admin";
-	}
+	/*
+	 * //장비 관리 페이지
+	 * 
+	 * @RequestMapping("/eq_admin.do") public String eq_admin(HttpServletRequest
+	 * request, Model model, String camp_no) { int num=1; if(camp_no!=null)
+	 * num=Integer.parseInt(camp_no);
+	 * 
+	 * model.addAttribute("camp_no", num);
+	 * 
+	 * return "/equipment/eq_admin"; }
+	 */
 	
 	//장비 테이블 + 페이징 추가 - 검색 아직
 	@RequestMapping("/eq_table.do")
 	public String eq_table(equipment eqm, String pnum, Model model) {
+		int num=1;
+		if(eqm.getCamp_no()!=0)
+			num=eqm.getCamp_no();
+		eqm.setCamp_no(num);
+		
 		int page = 1;
 		if (pnum != null) 
 			page=Integer.parseInt(pnum);
-	
+		
 		int startRow=(page-1)*20+1;
 		int endRow=startRow+20-1;
 		
 		eqm.setStartRow(startRow);
 		eqm.setEndRow(endRow);
 		
-		String type=eqm.getType();  //나중에 검색 추가하면 사용..
-		System.out.println(type);
+		if(eqm.getType()==null)
+			eqm.setType("all");
+		System.out.println(eqm.getType());
 		System.out.println(eqm.getCamp_no());
 		int cnt=sv.eqcnt(eqm);
 		List<equipment> list = sv.eqlist(eqm);
@@ -75,14 +89,15 @@ public class equipmentController {
 	
 	//장비 추가
 	@RequestMapping("/eq_insert.do")
-	public String eq_insert(equipment eq, String[] typechk, Model model) {
+	public String eq_insert(RedirectAttributes redirect, equipment eq, String[] typechk, Model model) {
 		System.out.println(eq.getCamp_no());
 		System.out.println(typechk);
 		String type = String.join("-", typechk);
 		eq.setType(type);
 		
 		sv.eq_insert(eq);
-		return "/equipment/eq_admin";
+		redirect.addAttribute("camp_no", eq.getCamp_no());
+		return "redirect:/eq_table.do";
 	}
 	
 	//수정폼
@@ -102,7 +117,7 @@ public class equipmentController {
 	
 	//장비 수정
 	@RequestMapping("/eq_update.do")
-	public String eq_update(equipment eq, String[] typechk, Model model) {
+	public String eq_update(RedirectAttributes redirect, equipment eq, String[] typechk, Model model) {
 		System.out.println(typechk);
 		String type = String.join("-", typechk);
 		eq.setType(type);
@@ -114,17 +129,18 @@ public class equipmentController {
 			int n=eq.getNum()-eqm.getNum(); //추가분만큼
 			eq.setRm_num(eqm.getRm_num()+n); //기존 여분수량에 추가
 		}
-		
 		sv.eq_update(eq);
-		return "/equipment/eq_admin";
+		redirect.addAttribute("camp_no", eq.getCamp_no());
+		return "redirect:/eq_table.do";
 	}
 	
 	//장비 삭제
 	@RequestMapping("/eq_delete.do")
-	public String eq_delete(String[] chk, Model model) {
+	public String eq_delete(RedirectAttributes redirect, String[] chk, String camp_no, Model model) {
 		for(int i=0; i<chk.length; i++)
 			sv.eq_delete(chk[i]);
-		return "/equipment/eq_admin";
+		redirect.addAttribute("camp_no", camp_no);
+		return "redirect:/eq_table.do";
 	}
 	
 	//자리 옵션
@@ -136,5 +152,6 @@ public class equipmentController {
 		model.addAttribute("eq_op", eq_op);
 		return "/equipment/eq_option";
 	}
+
 	
 }
