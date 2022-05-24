@@ -11,7 +11,7 @@
 </head>
 <body>
 		<form id="insert" method=post action="<%=request.getContextPath()%>/re_insert.do" enctype="multipart/form-data">
-				<h2>후기 글작성</h2>
+				<h2>후기 글작성</h2> 
 				&nbsp;
 				<tbody>
 					<tr>
