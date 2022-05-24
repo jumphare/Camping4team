@@ -257,7 +257,7 @@ public class reviewController {
 						return "review/fileresult";
 
 					} else if (!file[1].equals("jpg") && !file[1].equals("gif") && !file[1].equals("png")) {
-
+ 
 						result = 2;
 						model.addAttribute("result", result);
 
