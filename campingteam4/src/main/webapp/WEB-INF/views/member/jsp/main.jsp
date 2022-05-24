@@ -54,8 +54,19 @@
     </tr>
    </table>   
    </form>
+   <br><br><br>
+   <input type = "button" value="채팅하기" onclick="chat()"/>
+   <script type="text/javascript">
+	function chat() {
+		// 함수 동작 테스트 
+		//alert("팝업 테스트");
+		
+		//window.open("[팝업을 띄울 파일명 path]", "[별칭]", "[팝업 옵션]")
+		 window.open("chatlist.do", "chatting", "width=450, height=500, top=150, left=200");
+	}
+	</script>
  </div>
 </c:if>
-
+	
 </body>
 </html>

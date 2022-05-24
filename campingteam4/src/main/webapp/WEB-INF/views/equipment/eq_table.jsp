@@ -27,26 +27,42 @@ $("#allchk").click(function(){
 	if($("#allchk").is(":checked")) $("input[name=chk]").prop("checked", true);
 	else $("input[name=chk]").prop("checked", false);
 });
+
 </script>
 </head>
 <body>
 <script>
 $(function() {
-	if('${eqm.type}'!=null)	$("#camp").val("${eqm.type}").prop("selected", true);
+	$("#camp").val("${eqm.type}").prop("selected", true);
+	var cp=${eqm.camp_no};
+	$("#cp_"+cp).attr("checked",true);
 });
+
+function table(value){
+	console.log("camp_no: "+value);
+	location.href='./eq_table.do?camp_no='+value;
+};
 function tp(value){
 	console.log('option: '+value);
-	$('#eqlist1').load('./eq_table.do?camp_no=${eqm.camp_no}&type='+value);
-	};
-function pagin(){
-	var id  = $(this).attr('id');
-	console.log(id);
-	if('${eqm.type}'==null)
-		$('#eqlist1').load('./eq_table.do?camp_no=${eqm.camp_no}&pnum='+id);
-	if('${eqm.type}'!=null)
-		$('#eqlist1').load('./eq_table.do?camp_no=${eqm.camp_no}&type=${eqm.type }&pnum='+id);
+	var formData = "camp_no=${eqm.camp_no}&type="+value;
+	$.post('./eq_table.do',formData, function(data) {
+		$('#eql').html(data);
+	});
+//	location.href='./eq_table.do?camp_no=${eqm.camp_no}&type='+value;
+};
+function pagin(value){
+	console.log(value);
+	var type='${eqm.type}';
+	if(type=='all')		location.href='./eq_table.do?camp_no=${eqm.camp_no}&pnum='+value;		
+	if(type!='all')		location.href='./eq_table.do?camp_no=${eqm.camp_no}&type='+type+'&pnum='+value;
 };
 </script>
+<div id="eql">
+<div>
+<input type="radio" id="cp_1" value="1" onclick="table(1)">서울
+<input type="radio" id="cp_2" value="2" onclick="table(2)">천안
+<input type="radio" id="cp_3" value="3" onclick="table(3)">대전
+</div>
 <div> <select id="camp" name="type" onchange="tp(this.value)">
 			<option value="all">전체</option>
 			<option value="글램핑">글램핑</option>
@@ -56,6 +72,7 @@ function pagin(){
 		</select>
 </div>
 <form name="delform" action="./eq_delete.do" method="post">
+<input type="hidden" name="camp_no" value="${eqm.camp_no }">
 <table>
 <tr> 
 	<td>${cnt }</td> <td></td> <td></td> <td></td> <td></td>
@@ -81,22 +98,18 @@ function pagin(){
 </form>
 <!-- 페이지 블럭 -->
 <div>
-	<a href="javascript:;" onclick="pagin()" id="1" }><i class="fa-solid fa-angles-left"></i></a>
+	<a href="javascript:;" onclick="pagin(1)"><i class="fa-solid fa-angles-left"></i></a>
 	<c:if test="${spage !=1 }">
-		<a href="javascript:;" onclick="pagin()" id="${spage-1 }" ><i class="fa-solid fa-angle-left"></i></a>
+		<a href="javascript:;" onclick="pagin(${spage-1 })" ><i class="fa-solid fa-angle-left"></i></a>
 	</c:if>
 	<c:forEach var="i" begin="${spage}" end="${epage}">
-		<c:if test="${page==i}">
-			<i class="fa-solid fa-${i}"></i>
-		</c:if>
-		<c:if test="${page!=i}">
-			<a href="javascript:;" onclick="pagin()"  id="${i}" ><i class="fa-solid fa-${i}"></i></a>
-		</c:if>
+			<a href="javascript:;" onclick="pagin(${i})"  ><i class="fa-solid fa-${i}"></i></a>
 	</c:forEach>
 	<c:if test="${epage !=pcnt}">
-		<a href="javascript:;" onclick="pagin()" id="${epage+1 }"><i class="fa-solid fa-angle-right"></i></a>	
+		<a href="javascript:;" onclick="pagin(${epage+1 })"><i class="fa-solid fa-angle-right"></i></a>	
 	</c:if>
-	<a href="javascript:;" onclick="pagin()" id="${epage }"><i class="fa-solid fa-angles-right"></i></a>
+	<a href="javascript:;" onclick="pagin(${epage })"><i class="fa-solid fa-angles-right"></i></a>
+</div>
 </div>
 </body>
 </html>

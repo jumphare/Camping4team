@@ -8,6 +8,9 @@
 <head>
 <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<meta charset="UTF-8">
+<title>받은 메시지</title>
 <style>
 p{
 overflow: hidden;
@@ -23,13 +26,10 @@ a {
 text-decoration:none;
 }
 </style>
-<meta charset="UTF-8">
-<title>받은 메시지</title>
 </head>
 <body>
-<h2>보관함</h2><br>
-<span><a href="./recvlist.do?recv_id=${id }" >받은 메시지</a></span>
-<span><a href="./sendlist.do?id=${id }" >보낸 메시지</a></span> <br>
+<span><a href="javascript:;" onclick="table(1)">받은 메시지</a></span>
+<span><a href="javascript:;" onclick="table(2)">보낸 메시지</a></span> <br>
 총 메시지 : ${cnt } <br>
 <form name="rdform" id="rdform" method="post">
 <input type="button" id="mchk" onclick="msgchk()" value="안읽은 쪽지 읽음처리"> 
@@ -56,17 +56,17 @@ text-decoration:none;
 
 <!-- 페이지 블록 -->
 <div>
-	<a href="javascript:;" onclick="pagin(this)" id="1" }><i class="fa-solid fa-angles-left"></i></a>
+	<a href="javascript:;" onclick="pagin(1)"><i class="fa-solid fa-angles-left"></i></a>
 	<c:if test="${spage !=1 }">
-		<a href="javascript:;" onclick="pagin(this)" id="${spage-1 }" ><i class="fa-solid fa-angle-left"></i></a>
+		<a href="javascript:;" onclick="pagin(${spage-1 })" ><i class="fa-solid fa-angle-left"></i></a>
 	</c:if>
 	<c:forEach var="i" begin="${spage }" end="${epage }">
-			<a href="javascript:;" onclick="pagin(this)"  id="${i}" ><i class="fa-solid fa-${i}"></i></a>
+			<a href="javascript:;" onclick="pagin(${i})"  ><i class="fa-solid fa-${i}"></i></a>
 	</c:forEach>
 	<c:if test="${epage !=pcnt}">
-		<a href="javascript:;" onclick="pagin(this)" id="${epage+1 }"><i class="fa-solid fa-angle-right"></i></a>	
+		<a href="javascript:;" onclick="pagin(${epage+1 })" ><i class="fa-solid fa-angle-right"></i></a>	
 	</c:if>
-	<a href="javascript:;" onclick="pagin(this)" id="${epage }"><i class="fa-solid fa-angles-right"></i></a>
+	<a href="javascript:;" onclick="pagin(${epage })"><i class="fa-solid fa-angles-right"></i></a>
 </div>
 
 
@@ -85,11 +85,15 @@ function muldel(){
 }
 function pagin(value){
 	var url = "./recvlist.do?recv_id=${id}&page=";
-	var id = value.id;
-	console.log(id);
-	location.href=url+id;
+	console.log(value);
+	location.href=url+value;
 }
-
+function table(value){
+	if(value==1)
+		location.href='./recvlist.do?recv_id=${id}';
+	else
+		location.href='./sendlist.do?id=${id}';
+}
 
  $(function() {
 	$("#allchk").click(function(){

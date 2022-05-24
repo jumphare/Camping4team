@@ -75,7 +75,7 @@ ${id }님의 예약정보<br>
 		<c:set var="j" value="0"/>
 		<c:forEach var="eqm" items="${eqlist }">
 		<tr>
-				<c:if test="${eqm_num[i]!=0 }" >
+				<c:if test="${eqm_num[j]!=0 }" >
 					<td>${eqm.name } X ${eqm_num[j] }</td>
 					<td style="text-align:right">${eqm.price*eqm_num[j] }</td>
 			</c:if>
@@ -90,20 +90,9 @@ ${id }님의 예약정보<br>
 <table>
 	<tr>
 		<td colspan=2>
-			<c:if test="${res.payment eq '0'}" >
-			<form method="post">
-			 	<input type=hidden name="eqm_no" value="${eqm.eq_no }">
-				<input type=hidden name="eqm_num" value="${eqm.eq_num }">
-				<input type=hidden name="camp_no" value="${camp.camp_no }">
-				<input type=hidden name="sp_no" value="${spot.sp_no }">
-				<input type=hidden name="price" value="${res.price}">
-				<input type=hidden name="res_no" value="${res.res_no}">
-				<input type="submit" value="결제"  formaction="./res_pay.do">
-			</form>
-			</c:if>
 			<c:if test="${r.state eq '0' || r.state eq '2'}" ><input type="button" value="내역삭제" onclick="location.href='./res_del.do?res_no=${res.res_no}';" ></c:if>
-			 <c:if test="${res.state eq '1'}" ><input type="button" value="예약취소"  onclick="cancelPay()"></c:if>
-			 <input type="button" value="목록" onclick="history.back()">
+			<c:if test="${res.state eq '1'}" ><input type="button" value="예약취소"  onclick="cancelPay()"></c:if>
+			<input type="button" value="목록" onclick="history.back()">
 		</td>
 	</tr>
 </table>
