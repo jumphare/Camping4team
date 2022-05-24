@@ -42,7 +42,8 @@ public class reviewController {
 	@RequestMapping("re_insert.do")
 	public String re_insert(@RequestParam("re_file1") MultipartFile mf, review review, 
 			HttpServletRequest request, HttpSession session, Model model) {
-
+		int score = review.getScore();
+		System.out.println("score"+score);
 		String id = (String) session.getAttribute("id");
 
 		System.out.println("content"+review.getContent());

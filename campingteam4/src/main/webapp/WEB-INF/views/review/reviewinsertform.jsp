@@ -17,11 +17,11 @@ function show(star) {
 	var i;
 	var image;
 	var el;
-	var e = document.getElemantById('startext');
+	var e = document.getElementById('startext');
 	var stateMsg;
 
 	for (i = 1; i <= star; i++) {
-		image = 'image' + 1;
+		image = 'image' + i;
 		el = document.getElementById(image);
 		el.src = "img/star1.png"
 	}
@@ -57,7 +57,7 @@ function noshow(star) {
 
 
 	for (i = 1; i <= star; i++) {
-		image = 'image' + 1;
+		image = 'image' + i;
 		el = document.getElementById(image);
 		el.src = "img/star0.png"
 	}
@@ -69,8 +69,8 @@ function lock(star){
 }
 function mark(star){
 	lock(star);
-	alert("선택2"+star);
-	document.cmtform.star.value=star;
+	alert("선택한 값은 "+star+"입니다.");
+	document.cmtform.score.value=star;
 }
 </script>
 </head>
@@ -99,7 +99,7 @@ function mark(star){
     			 </span><br>
     			 <span id="startext">평가하기</span>		
     			</div>
-    			<input type="hidden" name="star"/>
+    			<input type="hidden" name="score"/>
 					<tr>
 						<th>내용</th>
 						<td><textarea id="content" name="content" rows="10" cols="100" dir="auto"
@@ -111,7 +111,7 @@ function mark(star){
 					</tr>
 					<tr>
 						<td colspan=2 align=center><input type=button value="글목록" 
-						onClick="location.href='reviewlist' ">
+						onClick="location.href='reviewlist.do' ">
 							<input type="button" id="savebutton" value="글작성"> <input
 							type=reset value="취소"></td>
 					</tr>
