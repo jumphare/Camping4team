@@ -65,7 +65,7 @@ public class PartnerController {
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
-		
+		 
 		int startRow = (page - 1) * limit + 1;
 		int endRow = page * limit;
 		
