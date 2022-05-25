@@ -69,7 +69,7 @@ public class ReviewDAO {
 			// TODO Auto-generated method stub
 			return session.selectOne("reviewns.getspname", sp_no);
 		}
-		public List<review> myList(String id) {
-			return session.selectList("reviewns.myList", id);
+		public List<review> myList(review rv) {
+			return session.selectList("reviewns.myList", rv);
 		}
 }

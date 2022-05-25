@@ -15,6 +15,7 @@ public class review {
 	private String id;/* 아이디 */
 	private String re_file2;
 	private String sp_name;
+	private int page;
 	
 	public String getSp_name() {
 		return sp_name;
@@ -97,5 +98,11 @@ public class review {
 	}
 	public void setRe_file2(String re_file2) {
 		this.re_file2 = re_file2;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
 	}
 }

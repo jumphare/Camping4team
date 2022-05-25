@@ -326,7 +326,8 @@ public class reviewController {
 		//리스트에 좋아요 수 출력
 		service.getlike();
 		
-
+        review rv = new review();
+        
 		int page = 1; // 페이지 초기값
 		int limit = 10; // 한화면에 나올 데이터 개수 정의
  
@@ -336,10 +337,13 @@ public class reviewController {
 		// int startRow = (page - 1)*limit +1;
 		// int endRow = page * limit;
 
+		rv.setPage(page);
+		rv.setId(id);
+		
 		int listcount = service.getCount();
 		System.out.println("총 개수 : " + listcount);
 
-		List<review> mylist = service.myList(id); // Dao까지 두개의 값을 전달할 수 있지만 mybatise는 한개만 전달가능
+		List<review> mylist = service.myList(rv); // Dao까지 두개의 값을 전달할 수 있지만 mybatise는 한개만 전달가능
 		System.out.println("mylist : " + mylist);
 
 		
@@ -353,6 +357,7 @@ public class reviewController {
 		if (endPage > pageCount)
 			endPage = pageCount;
 
+		model.addAttribute("rv", rv);
 		model.addAttribute("id", id);
 		model.addAttribute("page", page);
 		model.addAttribute("mylist", mylist);

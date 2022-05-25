@@ -77,8 +77,8 @@ public class ReviewService {
 		
 		return dao.getspname(sp_no);
 	}
-
-	public List<review> myList(String id) {
-		return dao.myList(id);
+ 
+	public List<review> myList(review rv) {
+		return dao.myList(rv);
 	}
 }
