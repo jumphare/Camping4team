@@ -48,5 +48,9 @@ public class campDAO {
 		public int delete(int sp_no) {
 			return session.delete("campns.delete",sp_no);
 		}
+		public int staravg() {
+			// TODO Auto-generated method stub
+			return session.update("campns.staravg");
+		}
 		
 }

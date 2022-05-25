@@ -12,7 +12,13 @@
 <head>
 <meta charset="UTF-8">
 <title>상세페이지</title>
-
+<!-- 별점 출력 -->
+<style>
+h2 {font-size:15px;}
+.star-rating {width:304px; }
+.star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(img/star.png)no-repeat; }
+.star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
+</style>
 <!-- jQuery문 설정 불러오기 -->
 <script src="${path}/js/info/jquery.js"></script>
 
@@ -149,6 +155,18 @@
 						<td width="90">제목</td>
 						<td>${review.subject}</td>
 					</tr>
+					<tr>
+						<td>별점</td>
+						<td>
+						<div class="wrap-star">
+								<h2>평점 : ${review.score}</h2>
+								<div class='star-rating'>
+									<span style="width: <fmt:formatNumber value="${review.score/5}" type="percent"/>"></span>
+								</div>
+							</div>
+							</td>
+						
+					
 					<tr>
 						<td>장소</td>
 						<td>${spname}</td>

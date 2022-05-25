@@ -12,6 +12,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+h2 {font-size:15px;}
+.star-rating {width:304px; }
+.star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(img/star.png)no-repeat; }
+.star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
+</style>
 </head>
 <body>
 		 
@@ -20,6 +26,7 @@
 			<tr> 
 				<th>대표이미지</th>
 				<th>제목</th>
+				<th>별점</th>
 				<th>장소</th>
 				<th>좋아요</th>
 				<th>작성자</th>
@@ -33,9 +40,17 @@
 				<img src="<%=request.getContextPath() %>/reviewupload/${r.re_file}" height="300" width="300" />
 			</td>
 			<td>
-				<a href="reviewdetail.do?re_no=${r.re_no}&page=${page}&res_no=${r.res_no}&ch=1">
+				<a href="reviewdetail.do?re_no=${r.re_no}&page=${page}&ch=1">
 				${r.subject}
 				</a>
+			</td>
+			<td>
+				<div class="wrap-star">
+								<h2>평점 : ${r.score}</h2>
+								<div class='star-rating'>
+									<span style="width: <fmt:formatNumber value="${r.score/5}" type="percent"/>"></span>
+								</div>
+							</div>
 			</td>
 			<td>
 				${r.sp_name}

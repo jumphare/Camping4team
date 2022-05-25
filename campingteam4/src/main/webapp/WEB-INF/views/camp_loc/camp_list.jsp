@@ -24,14 +24,17 @@ div.right {
 	float: right;
 	box-sizing: border-box;
 }
+
+h2 {font-size:15px;}
+.star-rating {width:304px; }
+.star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(img/star.png)no-repeat; }
+.star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
 </style>
 </head>
 <body>
 	<div>
 		<div class="left">
-			<br>
-			<br>
-			<br>
+			<br> <br> <br>
 			<form method="get"
 				action="<%=request.getContextPath()%>/type_list.do">
 				<h1>현재 검색 내용</h1>
@@ -44,16 +47,21 @@ div.right {
 					value="${camsel.memcount}">
 				<p>
 					지역 : <select id="loc" name="loc">
-			<option value="0">선택하세요.</option>
-			<option value="서울" <c:if test="${camsel.loc=='서울'}">selected</c:if>>서울</option>
-			<option value="천안" <c:if test="${camsel.loc=='천안'}">selected</c:if>>천안</option>
-			<option value="대전" <c:if test="${camsel.loc=='대전'}">selected</c:if>>대전</option>
-		</select>
+						<option value="0">선택하세요.</option>
+						<option value="서울"
+							<c:if test="${camsel.loc=='서울'}">selected</c:if>>서울</option>
+						<option value="천안"
+							<c:if test="${camsel.loc=='천안'}">selected</c:if>>천안</option>
+						<option value="대전"
+							<c:if test="${camsel.loc=='대전'}">selected</c:if>>대전</option>
+					</select>
 				<p>
 					여행 종류 : <select id="type" name="type">
 						<option value="">선택하세요.</option>
-						<option value="캠핑" <c:if test="${camsel.type=='캠핑'}">selected</c:if>>캠핑</option>
-						<option value="차박" <c:if test="${camsel.type=='차박'}">selected</c:if>>차박</option>
+						<option value="캠핑"
+							<c:if test="${camsel.type=='캠핑'}">selected</c:if>>캠핑</option>
+						<option value="차박"
+							<c:if test="${camsel.type=='차박'}">selected</c:if>>차박</option>
 						<option value="글램핑"
 							<c:if test="${camsel.type=='글램핑'}">selected</c:if>>글램핑</option>
 						<option value="카라반"
@@ -74,6 +82,7 @@ div.right {
 				<tr>
 					<th>이미지</th>
 					<th>이름</th>
+					<th>별점평균</th>
 					<th>기준인원</th>
 					<th>최대인원</th>
 					<th>기본금액</th>
@@ -89,6 +98,16 @@ div.right {
 						<td><a
 							href="spotview.do?&loc=${loc}&startDate=${camsel.startDate}&endDate=${camsel.endDate}&memcount=${camsel.memcount}&type=${type}&sp_no=${s.sp_no}">
 								${s.sp_name}</a></td>
+
+						<td>
+						
+							<div class="wrap-star">
+								<h2>평점 : ${s.sp_staravg}</h2>
+								<div class='star-rating'>
+									<span style="width: <fmt:formatNumber value="${s.sp_staravg/5}" type="percent"/>"></span>
+								</div>
+							</div>
+						</td>
 						<td>${s.standard_num}</td>
 						<td>${s.max_num}</td>
 						<td>${s.price}</td>
