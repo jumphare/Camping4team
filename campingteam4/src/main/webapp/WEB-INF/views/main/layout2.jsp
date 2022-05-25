@@ -14,6 +14,13 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" type="text/css" href="${path }/css/layout.css" />
   
+  <!-- 달력 -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/date.css" />
+<script src="<%=request.getContextPath() %>/js/date.js"></script>
+
   <style>
 
   </style>
@@ -89,18 +96,20 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 <!-- 예약 -->      
 <div class="container my-3">
   <div class="hr-sect"><h1>RESERVATION</h1></div>
-  <p class="conten">  
-  체크인<br>
-  체크아웃<br>
-  인원<br>
-  예약
+  
+<form method="get" action="<%=request.getContextPath()%>/camp_sel.do">
+    체크인 :<input type="text" id='startDate' name='startDate'>
+	체크아웃 : <input type="text" id='endDate' name='endDate'>
+      인원 : <input type=text name="memcount" id="memcount">
+     <input type="submit" value="검색">
+    </form>
     <%-- <form method="get" action="<%=request.getContextPath()%>/camp_sel.do">
       <p>체크인 : <input type="date" id='startDate' name='startDate'>
 	 	체크아웃 : <input type="date" id='endDate' name='endDate'></p>
       인원 :  <input type=text name="memcount" id="memcount">
       <p><input type="submit" value="Submit"></p>
     </form> --%>
-  </p>
+
 </div> 
  
  <!-- 타입 별 클릭하면 해당 타입 예약 페이지로 이동 -->
