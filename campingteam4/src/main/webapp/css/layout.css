@@ -1,0 +1,197 @@
+@charset "UTF-8";
+
+  html { font-size:10px; } 
+
+  /* 폰트 */
+@font-face {
+	font-family: 'Cafe24Shiningstar';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Shiningstar.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Y_Spotlight';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/Y_Spotlight.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'GowunDodum-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/GowunDodum-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* .container{
+width:100%;
+} */
+.container-carousel {
+    height: 100%;
+     display: flex; 
+    justify-content: center;
+    align-items: center; 
+}  
+/*카로셀*/     
+.carousel { 
+	padding: 10px 0 5px 0; 
+	width:100%;
+}
+.carousel-item {
+	max-height: 400px;
+	overflow: hidden;
+	position: relative;
+}
+.carousel-item img{
+	max-width: initial;
+	margin-top: -23%;
+	filter: brightness(50%);
+
+}
+.carousel-item p{
+	color: #fcffb0;
+	font-size:3vw;
+}
+.carousel-caption {
+	font-family: 'Cafe24Shiningstar';
+	position: absolute; 
+	top: 55%; 
+	left: 50%; 
+	transform: translate(-50%, -50%);
+	font-size:2.5vw;   
+}    
+  .carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+  
+ /*컨텐츠*/
+ .my-3{
+  padding: 1rem 3rem 1.5rem 3rem;
+  border-radius: 10px;
+  width:60%;
+  
+ }
+ .my-3 h1{
+ font-family: 'GmarketSansMedium';
+	font-weight: bolder; 
+	font-size: 30px;
+	color: #E35E0A;
+	text-align:center;
+	margin-top:2.5rem;
+	margin-bottom:2rem;
+ }
+ 
+  .hr-sect {
+        display: flex;
+        flex-basis: 100%;
+        align-items: center;
+        color: rgba(0, 0, 0, 0.35);
+        font-size: 12px;
+        margin: 8px 0px;
+      }
+      .hr-sect::before,
+      .hr-sect::after {
+        content: "";
+        flex-grow: 1;
+        background: rgba(0, 0, 0, 0.35);
+        height: 1px;
+        font-size: 0px;
+        line-height: 0px;
+        margin: 0px 16px;
+      }
+ .sect :hover .th {
+  opacity: 0.2;
+}  
+ 
+.sect :hover .middle {
+  opacity: 0.3;
+}     
+ .th{
+     width:100%;
+    height:100%;
+    object-fit:cover;
+   opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+ }
+ 
+ .middle {
+  transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+
+ .conten{ 
+ 	border-radius: 10px;
+	background-color: #F7F7F7;
+	border: none;
+	text-align:center;   
+	font-size:2rem;
+ }
+ .conten img{   
+margin: 0 0 0 0; 
+} 
+
+/*후기*/
+.card-columns {
+	counter-reset: cards;
+	 
+	.card { 
+		position: relative;
+		counter-increment: cards;
+		&:before {
+			counter: cards;
+			content: counter(cards);
+			display: inline-block;
+			padding: 5px 10px;
+			background-color: #F7F7F7;
+			color: #fff;
+			position: absolute;
+			top: 0;
+			right: 0;
+		}
+	} 
+}
+.card{
+border:none;
+font-family: 'GowunDodum-Regular';
+}  
+.card-title{
+font-weight: bolder; 
+font-size:2.4rem;
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+width:30rem; 
+color:#E35E0A; 
+}
+.card-text{
+font-weight: normal; 
+font-size:1.8rem;
+}
+.card-subtitle{
+font-weight: bolder; 
+font-size:2rem;
+}
+.card-body{ 
+background-color: #F7F7F7;
+border: none;
+}
+
+.card-link{
+font-size: 1.5rem;
+}
