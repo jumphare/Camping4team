@@ -51,11 +51,19 @@ public class PartnerService {
 		return PBdao.pb_count(par_no);
 	}
 
-	public void cancel(int par_no) {
-		PBdao.cancel(par_no);
+	public int pb_discount(int par_no) {
+		return PBdao.pb_discount(par_no);
+	}
+	
+	public int cancel(pb_join pb_join) {
+		return PBdao.cancel(pb_join);
 	}
 
 	public int chkID(pb_join pb_join) {
 		return PBdao.chkID(pb_join);
+	}
+
+	public List<pb_join> getJoinList(int par_no) {
+		return PBdao.getJoinList(par_no);
 	}
 }

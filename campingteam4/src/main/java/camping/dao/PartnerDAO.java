@@ -47,17 +47,24 @@ public class PartnerDAO {
 		return session.insert("partnerns.join", pb_join);
 	}
 
-	public void cancel(int par_no) {
-		session.update("partnerns.cancel", par_no);
+	public int cancel(pb_join pb_join) {
+		return session.delete("partnerns.cancel", pb_join);
 	}
 	
 	public int pb_count(int par_no) {
-		return session.selectOne("partnerns.pb_count", par_no);
+		return session.update("partnerns.pb_count", par_no);
 	}
 
 	public int chkID(pb_join pb_join) {
 		return session.selectOne("partnerns.chkID", pb_join);
 	}
 	
+	public int pb_discount(int par_no) {
+		return session.update("partnerns.pb_discount", par_no);
+	}
+
+	public List<pb_join> getJoinList(int par_no) {
+		return session.selectList("partnerns.getJoinList", par_no);
+	}
 	
 }

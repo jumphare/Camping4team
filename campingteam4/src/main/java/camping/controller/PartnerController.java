@@ -60,8 +60,7 @@ public class PartnerController {
 		System.out.println("pbList");
 		int page = 1;
 		int limit = 10;
-		int result = 0;
-
+		
 		if(request.getParameter("page") != null) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
@@ -72,19 +71,6 @@ public class PartnerController {
 		int listcount = PBService.getCount();
 		System.out.println("listcount:" + listcount);
 		
-		HttpSession session = request.getSession();
-		String id = (String)session.getAttribute("id");
-		
-		 
-		pb_join pb = new pb_join(); 
-		pb.setJoin_id(id);
-		pb.setPar_no(23);
-		System.out.println("getID"+pb.getJoin_id()); 
-		System.out.println("getno"+pb.getPar_no());
-		System.out.println("id:"+id);
-		result = PBService.chkID(pb);	// model로 추가해주기
-		 
-		System.out.println("result:"+result);
 		List<partner> pbList = PBService.getPBList(page);
 		System.out.println("pbList:" + pbList);
 		 
@@ -95,7 +81,7 @@ public class PartnerController {
 		if(endPage > pageCount)
 			endPage = pageCount;
 		
-		model.addAttribute("result", result);
+
 		model.addAttribute("page", page);
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("pbList", pbList);
@@ -108,16 +94,37 @@ public class PartnerController {
 	}
 	
 	@RequestMapping("pbView.do")
-	public String pbView(int par_no, int page, Model model) {
+	public String pbView(HttpServletRequest request, int par_no, int page, Model model) {
+		
+		int result = 0;
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
+		
 		System.out.println("pbView");
+		
 		PBService.updatecount(par_no);
-		System.out.println("par_no:"+par_no);
+		
+		List<pb_join> joinlist = PBService.getJoinList(par_no);
 		partner partner = PBService.getBoard(par_no);
 		String content = partner.getContent().replace("\n", "<br>");
 		
+		pb_join pb = new pb_join(); 
+		pb.setJoin_id(id);
+		pb.setPar_no(par_no);
+		System.out.println("getID"+pb.getJoin_id()); 
+		System.out.println("getno"+pb.getPar_no());
+		System.out.println("id:"+id);
+		System.out.println("joinlist:"+joinlist);
+		result = PBService.chkID(pb);	// model로 추가해주기
+		
+		System.out.println("result:"+result);
+		
+		model.addAttribute("par_no", par_no);
 		model.addAttribute("partner", partner);
 		model.addAttribute("content", content);
 		model.addAttribute("page", page);
+		model.addAttribute("result", result);
+		model.addAttribute("joinlist", joinlist);
 		
 		return "partner/pbView";
 				
@@ -207,7 +214,7 @@ public class PartnerController {
 	@RequestMapping("pbJoin.do")
 	public String pbJoin(HttpServletRequest request, int par_no, int page, Model model) {
 		int result = 0;
-		int now_num = 0;
+
 		System.out.println("pbJoin");
 		
 		HttpSession session = request.getSession();
@@ -223,15 +230,18 @@ public class PartnerController {
 		if(old.getId().equals(id)){  // id 일치시
 			result = -1;
 		}else {											 // 비번 불일치시
-			if(old.getNow_num() < old.getWant_num()) {
+			if(old.getNow_num() <= old.getWant_num()) {
 				result = PBService.join(pb);
+				System.out.println("par_no_chk"+par_no);
+				PBService.pb_count(par_no);
 				System.out.println("result:"+result);
-				}
-				else{
-					
-				}
+			}
+			else{
+				System.out.println("마감");
+			}
 			
 		}
+		
 		
 		model.addAttribute("result", result);
 		model.addAttribute("page", page);
@@ -240,21 +250,33 @@ public class PartnerController {
 		return "partner/pbJoin";
 	}
 	
-	@RequestMapping("pbCancle.do")
+	@RequestMapping("pbCancel.do")
 	public String pbCancle(HttpServletRequest request, int par_no, int page, Model model) {
+		
+		System.out.println("pbCancel");
+		
 		int result = 0;
-		System.out.println("pbCancle");
+		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		partner old = PBService.getBoard(par_no);
 		
-		if(old.getId().equals(id)){  // id 일치시
-			result = -1;
-		}else {											 // 비번 불일치시
-			PBService.cancel(par_no);
-		}
+		pb_join pb = new pb_join();
+		pb.setJoin_id(id);
+		pb.setPar_no(par_no);
 		
-		return "partner/pbCancle";
+		System.out.println("par_no:"+par_no);
+		System.out.println("id:"+id);
+		
+		result = PBService.cancel(pb);
+		System.out.println("result:"+result);
+		PBService.pb_discount(par_no);
+		
+		model.addAttribute("result", result);
+		model.addAttribute("page", page);
+		model.addAttribute("par_no", par_no);
+		
+		return "partner/pbCancel";
 	}
 	
 }

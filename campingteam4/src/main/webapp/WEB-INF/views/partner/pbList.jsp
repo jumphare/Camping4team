@@ -24,7 +24,7 @@
 				<td>종료일</td>
 				<td>캠핑지역</td>
 				<td>캠핑종류</td>
-				<td>신청인원</td>
+				<td>모집인원</td>
 				<td>현재인원</td>
 				<td>조회수</td>
 			</tr>
@@ -46,8 +46,9 @@
 						<td>
 						<fmt:formatDate value="${boardpb.p_date}" pattern="yyyy/MM/dd"/></td>
 						<td>
-						${boardpb.start_date}
-						</td>
+						<%-- <fmt:parseDate value="${boardpb.start_date}" var="dateValue" pattern="yyyyMMdd"/>
+						<fmt:formatDate value="${boardpb.start_date}" pattern="yyyy-MM-dd"/>
+						 --%></td>
 						<td>
 						${boardpb.end_date}
 						</td>
@@ -55,21 +56,7 @@
 						<td>${boardpb.camp_type}</td>
 						<td>${boardpb.want_num }</td>
 						<td>${boardpb.now_num }
-							<c:choose>
-								<c:when test = "${result == 0}">
-									<c:if test="">
-										<input type = button value = "신청" 
-										onClick="location.href='pbJoin.do?par_no=${boardpb.par_no }&page=${page}' ">
-									</c:if>
-								</c:when>
-								<c:when test = "${result == 1}">
-									<input type = button value = "취소" 
-									onClick="location.href='pbCancle.do?par_no=${boardpb.par_no }&page=${page}' ">
-								</c:when>
-								<c:when test = "${boardpb.now_num == boardpb.want_num }">
-									<input type = button value = "마감">
-								</c:when>
-								</c:choose>
+							
 							
 						</td>
 						<td>${boardpb.readcount}</td>
