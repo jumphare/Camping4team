@@ -25,7 +25,24 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 </script> -->
 </head>
 <body>
-<h1>상단바 영역</h1><br><br>
+<h1>상단바 영역</h1><br>
+
+<!-- 임시 상단바 -->
+<c:if test="${sessionScope.id != null}">
+	<a href="member_logout.do">로그아웃</a><br>
+</c:if>
+<c:if test="${sessionScope.id == null}">
+	<a href="member_login.do">로그인</a><br>
+</c:if>
+
+ <a href="date_sel.do">예약하기</a> <br>
+    <a href="admin_camp_list.do">관리자 캠핑장 관리</a><br>
+  <a href="reviewlist.do">리뷰 목록</a><br>
+    <a href="readreview.do">댓글 목록</a><br>
+    <a href="eq_table.do">장비</a><br>
+    <a href="noticelist.do">공지사항 목록</a><br>
+	<a href="res_admin.do">예약관리</a><br>
+	<a href="./layout2.do">레이아웃</a><br>
 <!-- 캐러셀 -->
 <div class="container-carousel">
 <div id="demo" class="carousel slide" data-ride="carousel">
