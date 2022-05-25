@@ -13,7 +13,7 @@ function show(star) {
 	if (locked)
 		return;
 	var i;
-	var image;
+	var image; 
 	var el;
 	var e = document.getElementById('startext');
 	var stateMsg;
@@ -75,7 +75,7 @@ function mark(star){
 </head>
 <body>
  <div class="review_insert_table" >
-<form id="update" method=post action="<%=request.getContextPath()%>/reviewupdate.do" enctype="multipart/form-data">
+<form id="update" name="cmtform" method=post action="<%=request.getContextPath()%>/reviewupdate.do" enctype="multipart/form-data">
 <input type="hidden" name="re_no" value="${review.re_no}">
 <input type="hidden" name="page" value="${page}">
 <table>
