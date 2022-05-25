@@ -33,12 +33,11 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 </c:if>
 <c:if test="${sessionScope.id == null}">
 	<a href="member_login.do">로그인</a><br>
-</c:if>
-
+</c:if> 
+<a href="mypage.do">마이페이지</a><br>
  <a href="date_sel.do">예약하기</a> <br>
     <a href="admin_camp_list.do">관리자 캠핑장 관리</a><br>
   <a href="reviewlist.do">리뷰 목록</a><br>
-    <a href="readreview.do">댓글 목록</a><br>
     <a href="eq_table.do">장비</a><br>
     <a href="noticelist.do">공지사항 목록</a><br>
 	<a href="res_admin.do">예약관리</a><br>

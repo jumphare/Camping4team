@@ -8,16 +8,16 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
+<style> 
 h2 {font-size:15px;}
 .star-rating {width:304px; }
 .star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(img/star.png)no-repeat; }
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
-</style> 
+</style>
 </head>
 <body>
 		 
@@ -32,8 +32,9 @@ h2 {font-size:15px;}
 				<th>작성자</th>
 				<th>조회수</th>
 			</tr>
-			
-		<c:forEach var = "r" items="${relist}" varStatus="status">
+		<c:forEach var = "r" items="${mylist}" varStatus="status">
+
+
 		<tr>
 			<td>
 				<img src="<%=request.getContextPath() %>/reviewupload/${r.re_file}" height="300" width="300" />
@@ -59,7 +60,6 @@ h2 {font-size:15px;}
 			<td>${r.readcount}</td>
 		</tr>
 		</c:forEach>
-	
 		</table>
 <!-- 페이지처리 -->
 <center>

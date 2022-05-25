@@ -9,7 +9,7 @@
 		values(review_seq.nextval,#{res_no},
 		#{subject},
 		#{content},0,sysdate,#{re_file},#{score},0,#{id},0,#{re_file2},#{sp_name})
-	</insert>
+	</insert> 
 	<!-- 전체 글 개수 -->
 	<select id="count" resultType="int">
 		select count(*) from review
@@ -65,5 +65,16 @@
 	<!-- 장소 출력 -->
 	<select id="getspname" parameterType="int" resultType="String">
 		select DISTINCT s.sp_name from reservation r, spot s where s.sp_no = #{sp_no}
+	</select>
+	<!-- 내리뷰목록출력 -->
+	<select id="myList" parameterType="String" resultType="review">
+		<!-- 부등호 인식시키는 방법 두가지 -->
+		<!-- 첫번째 방법 부등호 인식 못하기때문에 &lt;(<) &gt;(>)로 변경한다 -->
+		<!-- 두번째 방법 xml 코드로 크다작다 연산자를 인식시키는것 -->
+		<![CDATA[
+		select * from (select rownum rnum, review.* from (
+			select * from review order by re_no desc) review ) 
+			where rnum >= ((#{page}-1)*10+1) and rnum <= (#{page} *10) and id=#{id}
+		]]> 
 	</select>
 </mapper>

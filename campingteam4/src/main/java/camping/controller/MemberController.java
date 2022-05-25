@@ -2,6 +2,7 @@ package camping.controller;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.StringTokenizer;
 import java.util.UUID;
 
@@ -19,14 +20,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import camping.model.camp_loc;
 import camping.model.member;
+import camping.model.reservation;
+import camping.model.spot;
 
 @Controller
 public class MemberController {
 
 	@Autowired
 	private camping.service.MemberServiceImpl memberService;
-
+ 
 	// ID중복검사 ajax함수로 처리부분
 	@RequestMapping(value = "member_idcheck.do", method = RequestMethod.POST)
 	public String member_idcheck(@RequestParam("memid") String id, Model model) throws Exception {
@@ -543,6 +547,9 @@ public class MemberController {
 		return "member/jsp/member_logout";
 	}
 	
-
+	@RequestMapping("/mypage.do")
+	public String mypage(HttpSession session, Model model) {
+		return "member/jsp/main";
+	}
 
 }
