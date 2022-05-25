@@ -102,6 +102,11 @@ public class camp_Controller {
 			endDate = sf.format(cal.getTime());
 			System.out.println("et"+endDate);
 		}
+		
+		//장소별 별점 평균값 계산
+		 camp_service.staravg();
+		
+		
 	    	camp_select camsel = new camp_select();
 	    	camsel.setStartDate(startDate);
 	    	camsel.setEndDate(endDate);

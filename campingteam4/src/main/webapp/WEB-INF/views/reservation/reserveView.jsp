@@ -13,21 +13,7 @@
 <title>예약 상세내역</title>
 </head>
 <body>
-<script>
-function cancelPay() {
-	console.log("취소함수 진입");
-	var imp_uid="${res.imp_uid}";
-      $.ajax({
-      	type : "POST",
-      	url : "./imp_cancel.do?price=${res.price}", // 예: http://www.myservice.com/payments/cancel
-      	data : { "imp_uid": imp_uid  }
-      }).done(function(data) {
-      	console.log(data);	        	
-      	alert("예약이 정상적으로 취소되었습니다.");
-      	location.href="./res_cancel.do?res_no=${res.res_no}";
-      });
-  }
-</script>
+
 
 ${id }님의 예약정보<br>
 	<div>예약번호 ${res.res_no}</div> <!-- 이거 말고 결제하고 받는 번호로 -->
@@ -67,6 +53,8 @@ ${id }님의 예약정보<br>
 		 </c:if>
 		</tr>
 </table>
+
+
 요금 합계
 <table border=1>
 	<tr> <td>${spot.sp_name }</td>
@@ -90,6 +78,9 @@ ${id }님의 예약정보<br>
 <table>
 	<tr>
 		<td colspan=2>
+		<c:if test="${res.payment eq '0'}" >
+			<button id="paying" type="button" >결제</button>
+		</c:if>
 			<c:if test="${r.state eq '0' || r.state eq '2'}" ><input type="button" value="내역삭제" onclick="location.href='./res_del.do?res_no=${res.res_no}';" ></c:if>
 			<c:if test="${res.state eq '1'}" ><input type="button" value="예약취소"  onclick="cancelPay()"></c:if>
 			<input type="button" value="목록" onclick="history.back()">
@@ -97,6 +88,70 @@ ${id }님의 예약정보<br>
 	</tr>
 </table>
 
+<script type="text/javascript">
+$("#paying").click(function(){
+	var IMP = window.IMP;
+	var code = "imp17604781"; //가맹점 식별코드
+	IMP.init(code);
+	//결제요청
+	IMP.request_pay({
+    pg : 'kakaopay',
+    pay_method : 'card',
+    merchant_uid : 'merchant_' + new Date().getTime(),
+    name :'[${camp.name }] ${spot.sp_name }' , //결제창에서 보여질 이름
+    amount : ${res.price }, //실제 결제되는 가격
+    buyer_email :  '${mem.email }',
+    buyer_name :'${mem.name }',
+    buyer_tel :'${mem.phone }',
+}, function(rsp) {
+	console.log(rsp);
+    if ( rsp.success ) {
+    	var msg = '결제가 완료되었습니다.';
+        msg += '고유ID : ' + rsp.imp_uid;
+        msg += '상점 거래ID : ' + rsp.merchant_uid;
+        msg += '결제 금액 : ' + rsp.paid_amount;
+        msg += '카드 승인번호 : ' + rsp.apply_num;
+        console.log(msg);
 
+        $.ajax({
+        	type : "POST",
+        	async : false,
+        	url : "./verifyIamport.do",
+        	data : { "imp_uid" : rsp.imp_uid  }
+        }).done(function(data) {
+        	console.log(data);	        	
+        	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
+        	if(rsp.paid_amount == data.response.amount){
+	        	alert("결제 및 결제검증완료");
+	        	location.href="./pay_result.do?imp_uid="+rsp.imp_uid;
+        	} else {
+        		alert("결제 실패");
+        	}
+        });
+    } else {
+    	 var msg = '결제에 실패하였습니다.';
+         msg += '에러내용 : ' + rsp.error_msg;
+    }
+//    alert(msg);
+});
+});
+function cancelPay() {
+	console.log("취소함수 진입");
+	var imp_uid="${res.imp_uid}";
+      $.ajax({
+      	type : "POST",
+      	url : "./imp_cancel.do?price=${res.price}", // 예: http://www.myservice.com/payments/cancel
+      	data : { "imp_uid": imp_uid  }
+      }).done(function(data) {
+      	console.log(data);	        	
+      	alert("예약이 정상적으로 취소되었습니다.");
+      	location.href="./res_cancel.do?res_no=${res.res_no}";
+      });
+  }
+ 
+
+</script>
+
+    
 </body>
 </html>

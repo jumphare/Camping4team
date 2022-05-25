@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import camping.model.review;
 import camping.model.review_reply;
+import camping.model.revlike;
 
 @Repository
 public class ReviewDAO {
@@ -28,10 +29,7 @@ public class ReviewDAO {
 		public List<review> reList(int page){
 			return session.selectList("reviewns.list", page);
 		}
-		//장소출력
-		public List<review> splist(){
-			return session.selectList("reviewns.splist");
-		}
+		
 		//조회수증가
 		public void updatecount(int re_no) {
 			session.update("reviewns.updatecount", re_no);
@@ -55,5 +53,20 @@ public class ReviewDAO {
 		//후기 삭제
 		public int delete(int re_no) {
 			return session.delete("reviewns.delete", re_no);
+		}
+		//좋아요 갯수 출력
+		public int likecount(int re_no) {
+			return session.selectOne("revlikens.count",re_no);
+		}
+		public int likecheck(revlike rl) {
+			return session.selectOne("revlikens.likecheck", rl);
+		}
+		public int getlike() {
+			// TODO Auto-generated method stub
+			return session.update("reviewns.getlike");
+		}
+		public String getspname(int sp_no) {
+			// TODO Auto-generated method stub
+			return session.selectOne("reviewns.getspname", sp_no);
 		}
 }

@@ -1,52 +1,125 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글작성</title>
+<script type="text/javascript" src="se2/js/HuskyEZCreator.js" charset="utf-8"></script> 
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<link href="star.css" rel="stylesheet" type="text/css">
+<!-- <script src="js/star.js"></script> -->
+<script>
+var locked = 0;
+
+function show(star) {
+	if (locked)
+		return;
+	var i;
+	var image;
+	var el;
+	var e = document.getElementById('startext');
+	var stateMsg;
+
+	for (i = 1; i <= star; i++) {
+		image = 'image' + i;
+		el = document.getElementById(image);
+		el.src = "img/star1.png"
+	}
+
+	switch (star) {
+	case 1:
+		stateMsg = "별로에요";
+		break;
+	case 2:
+		stateMsg = "기대는 마세요";
+		break;
+	case 3:
+		stateMsg = "보통이에요";
+		break;
+	case 4:
+		stateMsg = "나쁘지 않아요";
+		break;
+	case 5:
+		stateMsg = "최고에요!!!!";
+		break;
+	default:
+		stateMsg = "";
+	}
+	e.innerHTML = stateMsg;
+}
+
+function noshow(star) {
+	if (locked)
+		return;
+	var i;
+	var image;
+	var el;
+
+
+	for (i = 1; i <= star; i++) {
+		image = 'image' + i;
+		el = document.getElementById(image);
+		el.src = "img/star0.png"
+	}
+}
+
+function lock(star){
+	show(star);
+	locked=1;
+}
+function mark(star){
+	lock(star);
+	alert("선택한 값은 "+star+"입니다.");
+	document.cmtform.score.value=star;
+}
+</script>
 </head>
 <body>
- <div class="review_insert_table" >
-<form method=post action="re_insert.do">
-<table id="r_inert_table1" class="table table-hover">
-	<h2>후기 글작성</h2>
-	&nbsp;
-	<tbody>
-	<tr><th>제목</th>
-		<td><input type=text id="subject" name="subject" required="required" size="60" maxlength="29" placeholder="제목(최대 29자)"></td>
-	</tr>
-	<tr><th>별점(1~5)</th>
-		<td><input type=text id="score" name="score"></td>
-	</tr>
-	<tr><th>내용</th>
-		<td><textarea id="content" name="content" rows="25" cols="70" maxlength="284" placeholder="내용(최대 284자)"></textarea>
-<!-- 		<script type="text/javascript">	// 글쓰기 editor 및 사진 업로드 기능
-			CKEDITOR.replace('content',
-			{filebrowserUploadUrl:'/comm/imageupload'
-			});
-		</script></td>
- -->
-	</tr>
-	<tr><th>첨부</th>
-		<td><input type=file id="re_file" name="re_file" required="required" size="60" maxlength="29" ></td>
-	</tr>
-	<tr><th>첨부2</th>
-		<td><input type=file id="re_file2" name="re_file2" required="required" size="60" maxlength="29" ></td>
-	</tr>
+		<form id="insert" name="cmtform" method=post action="<%=request.getContextPath()%>/re_insert.do" enctype="multipart/form-data">
+			<input type="hidden" id="res_no" name="res_no" value="${res_no}">	
+			<input type="hidden" id="sp_name" name="sp_name" value="${sp_name}">	
+				<h2>후기 글작성</h2>
+				예약 장소 : ${sp_name} 
+				&nbsp;
+				
+					<tr>
+						<th>제목</th>
+						<td><input type=text id="subject" name="subject"
+							required="required" size="60" maxlength="29"
+							placeholder="제목(최대 29자)"></td>
+					</tr>
 
-	
-	<tr><td colspan=2 align=center>
-			<input class="btn btn-dark" type=button value="글목록"
-			onClick="location.href='reviewlist' ">
-			<input class="btn btn-dark" type=submit value="글작성">
-			<input class="btn btn-dark" type=reset value="취소">
-		</td>
-	</tr>
-	</tbody>
-</table>
-</form>
-
-</div>
+    			<div id=rating>
+    			<span>
+    			<img id=image1 onmouseover=show(1) onclick=mark(1) onmouseout=noshow(1) src="img/star0.png">
+    			<img id=image2 onmouseover=show(2) onclick=mark(2) onmouseout=noshow(2) src="img/star0.png">
+    			<img id=image3 onmouseover=show(3) onclick=mark(3) onmouseout=noshow(3) src="img/star0.png">
+    			<img id=image4 onmouseover=show(4) onclick=mark(4) onmouseout=noshow(4) src="img/star0.png">
+    			<img id=image5 onmouseover=show(5) onclick=mark(5) onmouseout=noshow(5) src="img/star0.png">
+    			 </span><br>
+    			 <span id="startext">평가하기</span>		
+    			</div>
+    			<input type="hidden" name="score"/>
+					<tr>
+						<th>내용</th>
+						<td><textarea id="content" name="content" rows="10" cols="100" dir="auto"
+								maxlength="284" placeholder="내용(최대 284자)"></textarea></td>
+					</tr>
+					<tr>
+						<th>대표이미지</th>
+						<td><input type=file id="re_file" name="re_file1"></td>
+					</tr>
+					<tr>
+						<td colspan=2 align=center><input type=button value="글목록" 
+						onClick="location.href='reviewlist.do' ">
+							<input type="button" id="savebutton" value="글작성"> <input
+							type=reset value="취소"></td>
+					</tr>
+			
+		</form>
+	<!-- SmartEditor2 --> 
+<script type="text/javascript" src = "js/sejs.js"></script>
 </body>
 </html>
+
+

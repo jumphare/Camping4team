@@ -13,6 +13,14 @@ public class spot {
 	private int hightprice;
 	private String sp_name;
 	private int reservecheck;
+	private double sp_staravg;
+	public double getSp_staravg() {
+		return sp_staravg;
+	}
+	public void setSp_staravg(double sp_staravg) {
+		this.sp_staravg = sp_staravg;
+	}
+
 	
 	public int getReservecheck() {
 		return reservecheck;

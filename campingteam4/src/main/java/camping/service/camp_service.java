@@ -51,6 +51,10 @@ public class camp_service {
 	public int delete(int sp_no) {
 		return campdao.delete(sp_no);
 	}
+	public int staravg() {
+		// TODO Auto-generated method stub
+		return campdao.staravg();
+	}
 	
 	
 }

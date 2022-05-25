@@ -1,4 +1,4 @@
-package camping.model;
+                     package camping.model;
 
 import java.util.Date;
 

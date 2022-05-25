@@ -186,33 +186,40 @@ public class reserveController {
 	
 	//결제페이지로
 	@RequestMapping("/res_pay.do")
-	public String res_pay(HttpServletRequest request, reservation res, String[] eqm_no, String[] eqm_num, Model model)  throws Exception{
+	public String res_pay(HttpServletRequest request, @ModelAttribute reservation res, String[] eqm_no, String[] eqm_num, Model model)  throws Exception{
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		//회원 정보 가져옴
 		member mem=sv.memdetail(id);
-		String eq_no;
-		String eq_num;
+		String eq_no="";
+		String eq_num="";
 		if(eqm_no!=null) {
-			eq_no = String.join("-", eqm_no);
-			eq_num = String.join("-", eqm_num);
+			eq_no=String.join("-", eqm_no);
+			eq_num=String.join("-", eqm_num);
 		} else {
 			eq_no="0";
 			eq_num="0";
 		}
+		System.out.println(res.getPrice());
+		System.out.println(eq_no);
 		res.setEq_no(eq_no);
 		res.setEq_num(eq_num);
 		res.setPayment(0);   //결제 안 함
 		res.setState(0);  //결제대기상태
 		System.out.println(res.getRes_no());
-		//일단 예약 테이블에 저장 (결제대기 상태로)
+		reservation rs=null;
+		//바로 결제 들어가는거면 일단 예약 테이블에 저장 (결제대기 상태로)
 		if(res.getRes_no()==0)
 			sv.res_save(res);
 		//장소,자리,장비 정보 가져옴
 		camp_loc loc = sv.loc(res.getCamp_no());
 		spot spot = sv.spot(res.getSp_no());
-		List<equipment> eqlist = sv.eqm(res.getCamp_no());
-		
+		List<equipment> eqlist = new ArrayList<equipment>();
+		for(int i=0; i<eqm_no.length; i++) {
+			equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
+			eqlist.add(eqm);
+		}
+		System.out.println(eqlist);
 		
 		model.addAttribute("mem", mem);
 		model.addAttribute("camp", loc);

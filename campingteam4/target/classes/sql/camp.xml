@@ -28,7 +28,7 @@
 	<insert id="insert" parameterType="spot">
 		insert into spot values(spot_num_seq.nextval,#{camp_no},
 			#{type}, #{standard_num}, #{max_num}, #{price}, #{memo}, #{image},
-			#{imagedetail}, #{hightprice}, #{sp_name},0)
+			#{imagedetail}, #{hightprice}, #{sp_name},0,0)
 	</insert>
 	
 	<!-- 예약 가능여부 확인 -->
@@ -61,6 +61,10 @@
 	<delete id="delete" parameterType="int">
 		delete from spot where sp_no=#{sp_no}
 	</delete>
+	
+	<update id="staravg">
+		update spot s set s.sp_staravg = (select round(avg(r.score),1) from review r where s.sp_name = r.sp_name)
+	</update>
 </mapper>
 
 

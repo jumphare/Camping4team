@@ -270,7 +270,7 @@ public class MemberController {
 				model.addAttribute("name", name);
 				model.addAttribute("profile", profile);
 
-				return "member/jsp/main";
+				return "redirect:/layout2.do";
 
 			} else {// 비번이 다를때
 				result = 2;

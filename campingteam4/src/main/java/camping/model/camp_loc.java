@@ -55,6 +55,7 @@ public class camp_loc {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+
 	private int camp_no; /* 장소번호 */
 	private String name; /* 이름 */
 	private String area; /* 지역 */

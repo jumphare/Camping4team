@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import camping.dao.ReviewDAO;
 import camping.model.review;
 import camping.model.review_reply;
+import camping.model.revlike;
 
 @Service
 public class ReviewService {
@@ -30,11 +31,8 @@ public class ReviewService {
 		return dao.reList(page);
 	}
 
-	// 장소출력
-	public List<review> splist() {
-		return dao.splist();
-	}
 
+ 
 	// 조회수 증가(값을 돌려주지 않기 때문에 void로 반환)
 	public void updatecount(int re_no) {
 		dao.updatecount(re_no);
@@ -61,5 +59,22 @@ public class ReviewService {
 	
 	public int delete(int re_no) {
 		return dao.delete(re_no);
+	}
+	//좋아요 갯수 출력
+	public int likecount(int re_no) {
+		return dao.likecount(re_no);
+	}
+	public int likecheck(revlike rl) {
+		return dao.likecheck(rl);
+	}
+
+	public int getlike() {
+		return dao.getlike();
+		
+	}
+
+	public String getspname(int sp_no) {
+		
+		return dao.getspname(sp_no);
 	}
 }
