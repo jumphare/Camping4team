@@ -19,9 +19,8 @@
   </script>
 </c:if> 
 
-<c:if test="${sessionScope.id != null }">  
-	<a href="member_logout.do">로그아웃</a>
-    <a href="reviewlist.do">리뷰 목록</a><br>
+<c:if test="${sessionScope.id != null }"> 
+    <a href="reviewlist.do">전체 리뷰 목록</a><br>
  <div id="main_wrap">
    <h2 class="main_title">사용자 메인화면</h2>  
    <form method="post" action="member_logout.do"> 

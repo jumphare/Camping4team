@@ -72,4 +72,12 @@ public class ReviewDAO {
 		public List<review> myList(review rv) {
 			return session.selectList("reviewns.myList", rv);
 		}
+		public review toplist1() {
+			// TODO Auto-generated method stub
+			return session.selectOne("reviewns.toplist1");
+		}
+		public review toplist2() {
+			// TODO Auto-generated method stub
+			return session.selectOne("reviewns.toplist2");
+		}
 }
