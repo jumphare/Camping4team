@@ -15,8 +15,8 @@
 <!-- 별점 출력 -->
 <style>
 h2 {font-size:15px;}
-.star-rating {width:304px; }
-.star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(img/star.png)no-repeat; }
+.star-rating {width:143px; }
+.star-rating,.star-rating span {display:inline-block; height:29px; overflow:hidden; background:url(img/star.png)no-repeat; }
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
 </style>
 <!-- jQuery문 설정 불러오기 -->
