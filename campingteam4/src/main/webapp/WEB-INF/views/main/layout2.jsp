@@ -113,7 +113,7 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
  
  <!-- 타입 별 클릭하면 해당 타입 예약 페이지로 이동 -->
 <div class="container my-3 "> 
-  <div class="hr-sect"><h1>TYPE</h1> </div>
+  <div class="hr-sect"><h1>TYPE</h1>  </div>
   
  <div class="sect" style="position: relative; float: left; width: 25%;">
 <a href="#"><img class="th" src="${path }/images/glamping2.jpg" ></a>
