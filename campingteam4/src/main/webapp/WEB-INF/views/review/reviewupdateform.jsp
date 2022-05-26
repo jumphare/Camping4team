@@ -74,11 +74,9 @@ function mark(star){
 <title>글수정</title>
 </head>
 <body>
- <div class="review_insert_table" >
 <form id="update" name="cmtform" method=post action="<%=request.getContextPath()%>/reviewupdate.do" enctype="multipart/form-data">
 <input type="hidden" name="re_no" value="${review.re_no}">
 <input type="hidden" name="page" value="${page}">
-<table>
 	<h2>후기 글수정</h2>
 
 	<tr><th>제목</th>
@@ -96,8 +94,8 @@ function mark(star){
     			</div>
     			<input type="hidden" name="score"/>
 	<tr><th>내용</th>
-		<td><textarea rows="10" cols="100" dir="auto" id="content" name="content" 
-		requrired="required" autofocus="autofocus">${review.content}</textarea></td>
+		<td><textarea rows="10" cols="100" dir="auto" maxlength="284"
+		id="content" name="content">${review.content}</textarea></td>
 	</tr>
 	<tr><th>메인사진</th>
 		<td><input type=file id="re_file" name="re_file1" value="${review.re_file}" required="required" size="60" maxlength="29" ></td>
@@ -113,9 +111,6 @@ function mark(star){
 			<input type=reset value="취소">
 		</td>
 	</tr>
-</table>
-</form>
-</div>
 <!-- SmartEditor2 --> 
 <script type="text/javascript" src = "js/sejs2.js"></script>
 </body>
