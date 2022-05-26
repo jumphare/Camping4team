@@ -57,6 +57,7 @@
 	<tr><td colspan=8 align=center>
 			<input type=submit value="글작성">
 			<input type=reset value="취소">
+			
 		</td>
 	</tr>
 	
