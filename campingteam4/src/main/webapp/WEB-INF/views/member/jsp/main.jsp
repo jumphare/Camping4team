@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -52,11 +52,16 @@
        </c:if>
      </td>
     </tr>
-    <tr>
+        <tr>
     	<a href="reserveList.do">예약내역</a>
     </tr>
     <tr>
     	<a href="myreviewlist.do">내 리뷰 목록</a>
+    </tr>
+    <tr>
+    	<td>
+    	<a href="pbList.do">동행찾기</a>
+    	</td>
     </tr>
    </table>   
    </form>

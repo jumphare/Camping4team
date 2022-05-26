@@ -21,6 +21,7 @@
 		<typeAlias alias="reservation" type="camping.model.reservation" />
 		<typeAlias alias="entry" type="camping.model.entry" />
 		<typeAlias alias="camp_select" type="camping.model.camp_select" />
+		<typeAlias alias="pb_join" type="camping.model.pb_join" />
 		
 	</typeAliases>		
 
