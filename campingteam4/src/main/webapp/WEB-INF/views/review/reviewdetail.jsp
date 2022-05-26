@@ -9,7 +9,7 @@
 
 <!DOCTYPE html>
 <html>
-<head>
+<head> 
 <meta charset="UTF-8">
 <title>상세페이지</title>
 <!-- 별점 출력 -->
@@ -166,7 +166,6 @@ h2 {font-size:15px;}
 							</div>
 							</td>
 						
-					
 					<tr>
 						<td>장소</td>
 						<td>${spname}</td>

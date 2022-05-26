@@ -20,7 +20,7 @@ public class ReviewDAO {
 	//글작성
 	public int insert(review review) {
 		return session.insert("reviewns.insert", review);
-	}
+	} 
 	//글 총개수
 		public int getCount() {
 			return session.selectOne("reviewns.count");
@@ -68,5 +68,8 @@ public class ReviewDAO {
 		public String getspname(int sp_no) {
 			// TODO Auto-generated method stub
 			return session.selectOne("reviewns.getspname", sp_no);
+		}
+		public List<review> myList(review rv) {
+			return session.selectList("reviewns.myList", rv);
 		}
 }

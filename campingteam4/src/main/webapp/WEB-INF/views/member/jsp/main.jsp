@@ -52,6 +52,12 @@
        </c:if>
      </td>
     </tr>
+        <tr>
+    	<a href="reserveList.do">예약내역</a>
+    </tr>
+    <tr>
+    	<a href="myreviewlist.do">내 리뷰 목록</a>
+    </tr>
     <tr>
     	<td>
     	<a href="pbList.do">동행찾기</a>

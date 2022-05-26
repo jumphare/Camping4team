@@ -26,12 +26,12 @@ public class reviewController {
 
 	@Autowired
 	private camping.service.ReviewService service;
-
+ 
 	// 글작성 폼
 	@RequestMapping("re_insertform.do")
 	public String re_insertform(int res_no,int sp_no, Model model) {
 		
-		
+
 		String sp_name=service.getspname(sp_no);
 		model.addAttribute("sp_name", sp_name);
 		model.addAttribute("res_no", res_no);
@@ -313,6 +313,60 @@ public class reviewController {
 		
 		return "review/reviewdelete";
 		
+	}
+	
+	//내 리뷰 목록
+	@RequestMapping("myreviewlist.do") 
+	public String myreviewlist(HttpServletRequest request, HttpSession session, Model model) {
+
+		String id = (String) session.getAttribute("id");
+
+		System.out.println("id" + id);
+		
+		//리스트에 좋아요 수 출력
+		service.getlike();
+		
+        review rv = new review();
+        
+		int page = 1; // 페이지 초기값
+		int limit = 10; // 한화면에 나올 데이터 개수 정의
+ 
+		if (request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		// int startRow = (page - 1)*limit +1;
+		// int endRow = page * limit;
+
+		rv.setPage(page);
+		rv.setId(id);
+		
+		int listcount = service.getCount();
+		System.out.println("총 개수 : " + listcount);
+
+		List<review> mylist = service.myList(rv); // Dao까지 두개의 값을 전달할 수 있지만 mybatise는 한개만 전달가능
+		System.out.println("mylist : " + mylist);
+
+		
+
+		// 총 페이지 수
+		int pageCount = listcount / limit + ((listcount % limit == 0) ? 0 : 1);
+
+		int startPage = ((page - 1) / 10) * limit + 1; // 1, 11, 21....
+		int endPage = startPage + 10 - 1; // 10,20,30.......
+
+		if (endPage > pageCount)
+			endPage = pageCount;
+
+		model.addAttribute("rv", rv);
+		model.addAttribute("id", id);
+		model.addAttribute("page", page);
+		model.addAttribute("mylist", mylist);
+		model.addAttribute("listcount", listcount);
+		model.addAttribute("pageCount", pageCount);
+		model.addAttribute("startPage", startPage);
+		model.addAttribute("endPage", endPage);
+
+		return "review/myreviewlist";
 	}
 
 }

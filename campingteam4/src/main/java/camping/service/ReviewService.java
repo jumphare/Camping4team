@@ -20,7 +20,7 @@ public class ReviewService {
 	public int insert(review review) {
 		return dao.insert(review);
 	}
-
+ 
 	// 글 총개수
 	public int getCount() {
 		return dao.getCount();
@@ -76,5 +76,9 @@ public class ReviewService {
 	public String getspname(int sp_no) {
 		
 		return dao.getspname(sp_no);
+	}
+ 
+	public List<review> myList(review rv) {
+		return dao.myList(rv);
 	}
 }
