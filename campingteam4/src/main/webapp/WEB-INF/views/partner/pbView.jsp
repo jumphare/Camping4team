@@ -54,7 +54,8 @@
 		</tr>
 		<tr>
 			
-			<td colspan=2 align=center><c:choose>
+			<td colspan=2 align=center>
+				<c:choose>
 					<c:when test="${result == 0}">
 						<input type=button value="신청"
 							onClick="location.href='pbJoin.do?par_no=${par_no }&page=${page}' ">
@@ -70,12 +71,22 @@
 				
 				<input type="button" value="목록"
 				onClick="location.href='pbList.do?page=${page}' "> 
-				
-				<input type="button" value="수정"
-				onClick="location.href='pbUpdate.do?par_no=${partner.par_no}&page=${page}' ">
-
-				<input type="button" value="삭제"
-				onClick="location.href='pbDelete.do?par_no=${partner.par_no}&page=${page}' ">
+				<c:choose>
+					<c:when test = "${partner.id == id }">
+						<input type="button" value="수정"
+						onClick="location.href='pbUpdate.do?par_no=${partner.par_no}&page=${page}' ">
+		
+						<input type="button" value="삭제"
+						onClick="location.href='pbDelete.do?par_no=${partner.par_no}&page=${page}' ">
+					</c:when>
+					<c:when test = "${id eq 'admin' }">
+						<input type="button" value="수정"
+						onClick="location.href='pbUpdate.do?par_no=${partner.par_no}&page=${page}' ">
+		
+						<input type="button" value="삭제"
+						onClick="location.href='pbDelete.do?par_no=${partner.par_no}&page=${page}' ">
+					</c:when>
+				</c:choose>
 			</td>
 		</tr>
 	</table>

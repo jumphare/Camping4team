@@ -12,10 +12,10 @@
 <body>
 		<h2 class="text-primary">동행 게시판</h2>
 		<a href = "pbWrite.do">글작성</a><br>
-	
+		
 		<table class="table table-striped" align = center text-align = center border = 1>
 			<tr align = center>
-				<td>번호</td>
+			
 				<td>제목</td>
 				<td>내용</td>
 				<td>작성자</td>
@@ -38,28 +38,32 @@
 				<c:set var="num" value="${listcount-(page-1)*10 }"></c:set>
 				<c:forEach var="boardpb" items="${pbList}">
 					<tr align = center>
-						<td>${boardpb.par_no }</td>
+					
 						<td><a href="pbView.do?par_no=${boardpb.par_no}&page=${page}">${boardpb.subject }</a>
 							</td>
 						<td>${boardpb.content }</td>
 					  	<td>${boardpb.id}</td>
 						<td>
-						<fmt:formatDate value="${boardpb.p_date}" pattern="yyyy/MM/dd"/></td>
+						<fmt:formatDate value="${boardpb.p_date}" pattern="yyyy-MM-dd"/></td>
 						<td>
-						<%-- <fmt:parseDate value="${boardpb.start_date}" var="dateValue" pattern="yyyyMMdd"/>
-						<fmt:formatDate value="${boardpb.start_date}" pattern="yyyy-MM-dd"/>
-						 --%></td>
-						<td>
-						${boardpb.end_date}
+						<fmt:parseDate value="${boardpb.start_date}" var="dateValue" pattern="yyyy-MM-dd HH:mm:ss"/>
+						<fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd"/>
 						</td>
+						<td>
+						<fmt:parseDate value="${boardpb.end_date}" var="dateValue2" pattern="yyyy-MM-dd HH:mm:ss"/>
+						<fmt:formatDate value="${dateValue2}" pattern="yyyy-MM-dd"/>
+						</td>
+						
 						<td>${boardpb.camp_area}</td>
 						<td>${boardpb.camp_type}</td>
 						<td>${boardpb.want_num }</td>
-						<td>${boardpb.now_num }
-							
-							
-						</td>
+						<td>${boardpb.now_num }</td>
 						<td>${boardpb.readcount}</td>
+						<c:if test = "${id eq 'admin' }">
+							<td>
+								<input type = "button" value = "삭제" onClick="location.href='pbDelete.do?par_no=${boardpb.par_no}&page=${page}' ">
+							</td>
+						</c:if>
 					</tr>
 					
 				</c:forEach>

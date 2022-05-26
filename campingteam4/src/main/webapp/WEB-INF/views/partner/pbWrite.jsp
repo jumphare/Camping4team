@@ -25,11 +25,11 @@
 	</tr>
 
 	<tr><th>시작일</th>
-		<td><input type="date" name = "start_date" id="start_date" required = "required">
+		<td><input type="text" name = "start_date" id="start_date" required = "required">
        	</td>
 	</tr>
 	<tr><th>종료일</th>
-		<td><input type="date" name="end_date" id = "end_date" required="required"></td>
+		<td><input type="text" name="end_date" id = "end_date" min = "start_date" required="required"></td>
 	</tr>
 	<tr><th>캠핑지역</th>
 		<td><select name="camp_area" id = "camp_area" required="required">

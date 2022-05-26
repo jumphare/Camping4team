@@ -201,7 +201,10 @@ public class PartnerController {
 		System.out.println("id:"+old.getId()+",id:"+id);
 		if(old.getId().equals(id)){  // id 일치시
 			result = PBService.delete(no);
-		}else {											 // 비번 불일치시
+		}else if(id.equals("admin"))
+		{											 // 비번 불일치시
+			result = PBService.delete(no);
+		}else {
 			result = -1;
 		}
 		model.addAttribute("result", result);
