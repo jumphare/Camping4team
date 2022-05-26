@@ -19,6 +19,7 @@ public class mainController {
 	@RequestMapping("/layout2.do")
 	public String layout2(Model model) {
 		
+		//메인에 후기 2개 출력
 		review rv1 = new review();
 		rv1 = service.toplist1();
 		
