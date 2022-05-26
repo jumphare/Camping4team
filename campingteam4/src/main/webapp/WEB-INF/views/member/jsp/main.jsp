@@ -17,7 +17,7 @@
    alert("다시 로그인 해주세요!");
    location.href="<%=request.getContextPath()%>/member_login.do";
   </script>
-</c:if>
+</c:if> 
 
 <c:if test="${sessionScope.id != null }">  
 	<a href="member_logout.do">로그아웃</a>

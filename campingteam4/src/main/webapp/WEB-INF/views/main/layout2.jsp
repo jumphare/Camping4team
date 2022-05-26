@@ -40,7 +40,7 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 <c:if test="${sessionScope.id == null}">
 	<a href="member_login.do">로그인</a><br>
 </c:if>
-
+ 
  <a href="mypage.do">마이페이지</a> <br>
  <a href="date_sel.do">예약하기</a> <br>
     <a href="admin_camp_list.do">관리자 캠핑장 관리</a><br>

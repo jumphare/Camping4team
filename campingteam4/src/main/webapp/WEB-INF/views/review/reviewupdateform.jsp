@@ -22,7 +22,7 @@ function show(star) {
 		image = 'image' + i;
 		el = document.getElementById(image);
 		el.src = "img/star1.png"
-	}
+	} 
 
 	switch (star) {
 	case 1:
