@@ -42,11 +42,12 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 <!-- 임시 상단바 -->
 <c:if test="${sessionScope.id != null}">
 	<a href="member_logout.do">로그아웃</a><br>
+	<a href="mypage.do">마이페이지</a> <br>
 </c:if>
 <c:if test="${sessionScope.id == null}">
 	<a href="member_join.do">회원가입</a><br>
 	<a href="member_login.do">로그인</a><br>
-	 <a href="mypage.do">마이페이지</a> <br>
+	 
 </c:if>
 
  <a href="date_sel.do">예약하기</a> <br>
