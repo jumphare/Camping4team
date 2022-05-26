@@ -58,7 +58,6 @@
 			<input type=submit value="글작성">
 			<input type=reset value="취소">
 			
-			
 		</td>
 	</tr>
 	
