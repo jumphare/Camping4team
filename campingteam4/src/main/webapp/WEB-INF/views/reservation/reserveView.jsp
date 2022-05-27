@@ -121,7 +121,7 @@ padding: 2rem;
 	</c:forEach>
 	</c:if>
 	<tr>
-	<td colspan=3><hr size="2"></td>
+	<td colspan=3><hr size="2"></td></tr>
 	<tr style="font-size:2rem; font-weight:bolder; color:#00008C;">
 		<td></td><td style="text-align:center">총 합계</td> <td style="text-align:right; padding:0.5rem 1rem 0.5rem 0.5rem;"> ${res.price }</td>
 	</tr>
