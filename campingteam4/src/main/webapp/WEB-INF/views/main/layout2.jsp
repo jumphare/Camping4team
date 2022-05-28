@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="en">
@@ -14,15 +15,20 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
   <link rel="stylesheet" type="text/css" href="${path }/css/layout.css" />
   
-  <style>
+  
   <!-- 달력 -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/date.css" />
 <script src="<%=request.getContextPath() %>/js/date.js"></script>
-
+<style>
+h2 {font-size:15px;}
+.star-rating {width:143px; }
+.star-rating,.star-rating span {display:inline-block; height:29px; overflow:hidden; background:url(img/star.png)no-repeat; }
+.star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
   </style>
+  
 <!--   <script>
 $(function(){
 	$(".text-res").load("./date_sel.do");
@@ -36,9 +42,12 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 <!-- 임시 상단바 -->
 <c:if test="${sessionScope.id != null}">
 	<a href="member_logout.do">로그아웃</a><br>
+	<a href="mypage.do">마이페이지</a> <br>
 </c:if>
 <c:if test="${sessionScope.id == null}">
+	<a href="member_join.do">회원가입</a><br>
 	<a href="member_login.do">로그인</a><br>
+	 
 </c:if>
 
  <a href="date_sel.do">예약하기</a> <br>
@@ -149,25 +158,33 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 	<div class="hr-sect"><h1>BEST REVIEW </h1> </div>
 		<div class="card-deck"> 
 			<div class="card">  
-			<img class="card-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5028/blume-200x133.jpg" alt="">
+			<img class="card-img" src="<%=request.getContextPath() %>/reviewupload/${rv1.re_file}" alt="">
 				<div class="card-body">
-					<h5 class="card-title">서울 ㅁㅁㅁㅁ 후기</h5>
-					<h6 class="card-subtitle mb-2 text-muted">★★★★★</h6>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<span style="font-size:1.5rem;"><div style="float:left;">22.05.24</div><div style="float:right;"><a href="#" class="card-link">더보기</a></div></span>
+					<h5 class="card-title">
+					<a href="reviewdetail.do?re_no=${rv1.re_no}&page=1&ch=1">
+				${rv1.subject}</a></h5>
+					<div class='star-rating'>
+					<span style="width: <fmt:formatNumber value="${rv1.score/5}" type="percent"/>"></span>
+					</div>
+					<p class="card-text">${rv1.content}</p>
+					<span style="font-size:1.5rem;"><div style="float:left;">${rv1.r_date}</div><div style="float:right;"><a href="reviewdetail.do?re_no=${rv2.re_no}&page=1&ch=1" class="card-link">더보기</a></div></span>
 				</div>
 			</div>
 			<div class="card"> 
-			<img class="card-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5028/blume-200x133.jpg" alt="">
+			<img class="card-img" src="<%=request.getContextPath() %>/reviewupload/${rv2.re_file}" alt="">
 				<div class="card-body"> 
-					<h5 class="card-title">천안 ㅅㅅㅅㅅ 후기</h5>  
-					<h6 class="card-subtitle mb-2 text-muted">★★★★★</h6>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<span style="font-size:1.5rem;"><div style="float:left;">22.05.24</div><div style="float:right;"><a href="#" class="card-link">더보기</a></div></span>					
+					<h5 class="card-title">
+					<a href="reviewdetail.do?re_no=${rv2.re_no}&page=1&ch=1">
+					${rv2.subject}</a></h5>  
+					<div class='star-rating'>
+					<span style="width: <fmt:formatNumber value="${rv2.score/5}" type="percent"/>"></span>
+					</div>
+					<p class="card-text">${rv2.content}</p>
+					<span style="font-size:1.5rem;"><div style="float:left;">${rv2.r_date}</div><div style="float:right;"><a href="reviewdetail.do?re_no=${rv2.re_no}&page=1&ch=1" class="card-link">더보기</a></div></span>					
 				</div> 
-			</div>  
+			</div>
 		</div>
-		 <p style="float:right;"><a href="#" class="card-link">더 많은 후기를 보고 싶다면?</a></p>
+		 <p style="float:right;"><a href="reviewlist.do?re_no=${rv2.re_no}&page=1&ch=1" class="card-link">더 많은 후기를 보고 싶다면?</a></p>
 	</div>
 </section>
 <!-- <div class="container" >

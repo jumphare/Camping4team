@@ -539,7 +539,7 @@ public class MemberController {
 
 			return "redirect:member_login.do";
 		}
-	}
+	} 
 
 	// 로그아웃
 	@RequestMapping("member_logout.do")
