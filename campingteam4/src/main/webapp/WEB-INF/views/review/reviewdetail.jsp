@@ -180,7 +180,10 @@ h2 {font-size:15px;}
 					</tr>
 					<tr>
 						<td>내용</td>
-						<td><pre>${review.content}</pre></td>
+						
+						<td><pre>${review.content}</pre>
+					
+						</td>
 					</tr>
 					<tr>
 						<td colspan=2 align="center"><input type="button" value="목록"
