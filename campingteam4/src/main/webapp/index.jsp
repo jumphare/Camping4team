@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<<<<<<< HEAD
+
  <script type="text/javascript">
-=======
+
 	
-  <script type="text/javascript">
->>>>>>> branch 'master' of https://github.com/simjin1212/Camping4team
+ 
+
 		location.href = "./layout2.do";
 		</script>
 	
