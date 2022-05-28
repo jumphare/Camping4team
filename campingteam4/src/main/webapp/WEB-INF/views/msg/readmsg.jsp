@@ -5,8 +5,52 @@
 <html>
 <head>
 <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내용</title>
+<style>
+ html { font-size:10px; } 
+
+@font-face {
+    font-family: 'InfinitySans-RegularA1';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-RegularA1.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+font-size:1.6rem;
+}
+  .title{
+  margin-top:1rem;
+    font-family: 'InfinitySans-RegularA1';
+   font-size:2rem;
+   color:#E35E0A;
+   margin-bottom:1rem;
+  }
+
+a {
+text-decoration:none;
+color:#E8894F;
+}
+.pgn a{
+color:#000;
+}
+
+.form-group textarea{
+font-family: 'InfinitySans-RegularA1';
+font-size:1.6rem;
+width:100%; 
+height:100%;
+padding:1.5rem;
+}
+
+</style>
+
 <script>
 $(function(){	
     $("#remsg").click(function(){
@@ -55,13 +99,21 @@ $(function(){
 </script>
 </head>
 <body>
-<c:if test="${msg.id eq id}">받는사람 : ${msg.recv_id }<br></c:if>
-<c:if test="${msg.recv_id eq id}">보낸사람 : ${msg.id }<br></c:if>
-<div>
-<textarea rows="15" cols="30" name="content" disabled>${msg.content }</textarea><br>
-<c:if test="${msg.recv_id eq id }"><input type="button" id="remsg" value="답장" ></c:if>
-<input type="button" id="delmsg" value="삭제" >
-<input type="button" id="back" value="목록" onclick="history.back()">
+<div class="container" style="width:90%; margin:0 auto;" >
+<div class="title">
+<c:if test="${msg.id eq id}">받는이  ${msg.recv_id }</c:if>
+<c:if test="${msg.recv_id eq id}">보낸이  ${msg.id }</c:if></div>
+
+<div class="form-group" style="height:400px;">
+      <textarea class="form-control" id="comment" name="text" disabled="true">${msg.content }</textarea>
+</div>
+ 
+<div style="text-align:center;">
+<c:if test="${msg.recv_id eq id }"><input type="button" id="remsg" class="btn btn-info btn-sm" value="답장" style=" font-size:1.6rem;"></c:if>
+<input type="button" id="delmsg" class="btn btn-danger btn-sm" value="삭제" style=" font-size:1.6rem;">
+<input type="button" id="back" value="목록" class="btn btn-secondary btn-sm" onclick="history.back()" style=" font-size:1.6rem;">
+</div>
+
 </div>
 </body>
 </html>

@@ -2,95 +2,151 @@
     pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-  <script type="text/javascript" src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+  <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<c:set var="path" value="${pageContext.request.contextPath }" />
  <!DOCTYPE html>
 <html>
 <head>
+  <script type="text/javascript" src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
- 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
 <title>예약 상세내역</title>
+<style>
+  html { font-size:10px; } 
+
+  @font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+font-size:1.6rem;
+}
+  .title{
+  margin-top:1rem;
+   font-family: 'GmarketSansBold';
+   font-size:3.2rem;
+   color:#E35E0A;
+   margin-bottom:1rem;
+  }
+
+.restable th{
+width:20%;
+}
+.restable td{
+padding-left:4rem;
+}
+.mg{
+margin:1rem;
+}
+ 
+.pmt{
+width:40%; 
+border:dotted #a0a0a0; 
+border-radius:5px;
+padding: 2rem;
+}
+
+ 
+</style>
 </head>
 <body>
-
-
-${id }님의 예약정보<br>
-	<div>예약번호 ${res.res_no}</div> <!-- 이거 말고 결제하고 받는 번호로 -->
-	<div>예약일자 <fmt:formatDate value="${res.res_date}" pattern="yyyy.MM.dd"/></div>
-	<span>예약상태</span>
-	<span><c:if test="${res.payment eq '0'}" >결제대기</c:if>
-			 <c:if test="${res.payment eq '1'}" >예약완료</c:if>
-			 <c:if test="${res.payment eq '2'}" >예약취소</c:if></span>
-
-<table>
-	<tr>
-		<td>캠핑일</td><td>${res.start_date }  ~  ${res.end_date }</td>
-	</tr>
-	<tr>		<td>예약자명</td><td>${mem.name }</td>	</tr>
-	<tr>		<td>휴대전화</td><td>${mem.phone }</td>	</tr>
-	<tr>		<td>이메일</td><td>${mem.email }</td>	</tr>
+<h1>상단바</h1><br><br>
+<div class="container">
+<div class=mg">&nbsp;</div>
+<div class="title">예약 상세내역</div>
+<table class="table restable">
+<tr>	<th>예약번호</th> <td>${res.res_no}</td></tr>
+<tr>	<th>예약일</th> <td><fmt:formatDate value="${res.res_date}" pattern="yyyy.MM.dd"/></td></tr>
+<tr>	<th>예약상태</th> 
+	<td><c:if test="${res.state eq '0'}" ><span style="color:#CD1039">결제대기</span></c:if>
+		 <c:if test="${res.state eq '1'}" ><span style="color:#006400">예약완료</span></c:if>
+		 <c:if test="${res.state eq '2'}" ><span style="color:#828282">예약취소</span></c:if></td></tr>
+<tr>	<th>캠핑일</th> <td>${fn:substring(res.start_date,0,10)}  ~  ${fn:substring(res.end_date,0,10)}</td></tr>
+<tr>	<th>예약자</th> <td>${mem.name }</td></tr>
+<tr>	<th>휴대전화</th> 	<td>${mem.phone }</td></tr>
+<tr><td></td><td></td></tr>
 </table>
-	<span>예약상품</span>
-<table>
-	<tr>
-		<td>${spot.image }</td> <td>[${camp.name }] ${spot.sp_name }</td>
-	</tr>
-	<tr><td>타입</td> <td>${spot.type }</td>	</tr>
-	<tr><td>동행인원</td><td>${res.num }</td> 	</tr>
-	<tr><td>추가옵션</td>
-		<c:if test="${res.price==spot.price }"><td>선택한 옵션이 없습니다.</td></c:if>
-		<c:if test="${res.price!=spot.price}">
-		<c:set var="i" value="0"/>
-		<td>
+
+<div class=mg">&nbsp;</div>
+<div class="title">캠핑정보</div>
+<table class="table restable">
+<tr><td rowspan=4 style="width:40%;">${spot.image }</td>
+	<th>장소</th><td>[${camp.name }] ${spot.sp_name }</td>	</tr>
+<tr><th>타입</th> <td>${spot.type }</td>	</tr>
+<tr><th>동행인원</th><td>${res.num }</td> </tr>
+<tr><th>추가옵션</th>
+<c:if test="${res.price==spot.price }"><td>선택한 옵션이 없습니다.</td></c:if>
+<c:if test="${res.price!=spot.price}">
+	<c:set var="i" value="0"/>
+	<td>
 		<c:forEach var="eqm" items="${eqlist }">
 			<c:if test="${eqm_num[i]!=0 }" >
 					${eqm.name} (${eqm.price })   X   ${eqm_num[i]} <br>
 			</c:if>
 			<c:set var="i" value="${i+1 }"/>
 		</c:forEach>
-		<td>
-		 </c:if>
-		</tr>
+	</td>
+	 </c:if></tr>
+<tr><td></td><td></td><td></td></tr>
 </table>
 
-
-요금 합계
-<table border=1>
-	<tr> <td>${spot.sp_name }</td>
-		<td style="text-align:right">${spot.price }</td> </tr>
-		<c:if test="${res.price!=spot.price}">
-		<c:set var="j" value="0"/>
-		<c:forEach var="eqm" items="${eqlist }">
-		<tr>
-				<c:if test="${eqm_num[j]!=0 }" >
-					<td>${eqm.name } X ${eqm_num[j] }</td>
-					<td style="text-align:right">${eqm.price*eqm_num[j] }</td>
-			</c:if>
-			<c:set var="j" value="${j+1 }"/>
-		</tr>
-		</c:forEach>
-		</c:if>
+<div class=mg">&nbsp;</div>
+<div class="title">결제정보</div>
+<div class="pmt">
+<table style="width:100%; border-collapse: collapse; ">
+<tr  style="font-weight:bolder;">
+	<td></td>
+	<td style="text-align:center">${spot.sp_name }</td>
+	<td style="text-align:right; padding:0.5rem 1rem 0.5rem 0.5rem;">${spot.price }</td> </tr>
+<c:if test="${res.price!=spot.price}">
+	<c:set var="j" value="0"/>
+	<c:forEach var="eqm" items="${eqlist }">
+<tr>
+	<c:if test="${eqm_num[j]!=0 }" >
+		<td></td>
+		<td style="text-align:center">${eqm.name } X ${eqm_num[j] }</td>
+		<td style="text-align:right; padding:0.5rem 1rem 0.5rem 0.5rem;">${eqm.price*eqm_num[j] }</td>
+	</c:if>
+	<c:set var="j" value="${j+1 }"/>
+</tr>
+	</c:forEach>
+	</c:if>
 	<tr>
-		<td>총 합계</td> <td style="text-align:right"> ${res.price }</td>
+	<td colspan=3><hr size="2"></td></tr>
+	<tr style="font-size:2rem; font-weight:bolder; color:#00008C;">
+		<td></td><td style="text-align:center">총 합계</td> <td style="text-align:right; padding:0.5rem 1rem 0.5rem 0.5rem;"> ${res.price }</td>
 	</tr>
 </table>
-<table>
+</div>
+
+<div class=mg">&nbsp;</div>
+<table style="margin-left: auto; margin-right: auto;">
 	<tr>
-		<td colspan=2>
+		<td colspan=2  >
 		<c:if test="${res.payment eq '0'}" >
-			<button id="paying" type="button" >결제</button>
+			<button id="paying" type="button" class="btn btn-success btn-lg">결제</button>
 		</c:if>
-			<c:if test="${r.state eq '0' || r.state eq '2'}" ><input type="button" value="내역삭제" onclick="location.href='./res_del.do?res_no=${res.res_no}';" ></c:if>
-			<c:if test="${res.state eq '1'}" ><input type="button" value="예약취소"  onclick="cancelPay()"></c:if>
-			<input type="button" value="목록" onclick="history.back()">
+			<c:if test="${res.state eq '0' || res.state eq '2'}" ><input type="button" value="내역삭제" class="btn btn-secondary btn-lg" onclick="location.href='./res_del.do?res_no=${res.res_no}';" ></c:if>
+			<c:if test="${res.state eq '1'}" ><input type="button" value="예약취소" class="btn btn-danger btn-lg"  onclick="cancelPay()"></c:if>
+			<input type="button" class="btn btn-light btn-lg" value="목록" onclick="history.back()">
 		</td>
 	</tr>
 </table>
-
+<div class=mg">&nbsp;</div>
+<div class=mg">&nbsp;</div>
 <script type="text/javascript">
 $("#paying").click(function(){
-	var IMP = window.IMP;
+	console.log("결제 진입");
+ 	var IMP = window.IMP;
 	var code = "imp17604781"; //가맹점 식별코드
 	IMP.init(code);
 	//결제요청
@@ -131,9 +187,8 @@ $("#paying").click(function(){
     } else {
     	 var msg = '결제에 실패하였습니다.';
          msg += '에러내용 : ' + rsp.error_msg;
-    }
-//    alert(msg);
-});
+    } 
+ }); 
 });
 function cancelPay() {
 	console.log("취소함수 진입");
@@ -152,6 +207,6 @@ function cancelPay() {
 
 </script>
 
-    
+</div>
 </body>
 </html>

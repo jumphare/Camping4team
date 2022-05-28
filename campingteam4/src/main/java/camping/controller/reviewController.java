@@ -346,8 +346,6 @@ public class reviewController {
 		List<review> mylist = service.myList(rv); // Dao까지 두개의 값을 전달할 수 있지만 mybatise는 한개만 전달가능
 		System.out.println("mylist : " + mylist);
 
-		
-
 		// 총 페이지 수
 		int pageCount = listcount / limit + ((listcount % limit == 0) ? 0 : 1);
 
@@ -358,7 +356,6 @@ public class reviewController {
 			endPage = pageCount;
 
 		model.addAttribute("rv", rv);
-		model.addAttribute("id", id);
 		model.addAttribute("page", page);
 		model.addAttribute("mylist", mylist);
 		model.addAttribute("listcount", listcount);

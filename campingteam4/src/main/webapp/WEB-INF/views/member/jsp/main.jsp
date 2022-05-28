@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -17,11 +17,10 @@
    alert("다시 로그인 해주세요!");
    location.href="<%=request.getContextPath()%>/member_login.do";
   </script>
-</c:if>
+</c:if> 
 
-<c:if test="${sessionScope.id != null }">  
-	<a href="member_logout.do">로그아웃</a>
-    <a href="reviewlist.do">리뷰 목록</a><br>
+<c:if test="${sessionScope.id != null }"> 
+    <a href="reviewlist.do">전체 리뷰 목록</a><br>
  <div id="main_wrap">
    <h2 class="main_title">사용자 메인화면</h2>  
    <form method="post" action="member_logout.do"> 
@@ -52,11 +51,16 @@
        </c:if>
      </td>
     </tr>
-    <tr>
+        <tr>
     	<a href="reserveList.do">예약내역</a>
     </tr>
     <tr>
     	<a href="myreviewlist.do">내 리뷰 목록</a>
+    </tr>
+    <tr>
+    	<td>
+    	<a href="pbList.do">동행찾기</a>
+    	</td>
     </tr>
    </table>   
    </form>

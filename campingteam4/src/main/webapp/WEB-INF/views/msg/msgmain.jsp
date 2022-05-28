@@ -55,6 +55,7 @@ function msgbox(){
  
  <div><a href="javascript:;" onclick="msgbox()" >안 읽은 메시지 : ${cnt }</a></div>
 <br>
+<a href="/reservation/pay_result.jsp">결제완료</a>
 <div class="col-sm-4">
     <div class="item">
         <a href="#" onclick="msgbox()">

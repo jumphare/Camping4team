@@ -31,6 +31,8 @@ public class MemberController {
 	@Autowired
 	private camping.service.MemberServiceImpl memberService;
  
+	
+	
 	// ID중복검사 ajax함수로 처리부분
 	@RequestMapping(value = "member_idcheck.do", method = RequestMethod.POST)
 	public String member_idcheck(@RequestParam("memid") String id, Model model) throws Exception {
@@ -537,7 +539,7 @@ public class MemberController {
 
 			return "redirect:member_login.do";
 		}
-	}
+	} 
 
 	// 로그아웃
 	@RequestMapping("member_logout.do")
