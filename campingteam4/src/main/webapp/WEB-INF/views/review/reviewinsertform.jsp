@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <script type="text/javascript" src="se2/js/HuskyEZCreator.js" charset="utf-8"></script> 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<link href="star.css" rel="stylesheet" type="text/css">
 <!-- <script src="js/star.js"></script> -->
 <script>
 var locked = 0;
@@ -69,7 +68,6 @@ function lock(star){
 }
 function mark(star){
 	lock(star);
-	alert("선택한 값은 "+star+"입니다.");
 	document.cmtform.score.value=star;
 }
 </script>
@@ -99,7 +97,7 @@ function mark(star){
     			 </span><br>
     			 <span id="startext">평가하기</span>		
     			</div>
-    			<input type="hidden" name="score"/>
+    			<input type="hidden" name="score" id="score"/>
 					<tr>
 						<th>내용</th>
 						<td><textarea id="content" name="content" rows="10" cols="100" dir="auto"
@@ -119,6 +117,7 @@ function mark(star){
 		</form>
 	<!-- SmartEditor2 --> 
 <script type="text/javascript" src = "js/sejs.js"></script>
+
 </body>
 </html>
 

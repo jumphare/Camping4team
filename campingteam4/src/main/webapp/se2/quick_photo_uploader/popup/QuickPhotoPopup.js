@@ -335,7 +335,7 @@
     		sUploadURL;
     	
     	// sUploadURL= 'http://test.naver.com/popup/quick_photo/FileUploader_html5.php'; 	//upload URL
-    	sUploadURL= '/nse/nse_files/quick_photo_uploader/popup/FileUploader_html5.php'; 	//upload URL
+    	sUploadURL= '../../../smart_img.do'; 	//upload URL
 
     	//파일을 하나씩 보내고, 결과를 받음.
     	for(var j=0, k=0; j < nImageInfoCnt; j++) {
@@ -515,7 +515,7 @@ console.log(1);
  	    		//버튼 비활성화
  	    		goReadyMode();
  	    		oFileUploader.reset();
- 	    		//window.close();
+ 	    		window.close();
  	    	},
  	    	error : function(oCustomEvent) {
  	    	console.log(3);

@@ -36,6 +36,8 @@ h2 {font-size:15px;}
 					<div class='star-rating'>
 						<span
 							style="width: <fmt:formatNumber value="${spot.sp_staravg/5}" type="percent"/>"></span>
+					
+					
 					</div>
 				</div>
 			</td>
