@@ -53,11 +53,10 @@ $(function() {
 	$("#udte").click(function(){
     	$("#form").submit();
     	alert("수정되었습니다");
-//    	opener.location.reload(true);
-//    	 opener.parent.location='./eq_table.do';
-        setTimeout(function() {   
+    	opener.location.reload();
+         setTimeout(function() {   
             window.close();
-         }, 100);
+         }, 100); 
     });
 });
 function opt(num){

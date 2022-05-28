@@ -85,7 +85,7 @@ $(function() {
 	var num=${eqmm.num};
 	var rm=${eqmm.rm_num};
 	
-	if(num==rm)
+	if(num!=rm)
 		$("input:checkbox[name='chk'][value='"+no+"']").prop("disabled", true);
 	</c:forEach>
 	
@@ -110,6 +110,8 @@ $(function() {
 		$("#delform").attr("action", "./eq_delete.do").submit();
 		return false;
 	}
+ 
+ 
 </script>
 </head>
 <body>
@@ -122,7 +124,6 @@ $(function() {
 	$("#isrt").click(function(){
 		window.open("./eq_insertform.do", "장비 등록", "width=500, height=300, left=100, top=50");
 	});
-
 	
 });
 
@@ -143,7 +144,7 @@ function pagin(value){
 	if(type!='all')		location.href='./eq_table.do?camp_no=${eqm.camp_no}&type='+type+'&pnum='+value;
 };
 
-function udte(value){
+function udt(value){
 	var url="./eq_updateform.do?eq_no="+value;
 	window.open(url, "장비 수정", "width=500, height=300, left=100, top=50");
 }
@@ -201,7 +202,7 @@ function udte(value){
 	<c:if test="${eqmm.camp_no==2 }">천안</c:if>
 	<c:if test="${eqmm.camp_no==3 }">대전</c:if></td>
 	<td width="20%">${eqmm.type }</td> <td width="20%">${eqmm.name }</td> <td width="15%">${eqmm.price }</td> <td width="10%">${eqmm.num }</td> <td width="10%">${eqmm.rm_num }</td>
-	<td width="10%"><a href="javascript:;" onclick="udte(${eqmm.eq_no })">수정</a></td>
+	<td width="10%"><input type="button" onclick="udt(${eqmm.eq_no })" value="수정" class="btn btn-info btn-sm" style=" font-size:1.6rem;"></td>
 	<td width="5%"> <input type="checkbox" name="chk" value="${eqmm.eq_no }"> </td>
 </tr>
 	</c:forEach>
@@ -209,7 +210,9 @@ function udte(value){
 </table>
 </div>
 </form>
- 
+ <form id="form1" name="form1">
+ <input type="button" id="srch" name="srch" onclick="location.reload(); ">
+ </form>
 <!-- 페이지 블럭 -->
 <div class="pgn" style="text-align:center;">
 	<a href="javascript:;" onclick="pagin(1)"><i class="fa-solid fa-angles-left"></i></a>

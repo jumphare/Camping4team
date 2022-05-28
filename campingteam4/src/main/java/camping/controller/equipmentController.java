@@ -102,7 +102,7 @@ public class equipmentController {
 	}
 	
 	//수정폼
-	@RequestMapping("eq_updateform.do")
+	@RequestMapping("/eq_updateform.do")
 	public String eq_updateform(int eq_no, Model model) {
 		//해당 장비 정보 가져오고 type은 나눠서 배열로 저장
 		equipment eq=sv.eqdetail(eq_no);
