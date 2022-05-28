@@ -80,8 +80,17 @@ $("#allchk").click(function(){
 });
  */
 $(function() {
+	<c:forEach var="eqmm" items="${list }">
+	var no = "${eqmm.eq_no }";
+	var num=${eqmm.num};
+	var rm=${eqmm.rm_num};
+	
+	if(num==rm)
+		$("input:checkbox[name='chk'][value='"+no+"']").prop("disabled", true);
+	</c:forEach>
+	
 	$("#allchk").click(function(){
-		if($("#allchk").is(":checked")) $("input[name=chk]").prop("checked", true);
+		if($("#allchk").is(":checked")) 	$("input[name=chk]:not(:disabled)").prop("checked",true);
 		else $("input[name=chk]").prop("checked", false);
 	});
 	$("#mdel").click(function(){
@@ -179,16 +188,21 @@ function udte(value){
 <div class="container">
 <table class="table eqtable" style="width:100%">  
 <tr>
-	<th width="25%">타입</th><th width="25%">장비명</th><th width="15%">가격</th><th width="10%">수량</th><th width="10%">잔여수량</th><th width="10%">수정</th>
+	<th width="10%">지역</th>
+	<th width="20%">타입</th><th width="20%">장비명</th><th width="15%">가격</th><th width="10%">수량</th><th width="10%">잔여수량</th><th width="10%">수정</th>
 	<th width="5%"><input type="checkbox" id="allchk" name="allchk" ></th>
 </tr>   
 	<c:if test="${empty list }">	<tr><td colspan=7>장비가 없습니다.</td></tr>	</c:if>
 	<c:if test="${not empty list }">
-	<c:forEach var="eqm" items="${list }">
+	<c:forEach var="eqmm" items="${list }">
 <tr>
-	<td width="25%">${eqm.type }</td> <td width="25%">${eqm.name }</td> <td width="15%">${eqm.price }</td> <td width="10%">${eqm.num }</td> <td width="10%">${eqm.rm_num }</td>
-	<td width="10%"><a href="javascript:;" onclick="udte(${eqm.eq_no })">수정</a></td>
-	<td width="5%"> <input type="checkbox" name="chk" value="${eqm.eq_no }"> </td>
+	<td width="10%">
+	<c:if test="${eqmm.camp_no==1 }">서울</c:if>
+	<c:if test="${eqmm.camp_no==2 }">천안</c:if>
+	<c:if test="${eqmm.camp_no==3 }">대전</c:if></td>
+	<td width="20%">${eqmm.type }</td> <td width="20%">${eqmm.name }</td> <td width="15%">${eqmm.price }</td> <td width="10%">${eqmm.num }</td> <td width="10%">${eqmm.rm_num }</td>
+	<td width="10%"><a href="javascript:;" onclick="udte(${eqmm.eq_no })">수정</a></td>
+	<td width="5%"> <input type="checkbox" name="chk" value="${eqmm.eq_no }"> </td>
 </tr>
 	</c:forEach>
 	</c:if>

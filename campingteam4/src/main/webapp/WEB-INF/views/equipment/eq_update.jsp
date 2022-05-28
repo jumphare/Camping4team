@@ -43,6 +43,7 @@ font-size:1.6rem;
 </style>
 <script>
 $(function() {
+	$("#camp").val("${eqm.camp_no}").prop("selected", true);
 	<c:forEach var="s" items="${type}">
 		var s = "${s}";
 		console.log(s);
@@ -52,7 +53,8 @@ $(function() {
 	$("#udte").click(function(){
     	$("#form").submit();
     	alert("수정되었습니다");
-    	opener.location.reload();
+//    	opener.location.reload(true);
+//    	 opener.parent.location='./eq_table.do';
         setTimeout(function() {   
             window.close();
          }, 100);
