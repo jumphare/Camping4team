@@ -4,6 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="se2/js/HuskyEZCreator.js" charset="utf-8"></script> 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <!-- <script src="js/star.js"></script> -->
@@ -71,15 +76,58 @@ function mark(star){
 	document.cmtform.score.value=star;
 }
 </script>
+<style>
+  html { font-size:15px; } 
+  @font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+  .title{
+  margin-top:3rem;
+   font-family: 'GmarketSansBold';
+   font-size:3.2rem;
+   color:#E35E0A;
+   margin-bottom:1rem;
+  }
+  
+  table{
+  font-size:2.8rem;
+  }
+  
+   th, td{
+    text-align: center;
+    vertical-align : middle;
+    } 
+
+a{
+color: #000;
+}
+a:hover{
+text-decoration:none;
+}
+
+.container {
+  position: absolute;
+  margin-left: -200px;
+  margin-top: -200px;
+  left: 39%;
+  top: 30%;
+};
+
+  </style> 
 </head>
 <body>
+<h1>상단바</h1><br><br>
+<div class="container" >
+				<div class="title">후기 작성</div>
 		<form id="insert" name="cmtform" method=post action="<%=request.getContextPath()%>/re_insert.do" enctype="multipart/form-data">
 			<input type="hidden" id="res_no" name="res_no" value="${res_no}">	
-			<input type="hidden" id="sp_name" name="sp_name" value="${sp_name}">	
-				<h2>후기 글작성</h2>
+			<input type="hidden" id="sp_name" name="sp_name" value="${sp_name}">
 				예약 장소 : ${sp_name} 
-				&nbsp;
-				
+				&nbsp; <br>
+				<br>
 					<tr>
 						<th>제목</th>
 						<td><input type=text id="subject" name="subject"
@@ -107,14 +155,15 @@ function mark(star){
 						<th>대표이미지</th>
 						<td><input type=file id="re_file" name="re_file1"></td>
 					</tr>
-					<tr>
+					<br><br>
+					<div style="padding:10px; margin: 0 auto; height: 200px;">
 						<td colspan=2 align=center><input type=button value="글목록" 
-						onClick="location.href='reviewlist.do' ">
-							<input type="button" id="savebutton" value="글작성"> <input
-							type=reset value="취소"></td>
-					</tr>
-			
-		</form>
+						onClick="location.href='reviewlist.do'" class="btn btn-success" style="font-size:1.0em;">
+							<input type="button" id="savebutton" value="글작성" class="btn btn-success" style="font-size:1.0em;"> 
+							<input type=reset value="취소" class="btn btn-success" style="font-size:1.0em;"></td>
+					</div>
+			</form>
+		</div>
 	<!-- SmartEditor2 --> 
 <script type="text/javascript" src = "js/sejs.js"></script>
 
