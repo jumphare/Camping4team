@@ -136,28 +136,25 @@ text-decoration:none;
     			<img id=image3 onmouseover=show(3) onclick=mark(3) onmouseout=noshow(3) src="img/star0.png">
     			<img id=image4 onmouseover=show(4) onclick=mark(4) onmouseout=noshow(4) src="img/star0.png">
     			<img id=image5 onmouseover=show(5) onclick=mark(5) onmouseout=noshow(5) src="img/star0.png">
-    			 </span><br>
-    			 <span id="startext">평가하기</span>		
+    				
     			</div>
     			<input type="hidden" name="score"/>
-	<tr><th>내용</th>
 		<td><textarea rows="10" cols="100" dir="auto" maxlength="284"
 		id="content" name="content">${review.content}</textarea></td>
-	</tr>
-	<tr><th>메인사진</th>
+	<tr>
 		<td><input type=file id="re_file" name="re_file1" value="${review.re_file}" required="required" size="60" maxlength="29" ></td>
 	</tr>
 <%-- 	<tr><th>첨부</th>
 		<td><input type=file id="re_file2" name="re_file2" value="${review.re_file2}"required="required" size="60" maxlength="29" ></td>
 	</tr> --%>
-	
-	<tr><td colspan=2 align=center>
+	<div style="padding:10px; margin: 0 auto; height: 200px;">
+		<td colspan=2 align=center>
 			<input type=button value="글목록"
 			onClick="location.href='reviewlist.do?page=${page}'" class="btn btn-success" style="font-size:1.0em;">
 			<input type="button" id="savebutton" value="수정하기" class="btn btn-success" style="font-size:1.0em;">
 			<input type=reset value="취소" class="btn btn-success" style="font-size:1.0em;">
 		</td>
-	</tr>
+		</div>
 	</form>
 	</div>
 <!-- SmartEditor2 --> 
