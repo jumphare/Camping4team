@@ -14,6 +14,7 @@ import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -257,7 +258,7 @@ public class MemberController {
 	public String member_login_ok(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession session,
 			Model model) throws Exception {
 		int result = 0;
-		camping.model.member m = memberService.userCheck(id);
+		member m = memberService.userCheck(id);
 
 		if (m == null) { // 등록되지 않은 회원일때
 
@@ -550,8 +551,23 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/mypage.do")
-	public String mypage(HttpSession session, Model model) {
-		return "member/jsp/main";
+	public String mypage(HttpSession session, Model model) throws Exception {
+		
+				String id = (String) session.getAttribute("id");
+				session.setAttribute("id", id);
+				System.out.println("id="+id);
+				
+				member m = memberService.userCheck(id);
+				String name = m.getName();
+				String profile = m.getProfile();
+				
+				
+				System.out.println("name="+name);
+				
+				model.addAttribute("name", name);
+				model.addAttribute("profile", profile);
+
+				return "member/jsp/main";
 	}
 
 }
