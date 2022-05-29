@@ -6,9 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>회원탈퇴</title>
-<link rel="stylesheet" type="text/css" href="./css/admin.css" />
-<link rel="stylesheet" type="text/css" href="./css/member.css" />
-<script src="./js/jquery.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
  function check(){
 	 if($.trim($("#pwd").val())==""){
@@ -18,13 +20,52 @@
 	 }
  }
 </script>
+<style type="text/css">
+ html { font-size:10px; } 
+  @font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+  .title{
+  margin-top:3rem;
+   font-family: 'GmarketSansBold';
+   font-size:3.2rem;
+   color:#E35E0A;
+   margin-bottom:1rem;
+  }
+  
+  table{
+  font-size:1.6rem;
+  }
+ 
+
+a{
+color: #000;
+}
+a:hover{
+text-decoration:none;
+}
+
+/* /* .container {
+  position: absolute;
+  height: 400px;
+  margin-left: -200px;
+  margin-top: -200px;
+  left: 30%;
+  top: 45%;
+}; */ */
+
+</style>
 </head>
 <body>
- <div id="del_wrap">
-  <h2 class="del_title">회원탈퇴</h2>
+<h1>상단바</h1><br><br>
+<div class="container" >
+<div class="title">회원 탈퇴</div>
   <form method="post" action="member_del_ok.do" 
   					  onsubmit="return check()">
-    <table id="del_t">
+    <table class="table">
      <tr>
       <th>회원아이디</th>
       <td>
@@ -47,9 +88,9 @@
      
     </table>
     
-    <div id="del_menu">
-     <input type="submit" value="탈퇴" class="input_button" />
-     <input type="reset" value="취소" class="input_button"
+    <div style="padding:10px; margin: 0 auto; width:200px; height: 200px;">
+     <input type="submit" value="탈퇴" class="btn btn-success" style="font-size:1.5em;" />
+     <input type="reset" value="취소" class="btn btn-success" style="font-size:1.5em;"
      	onclick="$('#pwd').focus();" />
     </div>
   </form>
