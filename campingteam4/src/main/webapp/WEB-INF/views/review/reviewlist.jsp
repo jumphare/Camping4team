@@ -38,7 +38,7 @@ h2 {font-size:15px;}
   }
   
   table{
-  font-size:1.3rem;
+  font-size:2.3rem;
   }
 a{
 color: #000;
@@ -64,12 +64,12 @@ text-decoration:none;
 		<table class="table" border="1" align=center width=900>
 		 <thead><tr class="cent" >
 				<th>대표이미지</th>
-				<th width=500>제목</th>
+				<th>제목</th>
 				<th>별점</th>
-				<th width=700>장소</th>
-				<th width=400>좋아요</th>
-				<th width=300>작성자</th>
-				<th width=400>조회수</th>
+				<th>장소</th>
+				<th>좋아요</th>
+				<th>작성자</th>
+				<th>조회수</th>
 		 </tr></thead>
 			
 		<c:forEach var = "r" items="${relist}" varStatus="status">
