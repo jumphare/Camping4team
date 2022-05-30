@@ -11,6 +11,11 @@
 <html>
 <head> 
 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <title>상세페이지</title>
 <!-- 별점 출력 -->
 <style>
@@ -18,6 +23,32 @@ h2 {font-size:15px;}
 .star-rating {width:143px; }
 .star-rating,.star-rating span {display:inline-block; height:29px; overflow:hidden; background:url(img/star.png)no-repeat; }
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
+html { font-size:10px; } 
+  @font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.title{
+align=center
+  margin-top:3rem;
+   font-family: 'GmarketSansBold';
+   font-size:3.2rem;
+   color:#E35E0A;
+   margin-bottom:1rem;
+  }
+  table{
+  font-size:1.5rem;
+  }
+  a{
+color: #000;
+}
+a:hover{
+text-decoration:none;
+}
+input[type="text"]{
+      padding: 8px; text-align: center; margin: 0px;
 </style>
 <!-- jQuery문 설정 불러오기 -->
 <script src="${path}/js/info/jquery.js"></script>
@@ -136,112 +167,103 @@ h2 {font-size:15px;}
 
 </head>
 <body>
-
-
-
-	<!-- center -->
-	<div class="reviewlist_center">
-
-		<div class="review_view_table">
-			<table border=1 align=center width=700>
-				<h2>후기 게시판</h2>
+<h1>상단바</h1><br><br>
+		<div class="container">
+		<div class="title">후기 상세</div>
+		 <form class="container">
+			<table class="table">
 				&nbsp;
-				<tbody>
 					<tr>
-						<td>대표이미지</td>
+						<td><b>대표이미지</b></td>
 						<td><img src="<%=request.getContextPath() %>/reviewupload/${review.re_file}" height="300" width="300" /></td>
 					</tr>
 					<tr>
-						<td width="90">제목</td>
+						<td><b>제목</b></td>
 						<td>${review.subject}</td>
 					</tr>
 					<tr>
-						<td>별점</td>
+						<td><b>별점</b></td>
 						<td>
-						<div class="wrap-star">
-								<h2>평점 : ${review.score}</h2>
 								<div class='star-rating'>
 									<span style="width: <fmt:formatNumber value="${review.score/5}" type="percent"/>"></span>
 								</div>
-							</div>
 							</td>
 						
 					<tr>
-						<td>장소</td>
+						<td><b>장소</b></td>
 						<td>${spname}</td>
 					</tr>
 					<tr>
-						<td>작성자</td>
+						<td><b>작성자</b></td>
 						<td>${review.id}</td>
 					</tr>
 					<tr>
-						<td>조회수</td>
+						<td><b>조회수</b></td>
 						<td>${review.readcount}</td>
 					</tr>
 					<tr>
-						<td>내용</td>
+						<td><b>내용</b></td>
 						
 						<td><pre>${review.content}</pre>
 					
 						</td>
 					</tr>
-					<tr>
 						<td colspan=2 align="center"><input type="button" value="목록"
-							class="btn btn-dark"
+							class="btn btn-success" style="font-size:1.0em;"
 							onClick="location.href='reviewlist.do?page=${page}' "> <c:if
 								test="${id == review.id || id == 'admin'}">
-								<input type="button" value="수정" class="btn btn-dark"
+								<input type="button" value="수정" class="btn btn-success" style="font-size:1.0em;"
 									onClick="location.href='reviewupdateform.do?re_no=${review.re_no}&page=${page}' ">
-								<input type="button" value="삭제"
+								<input type="button" value="삭제" class="btn btn-success" style="font-size:1.0em;"
 									onClick="location.href='reviewdeleteform.do?re_no=${review.re_no}&page=${page}' ">
 							</c:if>
 							<form action="/revlike?re_no=${review.re_no}&pageNum=${pageNum}"
 								method="post" id="like">
-								좋아요 수: ${likecount}
 								<c:if test="${likecheck==0}">
-									<input class="btn btn-dark" type="button" value="좋아요"
+									<input type="button" value="좋아요" class="btn btn-success" style="font-size:1.0em;"
 										onclick="location.href='reviewlike.do?re_no=${review.re_no}&page=${page}'">
 								</c:if>
 								<c:if test="${likecheck==1}">
-									<input class="btn btn-dark" type="button" value="좋아요취소"
+									<input type="button" value="좋아요취소" class="btn btn-success" style="font-size:1.0em;"
 										onclick="location.href='reviewdelete.do?re_no=${review.re_no}&page=${page}'">
 								</c:if>
+								좋아요 수: ${likecount}
 							</form></td>
-					</tr>
-				</tbody>
 			</table>
- 
+			</form>
+			</div>
 			<!-- 댓글 작성 -->
-			<form align="center" method="post" action="replywrite.do">
+			<form class="container" method="post" action="replywrite.do">
+				<table class="table">
 				<input type="hidden" name="id" value="${id}"> <input
 					type="hidden" id="re_no" name="re_no" value="${review.re_no}">
 				<input type="hidden" id="page" name="page" value="${page}">
 				<input type="hidden" id="res_no" name="res_no"
 					value="${review.res_no}">
-				<p>댓글쓰기 :</p>
-				<textarea class="form-control" rows="3" cols="50" name="content"></textarea>
-				<input type="submit" value="확인">
-
+				<div class="title">댓글 작성</div>
+				<input type="text" class="" rows="3" cols="50" style="height:80%; width:90%;" name="content" >&nbsp;&nbsp;
+				<input type="submit" value="확인" class="btn btn-success" style="font-size:1.5em;">
+				</table>
 				<!-- 댓글 list 불러오는곳 -->
 				
-					<table border=1 align=center width=700>
+					<table class="table" align=center width=300>
 					<tr><th>id</th>
 						<th>댓글</th>
 						<th>작성일</th>
-						<th>삭제</th>
+						<th></th>
 						<c:forEach items="${list}" var="l">
 						<tr>
 							<td>${l.id}</td>
 							<td>${l.content}</td>
 							<td><fmt:formatDate value="${l.re_date}" pattern="yyyy-MM-dd" /></td>
 							<td><c:if test="${id == l.id}">
-								<input type="button" value="삭제"
-									onclick="location.href='replydelete.do?reply_no=${l.reply_no}&re_no=${review.re_no}&page=${page}'" />
+								<input type="button" value="댓글 삭제"
+									onclick="location.href='replydelete.do?reply_no=${l.reply_no}&re_no=${review.re_no}&page=${page}'"
+									class="btn btn-success" style="font-size:0.8em;" />
 							</c:if></td>
 						</tr>
 						</c:forEach>
 					</table>
-				
-			</form>
+				</form>
 </body>
 </html>
