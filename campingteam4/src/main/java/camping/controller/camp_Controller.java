@@ -257,7 +257,7 @@ public class camp_Controller {
 		
 		return "camp_loc/insert_result";
 	}
-	//캠프 상세
+	//캠프 상세,관리자딴도 포함
 	@RequestMapping("spotview.do")
 	public String spotview(String loc, String type, String startDate, String endDate,String memcount, int sp_no, Model model) {
 		if(loc == null && type==null) {
@@ -290,6 +290,7 @@ public class camp_Controller {
 		return "camp_loc/spot_view";	//이렇게만 작성해도 넘어간다~
 		}
 	}
+	
 	
 	//캠프 수정 폼
 	@RequestMapping("spotupdateform.do")
