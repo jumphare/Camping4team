@@ -20,7 +20,7 @@
 <style>
 h2 {font-size:15px;}
 .star-rating {width:143px; }
-.star-rating,.star-rating span {display:inline-block; height:29px; overflow:hidden; background:url(img/star.png)no-repeat; }
+.star-rating,.star-rating span {display:inline-block; height:24px; overflow:hidden; background:url(img/star.png)no-repeat; }
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
  html { font-size:8px; } 
   @font-face {
