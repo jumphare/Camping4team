@@ -41,7 +41,7 @@
     } 
 
 a{
-color: #000;
+color: #E35E0A;
 }
 a:hover{
 text-decoration:none;
@@ -71,25 +71,25 @@ text-decoration:none;
 		<div>
 		<c:if test="${compare[i]>=0 }">
 		<c:if test="${r.state eq '0' }" ><span style="color:#CD1039">결제대기</span></c:if>
-		<c:if test="${r.state eq '1' }" ><span style="color:#006400">예약완료</span></c:if>
+		<c:if test="${r.state eq '1' || r.state eq '3'}" ><span style="color:#006400">예약완료</span></c:if>
 		<c:if test="${r.state eq '2'}" ><span style="color:#828282">예약취소</span></c:if>
-		<c:if test="${r.state eq '3'}" ><span style="color:#828282">반납완료</span></c:if>
 		</c:if>
 		<c:if test="${compare[i]<0 }"><span style="color:#828282">지난예약</span></c:if>
 		</div></td>
 		<td> 
 		<div><a href="./reserveView.do?res_no=${r.res_no}" style="color:#834683; font-weight:bolder;">상세내역</a></div>
-		<c:if test="${(r.state eq '0' || r.state eq '2') && revexist[i]==0}" ><a href="./res_del.do?res_no=${r.res_no}" style="color:#A52A2A; font-weight:bolder;">삭제</a></c:if>
+		<c:if test="${r.state ne '1' && re_no[i]==0}" ><a href="./res_del.do?res_no=${r.res_no}" style="color:#A52A2A; font-weight:bolder;">내역삭제</a></c:if>
 		</td>
 		<td>
-		<c:if test="${compare[i]<=0 && revexist[i]==0 && (r.state==1 || r.state==3)}">
-		<input type="button" class="btn btn-outline-info btn-lg" value="리뷰 작성" onclick="location.href='./re_insertform.do?res_no=${r.res_no}&sp_no=${r.sp_no}' ">
+		<c:if test="${compare[i]<=0 && re_no[i]==0 && (r.state==1 || r.state==3)}">
+<%-- 		<input type="button" class="btn btn-outline-info btn-lg" value="리뷰 작성" onclick="location.href='./re_insertform.do?res_no=${r.res_no}&sp_no=${r.sp_no}' "> --%>
+			<a href="./re_insertform.do?res_no=${r.res_no}&sp_no=${r.sp_no}">리뷰작성</a>
 		</c:if>
 		<c:if test="${compare[i]>0 || (r.state==0 || r.state==2)}">
-		<p style="font-size:1.6rem;">리뷰를 작성할 수 없습니다</p>
+			<p style="font-size:1.6rem;">리뷰작성불가</p>
 		</c:if>
-		<c:if test="${revexist[i]>0 && (r.state==1||r.state==3)}">
-		<p style="font-size:1.6rem;">리뷰 작성 완료</p>
+		<c:if test="${re_no[i]!=0 && (r.state==1||r.state==3)}">
+			<a href="./reviewdetail.do?re_no=${re_no[i]}&page=1&ch=1">리뷰보기</a>
 		</c:if>
 		</td>
 	</tr>

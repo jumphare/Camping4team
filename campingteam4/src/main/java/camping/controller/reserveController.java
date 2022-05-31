@@ -121,14 +121,14 @@ public class reserveController {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		int i = 0;
-
+		int cnt=0;
 		// id의 예약내역
 		List<reservation> reslist = sv.reslist(id); 
 		// 리스트 크기만큼 배열 생성
 		String[] cname = new String[reslist.size()];
 		String[] sname = new String[reslist.size()];
 		int[] compare = new int[reslist.size()];
-		int[] revexist=new int[reslist.size()];
+		int[] re_no=new int[reslist.size()];
 		// 예약마다 장소, 자리명 불러와서 배열 저장
 		for (reservation res : reslist) {
 			//오늘 날짜와 비교해서 날짜 안지났음 양수 지났음 음수를 int 배열에 저장하고 출력할 때 조건 달아 리뷰 버튼 뜨게 하기
@@ -143,8 +143,10 @@ public class reserveController {
 			//compareTo메서드를 통한 날짜비교 -> +일 경우 현재예약
 			compare[i] = date.compareTo(today); 
 			
-			//리뷰 목록 가져와서 해당 res_no에 리뷰가 달려있으면 삭제/취소 안 되게 할 것
-			revexist[i]=rv.revexist(res.getRes_no());
+			//리뷰 목록 가져와서 해당 res_no에 리뷰가 달려있으면 그 리뷰 넘버 가져오기
+			cnt=rv.revexist(res.getRes_no());
+			if(cnt==0) re_no[i]=0;			//리뷰 작성 안돼있으면 0 
+			else re_no[i]=rv.reno(res.getRes_no());	//리뷰 있으면 re_no값 리턴
 			
 			camp_loc loc = sv.loc(res.getCamp_no());
 			spot spot = sv.spot(res.getSp_no());
@@ -158,7 +160,7 @@ public class reserveController {
 		System.out.println(sname);
 		System.out.println(reslist.size());
 		
-		model.addAttribute("revexist", revexist);
+		model.addAttribute("re_no", re_no);
 		model.addAttribute("compare", compare);
 		model.addAttribute("rlist", reslist);
 		model.addAttribute("cname", cname);
@@ -169,7 +171,7 @@ public class reserveController {
 
 	// 예약 상세페이지
 	@RequestMapping("/reserveView.do")
-	public String reserveView(HttpServletRequest request, int res_no, Model model) {
+	public String reserveView(HttpServletRequest request, int res_no, Model model) throws ParseException {
 		System.out.println(res_no);
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
@@ -197,7 +199,23 @@ public class reserveController {
 			equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
 			eqlist.add(eqm);
 		}
+		//오늘 날짜와 비교해서 날짜 안지났음 양수 지났음 음수를 int 배열에 저장하고 출력할 때 조건 달아 리뷰 버튼 뜨게 하기
+		//오늘날짜 yyyy-MM-dd로 생성
+		String todayfm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
+		 
+		//yyyy-MM-dd 포맷 설정
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");		 
+		//비교할 date와 today를데이터 포맷으로 변경
+		Date date = new Date(dateFormat.parse(res.getEnd_date()).getTime()); 
+		Date today = new Date(dateFormat.parse(todayfm).getTime());	 
+		//compareTo메서드를 통한 날짜비교 -> +일 경우 현재예약
+		int compare = date.compareTo(today); 
+		int re_no=0;
+		int cnt=rv.revexist(res.getRes_no());
+		if(cnt!=0) re_no=rv.reno(res.getRes_no());	//리뷰 있으면 re_no값 리턴
 		
+		model.addAttribute("re_no", re_no);
+		model.addAttribute("compare", compare);
 		model.addAttribute("mem", mem);
 		model.addAttribute("camp", loc);
 		model.addAttribute("spot", spot);

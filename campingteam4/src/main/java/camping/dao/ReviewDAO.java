@@ -84,4 +84,7 @@ public class ReviewDAO {
 		public int revexist(int res_no) {
 			return session.selectOne("reviewns.revexist", res_no);
 		}
+		public int reno(int res_no) {
+			return session.selectOne("reviewns.reno", res_no);
+		}
 }
