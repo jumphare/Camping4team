@@ -12,8 +12,11 @@
 <%@ include file="../include/top.jsp" %>
 
 
-
-	<a href="noticeform.do">글작성</a> <br>
+  <c:if test="${sessionScope.id == 'admin'}">
+   <a href="noticeform.do">글작성</a>  <br>
+</c:if>
+  
+  
 	글 갯수 : ${listcount}
 	<table border=1 align=center width=700>
 		<caption>게시판 목록</caption>
