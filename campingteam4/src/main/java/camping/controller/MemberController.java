@@ -589,5 +589,17 @@ public class MemberController {
 		out.print(cnt);
 		return null;
 	}
+	// 회원관리목록
+	@RequestMapping("memberlist.do")
+	public String memberlist(member m, HttpServletRequest request, HttpSession session, Model model) {
 
+	String id = (String) session.getAttribute("id");
+	System.out.println("id" + id);
+
+	List<member> memberlist = memberService.memberlist(m);
+	System.out.println("memberlist : " + memberlist);
+
+	model.addAttribute("memberlist", memberlist);
+	return "member/jsp/member_admin";
+			}
 }

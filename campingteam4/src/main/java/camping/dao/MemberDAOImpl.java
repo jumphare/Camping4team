@@ -1,5 +1,7 @@
 package camping.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -57,5 +59,10 @@ public class MemberDAOImpl {
 	public void deleteMember(camping.model.member delm) throws Exception {
 //		getSession();
 		sqlSession.update("member_delete", delm);
+	}
+
+	public List<member> memberlist(member m) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("memberns.list", m);
 	}
 }

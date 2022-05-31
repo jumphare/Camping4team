@@ -37,4 +37,9 @@ public class MemberServiceImpl {
 	public void deleteMember(camping.model.member member) throws Exception{
 		memberDao.deleteMember(member);
 	}
+
+	public List<member> memberlist(member m) {
+		// TODO Auto-generated method stub
+		return memberDao.memberlist(m);
+	}
 }
