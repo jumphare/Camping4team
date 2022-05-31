@@ -7,11 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보 수정</title>
-<link rel="stylesheet" type="text/css" href="./css/admin.css" />
-<link rel="stylesheet" type="text/css" href="./css/member.css" />
-<script src="./js/jquery.js"></script>
-<script src="./js/member.js"></script>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 //우편번호, 주소 Daum API
 function openDaumPostcode() {
@@ -25,14 +25,53 @@ function openDaumPostcode() {
 	}).open();
 }
 </script>
+<style type="text/css">
+ html { font-size:10px; } 
+  @font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+  .title{
+  margin-top:3rem;
+   font-family: 'GmarketSansBold';
+   font-size:3.2rem;
+   color:#E35E0A;
+   margin-bottom:1rem;
+  }
+  
+  table{
+  font-size:1.6rem;
+  }
+ 
+
+a{
+color: #000;
+}
+a:hover{
+text-decoration:none;
+}
+
+/* /* .container {
+  position: absolute;
+  height: 400px;
+  margin-left: -200px;
+  margin-top: -200px;
+  left: 30%;
+  top: 45%;
+}; */ */
+
+</style>
 </head>
 <body>
-  <div id="join_wrap">
-  <h2 class="join_title">회원수정</h2>
+<h1>상단바</h1><br><br>
+  <div class="container" >
+ <div class="title">정보 수정</div>
   <form name="f" method="post" action="member_edit_ok.do"
   		onsubmit="return edit_check()" enctype="multipart/form-data">
    <!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
-   <table id="join_t">
+   <table class="table">
     <tr>
      <th>회원아이디</th>
      <td>
@@ -158,9 +197,9 @@ function openDaumPostcode() {
     </tr>
    </table>
    
-   <div id="join_menu">
-    <input type="submit" value="회원수정" class="input_button" />
-    <input type="reset" value="수정취소" class="input_button" 
+   <div style="padding:10px; margin: 0 auto; width:200px; height: 200px;">
+    <input type="submit" value="회원수정" class="btn btn-success" style="font-size:1.5em;" />
+    <input type="reset" value="수정취소" class="btn btn-success" style="font-size:1.5em;" 
     onclick="$('#pwd1').focus();" />
    </div>
   </form>

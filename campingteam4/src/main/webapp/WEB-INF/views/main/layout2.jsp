@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="en">
@@ -11,18 +12,23 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="${path }/css/layout.css" />
-  
-  <style>
-  <!-- 달력 -->
+
+<!--   /*  달력 */  -->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/date.css" />
 <script src="<%=request.getContextPath() %>/js/date.js"></script>
+<style>
+h2 {font-size:15px;}
+.star-rating {width:143px; }
+.star-rating,.star-rating span {display:inline-block; height:24px; overflow:hidden; background:url(img/star.png)no-repeat; }
+.star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
 
   </style>
+  
 <!--   <script>
 $(function(){
 	$(".text-res").load("./date_sel.do");
@@ -31,14 +37,22 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 </script> -->
 </head>
 <body>
-<h1>상단바 영역</h1><br>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:30px;">--</h1>
+<div class="container" style="background-color:white; width:70%;">
+
 
 <!-- 임시 상단바 -->
 <c:if test="${sessionScope.id != null}">
 	<a href="member_logout.do">로그아웃</a><br>
+	<a href="mypage.do">마이페이지</a> <br>
 </c:if>
 <c:if test="${sessionScope.id == null}">
+	<a href="member_join.do">회원가입</a><br>
 	<a href="member_login.do">로그인</a><br>
+	 
 </c:if>
 
  <a href="date_sel.do">예약하기</a> <br>
@@ -51,7 +65,7 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 	<a href="res_admin.do">예약관리</a><br>
 	<a href="./layout2.do">레이아웃</a><br>
 <!-- 캐러셀 -->
-<div class="container-carousel">
+<div class="container-carousel" style="z-index:0">
 <div id="demo" class="carousel slide" data-ride="carousel">
      
   <!-- Indicators -->
@@ -96,44 +110,43 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 <!-- 예약 -->      
 <div class="container my-3">
   <div class="hr-sect"><h1>RESERVATION</h1></div>
-  <p class="conten">  
-  체크인<br>
-  체크아웃<br>
-  인원<br>
-  예약
-    <%-- <form method="get" action="<%=request.getContextPath()%>/camp_sel.do">
-      <p>체크인 : <input type="date" id='startDate' name='startDate'>
-	 	체크아웃 : <input type="date" id='endDate' name='endDate'></p>
-      인원 :  <input type=text name="memcount" id="memcount">
-      <p><input type="submit" value="Submit"></p>
-    </form> --%>
-  </p>
-</div> 
+  <div class="conten">  
+<form method="get" action="<%=request.getContextPath()%>/camp_sel.do">
+<br>
+      <p>체크인 : <input type="text" id='startDate' name='startDate' width="10px">
+		체크아웃 : <input type="text" id='endDate' name='endDate'>
+      인원 :  <input type=text name="memcount" id="memcount"></p>
+      <br>
+      
+      <p><input type="submit" class="w-btn w-btn-red" value="방 검색"></p><br>
+
+    </form>
+  </div>
  
  <!-- 타입 별 클릭하면 해당 타입 예약 페이지로 이동 -->
 <div class="container my-3 "> 
   <div class="hr-sect"><h1>TYPE</h1> </div>
   
  <div class="sect" style="position: relative; float: left; width: 25%;">
-<a href="#"><img class="th" src="${path }/images/glamping2.jpg" ></a>
+<a href="type_list.do?type=글램핑"><img class="th" src="${path }/images/glamping2.jpg" ></a>
   <div class="middle">  
     <div class="text"></div>
   </div>
 </div>  
 <div class="sect" style="position: relative; float: left; width: 25%;">
-<a href="#"><img class="th" src="${path }/images/caravan2.jpg" ></a>
+<a href="type_list.do?type=카라반"><img class="th" src="${path }/images/caravan2.jpg" ></a>
   <div class="middle">
     <div class="text"></div>
   </div>
 </div>
 <div class="sect" style="position: relative; float: right; width: 25%;">
-<a href="#"><img class="th" src="${path }/images/camping2.jpg" ></a>
+<a href="type_list.do?type=캠핑"><img class="th" src="${path }/images/camping2.jpg" ></a>
   <div class="middle">
     <div class="text"></div>
   </div>
   </div>
 <div class="sect" style="position: relative; float: right; width: 25%;">
-<a href="#"><img class="th" src="${path }/images/car-camping2.jpg"></a>
+<a href="type_list.do?type=차박"><img class="th" src="${path }/images/car-camping2.jpg"></a>
   <div class="middle">
     <div class="text"></div>
   </div></div>
@@ -149,25 +162,33 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 	<div class="hr-sect"><h1>BEST REVIEW </h1> </div>
 		<div class="card-deck"> 
 			<div class="card">  
-			<img class="card-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5028/blume-200x133.jpg" alt="">
+			<img class="card-img" src="<%=request.getContextPath() %>/reviewupload/${rv1.re_file}" alt="">
 				<div class="card-body">
-					<h5 class="card-title">서울 ㅁㅁㅁㅁ 후기</h5>
-					<h6 class="card-subtitle mb-2 text-muted">★★★★★</h6>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<span style="font-size:1.5rem;"><div style="float:left;">22.05.24</div><div style="float:right;"><a href="#" class="card-link">더보기</a></div></span>
+					<h5 class="card-title">
+					<a href="reviewdetail.do?re_no=${rv1.re_no}&page=1&ch=1">
+				${rv1.subject}</a></h5>
+					<div class='star-rating'>
+					<span style="width: <fmt:formatNumber value="${rv1.score/5}" type="percent"/>"></span>
+					</div>
+					<p class="card-text">${rv1.content}</p>
+					<span style="font-size:1.5rem;"><div style="float:left;">${rv1.r_date}</div><div style="float:right;"><a href="reviewdetail.do?re_no=${rv2.re_no}&page=1&ch=1" class="card-link">더보기</a></div></span>
 				</div>
 			</div>
 			<div class="card"> 
-			<img class="card-img" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/5028/blume-200x133.jpg" alt="">
+			<img class="card-img" src="<%=request.getContextPath() %>/reviewupload/${rv2.re_file}" alt="">
 				<div class="card-body"> 
-					<h5 class="card-title">천안 ㅅㅅㅅㅅ 후기</h5>  
-					<h6 class="card-subtitle mb-2 text-muted">★★★★★</h6>
-					<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					<span style="font-size:1.5rem;"><div style="float:left;">22.05.24</div><div style="float:right;"><a href="#" class="card-link">더보기</a></div></span>					
+					<h5 class="card-title">
+					<a href="reviewdetail.do?re_no=${rv2.re_no}&page=1&ch=1">
+					${rv2.subject}</a></h5>  
+					<div class='star-rating'>
+					<span style="width: <fmt:formatNumber value="${rv2.score/5}" type="percent"/>"></span>
+					</div>
+					<p class="card-text">${rv2.content}</p>
+					<span style="font-size:1.5rem;"><div style="float:left;">${rv2.r_date}</div><div style="float:right;"><a href="reviewdetail.do?re_no=${rv2.re_no}&page=1&ch=1" class="card-link">더보기</a></div></span>					
 				</div> 
-			</div>  
+			</div>
 		</div>
-		 <p style="float:right;"><a href="#" class="card-link">더 많은 후기를 보고 싶다면?</a></p>
+		 <p style="float:right;"><a href="reviewlist.do?re_no=${rv2.re_no}&page=1&ch=1" class="card-link">더 많은 후기를 보고 싶다면?</a></p>
 	</div>
 </section>
 <!-- <div class="container" >
@@ -186,6 +207,6 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
     </div>
 </div>
 </div> -->
-
+</div>
 </body>
 </html>

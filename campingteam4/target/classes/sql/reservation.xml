@@ -12,8 +12,8 @@
     	select * from spot where sp_no=#{sp_no}
     </select>
     <!-- 장비 DB -->
-    <select id="eqm_sel" parameterType="int" resultType="equipment">
-    	select * from equipment where camp_no=#{camp_no}
+    <select id="eqm_sel" parameterType="equipment" resultType="equipment">
+    	select * from equipment where camp_no=#{camp_no} and type like '%'||#{type}||'%'
     </select>
 	<!-- 저장 -->
 	<insert id="res_save" parameterType="reservation" >

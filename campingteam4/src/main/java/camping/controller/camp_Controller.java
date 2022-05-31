@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import java.util.StringTokenizer;
@@ -26,10 +25,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import camping.model.camp_select;
 import camping.model.spot;
 import camping.service.camp_service;
-
-
-
-
 
 @Controller
 public class camp_Controller {
@@ -63,7 +58,9 @@ public class camp_Controller {
 		model.addAttribute("memcount",memcount);
 		model.addAttribute("startDate",startDate);
 		model.addAttribute("endDate",endDate);
+		
 		return "camp_loc/camp_loc_sel";
+		
 	}
 	//(날짜, 인원선택)+ 지역선택
 	@RequestMapping("loc_check.do")
@@ -260,7 +257,7 @@ public class camp_Controller {
 		
 		return "camp_loc/insert_result";
 	}
-	//캠프 상세
+	//캠프 상세,관리자딴도 포함
 	@RequestMapping("spotview.do")
 	public String spotview(String loc, String type, String startDate, String endDate,String memcount, int sp_no, Model model) {
 		if(loc == null && type==null) {
@@ -293,6 +290,7 @@ public class camp_Controller {
 		return "camp_loc/spot_view";	//이렇게만 작성해도 넘어간다~
 		}
 	}
+	
 	
 	//캠프 수정 폼
 	@RequestMapping("spotupdateform.do")

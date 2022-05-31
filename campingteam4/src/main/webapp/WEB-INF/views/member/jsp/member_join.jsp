@@ -6,9 +6,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="${path }/css/layout.css" />
 <title>회원가입폼</title>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/admin.css" />
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/member.css" />
+<%-- <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/admin.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/member.css" /> --%>
 <!-- <script src="/springmember/js/jquery.js"></script> -->
 <script src="http://code.jquery.com/jquery-latest.js"></script>
 <script src="<%=request.getContextPath()%>/js/member.js"></script>
@@ -26,15 +32,53 @@ function openDaumPostcode() {
 	}).open();
 }
 </script>
+<style type="text/css">
+ html { font-size:10px; } 
+  @font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+  .title{
+  margin-top:3rem;
+   font-family: 'GmarketSansBold';
+   font-size:3.2rem;
+   color:#E35E0A;
+   margin-bottom:1rem;
+  }
+  
+  table{
+  font-size:1.6rem;
+  }
+ 
 
+a{
+color: #000;
+}
+a:hover{
+text-decoration:none;
+}
+
+/* /* .container {
+  position: absolute;
+  height: 400px;
+  margin-left: -200px;
+  margin-top: -200px;
+  left: 30%;
+  top: 45%;
+}; */ */
+
+</style>
 </head>
-<body>
- <div id="join_wrap">
-  <h2 class="join_title">회원가입</h2>
-  <form name="f" method="post" action="member_join_ok.do"
+<body > <!-- background="./images/camping.png" -->
+<h1>상단바</h1><br><br>
+<div class="container" >
+<div class="title">회원가입</div>
+  <form class="container" name="f" method="post" action="member_join_ok.do"
   		onsubmit="return check()" enctype="multipart/form-data">
    <!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
-   <table id="join_t">
+   <table class="table">
     <tr>
      <th>회원아이디</th>
      <td>
@@ -49,7 +93,7 @@ function openDaumPostcode() {
      <th>회원비번</th>
      <td>
       <input type="password" name="pwd" id="pwd1" size="14"
-      class="input_box" />
+      class="" />
      </td>
     </tr>
     
@@ -57,25 +101,25 @@ function openDaumPostcode() {
      <th>회원비번확인</th>
      <td>
       <input type="password" name="pwd2" id="pwd2" size="14"
-      class="input_box" />
+      class="" />
      </td>
     </tr>
     
     <tr>
      <th>회원이름</th>
      <td>
-      <input name="name" id="name" size="14" class="input_box" />
+      <input name="name" id="name" size="14" class="" />
      </td>
     </tr>
     
     <tr>
      <th>우편번호</th>
      <td>
-      <input name="zip1" id="zip1" size="5" class="input_box"
+      <input name="zip1" id="zip1" size="5" class=""
       		readonly onclick="post_search()" />
       <!-- -<input name="join_zip2" id="join_zip2" size="3" class="input_box" readonly 
       		onclick="post_search()"/> -->
-      <input type="button" value="우편번호검색" class="input_button"
+      <input type="button" value="우편번호검색" class=""
       		onclick="openDaumPostcode()" />
      </td>
     </tr>
@@ -83,7 +127,7 @@ function openDaumPostcode() {
     <tr>
      <th>주소</th>
      <td>
-      <input name="addr1" id="addr1" size="50" class="input_box"
+      <input name="addr1" id="addr1" size="50" class=""
       readonly onclick="post_search()" />
      </td>
     </tr>
@@ -91,7 +135,7 @@ function openDaumPostcode() {
     <tr>
      <th>나머지 주소</th>
      <td>
-      <input name="addr2" id="addr2" size="37" class="input_box" />
+      <input name="addr2" id="addr2" size="37" class="" />
      </td>
     </tr>
     
@@ -99,8 +143,8 @@ function openDaumPostcode() {
      <th>주민번호</th>
      <td>   
      <input name="jumin1" id="jumin1" size="6"
-      maxlength="6" class="input_box" />-<input  name="jumin2"
-      id="jumin2" size="7" maxlength="7" class="input_box" />
+      maxlength="6" class="" />-<input  name="jumin2"
+      id="jumin2" size="7" maxlength="7" class="" />
      </td>
     </tr>
     
@@ -113,8 +157,8 @@ function openDaumPostcode() {
        <option value="${p}">${p}</option>
       </c:forEach>
      </select>-<input name="phone2" id="phone2" size="4"
-     maxlength="4" class="input_box" />-<input name="phone3"
-     id="phone3" size="4" maxlength="4" class="input_box" />
+     maxlength="4" class="" />-<input name="phone3"
+     id="phone3" size="4" maxlength="4" class="" />
      </td>
     </tr>
     
@@ -122,8 +166,8 @@ function openDaumPostcode() {
      <th>전자우편</th>
      <td>
       <input name="mailid" id="mailid" size="10" 
-      class="input_box" />@<input name="maildomain" 
-      id="maildomain" size="20" class="input_box" readonly />
+      class="" />@<input name="maildomain" 
+      id="maildomain" size="20" class="" readonly />
       <!--readonly는 단지 쓰기,수정이 불가능하고 읽기만 가능하다 //-->
       <select name="mail_list" onchange="domain_list()">
       <option value="">=이메일선택=</option>
@@ -144,13 +188,12 @@ function openDaumPostcode() {
      </td>
     </tr>
    </table>
-   
-   <div id="join_menu">
-    <input type="submit" value="회원가입" class="input_button" />
-    <input type="reset" value="가입취소" class="input_button" 
+   <div style="padding:10px; margin: 0 auto; width:200px; height: 200px;">
+    <input type="submit" value="회원가입" class="btn btn-success" style="font-size:1.5em;" />
+    <input type="reset" value="가입취소" class="btn btn-success" style="font-size:1.5em;"
     onclick="$('#id').focus();" />
    </div>
   </form>
- </div>
+  </div>
 </body>
 </html>

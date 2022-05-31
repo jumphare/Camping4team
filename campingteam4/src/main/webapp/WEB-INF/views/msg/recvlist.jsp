@@ -8,54 +8,89 @@
 <head>
 <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
 <title>받은 메시지</title>
 <style>
+  html { font-size:10px; } 
+
+  @font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+font-size:1.6rem;
+}
+  .title{
+  margin-top:1rem;
+   font-family: 'GmarketSansBold';
+   font-size:3.2rem;
+   color:#E35E0A;
+   margin-bottom:1rem;
+  }
+
 p{
 overflow: hidden;
 text-overflow: ellipsis;
 white-space: nowrap;
-width:350px;
-height:18px;
+width:300px;
+height:20px;
 padding: 0;
-margin: 0px 5px 0 5px;
+margin: 0 5px -10px 5px;
 position: relative;
 }
 a {
 text-decoration:none;
+color:#E8894F;
 }
+.pgn a{
+color:#000;
+}
+
 </style>
 </head>
-<body>
-<span><a href="javascript:;" onclick="table(1)">받은 메시지</a></span>
-<span><a href="javascript:;" onclick="table(2)">보낸 메시지</a></span> <br>
-총 메시지 : ${cnt } <br>
+<body> 
+<div class="container" style="width:90%; margin:0 auto;" >
+<div class="title">${id }님의 보관함</div>
+<div style="text-align:center;"><input type="button" value="받은 메시지"  class="btn btn-info" onclick="table(1)" style=" font-size:1.6rem;">
+<input type="button" value="보낸 메시지"  class="btn btn-outline-light text-dark " onclick="table(2)" style=" font-size:1.6rem;"></div>
+
 <form name="rdform" id="rdform" method="post">
-<input type="button" id="mchk" onclick="msgchk()" value="안읽은 쪽지 읽음처리"> 
-<input type="button" id="mdel"  value="삭제"> <br>
+<div style="float:left; margin-bottom:0.5rem;"><input type="button" id="mchk" class="btn btn-secondary btn-sm" onclick="msgchk()" value="전체읽음" style=" font-size:1.2rem;"> 
+<input type="button" id="mdel"  class="btn btn-danger btn-sm" value="삭제" style=" font-size:1.2rem;"> </div>
+<div style="float:right; font-size:1.4rem;">총 메시지 : ${cnt } </div>
 <input type="hidden" name="page" value="${page }">
-<table>
-	<tr>
-		<th><input type="checkbox" id="allchk" name="allchk" ></th> <td><i class="fa-solid fa-inbox"></i></td> <th>ID</th> <th>내용</th> <th>날짜</th>
+<table class="table">
+	<tr style="text-align:center;">
+		<th width="5%"><input type="checkbox" id="allchk" name="allchk" ></th>
+		<td width="5%"><i class="fa-solid fa-inbox"></i></td>
+		<th width="10%">ID</th>
+		<th width="70%">내용</th>
+		<th width="10%">날짜</th>
 	</tr>
 	
 	<c:if test="${empty msg }"><tr><td colspan=5>받은 쪽지가 없습니다</td></tr></c:if>
 	<c:if test="${not empty msg }">
 		<c:forEach var="rcv" items="${msg }">
-			<tr><td><input type="checkbox" name="chk" value="${rcv.msg_no }"></td> 
+			<tr style="text-align:center"><td><input type="checkbox" name="chk" value="${rcv.msg_no }"></td> 
 			<td><c:if test="${rcv.msg_check==0 }"><i class="fa-regular fa-envelope"></i></c:if>
 				 <c:if test="${rcv.msg_check==1 }"><i class="fa-regular fa-envelope-open"></i></c:if></td>
 			<td>${rcv.id }</td> 
-			<td><p><a href="./readmsg.do?msg_no=${rcv.msg_no }&page=${page}">${rcv.content }</a><p></td> 
+			<td style="text-align:left; padding-left:1.5rem;"><p><a href="./readmsg.do?msg_no=${rcv.msg_no }&page=${page}">${rcv.content }</a><p></td> 
 			<td><fmt:formatDate value="${rcv.msg_date }" pattern="yy.MM.dd"/></td></tr>
 		</c:forEach>
 	</c:if>
 </table>
 </form>
-
 <!-- 페이지 블록 -->
-<div>
+<div class="pgn" style="text-align:center;">
 	<a href="javascript:;" onclick="pagin(1)"><i class="fa-solid fa-angles-left"></i></a>
 	<c:if test="${spage !=1 }">
 		<a href="javascript:;" onclick="pagin(${spage-1 })" ><i class="fa-solid fa-angle-left"></i></a>
@@ -69,7 +104,7 @@ text-decoration:none;
 	<a href="javascript:;" onclick="pagin(${epage })"><i class="fa-solid fa-angles-right"></i></a>
 </div>
 
-
+</div>
 
 <script>
 function msgchk(){

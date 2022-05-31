@@ -77,4 +77,23 @@
 			where rnum >= ((#{page}-1)*10+1) and rnum <= (#{page} *10) 
 		]]> 
 	</select>
+	<!-- 메인에 조회수 가장 높은 후기 2개 출력 -->
+	<select id="toplist1" resultType="review">
+		<![CDATA[
+		select * from (
+                select * from review order by readcount desc)
+                where rownum =1
+        ]]> 
+	</select>
+	<select id="toplist2" resultType="review">
+		<![CDATA[
+		select * from (
+                select rownum as rnum, 
+                re_no, res_no, subject, content, readcount, r_date, re_file, 
+                score, rev_like, id, del, re_file2
+                from (
+                    select * from review order by readcount desc))
+                where rnum = 2
+        ]]> 
+	</select>
 </mapper>

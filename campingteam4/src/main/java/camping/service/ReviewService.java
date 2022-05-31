@@ -81,4 +81,14 @@ public class ReviewService {
 	public List<review> myList(review rv) {
 		return dao.myList(rv);
 	}
+
+	public review toplist1() {
+		// TODO Auto-generated method stub
+		return dao.toplist1();
+	}
+	
+	public review toplist2() {
+		// TODO Auto-generated method stub
+		return dao.toplist2();
+	}
 }

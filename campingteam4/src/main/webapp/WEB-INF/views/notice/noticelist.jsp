@@ -2,14 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
-    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>게시판 목록</title>
+
 </head>
 <body>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
+<div class="container" style="background-color:white;">
 
 	<a href="noticeform.do">글작성</a> <br>
 	글 갯수 : ${listcount}
@@ -75,6 +80,6 @@
 
 </c:if>
 </center>	
-
+</div>
 </body>
 </html>

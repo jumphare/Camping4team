@@ -14,6 +14,7 @@ import org.apache.commons.mail.HtmlEmail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,13 +25,17 @@ import camping.model.camp_loc;
 import camping.model.member;
 import camping.model.reservation;
 import camping.model.spot;
+import camping.service.msgService;
 
 @Controller
 public class MemberController {
 
 	@Autowired
 	private camping.service.MemberServiceImpl memberService;
- 
+	@Autowired
+	private msgService msv;
+	
+	
 	// ID중복검사 ajax함수로 처리부분
 	@RequestMapping(value = "member_idcheck.do", method = RequestMethod.POST)
 	public String member_idcheck(@RequestParam("memid") String id, Model model) throws Exception {
@@ -255,7 +260,7 @@ public class MemberController {
 	public String member_login_ok(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession session,
 			Model model) throws Exception {
 		int result = 0;
-		camping.model.member m = memberService.userCheck(id);
+		member m = memberService.userCheck(id);
 
 		if (m == null) { // 등록되지 않은 회원일때
 
@@ -537,7 +542,7 @@ public class MemberController {
 
 			return "redirect:member_login.do";
 		}
-	}
+	} 
 
 	// 로그아웃
 	@RequestMapping("member_logout.do")
@@ -548,8 +553,53 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/mypage.do")
-	public String mypage(HttpSession session, Model model) {
-		return "member/jsp/main";
-	}
+	public String mypage(HttpSession session, Model model) throws Exception {
+		
+				String id = (String) session.getAttribute("id");
+				session.setAttribute("id", id);
+				System.out.println("id="+id);
+				
+				member m = memberService.userCheck(id);
+				String name = m.getName();
+				String profile = m.getProfile();
+				
+				
+				System.out.println("name="+name);
+				
+				model.addAttribute("name", name);
+				model.addAttribute("profile", profile);
 
+				return "member/jsp/main";
+	}
+	
+	@RequestMapping("/profile.do")
+	public String profile(HttpServletResponse response, @RequestParam("id") String id, Model model) throws Exception {
+		System.out.println(id);
+		member m = memberService.userCheck(id);
+		String profile=m.getProfile();		//프로필사진
+		System.out.println(profile);
+		PrintWriter out = response.getWriter();
+		out.print(profile);
+		return null;
+	}
+	@RequestMapping("/navmsg.do")
+	public String navmsg(HttpServletResponse response, @RequestParam("id") String id, Model model) throws Exception {
+		int cnt=msv.msgcnt(id);				//안읽은 메시지
+		PrintWriter out = response.getWriter();
+		out.print(cnt);
+		return null;
+	}
+	// 회원관리목록
+	@RequestMapping("memberlist.do")
+	public String memberlist(member m, HttpServletRequest request, HttpSession session, Model model) {
+
+	String id = (String) session.getAttribute("id");
+	System.out.println("id" + id);
+
+	List<member> memberlist = memberService.memberlist(m);
+	System.out.println("memberlist : " + memberlist);
+
+	model.addAttribute("memberlist", memberlist);
+	return "member/jsp/member_admin";
+			}
 }
