@@ -84,6 +84,10 @@ color:#000;
 </style>
 </head>
 <body>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:30px;">--</h1>
 <script>
 
 </script>

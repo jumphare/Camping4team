@@ -85,6 +85,10 @@ color:#000;
 </style>
 </head>
 <body>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:30px;">--</h1>
 		<h2 class="title">동행 게시판</h2>
 		<a href = "pbWrite.do" class = "wrb">글작성</a><br>
 		<div class = "div1">
