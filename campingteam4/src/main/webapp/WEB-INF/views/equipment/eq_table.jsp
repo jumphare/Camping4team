@@ -149,9 +149,13 @@ function udt(value){
 	window.open(url, "장비 수정", "width=500, height=300, left=100, top=50");
 }
 </script>
-<h1>상단바</h1><br><br>
-<div class="container">
-<div class=mg">&nbsp;</div>
+<!-- 상단바 적용 여기부터 -->
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
+<div class="container" style="background-color:white;">
+<!-- 여기까지 복사해서 붙여넣으시면 됩니다 (title 위에 container가 있어야 함 -->
 <div class="title">장비옵션 관리</div>
 
 <div class="form-check-inline" style="margin-bottom:1rem;  margin-left:2rem;">
@@ -210,9 +214,7 @@ function udt(value){
 </table>
 </div>
 </form>
- <form id="form1" name="form1">
- <input type="button" id="srch" name="srch" onclick="location.reload(); ">
- </form>
+
 <!-- 페이지 블럭 -->
 <div class="pgn" style="text-align:center;">
 	<a href="javascript:;" onclick="pagin(1)"><i class="fa-solid fa-angles-left"></i></a>
