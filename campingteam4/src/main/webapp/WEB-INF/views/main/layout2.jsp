@@ -24,7 +24,7 @@
 <style>
 h2 {font-size:15px;}
 .star-rating {width:143px; }
-.star-rating,.star-rating span {display:inline-block; height:29px; overflow:hidden; background:url(img/star.png)no-repeat; }
+.star-rating,.star-rating span {display:inline-block; height:24px; overflow:hidden; background:url(img/star.png)no-repeat; }
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
 
   </style>
@@ -110,44 +110,43 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 <!-- 예약 -->      
 <div class="container my-3">
   <div class="hr-sect"><h1>RESERVATION</h1></div>
-  <p class="conten">  
-  체크인<br>
-  체크아웃<br>
-  인원<br>
-  예약
-    <%-- <form method="get" action="<%=request.getContextPath()%>/camp_sel.do">
-      <p>체크인 : <input type="date" id='startDate' name='startDate'>
-	 	체크아웃 : <input type="date" id='endDate' name='endDate'></p>
-      인원 :  <input type=text name="memcount" id="memcount">
-      <p><input type="submit" value="Submit"></p>
-    </form> --%>
-  </p>
-</div> 
+  <div class="conten">  
+<form method="get" action="<%=request.getContextPath()%>/camp_sel.do">
+<br>
+      <p>체크인 : <input type="text" id='startDate' name='startDate' width="10px">
+		체크아웃 : <input type="text" id='endDate' name='endDate'>
+      인원 :  <input type=text name="memcount" id="memcount"></p>
+      <br>
+      
+      <p><input type="submit" class="w-btn w-btn-red" value="방 검색"></p><br>
+
+    </form>
+  </div>
  
  <!-- 타입 별 클릭하면 해당 타입 예약 페이지로 이동 -->
 <div class="container my-3 "> 
   <div class="hr-sect"><h1>TYPE</h1> </div>
   
  <div class="sect" style="position: relative; float: left; width: 25%;">
-<a href="#"><img class="th" src="${path }/images/glamping2.jpg" ></a>
+<a href="type_list.do?type=글램핑"><img class="th" src="${path }/images/glamping2.jpg" ></a>
   <div class="middle">  
     <div class="text"></div>
   </div>
 </div>  
 <div class="sect" style="position: relative; float: left; width: 25%;">
-<a href="#"><img class="th" src="${path }/images/caravan2.jpg" ></a>
+<a href="type_list.do?type=카라반"><img class="th" src="${path }/images/caravan2.jpg" ></a>
   <div class="middle">
     <div class="text"></div>
   </div>
 </div>
 <div class="sect" style="position: relative; float: right; width: 25%;">
-<a href="#"><img class="th" src="${path }/images/camping2.jpg" ></a>
+<a href="type_list.do?type=캠핑"><img class="th" src="${path }/images/camping2.jpg" ></a>
   <div class="middle">
     <div class="text"></div>
   </div>
   </div>
 <div class="sect" style="position: relative; float: right; width: 25%;">
-<a href="#"><img class="th" src="${path }/images/car-camping2.jpg"></a>
+<a href="type_list.do?type=차박"><img class="th" src="${path }/images/car-camping2.jpg"></a>
   <div class="middle">
     <div class="text"></div>
   </div></div>
