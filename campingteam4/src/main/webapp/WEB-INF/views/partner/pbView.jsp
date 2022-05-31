@@ -6,34 +6,110 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>상세 페이지</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<style>
+  html { font-size:10px; } 
+
+  @font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+font-size:1.6rem;
+}
+  .title{
+  margin-top:1rem;
+  margin-left:4rem;
+   font-family: 'GmarketSansBold';
+   font-size:3.2rem;
+   color:#E35E0A;
+   margin-bottom:1rem;
+  }
+
+.eqtable th{
+text-align:center;
+}
+.eqtable td{
+text-align:center;
+
+}
+.mg{
+margin:1rem;
+}
+ 
+.pmt{
+width:40%; 
+border:dotted #a0a0a0; 
+border-radius:5px;
+padding: 2rem;
+}
+
+ a {
+ text-decoration:none;
+ color:#E35E0A;
+ }
+ a:hover{text-decoration:none;}
+ 
+ .pgn a{
+color:#000;
+}
+
+.headb {
+	font-weight: bold;
+}
+
+.wrb{
+	position : absolute;
+	font-weight : bold;
+	right : 10px;
+}
+
+.div1{
+	margin : 50px 250px;
+
+}
+
+
+</style>
 </head>
 <body>
 <script>
 
 </script>
-	<table border=1 width=400 align=center>
-		<caption>상세 페이지</caption>
+	<h2 class="title" >상세 페이지</h2>
+	<div class = "div1"> 
+	<table class = "table eqtable" align=center style="width:100%">
+		
 		<tr>
-			<td>작성자</td>
+			<td class = "headb">작성자</td>
 			<td>${partner.id}</td>
 		</tr>
 		<tr>
-			<td>날짜</td>
+			<td class = "headb">날짜</td>
 			<td><fmt:formatDate value="${partner.p_date}"
 					pattern="yyyy-MM-dd" /></td>
 		</tr>
 		<tr>
-			<td>조회수</td>
+			<td class = "headb">조회수</td>
 			<td>${partner.readcount}</td>
 		</tr>
 		<tr>
-			<td>제목</td>
+			<td class = "headb">제목</td>
 			<td>${partner.subject}</td>
 		</tr>
 		<tr>
-			<td>참가인원</td>
+			<td class = "headb">참가인원</td>
 			<td>${partner.id }
 			<c:if test = "${partner.id == id }">
 				<c:forEach var="j_id" items="${joinlist}" begin="0" end= "${fn:length(joinlist) }"  >
@@ -48,7 +124,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>내용</td>
+			<td class = "headb">내용</td>
 			<td><pre>${partner.content}
 			</pre></td>
 		</tr>
@@ -90,19 +166,23 @@
 			</td>
 		</tr>
 	</table>
+	</div>
 	<!-- 댓글 작성 -->
+	<div class = "div1">
 			<form align="center" method="post" action="pbreply.do">
 				<input type="hidden" name="id" value="${id}"> 
 				<input type="hidden" id="par_no" name="par_no" value="${partner.par_no}">
 				<input type="hidden" id="page" name="page" value="${page}">
 
-				<p>댓글쓰기 :</p>
+				<p>댓글쓰기 : &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				<input type="submit" value="확인"></p>
+				
 				<textarea class="form-control" rows="3" cols="50" name="content"></textarea>
-				<input type="submit" value="확인">
-
+				
+	
 				<!-- 댓글 list 불러오는곳 -->
 				
-					<table border=1 align=center width=700>
+					<table class = "table eqtable" align=center width=700>
 					<tr><th>id</th>
 						<th>댓글</th>
 						<th>작성일</th>
@@ -127,8 +207,8 @@
 						</tr>
 						</c:forEach>
 					</table>
-				
+	</div>			
 			</form>
-
+	
 </body>
 </html>

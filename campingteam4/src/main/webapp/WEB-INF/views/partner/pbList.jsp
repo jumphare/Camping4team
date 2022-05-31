@@ -6,17 +6,92 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <meta charset="UTF-8">
 <title>동행 게시판</title>
+<style>
+  html { font-size:10px; } 
+
+  @font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+font-size:1.6rem;
+}
+  .title{
+  margin-top:1rem;
+   margin-left:4rem;
+   font-family: 'GmarketSansBold';
+   font-size:3.2rem;
+   color:#E35E0A;
+   margin-bottom:1rem;
+  }
+
+.eqtable th{
+text-align:center;
+}
+.eqtable td{
+text-align:center;
+
+}
+.mg{
+margin:1rem;
+}
+ 
+.pmt{
+width:40%; 
+border:dotted #a0a0a0; 
+border-radius:5px;
+padding: 2rem;
+}
+
+ a {
+ text-decoration:none;
+ color:#E35E0A;
+ }
+ a:hover{text-decoration:none;}
+ 
+ .pgn a{
+color:#000;
+}
+
+.headb {
+	font-weight: bold;
+}
+
+.wrb{
+	position : absolute;
+	font-weight : bold;
+	right : 60px;
+}
+
+.div1{
+	margin : 10px 50px;
+
+}
+
+.date{
+	font-size: 80%;
+}
+</style>
 </head>
 <body>
-		<h2 class="text-primary">동행 게시판</h2>
-		<a href = "pbWrite.do">글작성</a><br>
-		
-		<table class="table table-striped" align = center text-align = center border = 1>
-			<tr align = center>
+		<h2 class="title">동행 게시판</h2>
+		<a href = "pbWrite.do" class = "wrb">글작성</a><br>
+		<div class = "div1">
+		<table class="table eqtable" align = center text-align = center style="width:100%">
+			<tr class = "headb" align = center font-weight = bold>
 			
-				<td>제목</td>
+				<td font-weight = bold>제목</td>
 				<td>내용</td>
 				<td>작성자</td>
 				<td>등록일</td>
@@ -43,13 +118,13 @@
 							</td>
 						<td>${boardpb.content }</td>
 					  	<td>${boardpb.id}</td>
-						<td>
+						<td class= "date">
 						<fmt:formatDate value="${boardpb.p_date}" pattern="yyyy-MM-dd"/></td>
-						<td>
+						<td class= "date">
 						<fmt:parseDate value="${boardpb.start_date}" var="dateValue" pattern="yyyy-MM-dd HH:mm:ss"/>
 						<fmt:formatDate value="${dateValue}" pattern="yyyy-MM-dd"/>
 						</td>
-						<td>
+						<td class= "date">
 						<fmt:parseDate value="${boardpb.end_date}" var="dateValue2" pattern="yyyy-MM-dd HH:mm:ss"/>
 						<fmt:formatDate value="${dateValue2}" pattern="yyyy-MM-dd"/>
 						</td>
@@ -69,7 +144,7 @@
 				</c:forEach>
 			</c:if>
 		</table>
-		
+		</div>
 		
 <!-- 페이지로 처리 -->	
 <center>
