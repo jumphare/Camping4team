@@ -91,4 +91,8 @@ public class ReviewService {
 		// TODO Auto-generated method stub
 		return dao.toplist2();
 	}
+	
+	public int revexist(int res_no) {
+		return dao.revexist(res_no); 
+	}
 }

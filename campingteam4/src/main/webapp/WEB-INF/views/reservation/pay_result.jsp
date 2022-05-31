@@ -91,8 +91,11 @@ font-family: 'GangwonEdu_OTFBoldA';
 </style>
 </head>
 <body>
-<h1>상단바</h1><br><br>
-<div class="container" style="width:60%">
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
+<div class="container" style="background-color:white; width:60%;">
 <div class="title" style="text-align:center;">예약되었습니다</div>
 <div class="pmt" style="font-size:3.2rem; text-align:center; ">
 <p style="margin: 3rem 0 2rem 0;"><img src="${path }/images/check.png"></p>

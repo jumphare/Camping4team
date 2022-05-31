@@ -12,6 +12,6 @@
 <c:if test="${result==1}">
 	<script>
 		alert("저장되었습니다");
-		location.href="./resmain.do";
+		location.href="./reserveList.do";
 	</script>
 </c:if>

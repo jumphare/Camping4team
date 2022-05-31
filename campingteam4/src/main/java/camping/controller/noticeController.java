@@ -90,6 +90,15 @@ public class noticeController {
 	@RequestMapping("noticelist.do")
 	public String noticelist(HttpServletRequest request, Model model) {
 
+		
+		 /*  User user = (User) authentication.getPrincipal();
+
+		/*
+		HttpSession session = request.getSession();
+		session.setAttribute("sessionId",session.getId());
+		*/
+	
+
 		int page = 1;
 		int limit = 10;
 
@@ -123,6 +132,7 @@ public class noticeController {
 		model.addAttribute("endPage", endPage);
 
 		return "notice/noticelist";
+		
 	}
 
 	// 상세 페이지 : 조회수 1증가 + 상세 정보 구하기

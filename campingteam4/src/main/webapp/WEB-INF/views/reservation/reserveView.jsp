@@ -59,9 +59,11 @@ padding: 2rem;
 </style>
 </head>
 <body>
-<h1>상단바</h1><br><br>
-<div class="container">
-<div class=mg">&nbsp;</div>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
+<div class="container" style="background-color:white;">
 <div class="title">예약 상세내역</div>
 <table class="table restable">
 <tr>	<th>예약번호</th> <td>${res.res_no}</td></tr>

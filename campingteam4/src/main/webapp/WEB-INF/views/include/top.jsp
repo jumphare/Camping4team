@@ -21,6 +21,7 @@ $(function(){
 		$('#profile').html("<img src='${path }/images/camping.jpg' style='width:30px; height:30px; border-radius:15px;'>");
 	}); */
 //	alert(frmData);
+	if(${not empty id}){
 	 $.ajax({
      	type : "get",
      	async : false,
@@ -45,6 +46,7 @@ $(function(){
 	     	else
 	     		$('#malert').html("<a href='javascript:;' onclick='rcvlist()' style='color:#E35E0A;'>NEW  "+data+"</a>");
 	     });
+	}
 });
 
 function rcvlist(){
@@ -126,7 +128,7 @@ function rcvlist(){
 	          	<li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Page</a>
               <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="./admin_member_list.do">회원관리</a>
+              	<a class="dropdown-item" href="./memberlist.do">회원관리</a>
                 <a class="dropdown-item" href="./admin_camp_list.do">장소관리</a>
                 <a class="dropdown-item" href="./eq_table.do">장비관리</a>
                 <a class="dropdown-item" href="./res_admin.do">예약관리</a>
