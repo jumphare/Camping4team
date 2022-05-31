@@ -78,8 +78,11 @@ padding-right:3rem;
 </style>
 </head>
 <body>
-<h1>상단바</h1><br><br>
-<div class="container" style="width:60%">
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
+<div class="container" style="background-color:white; width:60%">
 <div class="title">예약정보확인</div>
 
 <div class="title2" >예약자정보</div>

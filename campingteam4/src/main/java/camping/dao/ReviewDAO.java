@@ -80,4 +80,8 @@ public class ReviewDAO {
 			// TODO Auto-generated method stub
 			return session.selectOne("reviewns.toplist2");
 		}
+		
+		public int revexist(int res_no) {
+			return session.selectOne("reviewns.revexist", res_no);
+		}
 }

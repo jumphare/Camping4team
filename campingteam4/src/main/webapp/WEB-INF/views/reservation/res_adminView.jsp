@@ -66,9 +66,11 @@ function sending(value){
 	window.open("./writemsg.do?recv_id="+value, "쪽지 보내기", "width=600, height=500, left=100, top=50");
 }
 </script>
-<h1>상단바</h1><br><br>
-<div class="container">
-<div class=mg">&nbsp;</div>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
+<div class="container" style="background-color:white;">
 <div class="title">예약 상세내역</div>
 <table class="table restable">
 <tr>	<th>예약번호</th> <td>${res.res_no}      <input type="button" class="btn btn-outline-info btn-sm" id="sendmsg" value="예약자에게 쪽지 보내기" style="font-size:1.4rem;" onclick="sending('${mem.id}')"></td></tr>

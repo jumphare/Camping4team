@@ -51,29 +51,46 @@ text-decoration:none;
   </style> 
 </head>
 <body>
-<h1>상단바</h1><br><br>
-<div class="container" >
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
+<div class="container" style="background-color:white;">
 <div class="title">예약내역</div>
  <table class="table">
- <thead><tr class="cent">
+ <thead><tr style="text-align:center;">
  	<th>예약일</th><th>예약정보</th><th>상세내역</th><th>리뷰</th>
  </tr></thead>
 <c:set var="i" value="0"/>
 <c:forEach var="r" items="${rlist }">
 	<tr>
 		<td><fmt:formatDate value="${r.res_date}" pattern="yyyy.MM.dd"/></td>
-		<td class="info">
+		<td style="background-color:white;">
 		<div style="font-weight:bolder;">${fn:substring(r.start_date,0,10)}  ~  ${fn:substring(r.end_date,0,10)}</div>
 		<div><a href='./reserveView.do?res_no=${r.res_no}'>[${cname[i]}] ${sname[i]}</a> </div>
-		<div><c:if test="${r.state eq '0' }" ><span style="color:#CD1039">결제대기</span></c:if>
+		<div>
+		<c:if test="${compare[i]>=0 }">
+		<c:if test="${r.state eq '0' }" ><span style="color:#CD1039">결제대기</span></c:if>
 		<c:if test="${r.state eq '1' }" ><span style="color:#006400">예약완료</span></c:if>
-		<c:if test="${r.state eq '2'}" ><span style="color:#828282">예약취소</span></c:if></div></td>
+		<c:if test="${r.state eq '2'}" ><span style="color:#828282">예약취소</span></c:if>
+		<c:if test="${r.state eq '3'}" ><span style="color:#828282">반납완료</span></c:if>
+		</c:if>
+		<c:if test="${compare[i]<0 }"><span style="color:#828282">지난예약</span></c:if>
+		</div></td>
 		<td> 
 		<div><a href="./reserveView.do?res_no=${r.res_no}" style="color:#834683; font-weight:bolder;">상세내역</a></div>
-		<c:if test="${r.state eq '0' || r.state eq '2'}" ><a href="./res_del.do?res_no=${r.res_no}" style="color:#A52A2A; font-weight:bolder;">삭제</a></c:if>
+		<c:if test="${(r.state eq '0' || r.state eq '2') && revexist[i]==0}" ><a href="./res_del.do?res_no=${r.res_no}" style="color:#A52A2A; font-weight:bolder;">삭제</a></c:if>
 		</td>
 		<td>
+		<c:if test="${compare[i]<=0 && revexist[i]==0 && (r.state==1 || r.state==3)}">
 		<input type="button" class="btn btn-outline-info btn-lg" value="리뷰 작성" onclick="location.href='./re_insertform.do?res_no=${r.res_no}&sp_no=${r.sp_no}' ">
+		</c:if>
+		<c:if test="${compare[i]>0 || (r.state==0 || r.state==2)}">
+		<p style="font-size:1.6rem;">리뷰를 작성할 수 없습니다</p>
+		</c:if>
+		<c:if test="${revexist[i]>0 && (r.state==1||r.state==3)}">
+		<p style="font-size:1.6rem;">리뷰 작성 완료</p>
+		</c:if>
 		</td>
 	</tr>
 	<c:set var="i" value="${i+1 }"/>

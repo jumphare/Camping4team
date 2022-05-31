@@ -29,11 +29,21 @@
 	<context:component-scan base-package="camping" />
 	
 	<!-- 인터셉터 설정 -->	
-	<beans:bean id="sessionChk" class="camping.controller.SessionCheckInter"/>	
+ 	<beans:bean id="sessionChk" class="camping.controller.SessionCheckInter"/>	
 	 <interceptors>
-		<interceptor>
-			<mapping path="/member_edit.do"/>
-			<mapping path="/member_edit_ok.do"/>			
+		<interceptor> 
+			<mapping path="/*.do"/>
+			<exclude-mapping path="/layout2.do"/>
+			<exclude-mapping path="/member_login.do"/>
+			<exclude-mapping path="/member_login_ok.do"/>
+			<exclude-mapping path="/member_join_ok.do"/>
+			<exclude-mapping path="/noticelist.do"/>
+			<exclude-mapping path="/noticecontent.do"/>
+			<exclude-mapping path="/pbView.do"/>
+			<exclude-mapping path="/pbList.do"/>
+			<exclude-mapping path="/reviewlist.do"/>
+			<exclude-mapping path="/reviewdetail.do"/>
+<!-- 			<mapping path="/member_edit_ok.do"/>			
 			<mapping path="/member_del.do"/>
 			<mapping path="/member_del_ok.do"/>
 			<mapping path="/member_logout.do"/>
@@ -41,10 +51,10 @@
 			<mapping path="/res_save.do"/>
 			<mapping path="/reserveList.do"/>
 			<mapping path="/reserveView.do"/>
-			<mapping path="/res_pay.do"/>
+			<mapping path="/res_pay.do"/> -->
 			<beans:ref bean="sessionChk"/>
 		</interceptor>
-	</interceptors>	 
+	</interceptors>	  
 	
 	
 	

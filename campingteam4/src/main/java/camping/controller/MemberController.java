@@ -574,19 +574,23 @@ public class MemberController {
 	
 	@RequestMapping("/profile.do")
 	public String profile(HttpServletResponse response, @RequestParam("id") String id, Model model) throws Exception {
-		System.out.println(id);
-		member m = memberService.userCheck(id);
-		String profile=m.getProfile();		//프로필사진
-		System.out.println(profile);
-		PrintWriter out = response.getWriter();
-		out.print(profile);
+		if(id!=null) {
+			System.out.println(id);
+			member m = memberService.userCheck(id);
+			String profile=m.getProfile();		//프로필사진
+			System.out.println(profile);
+			PrintWriter out = response.getWriter();
+			out.print(profile);
+		}
 		return null;
 	}
 	@RequestMapping("/navmsg.do")
 	public String navmsg(HttpServletResponse response, @RequestParam("id") String id, Model model) throws Exception {
-		int cnt=msv.msgcnt(id);				//안읽은 메시지
-		PrintWriter out = response.getWriter();
-		out.print(cnt);
+		if(id!=null) {
+			int cnt=msv.msgcnt(id);				//안읽은 메시지
+			PrintWriter out = response.getWriter();
+			out.print(cnt);
+		}
 		return null;
 	}
 	// 회원관리목록

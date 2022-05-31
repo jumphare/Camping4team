@@ -97,9 +97,11 @@ function table(value){
 		location.href='./res_past.do?sort=end_date&camp_no=0&page=1';
 }
 </script>
-<div class="container" id="cur">
-<h1>상단바</h1><br><br>
-<div class="mg">&nbsp;</div>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
+<div class="container" id="cur" style="background-color:white;">
 <div class="title">현재예약관리</div>
 <div style="text-align:center;">
 <input type="button" value="현재예약"  class="btn btn-info" onclick="table(1)" style=" font-size:1.6rem;">

@@ -103,9 +103,11 @@ function pagin(value){
 	location.href="./res_past.do?sort=${sort}&camp_no=${camp_no}&page="+value;
 };
 </script>
-<div class="container" id="past">
-<h1>상단바</h1><br><br>
-<div class="mg">&nbsp;</div>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
+<div class="container" id="past" style="background-color:white;">
 <div class="title">지난예약관리</div>
 
 <div style="text-align:center;">
