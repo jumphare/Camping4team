@@ -7,10 +7,15 @@
 <head>
 <meta charset="UTF-8">
 <title>글작성</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/date.css" />
+<script src="<%=request.getContextPath() %>/js/date.js"></script>
 
 </head>
 <body>
-
+ 
 <form method=post action="pbresult.do">
 <table border=1 width=400 align=center>
 	<caption>글작성</caption>
@@ -25,11 +30,11 @@
 	</tr>
 
 	<tr><th>시작일</th>
-		<td><input type="text" name = "start_date" id="start_date" required = "required">
+		<td><input type="text" name = "start_date" id="startDate" required = "required">
        	</td>
 	</tr>
 	<tr><th>종료일</th>
-		<td><input type="text" name="end_date" id = "end_date" min = "start_date" required="required"></td>
+		<td><input type="text" name="end_date" id = "endDate"  required="required"></td>
 	</tr>
 	<tr><th>캠핑지역</th>
 		<td><select name="camp_area" id = "camp_area" required="required">

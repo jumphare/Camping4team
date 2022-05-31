@@ -27,8 +27,8 @@ public class reserveService {
 		return dao.spot(sp_no);
 	}
 	//장비 DB
-	public List<equipment> eqm(int camp_no){
-		return dao.eqm(camp_no);
+	public List<equipment> eqm(equipment eq){
+		return dao.eqm(eq);
 	}
 	//저장(결제대기)
 	public int res_save(reservation res) throws Exception {

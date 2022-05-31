@@ -71,7 +71,10 @@ public class reserveController {
 		// 자리 DB
 		spot spot = sv.spot(res.getSp_no());
 		// 옵션 DB
-		List<equipment> list = sv.eqm(res.getCamp_no());
+		equipment eq=new equipment();
+		eq.setCamp_no(res.getCamp_no());
+		eq.setType(spot.getType());
+		List<equipment> list = sv.eqm(eq);
 
 		model.addAttribute("res", res);
 		model.addAttribute("loc", loc);

@@ -3,8 +3,10 @@ select * from partner;
 select * from seq;
 select * from PB_JOIN;
 select * from member;
-
+select * from review;
 select * from pb_join where par_no = 3;
+select * from partner_comment;
+
 
 update partner set now_num = 1;
 delete from PB_JOIN where par_no = 23;
@@ -30,14 +32,14 @@ select partner_seq from dual;
 delete from partner;
 delete from pb_Join;
 
-drop sequence partner_seq;
+drop sequence pkey_seq;
 
 
 update partner set now_num = 1 + (select count(*) from pb_join where par_no = 23) where par_no = 23;
 select count(*) from pb_join where par_no = 23; 
 
 alter table partner rename column del to chk;
-create sequence pkey_seq
+create sequence pc_seq
 	increment by 1
 	start with 1
 	maxvalue 9999

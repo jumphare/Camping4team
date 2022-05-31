@@ -43,6 +43,7 @@ font-size:1.6rem;
 </style>
 <script>
 $(function() {
+	$("#camp").val("${eqm.camp_no}").prop("selected", true);
 	<c:forEach var="s" items="${type}">
 		var s = "${s}";
 		console.log(s);
@@ -53,9 +54,9 @@ $(function() {
     	$("#form").submit();
     	alert("수정되었습니다");
     	opener.location.reload();
-        setTimeout(function() {   
+         setTimeout(function() {   
             window.close();
-         }, 100);
+         }, 100); 
     });
 });
 function opt(num){

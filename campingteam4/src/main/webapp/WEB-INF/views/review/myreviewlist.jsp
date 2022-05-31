@@ -11,19 +11,60 @@
 <html> 
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>내 리뷰 목록</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <style> 
 h2 {font-size:15px;}
-.star-rating {width:304px; }
-.star-rating,.star-rating span {display:inline-block; height:55px; overflow:hidden; background:url(img/star.png)no-repeat; }
+.star-rating {width:143px; }
+.star-rating,.star-rating span {display:inline-block; height:29px; overflow:hidden; background:url(img/star.png)no-repeat; }
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
+ html { font-size:8px; } 
+  @font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+  .title{
+  margin-top:3rem;
+   font-family: 'GmarketSansBold';
+   font-size:3.2rem;
+   color:#E35E0A;
+   margin-bottom:1rem;
+  }
+  
+  table{
+  font-size:2.3rem;
+  }
+ 
+
+a{
+color: #000;
+}
+a:hover{
+text-decoration:none;
+}
+
+/* .container {
+  position: absolute;
+  height: 400px;
+  margin-left: -200px;
+  margin-top: -200px;
+  left: 30%;
+  top: 45%;
+};  */
 </style>
 </head>
 <body>
-		 
-		<table border="1" align=center width=700>
-			<caption>후기 게시판</caption>
-			<tr> 
+<h1>상단바</h1><br><br>
+<div class="container" >
+<div class="title">내 리뷰 목록</div>
+		<table class="table" border="1" align=center width=900>
+			<thead><tr class="cent" >
 				<th>대표이미지</th>
 				<th>제목</th>
 				<th>별점</th>
@@ -31,7 +72,7 @@ h2 {font-size:15px;}
 				<th>좋아요</th>
 				<th>작성자</th>
 				<th>조회수</th>
-			</tr>
+			</tr></thead>
 		<c:forEach var = "r" items="${mylist}" varStatus="status">
 
 
@@ -46,7 +87,6 @@ h2 {font-size:15px;}
 			</td>
 			<td>
 				<div class="wrap-star">
-								<h2>평점 : ${r.score}</h2>
 								<div class='star-rating'>
 									<span style="width: <fmt:formatNumber value="${r.score/5}" type="percent"/>"></span>
 								</div>
@@ -89,5 +129,6 @@ h2 {font-size:15px;}
 <a href="reviewlist.do?page=${pageCount}" style="text-decoration:none"> >> </a>
 </c:if>	
 </center>
+</div>
 </body>
 </html>

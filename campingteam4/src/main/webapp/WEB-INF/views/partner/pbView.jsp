@@ -60,7 +60,7 @@
 						<input type=button value="신청"
 							onClick="location.href='pbJoin.do?par_no=${par_no }&page=${page}' ">
 					</c:when>
-					<c:when test="${result == 1}">
+					<c:when test="${result >= 1}">
 						<input type=button value="취소"
 							onClick="location.href='pbCancel.do?par_no=${par_no }&page=${page}' ">
 					</c:when>
@@ -90,7 +90,45 @@
 			</td>
 		</tr>
 	</table>
+	<!-- 댓글 작성 -->
+			<form align="center" method="post" action="pbreply.do">
+				<input type="hidden" name="id" value="${id}"> 
+				<input type="hidden" id="par_no" name="par_no" value="${partner.par_no}">
+				<input type="hidden" id="page" name="page" value="${page}">
 
+				<p>댓글쓰기 :</p>
+				<textarea class="form-control" rows="3" cols="50" name="content"></textarea>
+				<input type="submit" value="확인">
+
+				<!-- 댓글 list 불러오는곳 -->
+				
+					<table border=1 align=center width=700>
+					<tr><th>id</th>
+						<th>댓글</th>
+						<th>작성일</th>
+						<c:if test="${id == l.id}">
+						<td>삭제</td>
+						</c:if>
+						<c:if test = "${pclist eq null}">
+							<td col = 3 value = "등록된 댓글이 없습니다.">
+							</td>
+						</c:if>
+						<c:forEach items="${pclist}" var="l">
+						<tr>
+							<td>${l.id}</td>
+							<td>${l.content}</td>
+							<td><fmt:formatDate value="${l.c_date}" pattern="yyyy-MM-dd" /></td>
+							<c:if test="${id == l.id}">
+							<td>
+								<input type="button" value="삭제"
+									onclick="location.href='pcdelete.do?com_no=${l.com_no }&par_no=${partner.par_no}&page=${page}'" />
+							</td>
+							</c:if>
+						</tr>
+						</c:forEach>
+					</table>
+				
+			</form>
 
 </body>
 </html>

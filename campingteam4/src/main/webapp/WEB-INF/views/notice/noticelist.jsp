@@ -7,9 +7,12 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판 목록</title>
+
 </head>
 <body>
+<header>
 <%@ include file="../include/top.jsp" %>
+<<<<<<< HEAD
 
 
   <c:if test="${sessionScope.id == 'admin'}">
@@ -17,6 +20,13 @@
 </c:if>
   
   
+=======
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
+<div class="container" style="background-color:white;">
+
+	<a href="noticeform.do">글작성</a> <br>
+>>>>>>> branch 'master' of https://github.com/simjin1212/Camping4team
 	글 갯수 : ${listcount}
 	<table border=1 align=center width=700>
 		<caption>게시판 목록</caption>
@@ -80,6 +90,6 @@
 
 </c:if>
 </center>	
-
+</div>
 </body>
 </html>

@@ -27,8 +27,8 @@ public class reserveDAO {
 		return session.selectOne("reserve.sp_sel",sp_no);
 	}
 	//장비 DB
-	public List<equipment> eqm(int camp_no){
-		return session.selectList("reserve.eqm_sel", camp_no);
+	public List<equipment> eqm(equipment eq){
+		return session.selectList("reserve.eqm_sel", eq);
 	}
 	//저장 (결제대기)
 	public int res_save(reservation res) {

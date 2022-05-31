@@ -96,12 +96,13 @@ public class equipmentController {
 		eq.setType(type);
 		
 		sv.eq_insert(eq);
-		redirect.addAttribute("camp_no", eq.getCamp_no());
-		return "redirect:/eq_table.do";
+//		redirect.addAttribute("camp_no", eq.getCamp_no());
+//		return "redirect:/eq_table.do";
+		return null;
 	}
 	
 	//수정폼
-	@RequestMapping("eq_updateform.do")
+	@RequestMapping("/eq_updateform.do")
 	public String eq_updateform(int eq_no, Model model) {
 		//해당 장비 정보 가져오고 type은 나눠서 배열로 저장
 		equipment eq=sv.eqdetail(eq_no);
@@ -122,16 +123,21 @@ public class equipmentController {
 		String type = String.join("-", typechk);
 		eq.setType(type);
 		equipment eqm=sv.eqdetail(eq.getEq_no());
+		if(Integer.toString(eq.getNum())==null)  //수량 수정 없을 시 기존 수량으로 셋팅
+			eq.setNum(eqm.getNum());
+		System.out.println("eqnum:"+eq.getNum());
 		//수정한 수량이 여분 수량보다 작으면 같게
 		if(eq.getNum()<eqm.getRm_num()) {
 			eq.setRm_num(eq.getNum());
-		} else if(eq.getNum()>eqm.getNum()) { //기존 수량보다 수정 수량이 크면
+		} else if(eq.getNum()>=eqm.getNum()) { //기존 수량보다 수정 수량이 크면
 			int n=eq.getNum()-eqm.getNum(); //추가분만큼
 			eq.setRm_num(eqm.getRm_num()+n); //기존 여분수량에 추가
 		}
+		System.out.println("rmnum:"+eq.getRm_num());
 		sv.eq_update(eq);
-		redirect.addAttribute("camp_no", eq.getCamp_no());
-		return "redirect:/eq_table.do";
+//		redirect.addAttribute("camp_no", eq.getCamp_no());
+//		return "redirect:/eq_table.do";
+		return null;
 	}
 	
 	//장비 삭제

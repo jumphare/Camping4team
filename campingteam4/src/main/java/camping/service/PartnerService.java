@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import camping.dao.PartnerDAO;
+import camping.model.msg;
 import camping.model.partner;
+import camping.model.partner_comment;
 import camping.model.pb_join;
 
 @Service
@@ -66,4 +68,23 @@ public class PartnerService {
 	public List<pb_join> getJoinList(int par_no) {
 		return PBdao.getJoinList(par_no);
 	}
+
+	public void sendJmsg(msg msg) {
+		PBdao.sendJmsg(msg);
+	}
+
+	public List<partner_comment> getPcList(int par_no) {
+		return PBdao.getPcList(par_no);
+	}
+
+	public int pcinsert(partner_comment pc) {
+		// TODO Auto-generated method stub
+		return PBdao.pcinsert(pc);
+	}
+
+	public int pcdelete(int com_no) {
+		return PBdao.pcdelete(com_no);
+	}
+
+
 }

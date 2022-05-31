@@ -6,12 +6,55 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>사용자 메인화면</title>
+<title>마이페이지</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" type="text/css" href="./css/main.css" />
 <link rel="stylesheet" type="text/css" href="./css/admin.css" />
+<style type="text/css">
+ html { font-size:10px; } 
+  @font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+  .title{
+  margin-top:3rem;
+   font-family: 'GmarketSansBold';
+   font-size:3.2rem;
+   color:#E35E0A;
+   margin-bottom:1rem;
+  }
+  
+  table{
+  font-size:1.6rem;
+  }
+ 
+
+a{
+color: #000;
+}
+a:hover{
+text-decoration:none;
+}
+
+.container {
+  position: absolute;
+  height: 400px;
+  margin-left: -200px;
+  margin-top: -200px;
+  left: 50%;
+  top: 40%;
+};
+
+</style>
 </head>
 <body>
-
+<h1>상단바</h1><br><br>
 <c:if test="${sessionScope.id == null }"> 
   <script>
    alert("다시 로그인 해주세요!");
@@ -21,27 +64,17 @@
 
 <c:if test="${sessionScope.id != null }"> 
     <a href="reviewlist.do">전체 리뷰 목록</a><br>
- <div id="main_wrap">
-   <h2 class="main_title">사용자 메인화면</h2>  
+ <div class="container">
+   <div class="title">마이페이지</div>  
    <form method="post" action="member_logout.do"> 
-   <table id="main_t">
-    <tr>
-     <th colspan="2">
-     <input type="button" value="정보수정" class="input_button"
-     		onclick="location='member_edit.do'" />
-     <input type="button" value="회원탈퇴" class="input_button"
-     		onclick="location='member_del.do'" />
-     <input type="submit" value="로그아웃" class="input_button" />     
-     </th>
-    </tr>
+   <table class="">
+    
     
     <tr>
-     <th>회원이름</th>
      <td>${name}님 로그인을 환영합니다</td>
     </tr>
     
     <tr>
-     <th>프로필사진</th>
      <td>
        <c:if test="${empty profile}">
        &nbsp;
@@ -52,20 +85,25 @@
      </td>
     </tr>
         <tr>
-    	<a href="reserveList.do">예약내역</a>
+        <th>
+    	<a href="reserveList.do">예약 내역 보기</a>
+    	</th>
     </tr>
+    <tr><th>
+    	<a href="myreviewlist.do">내 리뷰 목록 보기</a>
+    </th></tr>
+    <tr><th>
+    	<a href="memberlist.do">회원 목록</a>
+    </th></tr>
     <tr>
-    	<a href="myreviewlist.do">내 리뷰 목록</a>
-    </tr>
-    <tr>
-    	<td>
+    	<th>
     	<a href="pbList.do">동행찾기</a>
-    	</td>
+    	</th>
     </tr>
    </table>   
    </form>
    <br><br><br>
-   <input type = "button" value="채팅하기" onclick="chat()"/>
+   <input type = "button" value="채팅하기" onclick="chat()" class="btn btn-success" style="font-size:1.5em;"/>
    <script type="text/javascript">
 	function chat() {
 		// 함수 동작 테스트 
@@ -75,6 +113,15 @@
 		 window.open("chatlist.do", "chatting", "width=450, height=500, top=150, left=200");
 	}
 	</script>
+	<tr>
+     <th colspan="2">
+     <input type="button" value="정보수정" class="btn btn-success" style="font-size:1.5em;"
+     		onclick="location='member_edit.do'" />
+     <input type="button" value="회원탈퇴" class="btn btn-success" style="font-size:1.5em;"
+     		onclick="location='member_del.do'" />
+     <input type="submit" value="로그아웃" class="btn btn-success" style="font-size:1.5em;" />     
+     </th>
+    </tr>
  </div>
 </c:if>
 	
