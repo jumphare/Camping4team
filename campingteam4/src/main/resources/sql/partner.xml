@@ -48,7 +48,7 @@
 	</delete>
 	
 	<insert id = "join" parameterType= "pb_join">
-		insert into pb_join values(pkey_seq.nextval, #{par_no},#{join_id})
+		insert into pb_join values(pkey_seq.nextval, #{par_no}, #{join_id})
 	</insert>
 	
 	<update id = "pb_count" parameterType = "int">
@@ -70,5 +70,25 @@
 	<select id = "getJoinList" parameterType = "int" resultType = "pb_join">
 		select * from pb_join where par_no = #{par_no}
 	</select>
+	
+	<insert id = "sendJmsg" parameterType = "msg">
+		<selectKey keyProperty="msg_no" order="BEFORE" resultType = "int">
+			select nvl(max(msg_no),0) + 1 from msg
+		</selectKey>
+		insert into msg values(#{id},#{recv_id},#{content},sysdate,0,1,1,#{msg_no})
+		
+	</insert>
+	
+	<select id = "getPcList" parameterType = "int" resultType = "partner_comment">
+		select * from partner_comment where par_no = #{par_no}
+	</select>
+	
+	<insert id = "pcinsert" parameterType = "partner_comment">
+		insert into partner_comment values(pc_seq.nextval, #{par_no}, #{content}, sysdate, #{id}, 0, 0)
+	</insert>
+	
+	<delete id = "pcdelete" parameterType = "int">
+		 delete from partner_comment where com_no = #{com_no}
+	</delete>
 
 </mapper>

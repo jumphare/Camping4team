@@ -210,8 +210,8 @@ h2 {font-size:15px;}
  
 			<!-- 댓글 작성 -->
 			<form align="center" method="post" action="replywrite.do">
-				<input type="hidden" name="id" value="${id}"> <input
-					type="hidden" id="re_no" name="re_no" value="${review.re_no}">
+				<input type="hidden" name="id" value="${id}"> 
+				<input type="hidden" id="re_no" name="re_no" value="${review.re_no}">
 				<input type="hidden" id="page" name="page" value="${page}">
 				<input type="hidden" id="res_no" name="res_no"
 					value="${review.res_no}">

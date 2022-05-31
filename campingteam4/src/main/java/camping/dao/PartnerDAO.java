@@ -6,7 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import camping.model.msg;
 import camping.model.partner;
+import camping.model.partner_comment;
 import camping.model.pb_join;
 
 @Repository
@@ -65,6 +67,23 @@ public class PartnerDAO {
 
 	public List<pb_join> getJoinList(int par_no) {
 		return session.selectList("partnerns.getJoinList", par_no);
+	}
+	
+	public void sendJmsg(msg msg) {
+		session.insert("partnerns.sendJmsg", msg);
+	}
+
+	public List<partner_comment> getPcList(int par_no) {
+		return session.selectList("partnerns.getPcList", par_no);
+	}
+
+	public int pcinsert(partner_comment pc) {
+		// TODO Auto-generated method stub
+		return session.insert("partnerns.pcinsert", pc);
+	}
+
+	public int pcdelete(int com_no) {
+		return session.delete("partnerns.pcdelete", com_no);
 	}
 	
 }
