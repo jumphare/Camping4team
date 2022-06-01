@@ -15,3 +15,14 @@
 	});
 
 })(jQuery);
+
+$(document).ready(function() {
+	var currentPosition = parseInt($(".chat").css("top"));
+	$(window).scroll(function() {
+		var position = $(window).scrollTop();
+		$(".chat").stop().animate({
+			"top" : position + currentPosition + "px"
+		}, 1000);
+	});
+});
+

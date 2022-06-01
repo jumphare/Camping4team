@@ -7,6 +7,7 @@
 <html lang="en">
 <head>
   <title>메인 레이아웃</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -26,6 +27,7 @@ h2 {font-size:15px;}
 .star-rating {width:143px; }
 .star-rating,.star-rating span {display:inline-block; height:24px; overflow:hidden; background:url(img/star.png)no-repeat; }
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
+
 
   </style>
   
@@ -54,7 +56,7 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 	<a href="member_login.do">로그인</a><br>
 	 
 </c:if>
-<button onclick="window.open('chatlist.do','chat','width=430,height=500,location=no,status=no,scrollbars=yes')">채팅하러가기</button><br>
+
  <a href="date_sel.do">예약하기</a> <br>
     <a href="admin_camp_list.do">관리자 캠핑장 관리</a><br>
 	<a href="pbList.do">동행 찾기</a><br>
@@ -206,6 +208,12 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
     </div>
 </div>
 </div> -->
+</div>
+</div>
+<div class="chat">
+
+<button class="w-btn-outline w-btn-red-outline" onclick="window.open('chatlist.do','chat','width=430,height=500,location=no,status=no,scrollbars=yes')">Chating room</button><br>
+
 </div>
 </body>
 
