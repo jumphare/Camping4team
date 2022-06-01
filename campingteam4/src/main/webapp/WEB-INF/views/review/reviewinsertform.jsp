@@ -115,13 +115,13 @@ a:hover{
 text-decoration:none;
 }
 
-.container {
+/* .container {
   position: absolute;
   margin-left: -200px;
   margin-top: -200px;
   left: 39%;
   top: 30%;
-};
+}; */
 
   </style> 
 </head>
