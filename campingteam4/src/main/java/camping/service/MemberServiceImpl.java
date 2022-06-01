@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import camping.dao.MemberDAOImpl;
 import camping.model.member;
+import camping.model.reservation;
+import camping.model.review;
 
 @Service
 public class MemberServiceImpl {
@@ -41,5 +43,20 @@ public class MemberServiceImpl {
 	public List<member> memberlist(member m) {
 		// TODO Auto-generated method stub
 		return memberDao.memberlist(m);
+	}
+
+	public member memberdetail(String id) {
+		// TODO Auto-generated method stub
+		return memberDao.memberdetail(id);
+	}
+
+	public List<reservation> reslist(String id) {
+		// TODO Auto-generated method stub
+		return memberDao.reslist(id);
+	}
+	
+	public List<review> memberlist(String id) {
+		// TODO Auto-generated method stub
+		return memberDao.memberlist(id);
 	}
 }

@@ -109,7 +109,7 @@ function rcvlist(){
 	        	<li class="nav-item active"><a href="./layout2.do" class="nav-link">Home</a></li>
 	         	<li class="nav-item"><a href="./noticelist.do" class="nav-link">NOTICE</a></li> <!-- 공지 -->
 	        	<li class="nav-item"><a href="./pbList.do" class="nav-link">PARTNERS</a></li> <!-- 동행찾기 -->
-	        	<li class="nav-item"><a href="./reviewlist.do" class="nav-link">RIVIEW</a></li> <!-- 리뷰 -->
+	        	<li class="nav-item"><a href="./reviewlist.do" class="nav-link">REVIEW</a></li> <!-- 리뷰 -->
 	          
 	  <!-- 비회원&일반회원은 마이페이지 드롭다운버튼 - 비회원이 클릭 시 로그인 창으로 넘어가겠지 -->
 	        <c:if test="${empty id || id!='admin' }">

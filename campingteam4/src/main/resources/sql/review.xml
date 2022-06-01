@@ -99,6 +99,9 @@
 	
 	<!-- 리뷰 존재하는지 확인 -->
 	<select id="revexist" parameterType="int" resultType="int">
-		select count(*) from review where re_no = #{re_no}
+		select count(*) from review where res_no = #{res_no}
+	</select>
+	<select id="reno" parameterType="int" resultType="int">
+		select re_no from review where res_no = #{res_no}
 	</select>
 </mapper>

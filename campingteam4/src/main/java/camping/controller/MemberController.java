@@ -24,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import camping.model.camp_loc;
 import camping.model.member;
 import camping.model.reservation;
+import camping.model.review;
 import camping.model.spot;
 import camping.service.msgService;
 
@@ -574,23 +575,19 @@ public class MemberController {
 	
 	@RequestMapping("/profile.do")
 	public String profile(HttpServletResponse response, @RequestParam("id") String id, Model model) throws Exception {
-		if(id!=null) {
-			System.out.println(id);
-			member m = memberService.userCheck(id);
-			String profile=m.getProfile();		//프로필사진
-			System.out.println(profile);
-			PrintWriter out = response.getWriter();
-			out.print(profile);
-		}
+		System.out.println(id);
+		member m = memberService.userCheck(id);
+		String profile=m.getProfile();		//프로필사진
+		System.out.println(profile);
+		PrintWriter out = response.getWriter();
+		out.print(profile);
 		return null;
 	}
 	@RequestMapping("/navmsg.do")
 	public String navmsg(HttpServletResponse response, @RequestParam("id") String id, Model model) throws Exception {
-		if(id!=null) {
-			int cnt=msv.msgcnt(id);				//안읽은 메시지
-			PrintWriter out = response.getWriter();
-			out.print(cnt);
-		}
+		int cnt=msv.msgcnt(id);				//안읽은 메시지
+		PrintWriter out = response.getWriter();
+		out.print(cnt);
 		return null;
 	}
 	// 회원관리목록
@@ -606,4 +603,29 @@ public class MemberController {
 	model.addAttribute("memberlist", memberlist);
 	return "member/jsp/member_admin";
 			}
+	//회원관리상세
+	@RequestMapping("memberdetail.do")
+	public String memberdetail(member m, HttpServletRequest request, HttpSession session, Model model) {
+
+	String id = m.getId();
+	member member = memberService.memberdetail(id);
+	System.out.println("member : " + member);
+	
+	List<reservation> reslist = memberService.reslist(id); 
+	
+	List<review> rlist = memberService.memberlist(id);
+	
+	int page = 1; // 페이지 초기값
+	int limit = 10; // 한화면에 나올 데이터 개수 정의
+
+	if (request.getParameter("page") != null) {
+		page = Integer.parseInt(request.getParameter("page"));
+	}
+
+	model.addAttribute("member", member);
+	model.addAttribute("reslist", reslist);
+	model.addAttribute("rlist", rlist);
+	model.addAttribute("page", page);
+	return "member/jsp/member_admin_detail";
+	}
 }

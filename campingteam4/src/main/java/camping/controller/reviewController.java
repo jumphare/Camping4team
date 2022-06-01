@@ -301,7 +301,7 @@ public class reviewController {
 		}
 
 		review review = service.reviewdetail(re_no); // 상세정보 구하기
-		
+
 		int res_no = review.getRes_no();
 
 		List<review_reply> list = service.replylist(re_no);

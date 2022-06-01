@@ -95,4 +95,7 @@ public class ReviewService {
 	public int revexist(int res_no) {
 		return dao.revexist(res_no); 
 	}
+	public int reno(int res_no) {
+		return dao.reno(res_no);
+	}
 }

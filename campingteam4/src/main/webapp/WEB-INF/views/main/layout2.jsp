@@ -59,7 +59,6 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
     <a href="admin_camp_list.do">관리자 캠핑장 관리</a><br>
 	<a href="pbList.do">동행 찾기</a><br>
 	<a href="reviewlist.do">리뷰 목록</a><br>
-    <a href="readreview.do">댓글 목록</a><br>
     <a href="eq_table.do">장비</a><br>
     <a href="noticelist.do">공지사항 목록</a><br>
 	<a href="res_admin.do">예약관리</a><br>

@@ -84,9 +84,12 @@ $(function() {
 	var no = "${eqmm.eq_no }";
 	var num=${eqmm.num};
 	var rm=${eqmm.rm_num};
+	var eq=${eqmm.eq_no };
 	
-	if(num!=rm)
+	if(num!=rm){
 		$("input:checkbox[name='chk'][value='"+no+"']").prop("disabled", true);
+		$("#"+eq).prop("disabled", true);
+	}
 	</c:forEach>
 	
 	$("#allchk").click(function(){
@@ -206,7 +209,7 @@ function udt(value){
 	<c:if test="${eqmm.camp_no==2 }">천안</c:if>
 	<c:if test="${eqmm.camp_no==3 }">대전</c:if></td>
 	<td width="20%">${eqmm.type }</td> <td width="20%">${eqmm.name }</td> <td width="15%">${eqmm.price }</td> <td width="10%">${eqmm.num }</td> <td width="10%">${eqmm.rm_num }</td>
-	<td width="10%"><input type="button" onclick="udt(${eqmm.eq_no })" value="수정" class="btn btn-info btn-sm" style=" font-size:1.6rem;"></td>
+	<td width="10%"><input type="button" onclick="udt(${eqmm.eq_no })" id="${eqmm.eq_no }" value="수정" class="btn btn-info btn-sm" style=" font-size:1.6rem;"></td>
 	<td width="5%"> <input type="checkbox" name="chk" value="${eqmm.eq_no }"> </td>
 </tr>
 	</c:forEach>

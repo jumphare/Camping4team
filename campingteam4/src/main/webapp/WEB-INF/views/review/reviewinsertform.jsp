@@ -16,8 +16,8 @@
 var locked = 0;
 
 function show(star) {
-	if (locked)
-		return;
+/*   	if (locked)
+		return;   */
 	var i;
 	var image;
 	var el;
@@ -28,6 +28,13 @@ function show(star) {
 		image = 'image' + i;
 		el = document.getElementById(image);
 		el.src = "img/star1.png"
+	}
+	if(star<5 && locked==1){
+		for(i=star+1; i<=5; i++){
+			image = 'image' + i;
+			el = document.getElementById(image);
+			el.src = "img/star0.png"
+		}
 	}
 
 	switch (star) {
@@ -59,7 +66,6 @@ function noshow(star) {
 	var image;
 	var el;
 
-
 	for (i = 1; i <= star; i++) {
 		image = 'image' + i;
 		el = document.getElementById(image);
@@ -72,9 +78,10 @@ function lock(star){
 	locked=1;
 }
 function mark(star){
-	lock(star);
+ 	lock(star); 
 	document.cmtform.score.value=star;
 }
+
 </script>
 <style>
   html { font-size:15px; } 
