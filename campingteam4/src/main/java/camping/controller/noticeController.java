@@ -113,7 +113,9 @@ public class noticeController {
 		System.out.println("listcount:" + listcount);
 
 		List<notice> noticelist = service.getBoardList(page);
-		System.out.println("noticelist:" + noticelist);
+		List<notice> notiList = service.getBoardNotiList(page);
+		
+		System.out.println("notiList===>" + notiList);
 
 		// 총페이지수
 		int pageCount = listcount / limit + ((listcount % limit == 0) ? 0 : 1);
@@ -127,6 +129,7 @@ public class noticeController {
 		model.addAttribute("page", page);
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("noticelist", noticelist);
+		model.addAttribute("notiList", notiList);		
 		model.addAttribute("pageCount", pageCount);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);

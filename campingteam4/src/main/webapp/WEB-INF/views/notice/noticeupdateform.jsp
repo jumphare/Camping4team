@@ -39,14 +39,12 @@
 
 <style>
    html { font-size:10px; }  
-
    @font-face {
     font-family: 'GmarketSansBold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 } 
-
    body{
 font-size:1.6rem;
 }   
@@ -58,44 +56,10 @@ font-size:1.6rem;
    color:#E35E0A;
    margin-bottom:1rem;
   } 
-
  .eqtable th{
  text-align:center;  
 } 
-.eqtable td{
-   /* text-align:center; */
-
-}
-/* .mg{
-margin:1rem;
-} */
- 
-/* .pmt{
-width:40%; 
-border:dotted #a0a0a0; 
-border-radius:5px;
-padding: 2rem;
-} */
-
- /* a {
- text-decoration:none;
- color:#E35E0A;
- } */
  a:hover{text-decoration:none;}
- 
-/*  .pgn a{
-color:#000;
-} */
-
-/* .headb {
-	font-weight: bold;
-} */
-
-/* .wrb{
-	position : absolute;
-	font-weight : bold;
-	right : 10px;
-} */
  .div1{
 	margin : 50px 250px;
 } 
@@ -113,18 +77,29 @@ color:#000;
 <div class = "div1">
 	<table class = "table eqtable" width=400 align=center>
 		<tr><th>제목</th>
-			<td><input type=text id = "subject" name="subject" required="required" autofocus="autofocus" style="width:100%" value="${bcont.board_subject}"/></td>
+			<td><input type=text id = "subject" name="subject" required="required" autofocus="autofocus" style="width:100%" value="${board.subject}"/></td>
 		</tr>
 			<tr><th>옵션</th>
-			<td ><input type=checkbox id = "noti_flag" name="noti_flag" value="1">공지글
-			
-			
-			=======
-			
+
+			<td ><input type=checkbox id = "noti_flag_check" name="noti_flag_check" value="1"  onclick="copyValue()" <c:if test="${board.noti_flag =='1'}">checked</c:if>>공지글
+			   <input type="hidden" name="noti_flag" id="noti_flag" value="0" >
+			 <script>
+					 function copyValue(){
+							var checked = $('#noti_flag_check').is(':checked');
+							if(checked){
+								$("#noti_flag").val(1);
+							}else{
+								$("#noti_flag").val(0);	
+							}
+		 
+					 }
+					 <c:if test="${board.noti_flag =='1'}">copyValue()</c:if>
+			 </script>  			
+
 			</td>
 		</tr>	
 		<tr><th>내용</th>
-			<td><textarea cols = 23 rows = 5 id = "content" name = "content" required = "required"  style="width:100%" value="${bcont.board_content}"></textarea>
+			<td><textarea cols = 23 rows = 5 id = "content" name = "content" required = "required"  style="width:100%" value="${board.content}"></textarea>
 		</tr> 
 	
 		<tr>

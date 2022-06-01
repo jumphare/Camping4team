@@ -58,44 +58,12 @@ font-size:1.6rem;
    color:#E35E0A;
    margin-bottom:1rem;
   } 
-
  .eqtable th{
  text-align:center;  
 } 
 .eqtable td{
-   /* text-align:center; */
-
 }
-/* .mg{
-margin:1rem;
-} */
- 
-/* .pmt{
-width:40%; 
-border:dotted #a0a0a0; 
-border-radius:5px;
-padding: 2rem;
-} */
-
- /* a {
- text-decoration:none;
- color:#E35E0A;
- } */
  a:hover{text-decoration:none;}
- 
-/*  .pgn a{
-color:#000;
-} */
-
-/* .headb {
-	font-weight: bold;
-} */
-
-/* .wrb{
-	position : absolute;
-	font-weight : bold;
-	right : 10px;
-} */
  .div1{
 	margin : 50px 250px;
 } 
@@ -107,18 +75,15 @@ color:#000;
 <h1 style="margin-bottom:30px;">--</h1>
 
 <form action="noticeInsert.do" method=post enctype="multipart/form-data">
-<h2 class="title">글작성1</h2>
+<h2 class="title">글작성</h2>
 <div class = "div1">
 	<table class = "table eqtable" width=400 align=center>
 		<tr><th>제목</th>
 			<td><input type=text id = "subject" name="subject" required="required" autofocus="autofocus"  style="width:100%" ></td>
 		</tr>
 			<tr><th>옵션</th>
-			<td ><input type=checkbox id = "noti_flag_check" name="noti_flag_check" value="1" onclick="copyValue()">공지글
-			
-			
-			   <input type="text" name="noti_flag" id="noti_flag" value="0">
-			   
+			<td ><input type=checkbox id = "noti_flag_check" name="noti_flag_check" value="1" onclick="copyValue()" >공지글
+			   <input type="hidden" name="noti_flag" id="noti_flag" value="0">
 			 <script>
 			 function copyValue(){
 				 
@@ -131,13 +96,8 @@ color:#000;
 					}
  
 			 }
-			 
-			 
-			 
 			 </script>  
-			   
-			   
-			   
+
 			</td>
 		</tr>	
 		<tr><th>내용</th>
@@ -161,7 +121,7 @@ color:#000;
 			<td colspan=8 align=center>
 				<input type=submit value="등록">
 				<input type=reset value="취소"
-				onClick="location.href='noticelist.do?not_no=${board.not_no}&page=${page}' ">
+				onClick="location.href='noticelist.do' ">
 			</td>		
 		</tr>
 	</table>

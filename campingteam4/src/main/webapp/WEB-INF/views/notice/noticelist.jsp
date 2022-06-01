@@ -16,12 +16,12 @@
 <style>
   html { font-size:10px; } 
 
-  @font-face {
+   @font-face {
     font-family: 'GmarketSansBold';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-}
+} 
 
 body{
 font-size:1.6rem;
@@ -34,69 +34,29 @@ font-size:1.6rem;
    color:#E35E0A;
    margin-bottom:1rem;
   }
-
-.eqtable th{
+ .eqtable th{
 text-align:center;
-}
-.eqtable td{
+} 
+ .eqtable td{
 text-align:center;
-
-}
-.mg{
-margin:1rem;
-}
- 
-.pmt{
-width:40%; 
-border:dotted #a0a0a0; 
-border-radius:5px;
-padding: 2rem;
-}
-
- a {
- text-decoration:none;
- color:#E35E0A;
- }
+} 
  a:hover{text-decoration:none;}
- 
- .pgn a{
-color:#000;
-}
 
-.headb {
-	font-weight: bold;
-}
-
-.wrb{
+ .wrb{
 	position : absolute;
 	font-weight : bold;
 	right : 60px;
-}
-
+} 
 .div1{
 	margin : 10px 50px;
-
-}
-
-.date{
-	font-size: 80%;
-}
+} 
 </style>
 </head>
 <body>
 <header>
 <%@ include file="../include/top.jsp" %>
-<<<<<<< HEAD
-=======
 
-  <c:if test="${sessionScope.id == 'admin'}">
-   <a href="noticeform.do">글작성</a>  <br>
-</c:if>
-  
->>>>>>> branch 'master' of https://github.com/simjin1212/Camping4team
 </header>
-<<<<<<< HEAD
-
 <h1 style="margin-bottom:30px;">--</h1>
 		<h2 class="title">공지 게시판</h2>
 
@@ -109,19 +69,24 @@ color:#000;
 				<th>번호</th>
 				<th font-weight = bold>제목</th>
 				<th>날짜</th>
+			</tr>	
+	<!-- 화면 출력 번호 -->
+
+			<c:forEach var="n" items="${notiList}">
+			<tr>
+				<td>공지글
+				</td>
+				<td>
+					<a href="noticecontent.do?not_no=${n.not_no}&page=${page}">
+						${n.subject}
+					</a>
+				</td>
+				<td>
+					<fmt:formatDate value="${n.no_date}"
+						 pattern="yyyy-MM-dd "/>
+				</td>
 			</tr>
-=======
-<h1 style="margin-bottom:50px;">--</h1>
-<div class="container" style="background-color:white;">
-	글 갯수 : ${listcount}
-	<table border=1 align=center width=700>
-		<caption>게시판 목록</caption>
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>날짜</th>
-		</tr>
->>>>>>> branch 'master' of https://github.com/simjin1212/Camping4team
+			</c:forEach>
 		
 			<!-- 화면 출력 번호 -->
 			<c:set var="num" value="${listcount-(page-1)*10}"/>
