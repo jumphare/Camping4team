@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import camping.model.member;
+import camping.model.reservation;
+import camping.model.review;
 
 @Repository
 public class MemberDAOImpl {
@@ -64,5 +66,20 @@ public class MemberDAOImpl {
 	public List<member> memberlist(member m) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("memberns.list", m);
+	}
+
+	public member memberdetail(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("memberns.member", id);
+	}
+
+	public List<reservation> reslist(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("memberns.reslist", id);
+	}
+
+	public List<review> memberlist(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("memberns.rlist", id);
 	}
 }

@@ -1,7 +1,4 @@
-package snippet;
-
-public class 회원관리 {
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 		pageEncoding="UTF-8"%>
 		<%@ taglib uri="http://www.springframework.org/security/tags" prefix="s" %>
 	<s:authentication property="principal" var="user"/>
@@ -78,11 +75,12 @@ public class 회원관리 {
 				</tr></thead>
 			<c:forEach var = "r" items="${memberlist}" varStatus="status">
 			<tr>
-				<td>${r.id}</td>
+				<td><a style="text-decoration:none" href="./memberdetail.do?id=${r.id}">
+				${r.id}</td>
 				<td>${r.pwd}</td>
 				<td>${r.name}</td>
 				<td>${r.jumin}</td>
-				<td>${r.addr1}</td>
+				<td>${r.addr1}-${r.addr2}</td>
 				<td>${r.phone}</td>	
 				<td>${r.email}</td>
 			</tr>

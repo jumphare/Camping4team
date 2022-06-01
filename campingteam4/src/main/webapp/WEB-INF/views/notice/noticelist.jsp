@@ -86,7 +86,16 @@ color:#000;
 <body>
 <header>
 <%@ include file="../include/top.jsp" %>
+<<<<<<< HEAD
+=======
+
+  <c:if test="${sessionScope.id == 'admin'}">
+   <a href="noticeform.do">글작성</a>  <br>
+</c:if>
+  
+>>>>>>> branch 'master' of https://github.com/simjin1212/Camping4team
 </header>
+<<<<<<< HEAD
 
 <h1 style="margin-bottom:30px;">--</h1>
 		<h2 class="title">공지 게시판</h2>
@@ -101,6 +110,18 @@ color:#000;
 				<th font-weight = bold>제목</th>
 				<th>날짜</th>
 			</tr>
+=======
+<h1 style="margin-bottom:50px;">--</h1>
+<div class="container" style="background-color:white;">
+	글 갯수 : ${listcount}
+	<table border=1 align=center width=700>
+		<caption>게시판 목록</caption>
+		<tr>
+			<th>번호</th>
+			<th>제목</th>
+			<th>날짜</th>
+		</tr>
+>>>>>>> branch 'master' of https://github.com/simjin1212/Camping4team
 		
 			<!-- 화면 출력 번호 -->
 			<c:set var="num" value="${listcount-(page-1)*10}"/>

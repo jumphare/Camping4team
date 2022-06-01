@@ -116,7 +116,12 @@ color:#000;
 			<td><input type=text id = "subject" name="subject" required="required" autofocus="autofocus" style="width:100%" value="${bcont.board_subject}"/></td>
 		</tr>
 			<tr><th>옵션</th>
-			<td ><input type=checkbox id = "noti_flag" name="noti_flag" value="1">공지글</td>
+			<td ><input type=checkbox id = "noti_flag" name="noti_flag" value="1">공지글
+			
+			
+			=======
+			
+			</td>
 		</tr>	
 		<tr><th>내용</th>
 			<td><textarea cols = 23 rows = 5 id = "content" name = "content" required = "required"  style="width:100%" value="${bcont.board_content}"></textarea>

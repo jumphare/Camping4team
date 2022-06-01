@@ -9,7 +9,7 @@
   <meta charset="utf-8">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-<script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+<!-- <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script> -->
 <link rel="stylesheet" href="${path }/css/style.css">
 
 <script>
@@ -152,7 +152,7 @@ function rcvlist(){
     <!-- END nav -->
 
 
-	<script src="${path }/js/js/jquery.min.js"></script>
+<%-- 	<script src="${path }/js/js/jquery.min.js"></script> --%>
   <script src="${path }/js/js/popper.js"></script>
   <script src="${path }/js/js/bootstrap.min.js"></script>
   <script src="${path }/js/js/main.js"></script>

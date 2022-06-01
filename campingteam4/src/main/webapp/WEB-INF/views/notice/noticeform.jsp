@@ -107,14 +107,38 @@ color:#000;
 <h1 style="margin-bottom:30px;">--</h1>
 
 <form action="noticeInsert.do" method=post enctype="multipart/form-data">
-<h2 class="title">글작성</h2>
+<h2 class="title">글작성1</h2>
 <div class = "div1">
 	<table class = "table eqtable" width=400 align=center>
 		<tr><th>제목</th>
 			<td><input type=text id = "subject" name="subject" required="required" autofocus="autofocus"  style="width:100%" ></td>
 		</tr>
 			<tr><th>옵션</th>
-			<td ><input type=checkbox id = "noti_flag" name="noti_flag" value="1">공지글</td>
+			<td ><input type=checkbox id = "noti_flag_check" name="noti_flag_check" value="1" onclick="copyValue()">공지글
+			
+			
+			   <input type="text" name="noti_flag" id="noti_flag" value="0">
+			   
+			 <script>
+			 function copyValue(){
+				 
+					var checked = $('#noti_flag_check').is(':checked');
+					
+					if(checked){
+						$("#noti_flag").val(1);
+					}else{
+						$("#noti_flag").val(0);	
+					}
+ 
+			 }
+			 
+			 
+			 
+			 </script>  
+			   
+			   
+			   
+			</td>
 		</tr>	
 		<tr><th>내용</th>
 			<td><textarea cols = 23 rows = 5 id = "content" name = "content" required = "required" style="width:100%" ></textarea>

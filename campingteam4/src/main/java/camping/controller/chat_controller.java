@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class chat_controller {
 	//채팅방
 	@RequestMapping("chatlist.do")
-	public String chatlist() {
-
+	public String chatlist(HttpSession session,Model model) {
+		String id = (String)session.getAttribute("id");
+		model.addAttribute("id",id);
 		return "chat/chatlist";
 	}	
 	@RequestMapping("chat.do")
