@@ -207,15 +207,18 @@ public class reserveController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");		 
 		//비교할 date와 today를데이터 포맷으로 변경
 		Date date = new Date(dateFormat.parse(res.getEnd_date()).getTime()); 
+		Date date2 = new Date(dateFormat.parse(res.getStart_date()).getTime()); 
 		Date today = new Date(dateFormat.parse(todayfm).getTime());	 
 		//compareTo메서드를 통한 날짜비교 -> +일 경우 현재예약
 		int compare = date.compareTo(today); 
+		int compare2 = date2.compareTo(today); 
 		int re_no=0;
 		int cnt=rv.revexist(res.getRes_no());
 		if(cnt!=0) re_no=rv.reno(res.getRes_no());	//리뷰 있으면 re_no값 리턴
 		
 		model.addAttribute("re_no", re_no);
 		model.addAttribute("compare", compare);
+		model.addAttribute("compare2", compare2);
 		model.addAttribute("mem", mem);
 		model.addAttribute("camp", loc);
 		model.addAttribute("spot", spot);

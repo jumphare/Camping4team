@@ -282,7 +282,7 @@ public class MemberController {
 				String name = m.getName();
 				String profile = m.getProfile();
 
-				model.addAttribute("name", name);
+//				model.addAttribute("name", name);
 				model.addAttribute("profile", profile);
 
 				return "redirect:/layout2.do";
