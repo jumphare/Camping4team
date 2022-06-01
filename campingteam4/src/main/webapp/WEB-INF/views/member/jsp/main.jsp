@@ -96,14 +96,8 @@ text-decoration:none;
     <tr><th>
     	<a href="memberlist.do">회원 목록</a>
     </th></tr>
-    <tr>
-    	<th>
-    	<a href="pbList.do">동행찾기</a>
-    	</th>
-    </tr>
    </table><br>
    <div>
-   <input type = "button" value="채팅하기" onclick="chat()" class="btn btn-success" style="font-size:1.0em;"/>
    <script type="text/javascript">
 	function chat() {
 		// 함수 동작 테스트 
