@@ -11,6 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="se2/js/HuskyEZCreator.js" charset="utf-8"></script> 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/reviewupdate.js"></script>
 <!-- <script src="js/star.js"></script> -->
 <script>
 var locked = 0;
@@ -132,7 +133,8 @@ text-decoration:none;
 <h1 style="margin-bottom:50px;">--</h1>
 <div class="container" >
 				<div class="title">후기 작성</div>
-		<form id="insert" name="cmtform" method=post action="<%=request.getContextPath()%>/re_insert.do" enctype="multipart/form-data">
+		<form id="insert" name="cmtform" method=post onsubmit="return check()" 
+		action="<%=request.getContextPath()%>/re_insert.do" enctype="multipart/form-data">
 			<input type="hidden" id="res_no" name="res_no" value="${res_no}">	
 			<input type="hidden" id="sp_name" name="sp_name" value="${sp_name}">
 				예약 장소 : ${sp_name} 

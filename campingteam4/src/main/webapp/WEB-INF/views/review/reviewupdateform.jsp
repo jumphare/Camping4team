@@ -11,6 +11,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="se2/js/HuskyEZCreator.js" charset="utf-8"></script> 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/reviewupdate.js"></script>
 <script>
 var locked = 0;
 
@@ -130,7 +131,8 @@ text-decoration:none;
 </header>
 <h1 style="margin-bottom:50px;">--</h1>
 <div class="container" >
-<form id="update" name="cmtform" method=post action="<%=request.getContextPath()%>/reviewupdate.do" enctype="multipart/form-data">
+<form id="update" name="cmtform" method=post onsubmit="return check()" 
+action="<%=request.getContextPath()%>/reviewupdate.do" enctype="multipart/form-data">
 <input type="hidden" name="re_no" value="${review.re_no}">
 <input type="hidden" name="page" value="${page}">
 	<div class="title">후기 수정</div>
