@@ -120,7 +120,10 @@ text-decoration:none;
 <title>글수정</title>
 </head>
 <body>
-<h1>상단바</h1><br><br>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
 <div class="container" >
 <form id="update" name="cmtform" method=post action="<%=request.getContextPath()%>/reviewupdate.do" enctype="multipart/form-data">
 <input type="hidden" name="re_no" value="${review.re_no}">

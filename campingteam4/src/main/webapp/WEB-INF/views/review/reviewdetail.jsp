@@ -191,7 +191,10 @@ input[type="text"]{
 
 </head>
 <body>
-<h1>상단바</h1><br><br>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
 		<div class="container">
 		<div class="title">후기 상세</div>
 		 <form class="container">
@@ -268,7 +271,7 @@ input[type="text"]{
 					value="${review.res_no}">
 				<div class="title">댓글 작성</div>
 				<input type="text" class="" rows="3" cols="50" style="height:80%; width:90%;" name="content" >&nbsp;&nbsp;
-				<input type="submit" value="확인" class="btn btn-success" style="font-size:1.5em;">
+				<input type="submit" value="확인" class="btn btn-success" style="font-size:1.0em;">
 				</table>
 				<!-- 댓글 list 불러오는곳 -->
 				

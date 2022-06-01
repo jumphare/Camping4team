@@ -60,7 +60,10 @@ text-decoration:none;
 </style>
 </head>
 <body>
-<h1>상단바</h1><br><br>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
 <div class="container" >
 <div class="title">내 리뷰 목록</div>
 		<table class="table" border="1" align=center width=900>
