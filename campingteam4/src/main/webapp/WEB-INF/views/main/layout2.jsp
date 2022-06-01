@@ -54,7 +54,7 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 	<a href="member_login.do">로그인</a><br>
 	 
 </c:if>
-
+<button onclick="window.open('chatlist.do','chat','width=430,height=500,location=no,status=no,scrollbars=yes')">채팅하러가기</button><br>
  <a href="date_sel.do">예약하기</a> <br>
     <a href="admin_camp_list.do">관리자 캠핑장 관리</a><br>
 	<a href="pbList.do">동행 찾기</a><br>

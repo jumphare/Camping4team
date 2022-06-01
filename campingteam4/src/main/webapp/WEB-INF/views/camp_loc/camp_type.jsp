@@ -72,8 +72,9 @@ a:hover {
 	top: 1px;
 }
 .image{
-	content:url("img/camping.jpg")
+	border-radius:10%;
 }
+
 .carover{
 	content:url("img/carbak.jpg")
 }
@@ -92,10 +93,10 @@ a:hover {
 				value="글램핑"> <input type="submit" class="myButton" id="cara"
 				name="type" value="카라반">
 			<div class="imageGallery">
-				<img class="image" width=700 height=480>
-				<img src="img/carbak.jpg"  width=700 height=480> <img
-					src="img/gramping.jpg" width=700 height=480> <img
-					src="img/caraban.png" width=700 height=480>
+				<img src="img/camping.jpg" class="image" width=700 height=480 border-radius=3>
+				<img src="img/carbak.jpg" class="image" width=700 height=480> <img
+					src="img/gramping.jpg" class="image" width=700 height=480> <img
+					src="img/caraban.png" class="image" width=700 height=480>
 			</div>
 
 		</form>
