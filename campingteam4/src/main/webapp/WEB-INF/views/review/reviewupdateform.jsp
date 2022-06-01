@@ -15,8 +15,7 @@
 var locked = 0;
 
 function show(star) {
-	if (locked)
-		return;
+	
 	var i;
 	var image; 
 	var el;
@@ -28,6 +27,13 @@ function show(star) {
 		el = document.getElementById(image);
 		el.src = "img/star1.png"
 	} 
+	if(star<5 && locked==1){
+		for(i=star+1; i<=5; i++){
+			image = 'image' + i;
+			el = document.getElementById(image);
+			el.src = "img/star0.png"
+		}
+	}
 
 	switch (star) {
 	case 1:
@@ -72,7 +78,6 @@ function lock(star){
 }
 function mark(star){
 	lock(star);
-	alert("선택한 값은 "+star+"입니다.");
 	document.cmtform.score.value=star;
 }
 </script>
@@ -132,16 +137,17 @@ text-decoration:none;
 	<tr><th>제목</th>
 		<td><input type=text id="subject" name="subject" value="${review.subject }" required="required" size="60" maxlength="29" placeholder="제목(최대 29자)"></td>
 	</tr>
-<div id=rating>
+				<div id=rating>
     			<span>
     			<img id=image1 onmouseover=show(1) onclick=mark(1) onmouseout=noshow(1) src="img/star0.png">
     			<img id=image2 onmouseover=show(2) onclick=mark(2) onmouseout=noshow(2) src="img/star0.png">
     			<img id=image3 onmouseover=show(3) onclick=mark(3) onmouseout=noshow(3) src="img/star0.png">
     			<img id=image4 onmouseover=show(4) onclick=mark(4) onmouseout=noshow(4) src="img/star0.png">
     			<img id=image5 onmouseover=show(5) onclick=mark(5) onmouseout=noshow(5) src="img/star0.png">
-    				
+    			</span><br>
+    			 <span id="startext">평가하기</span>	
     			</div>
-    			<input type="hidden" name="score"/>
+    			<input type="hidden" name="score" id="score"/>
 		<td><textarea rows="10" cols="100" dir="auto" maxlength="284"
 		id="content" name="content">${review.content}</textarea></td>
 	<tr>
