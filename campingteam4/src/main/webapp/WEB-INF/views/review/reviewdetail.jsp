@@ -19,6 +19,30 @@
 <title>상세페이지</title>
 <!-- 별점 출력 -->
 <style>
+.heart {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: url(https://cssanimation.rocks/images/posts/steps/heart.png) no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  animation: fave-heart 1s steps(28);
+}
+.heart:hover {
+  background-position: -2800px 0;
+  transition: background 1s steps(28);
+}
+@keyframes fave-heart {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -2800px 0;
+  }
+}
 h2 {font-size:15px;}
 .star-rating {width:143px; }
 .star-rating,.star-rating span {display:inline-block; height:24px; overflow:hidden; background:url(img/star.png)no-repeat; }
@@ -227,6 +251,8 @@ input[type="text"]{
 									<input type="button" value="좋아요취소" class="btn btn-success" style="font-size:1.0em;"
 										onclick="location.href='reviewdelete.do?re_no=${review.re_no}&page=${page}'">
 								</c:if>
+								
+								
 								좋아요 수: ${likecount}
 							</form></td>
 			</table>

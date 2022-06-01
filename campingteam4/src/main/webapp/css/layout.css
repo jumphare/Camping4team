@@ -27,7 +27,46 @@
     font-weight: normal;
     font-style: normal;
 }
-.w-btn-red {
+button {
+    margin: 20px;
+}
+
+
+.w-btn {
+    position: relative;
+    border: none;
+    display: inline-block;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+}
+
+.w-btn-outline {
+    position: relative;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-family: "paybooc-Light", sans-serif;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.25s;
+
+}
+.w-btn-red-outline:hover {
+    background-color: #ff5f2e;
+    color: #e1eef6;
+    width:67%;
+}
+.w-btn-red-outline {
+    border: 3px solid #ff5f2e;
+    color: #6e6e6e;
+    width:67%;
+}
+ .w-btn-red {
 	  position: relative;
     border: none;
     display: inline-block;
@@ -40,6 +79,14 @@
     transition: 0.25s;
     background-color: #ff5f2e;
     color: #e1eef6;
+} 
+.w-btn:hover {
+    letter-spacing: 2px;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+.w-btn:active {
+    transform: scale(1.5);
 }
 /* .container{
 width:100%;
@@ -209,3 +256,23 @@ border: none;
 .card-link{
 font-size: 1.5rem;
 }
+
+
+/* 채팅시스템 */
+.chat {
+	position: absolute;
+	top: 10%; 
+	margin-top: 8%;
+	right: 10px;
+	border-radius: 2em;
+	
+
+	float: right;
+	font-size: 1.5rem;
+	margin-right: 2%;
+	padding: 18px 8px 2px 8px
+}
+
+
+
+

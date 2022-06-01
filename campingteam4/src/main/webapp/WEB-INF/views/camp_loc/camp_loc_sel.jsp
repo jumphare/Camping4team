@@ -74,7 +74,7 @@ a:hover {
 #map {
 	height: 400px;
 	/* The height is 400 pixels */
-	width: 30%;
+	width: 70%;
 	/* The width is the width of the web page */
 }
 </style>
@@ -160,6 +160,10 @@ a:hover {
 
 </head>
 <body>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:30px;">--</h1>
 	<div class="container" align="center">
 	<div class="title">위치를 선택해주세요</div>
 		

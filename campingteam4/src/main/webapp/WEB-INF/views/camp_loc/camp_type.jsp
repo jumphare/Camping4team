@@ -78,11 +78,23 @@ a:hover {
 .carover{
 	content:url("img/carbak.jpg")
 }
+.imageGallery{
+	width:1350px;
+	margin:auto;
 
+	
+}
+.container{
+width:200%;
+}
 </style>
 
 </head>
 <body>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:30px;">--</h1>
 	<div class="container" align="center">
 		<div class="title">캠핑 타입을 선택해주세요</div>
 		<form method="post"
@@ -92,14 +104,16 @@ a:hover {
 			<input type="submit" class="myButton" id="gram" name="type"
 				value="글램핑"> <input type="submit" class="myButton" id="cara"
 				name="type" value="카라반">
-			<div class="imageGallery">
-				<img src="img/camping.jpg" class="image" width=700 height=480 border-radius=3>
-				<img src="img/carbak.jpg" class="image" width=700 height=480> <img
-					src="img/gramping.jpg" class="image" width=700 height=480> <img
-					src="img/caraban.png" class="image" width=700 height=480>
-			</div>
-
 		</form>
+			
 	</div>
+	<br>
+	<div class="imageGallery" align="center">
+				<img src="img/camping.jpg" class="image" width=650 height=500 border-radius=3>
+				<img src="img/carbak.jpg" class="image" width=650 height=500> <img
+					src="img/gramping.jpg" class="image" width=650 height=500> <img
+					src="img/caraban.png" class="image" width=650 height=500>
+			</div>
+		
 </body>
 </html>
