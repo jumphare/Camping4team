@@ -4,6 +4,8 @@
 
 <configuration>
 
+ 	<settings> <setting name="jdbcTypeForNull" value="VARCHAR"/> </settings>
+
 	<typeAliases>
 		<typeAlias alias="member" type="camping.model.member" />
 		<typeAlias alias="revlike" type="camping.model.revlike" />
