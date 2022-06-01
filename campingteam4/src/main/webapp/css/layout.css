@@ -119,10 +119,10 @@ width:100%;
 }
 .carousel-caption {
 	font-family: 'Cafe24Shiningstar';
-	position: absolute; 
-	top: 55%; 
-	left: 50%; 
-	transform: translate(-50%, -50%);
+	position: pixed; 
+	top: 30%; 
+	left: 0%; 
+/* 	transform: translate(-50%, -50%); */
 	font-size:2.5vw;   
 }    
   .carousel-inner img {
