@@ -86,7 +86,7 @@ text-decoration:none;
   		<div class="title">로그인</div>
    <table class="">
     <tr>
-     <th>아이디</th>
+     <th>아이디</th> 
      <td>
       <input name="id" id="id" size="20" class="input_box" />
      </td>
