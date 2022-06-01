@@ -101,9 +101,7 @@ text-decoration:none;
     	<a href="pbList.do">동행찾기</a>
     	</th>
     </tr>
-   </table>   
-   </form>
-   <br><br><br>
+   </table><br>
    <div>
    <input type = "button" value="채팅하기" onclick="chat()" class="btn btn-success" style="font-size:1.0em;"/>
    <script type="text/javascript">
@@ -125,6 +123,7 @@ text-decoration:none;
      </th>
     </tr>
     </div>
+      </form>
  </div>
 </c:if>
 	

@@ -49,19 +49,22 @@
 	text-decoration:none;
 	}
 	
-	/* .container {
+	.container1 {
 	  position: absolute;
 	  height: 400px;
-	  margin-left: -200px;
+	  margin-left: -100px;
 	  margin-top: -200px;
-	  left: 30%;
-	  top: 45%;
-	};  */
+	  left: 10%;
+	  top: 28%;
+	};
 	</style>
 	</head>
 	<body>
-	<h1>상단바</h1><br><br>
+	<header>
+<%@ include file="../include/top.jsp" %>
+</header>
 	<div class="container" >
+	 <form class="container1">
 	<div class="title">회원 관리</div>
 			<table class="table" border="1" align=center width=900>
 				<thead><tr class="cent" >
@@ -114,6 +117,7 @@
 	<a href="reviewlist.do?page=${pageCount}" style="text-decoration:none"> >> </a>
 	</c:if>	
 	</center>
+	</form>
 	</div>
 	</body>
 	</html>

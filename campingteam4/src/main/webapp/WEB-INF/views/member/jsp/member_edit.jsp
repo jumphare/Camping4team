@@ -53,24 +53,26 @@ a:hover{
 text-decoration:none;
 }
 
-/* /* .container {
+.container1 {
   position: absolute;
   height: 400px;
   margin-left: -200px;
   margin-top: -200px;
-  left: 30%;
-  top: 45%;
-}; */ */
+  left: 43%;
+  top: 30%;
+};
 
 </style>
 </head>
 <body>
-<h1>상단바</h1><br><br>
-  <div class="container" >
- <div class="title">정보 수정</div>
-  <form name="f" method="post" action="member_edit_ok.do"
+<header> 
+<%@ include file="../include/top.jsp" %>
+</header>
+<div class="container">
+  <form class="container1" name="f" method="post" action="member_edit_ok.do"
   		onsubmit="return edit_check()" enctype="multipart/form-data">
    <!-- 이진파일을 업로드 할려면 enctype 속성을 지정 -->
+    <div class="title">정보 수정</div>
    <table class="table">
     <tr>
      <th>회원아이디</th>
@@ -198,8 +200,8 @@ text-decoration:none;
    </table>
    
    <div style="padding:10px; margin: 0 auto; width:200px; height: 200px;">
-    <input type="submit" value="회원수정" class="btn btn-success" style="font-size:1.5em;" />
-    <input type="reset" value="수정취소" class="btn btn-success" style="font-size:1.5em;" 
+    <input type="submit" value="회원수정" class="btn btn-success" style="font-size:1.0em;" />
+    <input type="reset" value="수정취소" class="btn btn-success" style="font-size:1.0em;" 
     onclick="$('#pwd1').focus();" />
    </div>
   </form>
