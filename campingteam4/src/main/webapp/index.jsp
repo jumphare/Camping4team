@@ -13,7 +13,7 @@
 	
  
 
-		location.href = "./layout2.do";
+		location.href =  "./layout2.do";
 		</script>
 	
 </body>
