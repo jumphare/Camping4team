@@ -129,7 +129,6 @@ function id_check(){
         url:"member_idcheck.do",
         data: {"memid":memid},        
         success: function (data) { 
-        	alert("return success="+data);
       	  if(data==1){	//중복 ID
       		var newtext='<font color="red">중복 아이디입니다.</font>';
       			$("#idcheck").text('');

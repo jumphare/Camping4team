@@ -210,11 +210,11 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 </div> -->
 </div>
 </div>
+<c:if test="${id != null}">
 <div class="chat">
-
 <button class="w-btn-outline w-btn-red-outline" onclick="window.open('chatlist.do','chat','width=430,height=500,location=no,status=no,scrollbars=yes')">Chating room</button><br>
-
 </div>
+</c:if>
 </body>
 
 </html>

@@ -39,7 +39,7 @@
 			<exclude-mapping path="/member_join_ok.do"/>
 			<exclude-mapping path="/noticelist.do"/>
 			<exclude-mapping path="/noticecontent.do"/>
-			
+			<exclude-mapping path="/member_join.do"/>
 			<exclude-mapping path="/pbList.do"/>
 			<exclude-mapping path="/reviewlist.do"/>
 			<exclude-mapping path="/reviewdetail.do"/>

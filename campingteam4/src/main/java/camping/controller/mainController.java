@@ -1,5 +1,7 @@
 package camping.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +19,9 @@ public class mainController {
 		return "/main/layout";
 	}
 	@RequestMapping("/layout2.do")
-	public String layout2(Model model) {
+	public String layout2(Model model, HttpSession session) {
 		
+		String id = (String)session.getAttribute("id");
 		//메인에 후기 2개 출력
 		review rv1 = new review();
 		rv1 = service.toplist1();
@@ -27,6 +30,7 @@ public class mainController {
 		rv2 = service.toplist2();
 		
 		model.addAttribute("rv1", rv1);
+		model.addAttribute("id",id);
 		model.addAttribute("rv2", rv2);
 		return "/main/layout2";
 	}

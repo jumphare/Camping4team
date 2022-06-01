@@ -232,7 +232,11 @@ public class MemberController {
 		if (size > 0) { // 첨부파일이 전송된 경우
 
 			mf.transferTo(new File(path + "/" + newfilename));
+			member.setProfile(newfilename);
 
+		}else {
+			String basicprofile = "basic_image.png";
+			member.setProfile(basicprofile);
 		}
 
 		String jumin1 = request.getParameter("jumin1").trim();
@@ -249,7 +253,7 @@ public class MemberController {
 		member.setJumin(jumin);
 		member.setPhone(phone);
 		member.setEmail(email);
-		member.setProfile(newfilename);
+
 
 		memberService.insertMember(member);
 
