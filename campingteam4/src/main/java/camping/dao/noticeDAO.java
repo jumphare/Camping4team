@@ -26,6 +26,12 @@ public class noticeDAO {
 		return session.selectList("noticens.list", page);
 	}
 	
+	
+	public List<notice> getBoardNotiList(int page) {
+		return session.selectList("noticens.nlist", page);
+	}
+	
+	
 	public notice getBoard(int not_no) {
 		return session.selectOne("noticens.content", not_no);
 	}

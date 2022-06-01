@@ -13,9 +13,6 @@
 						, no_date
 						, not_file
 						, noti_flag
-			            <if test="noti_flag !=null and !noti_flag.equals('')">
-						, noti_flag
-						</if>					
 		            )values(
 		                 notice_num_seq.nextval
 		                 ,'공지게시판'
@@ -23,9 +20,8 @@
 		                 ,#{content}
 		                 ,sysdate
 		                 ,'noFile'
-		                <if test="noti_flag !=null and !noti_flag.equals('')">
 						 ,#{noti_flag}
-						</if>
+
 		                 )
 		          
 		   <!-- #{not_file,jdbcType=VARCHAR}  -->
@@ -42,6 +38,24 @@
 		where rnum >= ((#{page}-1) * 10 + 1) and rnum <= (#{page} * 10)
 		]]>
 	</select>
+	
+	
+	  <select id="nlist" parameterType="int" resultType="notice">
+		<![CDATA[
+		         select 
+		                  not_no
+						, board
+						, subject
+						, content
+						, no_date
+						, not_file
+		           from 
+		                 notice           
+		where  noti_flag = '1'
+		]]>
+	</select>
+	
+	
 	
 	<select id="content" parameterType="int" resultType="notice">
 	  select * from notice where not_no = #{not_no}

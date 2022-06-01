@@ -26,6 +26,11 @@ public class noticeService {
 		return dao.getBoardList(page);
 	}
 	
+	public List<notice> getBoardNotiList(int page) {
+		return dao.getBoardNotiList(page);
+	}
+	
+	
 	public notice getBoard(int not_no) {
 		return dao.getBoard(not_no);
 	}
