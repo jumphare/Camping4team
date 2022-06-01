@@ -632,4 +632,5 @@ public class MemberController {
 	model.addAttribute("page", page);
 	return "member/jsp/member_admin_detail";
 	}
-}
+	}
+
