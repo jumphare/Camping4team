@@ -58,8 +58,8 @@ public class msgController {
 		int pnum = 1;
 		if (page!=null) 
 			pnum=Integer.parseInt(page);	
-		int startRow=(pnum-1)*10+1;
-		int endRow=startRow+10-1;
+		int startRow=(pnum-1)*7+1;
+		int endRow=startRow+7-1;
 		msg mg=new msg();
 		mg.setRecv_id(recv_id);
 		mg.setStartRow(startRow);
@@ -68,9 +68,9 @@ public class msgController {
 		int cnt=sv.allcnt_rd(recv_id);
 		
 		// 총페이지수 (페이지 당 10개씩)
-		int pageCount = cnt / 10 + ((cnt % 10 == 0) ? 0 : 1);
-		int startPage = ((pnum - 1) / 10) * 10 + 1; 
-		int endPage = startPage + 10 - 1; 
+		int pageCount = cnt / 7 + ((cnt % 7 == 0) ? 0 : 1);
+		int startPage = ((pnum - 1) / 7) * 7 + 1; 
+		int endPage = startPage + 7 - 1; 
 		if (endPage > pageCount)
 				endPage = pageCount;
 		
@@ -88,8 +88,8 @@ public class msgController {
 		int pnum = 1;
 		if (page!=null) 
 			pnum=Integer.parseInt(page);	
-		int startRow=(pnum-1)*10+1;
-		int endRow=startRow+10-1;
+		int startRow=(pnum-1)*7+1;
+		int endRow=startRow+7-1;
 		msg mg=new msg();
 		mg.setId(id);
 		mg.setStartRow(startRow);
@@ -98,9 +98,9 @@ public class msgController {
 		int cnt=sv.allcnt_sd(id);
 		
 		// 총페이지수 (페이지 당 10개씩)
-		int pageCount = cnt / 10 + ((cnt % 10 == 0) ? 0 : 1);
-		int startPage = ((pnum - 1) / 10) * 10 + 1; 
-		int endPage = startPage + 10 - 1; 
+		int pageCount = cnt / 7 + ((cnt % 10 == 0) ? 0 : 1);
+		int startPage = ((pnum - 1) / 7) * 7 + 1; 
+		int endPage = startPage + 7 - 1; 
 		if (endPage > pageCount)
 				endPage = pageCount;
 		

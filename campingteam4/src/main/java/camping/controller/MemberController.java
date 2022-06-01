@@ -26,13 +26,14 @@ import camping.model.member;
 import camping.model.reservation;
 import camping.model.review;
 import camping.model.spot;
+import camping.service.MemberServiceImpl;
 import camping.service.msgService;
 
 @Controller
 public class MemberController {
 
 	@Autowired
-	private camping.service.MemberServiceImpl memberService;
+	private MemberServiceImpl memberService;
 	@Autowired
 	private msgService msv;
 	
@@ -199,7 +200,7 @@ public class MemberController {
 
 		String newfilename = "";
 
-		if (filename != "") { // 첨부파일이 전송된 경우
+		if (filename != null) { // 첨부파일이 전송된 경우
 
 			// 파일 중복문제 해결
 			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
@@ -431,7 +432,7 @@ public class MemberController {
 
 		String newfilename = "";
 
-		if (filename != "") { // 첨부파일이 전송된 경우
+		if (filename != null) { // 첨부파일이 전송된 경우
 
 			// 파일 중복문제 해결
 			String extension = filename.substring(filename.lastIndexOf("."), filename.length());

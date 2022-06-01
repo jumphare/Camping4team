@@ -20,7 +20,7 @@
 <style> 
 h2 {font-size:15px;}
 .star-rating {width:143px; }
-.star-rating,.star-rating span {display:inline-block; height:29px; overflow:hidden; background:url(img/star.png)no-repeat; }
+.star-rating,.star-rating span {display:inline-block; height:24px; overflow:hidden; background:url(img/star.png)no-repeat; }
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
  html { font-size:8px; } 
   @font-face {
@@ -60,10 +60,13 @@ text-decoration:none;
 </style>
 </head>
 <body>
-<h1>상단바</h1><br><br>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
 <div class="container" >
 <div class="title">내 리뷰 목록</div>
-		<table class="table" border="1" align=center width=900>
+		<table class="table" align=center width=900>
 			<thead><tr class="cent" >
 				<th>대표이미지</th>
 				<th>제목</th>

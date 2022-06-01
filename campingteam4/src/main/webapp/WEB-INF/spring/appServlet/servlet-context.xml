@@ -43,6 +43,7 @@
 			<exclude-mapping path="/pbList.do"/>
 			<exclude-mapping path="/reviewlist.do"/>
 			<exclude-mapping path="/reviewdetail.do"/>
+			<exclude-mapping path="/member_idcheck.do"/>
 <!-- 			<mapping path="/member_edit_ok.do"/>			
 			<mapping path="/member_del.do"/>
 			<mapping path="/member_del_ok.do"/>

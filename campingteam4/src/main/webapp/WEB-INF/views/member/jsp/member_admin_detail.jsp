@@ -85,24 +85,30 @@ a:hover {
 	  left: 30%;
 	  top: 45%;
 	};  */
+
+	.table {
+	table-layout:fixed;
+	}
 </style>
 </head>
 <body>
-	<h1>상단바</h1>
+	<header>
+<%@ include file="../include/top.jsp" %>
+</header>
 	<br>
 	<br>
 	<div class="container">
 		<div class="title">회원 상세</div>
-		<table class="table" border="1" align=center width=900>
+		<table class="table" border="1" align=center width=900;>
 			<thead>
-				<tr class="cent">
+				<tr class="cent" width=500>
 					<th>아이디</th>
 					<th>패스워드</th>
 					<th>이름</th>
 					<th>주민번호</th>
 					<th>주소</th>
 					<th>휴대폰번호</th>
-					<th>이메일</th>
+					<th width=250;>이메일</th>
 				</tr>
 			</thead>
 			<tr>

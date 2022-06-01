@@ -48,23 +48,25 @@ a:hover{
 text-decoration:none;
 }
 
-/* /* .container {
+.container1 {
   position: absolute;
-  height: 400px;
+  height: 200px;
   margin-left: -200px;
-  margin-top: -200px;
-  left: 30%;
-  top: 45%;
-}; */ */
+  margin-top: 60px;
+  left: 52%;
+  top: 15%;
+};
 
 </style>
 </head>
 <body>
-<h1>상단바</h1><br><br>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
 <div class="container" >
-<div class="title">회원 탈퇴</div>
-  <form method="post" action="member_del_ok.do" 
+  <form class="container1" method="post" action="member_del_ok.do" 
   					  onsubmit="return check()">
+  	<div class="title">회원 탈퇴</div>
     <table class="table">
      <tr>
       <th>회원아이디</th>
@@ -84,13 +86,12 @@ text-decoration:none;
       <input type="password" name="pwd" id="pwd" size="14" 
       			class="input_box" />
       </td>
-     </tr>
-     
+     </tr> 
     </table>
     
-    <div style="padding:10px; margin: 0 auto; width:200px; height: 200px;">
-     <input type="submit" value="탈퇴" class="btn btn-success" style="font-size:1.5em;" />
-     <input type="reset" value="취소" class="btn btn-success" style="font-size:1.5em;"
+    <div style="padding:0px; margin: 0 auto; width:200px; height: 200px;">
+     <input type="submit" value="탈퇴" class="btn btn-success" style="font-size:1.0em;" />
+     <input type="reset" value="취소" class="btn btn-success" style="font-size:1.0em;"
      	onclick="$('#pwd').focus();" />
     </div>
   </form>
