@@ -99,14 +99,12 @@ text-decoration:none;
     </tr>
    </table>
    <br> 
-    <div style="">
+    <div style="align:center; margin-left: 50px; width:800px; height: 100px;, top:50px;">
     <input type="submit" value="로그인" class="btn btn-success" style="font-size:1.0em;" />
     <input type="reset" value="취소" class="btn btn-success" style="font-size:1.0em;
     		onclick="$('#id').focus();" />
     <input type="button" value="회원가입" class="btn btn-success" style="font-size:1.0em;"
     		onclick="location='member_join.do'" />
-    <input type="button" value="비번찾기" class="btn btn-success" style="font-size:1.0em;
-    		onclick="pwd_find()" />
     </div>
   </form>
  </div>
