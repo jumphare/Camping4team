@@ -43,7 +43,7 @@
     background-position: -2800px 0;
   }
 }
-h2 {font-size:15px;}
+h2 {font-size:15px;} 
 .star-rating {width:143px; }
 .star-rating,.star-rating span {display:inline-block; height:21px; overflow:hidden; background:url(img/star.png)no-repeat; }
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
