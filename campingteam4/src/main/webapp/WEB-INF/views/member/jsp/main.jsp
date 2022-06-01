@@ -63,7 +63,6 @@ text-decoration:none;
 </c:if> 
 
 <c:if test="${sessionScope.id != null }"> 
-    <a href="reviewlist.do">전체 리뷰 목록</a><br>
  <div class="container">
    <div class="title">마이페이지</div>  
    <form method="post" action="member_logout.do"> 
