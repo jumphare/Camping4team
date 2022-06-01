@@ -24,21 +24,10 @@
 <title>숙소 리스트</title>
 <style>
 
-div.help {
-border-radius: 2em;
-	  width : 280px;
-  border: 1px solid orange;
-	height: 330px;
-	float: right;
-	font-size: 1.5rem;
-	margin-right: 150px;
-	padding: 18px 8px 2px 8px
-}
-
 div.right {
-	margin-top:100px;
+	margin-top: 100px;
 	float: left;
-	margin-left: 350px;
+	margin-left: 10%;
 }
 
 h2 {
@@ -47,7 +36,6 @@ h2 {
 
 .star-rating {
 	width: 140px;
-
 }
 
 .star-rating, .star-rating span {
@@ -81,15 +69,15 @@ html {
 	font-family: 'GmarketSansBold';
 	font-size: 3.6rem;
 	color: #E35E0A;
-	
 	hight: 9px;
 }
+
 .title2 {
 	margin-left: 5rem;
 	font-family: 'GmarketSansBold';
 	font-size: 2.6rem;
 	color: #E35E0A;
-	width:150px;
+	width: 150px;
 	hight: 9px;
 }
 
@@ -105,19 +93,18 @@ html {
 table {
 	font-size: 1.6rem;
 	width: 1000px;
-
 }
-th{
-font-family: 'GmarketSansBold';
-   font-size:2rem;
-   color:#E8894F;
-   text-align:center;
+
+th {
+	font-family: 'GmarketSansBold';
+	font-size: 2rem;
+	color: #E8894F;
+	text-align: center;
 }
 
 th, td {
 	vertical-align: middle;
 }
-
 
 a {
 	color: #000;
@@ -126,6 +113,7 @@ a {
 a:hover {
 	text-decoration: none;
 }
+
 .myButton {
 	box-shadow: inset 0px 1px 0px 0px #fce2c1;
 	background: linear-gradient(to bottom, #ffc477 5%, #fb9e25 100%);
@@ -146,7 +134,6 @@ a:hover {
 .myButton:hover {
 	background: linear-gradient(to bottom, #fb9e25 5%, #ffc477 100%);
 	background-color: #fb9e25;
-	
 }
 
 .myButton:active {
@@ -154,28 +141,55 @@ a:hover {
 	top: 1px;
 }
 
-div, ul, li {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;padding:0;margin:0}
-a {text-decoration:none;}
+div, ul, li {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0
+}
 
-.help {position:absolute;width:90px;top:30%;margin-top:-50px;right:10px;background:#fff;}
-.help ul {position:relative;float:left;width:100%;display:inline-block;*display:inline;border:1px solid #ddd;}
-.help ul li {float:left;width:100%;border-bottom:1px solid #ddd;text-align:center;display:inline-block;*display:inline;}
-.help ul li a {position:relative;float:left;width:100%;height:20px;line-height:20px;text-align:center;color:#999;font-size:9.5pt;}
-.help ul li a:hover {color:#000;}
-.help ul li:last-child {border-bottom:0;}
+a {
+	text-decoration: none;
+}
+
+.help {
+	/* position: absolute; */
+	/* width: 90px; */
+	top: 30%; 
+	margin-top: 10%;
+	right: 10px;
+/* 	background: #fff; */ 
+
+	border-radius: 2em;
+	width: 300px;
+	border: 1px solid orange;
+	height: 330px;
+	float: right;
+	font-size: 1.5rem;
+	margin-right: 2%;
+	padding: 18px 8px 2px 8px
+}
+
+
 </style>
 <script>
-$(document).ready(function(){
-	  var currentPosition = parseInt($(".help").css("top"));
-	  $(window).scroll(function() {
-	    var position = $(window).scrollTop(); 
-	    $(".help").stop().animate({"top":position+currentPosition+"px"},1000);
-	  });
+	$(document).ready(function() {
+		var currentPosition = parseInt($(".help").css("top"));
+		$(window).scroll(function() {
+			var position = $(window).scrollTop();
+			$(".help").stop().animate({
+				"top" : position + currentPosition + "px"
+			}, 1000);
+		});
 	});
-
 </script>
 </head>
 <body>
+	<header>
+		<%@ include file="../include/top.jsp"%>
+	</header>
+
 	<div class="all">
 		<div class="help">
 			<form align=center method="get"
@@ -184,10 +198,10 @@ $(document).ready(function(){
 				<p>
 					체크인 : <input type="text" id='startDate' name='startDate'
 						value="${camsel.startDate}">
-						</p>
-					<p>
-					 체크아웃 : <input type="text"
-						id='endDate' name='endDate' value="${camsel.endDate}">
+				</p>
+				<p>
+					체크아웃 : <input type="text" id='endDate' name='endDate'
+						value="${camsel.endDate}">
 				</p>
 				<p>
 					인원 : <input type=text name="memcount" id="memcount"
@@ -222,7 +236,7 @@ $(document).ready(function(){
 			</form>
 		</div>
 		<div class="right" align=center>
-			<div class="container" style="width: 1100px;" align=center>
+			<div class="container" style="width: 1300px;" align=center>
 				<div class="title1">(검색 내용) | 인원 : ${memcount} | 지역 : ${loc} |
 					캠핑타입 : ${type}</div>
 				<table border=1 class="table" width=700 align=center>
@@ -243,13 +257,13 @@ $(document).ready(function(){
 							<td><img
 								src="<%=request.getContextPath() %>/campupload/${s.image}"
 								height="300" width="300" /></td>
-							<td style =' vertical-align : middle '>
-								<input type="button" class="myButton" value="${s.sp_name}"
-					style="font-size:1em;" onclick="location.href='spotview.do?loc=${loc}&type=${type}&startDate=${camsel.startDate}&endDate=${camsel.endDate}&memcount=${memcount}&sp_no=${s.sp_no}' ">
-									
-									</td>
+							<td style='vertical-align: middle'><input type="button"
+								class="myButton" value="${s.sp_name}" style="font-size: 1em;"
+								onclick="location.href='spotview.do?loc=${loc}&type=${type}&startDate=${camsel.startDate}&endDate=${camsel.endDate}&memcount=${memcount}&sp_no=${s.sp_no}' ">
 
-							<td style =' vertical-align : middle '>
+							</td>
+
+							<td style='vertical-align: middle'>
 								<h2>평점 : ${s.sp_staravg}</h2>
 								<div class='star-rating'>
 									<span
@@ -257,10 +271,11 @@ $(document).ready(function(){
 								</div>
 
 							</td>
-							<td style =' vertical-align : middle '>${s.standard_num}</td>
-							<td style =' vertical-align : middle '>${s.max_num}</td>
-							<td style =' vertical-align : middle '>${s.price}</td>
-							<td style =' vertical-align : middle '><c:if test="${s.reservecheck == 1}">
+							<td style='vertical-align: middle'>${s.standard_num}</td>
+							<td style='vertical-align: middle'>${s.max_num}</td>
+							<td style='vertical-align: middle'>${s.price}</td>
+							<td style='vertical-align: middle'><c:if
+									test="${s.reservecheck == 1}">
 									<span style="color: red">!해당일 마감!</span>
 								</c:if> <c:if test="${s.reservecheck == 0}">
 									<span style="color: blue">!예약가능!</span>

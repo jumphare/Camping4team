@@ -92,7 +92,10 @@ text-decoration:none;
 
 </head>
 <body>
-<h1>상단바</h1><br><br>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:30px;">--</h1>
 <div class="container" >
 <div class="title">${spot.sp_name}</div>
 	<input type="button" value="목록" class="myButton"
