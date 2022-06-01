@@ -42,7 +42,7 @@ function send() {
 	$('#message').val('');
 }
 function connect() {
-	websock = new WebSocket("ws://3.35.22.3/chat-ws.do");
+	websock = new WebSocket("ws://localhost:80/abc/chat-ws.do");
 	websock.onopen = onOpen;
 //	websock.onclose = onClose;
 	websock.onmessage = onMessage;
@@ -125,6 +125,22 @@ color:#000;
 background-color:#eeeeee;
  height: 300px;
   width: 400px;
+  
+    padding-left:0;
+
+    margin:0;
+
+    list-style-type:none;
+
+    display:flex;
+
+    flex-direction: column-reverse;
+
+    overflow-y:auto;
+
+    border-top:2px solid #fff;
+
+    border-bottom:2px solid #fff;
 }
 	
 	</style>
