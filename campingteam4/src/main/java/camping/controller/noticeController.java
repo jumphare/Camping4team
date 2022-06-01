@@ -141,7 +141,13 @@ public class noticeController {
 
 		notice board = service.getBoard(not_no); // 상세 정보 구하기
 		String content = board.getContent().replace("\n", "<br>");
-		System.out.println("board:" + board);
+		
+		String noti_flag = board.getNoti_flag();		
+		
+		
+		System.out.println("board===>" + board);
+		
+		System.out.println("noti_flag===>" + noti_flag);
 
 		model.addAttribute("board", board);
 		model.addAttribute("content", content);
