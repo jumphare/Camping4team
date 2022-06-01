@@ -26,13 +26,14 @@ import camping.model.member;
 import camping.model.reservation;
 import camping.model.review;
 import camping.model.spot;
+import camping.service.MemberServiceImpl;
 import camping.service.msgService;
 
 @Controller
 public class MemberController {
 
 	@Autowired
-	private camping.service.MemberServiceImpl memberService;
+	private MemberServiceImpl memberService;
 	@Autowired
 	private msgService msv;
 	
