@@ -28,6 +28,7 @@ div.right {
 	margin-top: 100px;
 	float: left;
 	margin-left: 10%;
+	background-color:white;
 }
 
 h2 {
@@ -154,9 +155,9 @@ a {
 }
 
 .help {
-	/* position: absolute; */
+	position: absolute;
 	/* width: 90px; */
-	top: 30%; 
+	top: 10%; 
 	margin-top: 10%;
 	right: 10px;
 /* 	background: #fff; */ 
@@ -236,10 +237,10 @@ a {
 			</form>
 		</div>
 		<div class="right" align=center>
-			<div class="container" style="width: 1300px;" align=center>
+			<div class="container"  align=center>
 				<div class="title1">(검색 내용) | 인원 : ${memcount} | 지역 : ${loc} |
 					캠핑타입 : ${type}</div>
-				<table border=1 class="table" width=700 align=center>
+				<table class="table" width=100% align=center>
 					<thead>
 						<tr class="cent">
 							<th>이미지</th>
