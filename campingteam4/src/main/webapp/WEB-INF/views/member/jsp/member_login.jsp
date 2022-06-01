@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,23 +65,25 @@ a:hover{
 text-decoration:none;
 }
 
-.container {
+.container1 {
   position: absolute;
   height: 400px;
   margin-left: -200px;
   margin-top: -200px;
-  left: 53%;
+  left: 50%;
   top: 45%;
 };
 
 </style>
 </head>
 <body>
-<h1>상단바</h1><br><br>
-<div class="container" >
-<div class="title">로그인</div>
-  <form method="post" action="member_login_ok.do"
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<div class="container">
+  <form class="container1" method="post" action="member_login_ok.do"
   		onsubmit="return check()">
+  		<div class="title">로그인</div>
    <table class="">
     <tr>
      <th>아이디</th>
@@ -94,14 +98,14 @@ text-decoration:none;
      </td>
     </tr>
    </table>
-   <br>
+   <br> 
     <div style="">
-    <input type="submit" value="로그인" class="btn btn-success" style="font-size:1.5em;" />
-    <input type="reset" value="취소" class="btn btn-success" style="font-size:1.5em;
+    <input type="submit" value="로그인" class="btn btn-success" style="font-size:1.0em;" />
+    <input type="reset" value="취소" class="btn btn-success" style="font-size:1.0em;
     		onclick="$('#id').focus();" />
-    <input type="button" value="회원가입" class="btn btn-success" style="font-size:1.5em;"
+    <input type="button" value="회원가입" class="btn btn-success" style="font-size:1.0em;"
     		onclick="location='member_join.do'" />
-    <input type="button" value="비번찾기" class="btn btn-success" style="font-size:1.5em;
+    <input type="button" value="비번찾기" class="btn btn-success" style="font-size:1.0em;
     		onclick="pwd_find()" />
     </div>
   </form>
