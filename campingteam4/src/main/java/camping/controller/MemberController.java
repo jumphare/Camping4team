@@ -200,7 +200,7 @@ public class MemberController {
 
 		String newfilename = "";
 
-		if (filename != null) { // 첨부파일이 전송된 경우
+		if (size > 0) { // 첨부파일이 전송된 경우
 
 			// 파일 중복문제 해결
 			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
