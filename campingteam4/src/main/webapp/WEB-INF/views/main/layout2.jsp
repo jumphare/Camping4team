@@ -45,26 +45,6 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 <h1 style="margin-bottom:30px;">--</h1>
 <div class="container" style="background-color:white; width:70%;">
 
-
-<!-- 임시 상단바 -->
-<c:if test="${sessionScope.id != null}">
-	<a href="member_logout.do">로그아웃</a><br>
-	<a href="mypage.do">마이페이지</a> <br>
-</c:if>
-<c:if test="${sessionScope.id == null}">
-	<a href="member_join.do">회원가입</a><br>
-	<a href="member_login.do">로그인</a><br>
-	 
-</c:if>
-
- <a href="date_sel.do">예약하기</a> <br>
-    <a href="admin_camp_list.do">관리자 캠핑장 관리</a><br>
-	<a href="pbList.do">동행 찾기</a><br>
-	<a href="reviewlist.do">리뷰 목록</a><br>
-    <a href="eq_table.do">장비</a><br>
-    <a href="noticelist.do">공지사항 목록</a><br>
-	<a href="res_admin.do">예약관리</a><br>
-	<a href="./layout2.do">레이아웃</a><br>
 <!-- 캐러셀 -->
 <div class="container-carousel" style="z-index:0">
 <div id="demo" class="carousel slide" data-ride="carousel">
