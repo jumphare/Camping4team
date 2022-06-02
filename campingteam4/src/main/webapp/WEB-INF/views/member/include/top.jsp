@@ -29,10 +29,9 @@ $(function(){
      	data : { "id" : frmData  }
      }).done(function(data) {
      	console.log(data);	  
- //    	if (date==null)	//프로필사진이 없으면 기본이미지 뜨게 하기 -> 회원 저장 시 기본이미지 저장되는 방향으로 요구
-     		$('#profile').html("<a href='./member_edit.do'><img src='${path }/images/camping.jpg' style='width:30px; height:30px; border-radius:15px;'></a>");
-//     	else	//프로필사진이 있으면 그 이미지 뜨게 하기 -> 경로 수정해줄 것
- //   		$('#profile').html("<img src='${path }/images/"+data+"' style='width:30px; height:30px; border-radius:15px;'>");
+     	 //    	프로필사진이 null인 경우 오류가 있어서 다 디폴트이미지가 뜨게 수정해놨고 나중에 data로 변경만 하면 됩니다
+ 		$('#profile').html("<a href='./mypage.do'><img src='${path }/upload/basic_image.png' style='width:30px; height:30px; border-radius:15px;'></a>");
+
      });
 	 $.ajax({
 	     	type : "get",
