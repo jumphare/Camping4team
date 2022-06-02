@@ -25,7 +25,7 @@
 }
 
 body{
-font-size:1.6rem;
+font-size:1.4rem;
 }
   .title{
   margin-top:1rem;
@@ -76,7 +76,7 @@ color:#000;
 
 .div1{
 	margin : 10px 50px;
-
+	font-size : 90%;
 }
 
 .date{

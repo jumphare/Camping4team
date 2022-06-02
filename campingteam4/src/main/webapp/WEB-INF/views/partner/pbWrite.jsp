@@ -8,11 +8,6 @@
 <meta charset="UTF-8">
 <title>글작성</title>
 
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/date.css" />
-<script src="<%=request.getContextPath() %>/js/date.js"></script>
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -20,6 +15,10 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/date.css" />
+<script src="<%=request.getContextPath() %>/js/date.js"></script>
 <style>
   html { font-size:10px; } 
 
@@ -109,11 +108,11 @@ color:#000;
 	</tr>
 
 	<tr><th>시작일</th>
-		<td><input type="text" name = "start_date" id="startDate" required = "required">
+		<td><input type="date" name = "start_date" id="startDate" required = "required">
        	</td>
 	</tr>
 	<tr><th>종료일</th>
-		<td><input type="text" name="end_date" id = "endDate"  required="required"></td>
+		<td><input type="date" name="end_date" id = "endDate"  required="required"></td>
 	</tr>
 	<tr><th>캠핑지역</th>
 		<td><select name="camp_area" id = "camp_area" required="required">
