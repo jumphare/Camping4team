@@ -42,7 +42,7 @@ function send() {
 	$('#message').val('');
 }
 function connect() {
-	websock = new WebSocket("ws://localhost:80/abc/chat-ws.do");
+	websock = new WebSocket("ws://3.35.22.3/chat-ws.do");
 	websock.onopen = onOpen;
 //	websock.onclose = onClose;
 	websock.onmessage = onMessage;

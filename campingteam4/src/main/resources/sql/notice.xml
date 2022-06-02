@@ -5,42 +5,42 @@
 <mapper namespace="noticens">
 
 	<insert id="insert" parameterType="notice">
-		insert into  notice (
-						  not_no
-						, board
-						, subject
-						, content
-						, no_date
-						, not_file
-						, noti_flag
-		            )values(
-		                 notice_num_seq.nextval
-		                 ,#{board}
-		                 ,#{subject}
-		                 ,#{content}
-		                 ,sysdate
-		                 ,'noFile'
-						 ,#{noti_flag}
+		insert into notice (
+		not_no
+		, board
+		, subject
+		, content
+		, no_date
+		, not_file
+		, noti_flag
+		)values(
+		notice_num_seq.nextval
+		,#{board}
+		,#{subject}
+		,#{content}
+		,sysdate
+		,#{not_file}
+		,#{noti_flag}
 
-		                 )
-		          
-		   <!-- #{not_file,jdbcType=VARCHAR}  -->
+		)
+
+		<!-- #{not_file,jdbcType=VARCHAR} -->
 	</insert>
 
 	<select id="count" resultType="int">
-	  select count(*) from notice
+		select count(*) from notice
 	</select>
 
-	 <select id="list" parameterType="int" resultType="notice">
+	<select id="list" parameterType="int" resultType="notice">
 		<![CDATA[
 		select * from (select rownum rnum, notice.* from (
 		select * from notice order by not_no desc) notice )
 		where rnum >= ((#{page}-1) * 10 + 1) and rnum <= (#{page} * 10)
 		]]>
 	</select>
-	
-	
-	  <select id="nlist" parameterType="int" resultType="notice">
+
+
+	<select id="nlist" parameterType="int" resultType="notice">
 		<![CDATA[
 		         select 
 		                  not_no
@@ -54,33 +54,23 @@
 		where  noti_flag = '1'
 		]]>
 	</select>
-	
-	
-	
+
+
+
 	<select id="content" parameterType="int" resultType="notice">
-	  select * from notice where not_no = #{not_no}
+		select * from notice where not_no = #{not_no}
 	</select>
-	
-	<!--  , not_file=#{not_file} -->
+
+	<!-- , not_file=#{not_file} -->
 	<update id="update" parameterType="notice">
-		update 
-		      notice 
-		   set 
-		       board = #{board}
-		     , subject=#{subject}
-		     ,content=#{content}
-		     ,no_date=sysdate      	     
-	         <if test="not_file != null">
-              ,not_file = #{not_file, jdbcType=VARCHAR}
-              </if>		      	      	     
-		     ,noti_flag = #{noti_flag, jdbcType=VARCHAR}
-		     
-		 where 
-		      not_no=#{not_no} 
+		update notice set board=#{board}, subject=#{subject}, content=#{content}
+		,not_file=#{not_file} ,noti_flag=#{noti_flag}
+		where not_no = #{not_no}
+		
 	</update>
 
 	<delete id="delete" parameterType="int">
-	    delete from notice where not_no = #{not_no}
+		delete from notice where not_no = #{not_no}
 	</delete>
 
 </mapper>

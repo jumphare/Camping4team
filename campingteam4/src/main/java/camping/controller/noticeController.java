@@ -44,8 +44,9 @@ public class noticeController {
 
 		String file[] = new String[2];
 		String newfilename = "";
+		
 		int result = 0;
-
+		
 		if (filename != null) { // 첨부파일이 전송된 경우
 
 			// 파일 중복문제 해결
@@ -77,7 +78,7 @@ public class noticeController {
 		}
 
 		if (size > 0) { // 첨부파일이 전송된 경우
-
+			
 			mf.transferTo(new File(path + "/" + newfilename));
 
 		}

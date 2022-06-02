@@ -115,8 +115,7 @@ color:#000;
 	
 			<tr>
 			<td class = "headb">첨부</td>
-			<td><pre>${board.not_file}
-			</pre></td>
+			<td><img src="<%=request.getContextPath()%>/upload/${board.not_file}"> </td>
 		</tr>
 	
 	
@@ -124,12 +123,13 @@ color:#000;
 			<td colspan=2 align=center>
 				<input type="button" value="목록" 
 				onClick="location.href='noticelist.do?page=${page}' ">
-					
+			<c:if test="${id == 'admin'}">
 				<input type="button" value="수정" 
 				onClick="location.href='noticeupdateform.do?not_no=${board.not_no}&page=${page}' ">
 					
 				<input type="button" value="삭제" 
 				onClick="location.href='noticedeleteform.do?not_no=${board.not_no}&page=${page}' ">		
+			</c:if>
 			</td>
 		</tr>
 	</table>
