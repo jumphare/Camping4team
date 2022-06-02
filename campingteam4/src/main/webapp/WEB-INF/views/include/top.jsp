@@ -30,7 +30,7 @@ $(function(){
      }).done(function(data) {
      	console.log(data);	  
  //    	프로필사진이 null인 경우 오류가 있어서 다 디폴트이미지가 뜨게 수정해놨고 나중에 data로 변경만 하면 됩니다
-     		$('#profile').html("<a href='./mypage.do'><img src='${path }/upload/basic_image.png' style='width:30px; height:30px; border-radius:15px;'></a>");
+     		$('#profile').html("<a href='./mypage.do'><img src='${path }/upload/"+data+"' style='width:30px; height:30px; border-radius:15px;'></a>");
 
      });
 	 $.ajax({
