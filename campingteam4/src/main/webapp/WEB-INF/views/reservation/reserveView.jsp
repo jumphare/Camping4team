@@ -134,12 +134,12 @@ padding: 2rem;
 <table style="margin-left: auto; margin-right: auto;">
 	<tr>
 		<td colspan=2  >
-		<c:if test="${res.state eq '0' && compare2>0}" >
+		<c:if test="${res.state eq '0' && compare2>1}" >
 			<button id="paying" type="button" class="btn btn-success btn-lg">결제</button>
 		</c:if>
 			<c:if test="${res.state eq '0' || res.state eq '2'}" ><input type="button" value="내역삭제" class="btn btn-secondary btn-lg" onclick="location.href='./res_del.do?res_no=${res.res_no}';" ></c:if>
-			<c:if test="${res.state eq '1' && compare2>0}" ><input type="button" value="예약취소" class="btn btn-danger btn-lg"  onclick="cancelPay()"></c:if>
-			<c:if test="${(res.state eq '1' || res.state eq '3') && compare2<=0 && re_no==0}" ><input type="button" value="리뷰작성" class="btn btn-success btn-lg"  onclick="location.href='./re_insertform.do?res_no=${res.res_no}&sp_no=${res.sp_no}'"></c:if>
+			<c:if test="${res.state eq '1' && compare2>1}" ><input type="button" value="예약취소" class="btn btn-danger btn-lg"  onclick="cancelPay()"></c:if>
+			<c:if test="${(res.state eq '1' || res.state eq '3') && compare2<=1 && re_no==0}" ><input type="button" value="리뷰작성" class="btn btn-success btn-lg"  onclick="location.href='./re_insertform.do?res_no=${res.res_no}&sp_no=${res.sp_no}'"></c:if>
 			<input type="button" class="btn btn-light btn-lg" value="목록" onclick="history.back()">
 		</td>
 	</tr>
