@@ -95,7 +95,7 @@ function rcvlist(){
 		</div> -->
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	    	<a class="navbar-brand" href="./layout2.do">LOGO <span>Magazine</span></a>
+	    	<a href="./layout2.do"><img src="img/camp.png" ></a>
   
 
 
