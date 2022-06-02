@@ -110,7 +110,7 @@ a:hover {
 <h1 style="margin-bottom:50px;">--</h1>
 <div class="container" style="background-color:white; width:80%">
 		<div class="title">회원 상세</div>
-		<table class="table" align=center width=900; style="text-align:center">
+		<table class="table" align=center style="text-align:center">
 			<thead>
 				<tr class="cent" width=50rem >
 					<th width=20%>아이디</th>

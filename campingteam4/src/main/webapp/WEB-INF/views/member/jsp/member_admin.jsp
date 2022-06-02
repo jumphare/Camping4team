@@ -51,12 +51,12 @@
 	}
 	
 	.container1 {
-	  position: fixed;
+/* 	  position: fixed;
 	  height: 400px;
 	  margin-left: -100px;
 	  margin-top: -100px;
 	  left: 15%;
-	  top: 28%;
+	  top: 28%; */
 	 background-color:white;
 	};
 	</style>
@@ -71,21 +71,17 @@
 	<div class="title">회원 관리</div>
 			<table class="table" align=center>
 				<thead><tr class="cent" >
-					<th>아이디</th>
-					<th>패스워드</th>
-					<th>이름</th>
-					<th>주민번호</th>
-					<th>주소</th>
-					<th>휴대폰번호</th>
-					<th>이메일</th>
+					<th width=20%>아이디</th>
+					<th width=15%>이름</th>
+					<th width=30%>주소</th>
+					<th width=15%>휴대폰번호</th>
+					<th width=20%>이메일</th>
 				</tr></thead>
 			<c:forEach var = "r" items="${memberlist}" varStatus="status">
 			<tr>
 				<td><a style="text-decoration:none" href="./memberdetail.do?id=${r.id}">
 				${r.id}</td>
-				<td>${r.pwd}</td>
 				<td>${r.name}</td>
-				<td>${r.jumin}</td>
 				<td>${r.addr1}-${r.addr2}</td>
 				<td>${r.phone}</td>	
 				<td>${r.email}</td>
