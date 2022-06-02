@@ -155,17 +155,19 @@ function pagin(value){
 </tr>
 <c:if test="${empty list }"><tr><td colspan=9>예약이 없습니다.</td></tr></c:if>
 <c:if test="${not empty list }">
+<c:set var="i" value="0"/>
 <c:forEach var="res" items="${list }" >
 <tr>
 	<td>${res.res_no}</td>
 	<td><fmt:formatDate value="${res.res_date}" pattern="yyyy.MM.dd"/></td> <td>${res.id }</td>
-	<td><a href="./res_adminview.do?sort=${sort}&camp_no=${camp_no}&page=${page }&res_no=${res.res_no}">[${res.camp_no }] ${res.sp_no }</a></td>
+	<td><a href="./res_adminview.do?sort=${sort}&camp_no=${camp_no}&page=${page }&res_no=${res.res_no}">[${cname[i]}] ${sname[i]}</a></td>
 	<td>${fn:substring(res.start_date,0,10)} <%-- ${res.start_date} --%></td>
 	<td>${fn:substring(res.end_date,0,10)} <%-- ${res.end_date } --%></td> <td>${res.num }</td> <td>${res.price }</td>
 	<td><c:if test="${res.state==1 }"><span style="color:#CD1039">반납보류</span></c:if>  <c:if test="${res.state==3 }"><span style="color:#006400">반납완료</span></c:if></td>
 	<td><c:if test="${res.state==1 }"><a href="./eq_return.do?sort=${sort}&camp_no=${camp_no}&page=${page }&res_no=${res.res_no}">반납</a></c:if>
 		 <c:if test="${res.state==3 }"><a href="./eq_return.do?sort=${sort}&camp_no=${camp_no}&page=${page }&res_no=${res.res_no}">취소</a></c:if> </td>
 </tr>
+<c:set var="i" value="${i+1 }"/>
 </c:forEach>
 </c:if>
 </table>

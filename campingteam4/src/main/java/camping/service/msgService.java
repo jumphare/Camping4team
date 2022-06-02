@@ -61,4 +61,7 @@ public class msgService {
 			result=dao.delmsg(msg_no);
 		return result;
 	}
+	public int checkId(String id) {
+		return dao.checkId(id);
+	}
 }

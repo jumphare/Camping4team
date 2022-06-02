@@ -82,7 +82,7 @@ $(function(){
 <tr>	<th>예약상태</th> 
 	<td><c:if test="${res.state eq '0'}" ><span style="color:#CD1039">결제대기</span></c:if>
 		 <c:if test="${res.state eq '1'}" ><span style="color:#006400">예약완료</span></c:if>
-		 <c:if test="${res.state eq '2'}" ><span style="color:#828282">예약취소</span></c:if></td></tr>
+		 <c:if test="${res.state eq '2'}" ><span style="color:#828282">예약취소</span></c:if>
 		 <c:if test="${res.state eq '3'}" ><span style="color:#3065AC">반납완료</span></c:if></td></tr>
 <tr>	<th>캠핑일</th> <td>${fn:substring(res.start_date,0,10)}  ~  ${fn:substring(res.end_date,0,10)}</td></tr>
 <tr>	<th>예약자</th> <td>${mem.name }</td></tr>

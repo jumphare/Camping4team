@@ -128,7 +128,7 @@ public class msgController {
 	@RequestMapping(value="/mb_chk.do", method = RequestMethod.POST)
 	public String mb_chk(String id, Model model) throws Exception {
 		System.out.println(id);
-		int data=msv.checkMemberId(id);
+		int data=sv.checkId(id);
 //		PrintWriter out = response.getWriter();
 //		out.print(data);
 		

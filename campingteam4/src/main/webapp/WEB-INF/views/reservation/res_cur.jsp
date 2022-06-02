@@ -144,19 +144,22 @@ function table(value){
 </tr>
 <c:if test="${empty list }"><tr><td colspan=9>예약이 없습니다.</td></tr></c:if>
 <c:if test="${not empty list }">
+<c:set var="i" value="0"/>
 <c:forEach var="res" items="${list }" >
 <tr>
 <tr>
 	<td>${res.res_no}</td>
 	<td><fmt:formatDate value="${res.res_date}" pattern="yyyy.MM.dd"/></td> <td>${res.id }</td>
-	<td><a href="./res_adminview.do?sort=${sort}&camp_no=${camp_no}&page=${page }&res_no=${res.res_no}">[${res.camp_no }] ${res.sp_no }</a></td>
+	<td><a href="./res_adminview.do?sort=${sort}&camp_no=${camp_no}&page=${page }&res_no=${res.res_no}">[${cname[i]}] ${sname[i]}</a></td>
 	<td>${fn:substring(res.start_date,0,10)} <%-- ${res.start_date} --%></td>
 	<td>${fn:substring(res.end_date,0,10)} <%-- ${res.end_date } --%></td> <td>${res.num }</td> <td>${res.price }</td>
 	<td><c:if test="${res.payment eq '0'}" ><span style="color:#CD1039">결제대기</span></c:if>
 		 <c:if test="${res.payment eq '1'}" ><span style="color:#006400">예약완료</span></c:if>
 		 <c:if test="${res.payment eq '2'}" ><span style="color:#828282">예약취소</span></c:if></td>
 </tr>
+<c:set var="i" value="${i+1 }"/>
 </c:forEach>
+
 </c:if>
 </table>
 

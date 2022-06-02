@@ -46,5 +46,8 @@ public class msgDAO {
 	public int delmsg(int msg_no) {
 		return session.delete("msgns.delmsg", msg_no);
 	}
+	public int checkId(String id) {
+		return session.selectOne("msgns.checkId", id);
+	}
 }
 

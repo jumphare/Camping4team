@@ -420,7 +420,17 @@ public class reserveController {
 		System.out.println(res.getSort());  //정렬 방식 저장
 		int cnt=sv.curcnt(res);   //게시글 카운트
 		List<reservation> list = sv.curlist(res);   //list
-	
+		String[] cname = new String[list.size()];
+		String[] sname = new String[list.size()];
+		int i=0;
+		for (reservation rs : list) {	
+			camp_loc loc = sv.loc(rs.getCamp_no());
+			spot spot = sv.spot(rs.getSp_no());
+			cname[i] = loc.getName();
+			sname[i] = spot.getSp_name();
+			System.out.println(rs.getRes_date());
+			i++;
+		}
 		// 총페이지수 (페이지 당 20개씩)
 		int pageCount = cnt / 20 + ((cnt % 20 == 0) ? 0 : 1);
 
@@ -434,7 +444,8 @@ public class reserveController {
 		model.addAttribute("camp_no", res.getCamp_no());
 		model.addAttribute("cnt", cnt);
 		model.addAttribute("list", list);
-		
+		model.addAttribute("cname", cname);
+		model.addAttribute("sname", sname);
 		model.addAttribute("pcnt", pageCount);
 		model.addAttribute("spage", startPage);
 		model.addAttribute("epage", endPage);
@@ -453,7 +464,17 @@ public class reserveController {
 		System.out.println(res.getSort());  //정렬 방식 저장
 		int cnt=sv.pastcnt(res);   //게시글 카운트
 		List<reservation> list = sv.pastlist(res);   //list
-	
+		String[] cname = new String[list.size()];
+		String[] sname = new String[list.size()];
+		int i=0;
+		for (reservation rs : list) {	
+			camp_loc loc = sv.loc(rs.getCamp_no());
+			spot spot = sv.spot(rs.getSp_no());
+			cname[i] = loc.getName();
+			sname[i] = spot.getSp_name();
+			System.out.println(rs.getRes_date());
+			i++;
+		}
 		// 총페이지수 (페이지 당 20개씩)
 		int pageCount = cnt / 20 + ((cnt % 20 == 0) ? 0 : 1);
 
@@ -467,7 +488,8 @@ public class reserveController {
 		model.addAttribute("camp_no", res.getCamp_no());
 		model.addAttribute("cnt", cnt);
 		model.addAttribute("list", list);
-		
+		model.addAttribute("cname", cname);
+		model.addAttribute("sname", sname);
 		model.addAttribute("pcnt", pageCount);
 		model.addAttribute("spage", startPage);
 		model.addAttribute("epage", endPage);

@@ -56,5 +56,8 @@
 <delete id="delmsg" parameterType="int">
 	delete from msg where msg_no=#{msg_no}
 </delete>
-
+<!-- 탈퇴회원 판별 -->
+<select id="checkId" parameterType="String" resultType="int">
+	select count(*) from member where id=#{id} and member_del=0
+</select>
 </mapper>
