@@ -19,10 +19,10 @@
 	<insert id="res_save" parameterType="reservation" >
 	<selectKey keyProperty="res_no" order="BEFORE" resultType="int">
       select nvl(max(res_no),0) + 1 from reservation
-   </selectKey>
+   </selectKey><!--  -->
 		insert into reservation 
 		values(#{res_no},#{camp_no},#{sp_no},#{eq_no},
-		sysdate, #{start_date} , #{end_date},
+		sysdate, TO_DATE(#{start_date},'YYYY-MM-DD') , TO_DATE(#{end_date},'YYYY-MM-DD'),
 		 #{num},#{price},#{payment},#{state},#{id},#{eq_num},'0')
 	</insert>
 	<!-- 예약목록 (id로 검색) -->

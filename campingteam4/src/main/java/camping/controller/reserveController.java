@@ -229,6 +229,7 @@ public class reserveController {
 	public String res_pay(HttpServletRequest request, @ModelAttribute reservation res, String[] eqm_no, String[] eqm_num, Model model)  throws Exception{
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
+		int result=0;
 		//회원 정보 가져옴
 		member mem=sv.memdetail(id);
 		String eq_no="";
@@ -250,7 +251,8 @@ public class reserveController {
 		reservation rs=null;
 		//바로 결제 들어가는거면 일단 예약 테이블에 저장 (결제대기 상태로)
 		if(res.getRes_no()==0)
-			sv.res_save(res);
+			result=sv.res_save(res);
+		System.out.println(result);
 		//장소,자리,장비 정보 가져옴
 		camp_loc loc = sv.loc(res.getCamp_no());
 		spot spot = sv.spot(res.getSp_no());
