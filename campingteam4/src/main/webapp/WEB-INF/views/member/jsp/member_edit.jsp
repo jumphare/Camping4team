@@ -67,6 +67,7 @@ text-decoration:none;
 <body>
 <header> 
 <%@ include file="../include/top.jsp" %>
+<script src="<%=request.getContextPath()%>/js/member.js"></script>
 </header>
 <div class="container">
   <form class="container1" name="f" method="post" action="member_edit_ok.do"

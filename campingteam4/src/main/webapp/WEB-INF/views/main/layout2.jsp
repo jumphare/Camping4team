@@ -171,7 +171,7 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 					<div class='star-rating'>
 					<span style="width: <fmt:formatNumber value="${rv1.score/5}" type="percent"/>"></span>
 					</div>
-					<p class="card-text">${rv1.content}</p>
+					
 					<span style="font-size:1.5rem;"><div style="float:left;">${rv1.r_date}</div><div style="float:right;"><a href="reviewdetail.do?re_no=${rv2.re_no}&page=1&ch=1" class="card-link">더보기</a></div></span>
 				</div>
 			</div>
@@ -184,7 +184,7 @@ document.getElementById('startdate').value = new Date().toISOString().substring(
 					<div class='star-rating'>
 					<span style="width: <fmt:formatNumber value="${rv2.score/5}" type="percent"/>"></span>
 					</div>
-					<p class="card-text">${rv2.content}</p>
+					
 					<span style="font-size:1.5rem;"><div style="float:left;">${rv2.r_date}</div><div style="float:right;"><a href="reviewdetail.do?re_no=${rv2.re_no}&page=1&ch=1" class="card-link">더보기</a></div></span>					
 				</div> 
 			</div>
