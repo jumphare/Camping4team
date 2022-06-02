@@ -40,8 +40,8 @@ p{
 overflow: hidden;
 text-overflow: ellipsis;
 white-space: nowrap;
-width:300px;
-height:20px;
+width:30rem;
+height:2rem;
 padding: 0;
 margin: 0 5px -10px 5px;
 position: relative;
@@ -62,7 +62,7 @@ color:#000;
 <div style="text-align:center;"><input type="button" value="받은 메시지"  class="btn btn-outline-light text-dark" onclick="table(1)" style=" font-size:1.6rem;">
 <input type="button" value="보낸 메시지"  class="btn btn-info" onclick="table(2)" style=" font-size:1.6rem;"></div>
 
-<form name="rdform" id="rdform" method="post">
+<form name="sdform" id="sdform" method="post">
 <div style="float:left; margin-bottom:0.5rem;">
 <input type="button" id="mdel"  class="btn btn-danger btn-sm" value="삭제" style=" font-size:1.2rem;"> </div>
 <div style="float:right; font-size:1.4rem;">총 메시지 : ${cnt } </div>

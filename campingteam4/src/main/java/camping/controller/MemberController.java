@@ -26,13 +26,14 @@ import camping.model.member;
 import camping.model.reservation;
 import camping.model.review;
 import camping.model.spot;
+import camping.service.MemberServiceImpl;
 import camping.service.msgService;
 
 @Controller
 public class MemberController {
 
 	@Autowired
-	private camping.service.MemberServiceImpl memberService;
+	private MemberServiceImpl memberService;
 	@Autowired
 	private msgService msv;
 	
@@ -199,13 +200,14 @@ public class MemberController {
 
 		String newfilename = "";
 
-		if (filename != "") { // 첨부파일이 전송된 경우
+		if (size > 0) { // 첨부파일이 전송된 경우
 
 			// 파일 중복문제 해결
 			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
 			System.out.println("extension:" + extension);
 
 			UUID uuid = UUID.randomUUID();
+			
 
 			newfilename = uuid.toString() + extension;
 			System.out.println("newfilename:" + newfilename);
@@ -232,7 +234,11 @@ public class MemberController {
 		if (size > 0) { // 첨부파일이 전송된 경우
 
 			mf.transferTo(new File(path + "/" + newfilename));
+			member.setProfile(newfilename);
 
+		}else {
+			String basicprofile = "basic_image.png";
+			member.setProfile(basicprofile);
 		}
 
 		String jumin1 = request.getParameter("jumin1").trim();
@@ -249,7 +255,7 @@ public class MemberController {
 		member.setJumin(jumin);
 		member.setPhone(phone);
 		member.setEmail(email);
-		member.setProfile(newfilename);
+
 
 		memberService.insertMember(member);
 
@@ -277,7 +283,7 @@ public class MemberController {
 				String name = m.getName();
 				String profile = m.getProfile();
 
-				model.addAttribute("name", name);
+//				model.addAttribute("name", name);
 				model.addAttribute("profile", profile);
 
 				return "redirect:/layout2.do";
@@ -427,7 +433,7 @@ public class MemberController {
 
 		String newfilename = "";
 
-		if (filename != "") { // 첨부파일이 전송된 경우
+		if (size > 0) { // 첨부파일이 전송된 경우
 
 			// 파일 중복문제 해결
 			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
@@ -461,7 +467,10 @@ public class MemberController {
 		if (size > 0) { // 첨부파일이 전송된 경우
 
 			mf.transferTo(new File(path + "/" + newfilename));
-
+			member.setProfile(newfilename);
+		}else {
+			String basicprofile = "basic_image.png";
+			member.setProfile(basicprofile);
 		}
 
 		String id = (String) session.getAttribute("id");
@@ -479,12 +488,10 @@ public class MemberController {
 
 		member editm = this.memberService.userCheck(id);	
 
-		if (size > 0) { // 첨부 파일이 수정되면
-			member.setProfile(newfilename);
-		} else { // 첨부파일이 수정되지 않으면
-			member.setProfile(editm.getProfile());
-		}
-
+		/*
+		 * if (size > 0) { // 첨부 파일이 수정되면 member.setProfile(newfilename); } else { //
+		 * 첨부파일이 수정되지 않으면 member.setProfile(editm.getProfile()); }
+		 */
 		member.setId(id);
 		member.setJumin(jumin);
 		member.setPhone(phone);
@@ -628,4 +635,5 @@ public class MemberController {
 	model.addAttribute("page", page);
 	return "member/jsp/member_admin_detail";
 	}
-}
+	}
+

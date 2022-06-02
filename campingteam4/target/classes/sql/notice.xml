@@ -5,7 +5,7 @@
 <mapper namespace="noticens">
 
 	<insert id="insert" parameterType="notice">
-		insert into notice values(notice_num_seq.nextval, '공지게시판',#{subject},#{content},sysdate,#{not_file,jdbcType=VARCHAR} )
+		insert into notice values(notice_num_seq.nextval, '공지게시판',#{subject},#{content},sysdate,#{not_file,jdbcType=VARCHAR},#{noti_flag} )
 	</insert>
 
 	<select id="count" resultType="int">
@@ -24,8 +24,18 @@
 	  select * from notice where not_no = #{not_no}
 	</select>
 	
+	<!--  , not_file=#{not_file} -->
 	<update id="update" parameterType="notice">
-		update notice set subject=#{subject}, content=#{content}, no_date=sysdate, not_file=#{not_file}  where not_no=#{not_no} 
+		update 
+		      notice 
+		   set 
+		      subject=#{subject}
+		     ,content=#{content}
+		     ,no_date=sysdate
+		     ,noti_flag = #{noti_flag, jdbcType=VARCHAR}
+		     ,not_file=#{not_file}
+		 where 
+		      not_no=#{not_no} 
 	</update>
 
 	<delete id="delete" parameterType="int">

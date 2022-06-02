@@ -16,8 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-<script
-	src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
@@ -85,24 +84,30 @@ a:hover {
 	  left: 30%;
 	  top: 45%;
 	};  */
+
+	.table {
+	table-layout:fixed;
+	}
 </style>
 </head>
 <body>
-	<h1>상단바</h1>
+	<header>
+<%@ include file="../include/top.jsp" %>
+</header>
 	<br>
 	<br>
 	<div class="container">
 		<div class="title">회원 상세</div>
-		<table class="table" border="1" align=center width=900>
+		<table class="table" border="1" align=center width=900;>
 			<thead>
-				<tr class="cent">
+				<tr class="cent" width=500>
 					<th>아이디</th>
 					<th>패스워드</th>
 					<th>이름</th>
 					<th>주민번호</th>
 					<th>주소</th>
 					<th>휴대폰번호</th>
-					<th>이메일</th>
+					<th width=250;>이메일</th>
 				</tr>
 			</thead>
 			<tr>

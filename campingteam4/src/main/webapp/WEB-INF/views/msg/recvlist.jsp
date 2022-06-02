@@ -40,8 +40,8 @@ p{
 overflow: hidden;
 text-overflow: ellipsis;
 white-space: nowrap;
-width:300px;
-height:20px;
+width:30rem;
+height:2rem;
 padding: 0;
 margin: 0 5px -10px 5px;
 position: relative;

@@ -271,7 +271,8 @@ public class camp_Controller {
 			return "camp_loc/admin_spot_view";
 		}else {
 		
-		camp_select camsel = new camp_select();
+			
+		camp_select camsel = new camp_select(); 
     	camsel.setStartDate(startDate);
     	camsel.setEndDate(endDate);
 		camsel.setLoc(loc);

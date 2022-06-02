@@ -42,7 +42,7 @@ public class noticeController {
 		String newfilename = "";
 		int result = 0;
 
-		if (filename != "") { // 첨부파일이 전송된 경우
+		if (filename != null) { // 첨부파일이 전송된 경우
 
 			// 파일 중복문제 해결
 			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
@@ -113,7 +113,9 @@ public class noticeController {
 		System.out.println("listcount:" + listcount);
 
 		List<notice> noticelist = service.getBoardList(page);
-		System.out.println("noticelist:" + noticelist);
+		List<notice> notiList = service.getBoardNotiList(page);
+		
+		System.out.println("notiList===>" + notiList);
 
 		// 총페이지수
 		int pageCount = listcount / limit + ((listcount % limit == 0) ? 0 : 1);
@@ -127,6 +129,7 @@ public class noticeController {
 		model.addAttribute("page", page);
 		model.addAttribute("listcount", listcount);
 		model.addAttribute("noticelist", noticelist);
+		model.addAttribute("notiList", notiList);		
 		model.addAttribute("pageCount", pageCount);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
@@ -141,7 +144,13 @@ public class noticeController {
 
 		notice board = service.getBoard(not_no); // 상세 정보 구하기
 		String content = board.getContent().replace("\n", "<br>");
-		System.out.println("board:" + board);
+		
+		String noti_flag = board.getNoti_flag();		
+		
+		
+		System.out.println("board===>" + board);
+		
+		System.out.println("noti_flag===>" + noti_flag);
 
 		model.addAttribute("board", board);
 		model.addAttribute("content", content);
@@ -181,7 +190,7 @@ public class noticeController {
 		String newfilename = "";
 		int result = 0;
 
-		if (filename != "") { // 첨부파일이 전송된 경우
+		if (filename != null) { // 첨부파일이 전송된 경우
 
 			// 파일 중복문제 해결
 			String extension = filename.substring(filename.lastIndexOf("."), filename.length());

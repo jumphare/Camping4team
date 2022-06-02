@@ -170,7 +170,7 @@ color:#000;
 	<c:if test="${i != page}">		<!-- 현재 페이지가 아닌 경우 -->
 		<a href="pbList.do?page=${i}">[${i}]</a>
 	</c:if>
-</c:forEach>	
+</c:forEach>	 
 	
 <!-- 다음 블럭으로 이동 -->	
 <c:if test="${endPage < pageCount}">

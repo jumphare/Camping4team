@@ -14,13 +14,13 @@
 <title>전체리뷰목록</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 h2 {font-size:15px;}
 .star-rating {width:143px; }
-.star-rating,.star-rating span {display:inline-block; height:24px; overflow:hidden; background:url(img/star.png)no-repeat; }
+.star-rating,.star-rating span {display:inline-block; height:21px; overflow:hidden; background:url(img/star.png)no-repeat; }
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
  html { font-size:8px; } 
   @font-face {
@@ -58,10 +58,13 @@ text-decoration:none;
 </style>
 </head>
 <body>
-<h1>상단바</h1><br><br>	 
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1> 
 <div class="container" >
 <div class="title">전체 리뷰 목록</div>
-		<table class="table" border="1" align=center width=900>
+		<table class="table" align=center width=900>
 		 <thead><tr class="cent" >
 				<th>대표이미지</th>
 				<th>제목</th>

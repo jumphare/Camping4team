@@ -51,7 +51,7 @@ padding:1.5rem;
 
 </style>
 <script>
-$(document).ready(function(){
+$(function(){	
     $("#sendmsg").click(function(){
     	$("#smsg").submit();
     	alert("전송되었습니다");
@@ -59,6 +59,21 @@ $(document).ready(function(){
             window.close();
          }, 100);
     });
+    var id="${id}";
+    $.ajax({
+       type:"POST",
+       url:"./not_me.do?recv_id=${recv_id}",
+       data: {"id":id},        
+       success: function (data) { 
+     	  if(data==1){	//타인에게 쪽지를 보냄
+     		window.open("./writemsg.do?recv_id=${msg.id}","쪽지 보내기", "width=600, height=500, left=100, top=50");
+     	  }else{	//나한테 쪽지를 보냄
+     		  alert("자신에게 쪽지를 보낼 수 없습니다.");
+     		  window.close();
+     	  }  
+       }
+     });//$.ajax 
+    
  });
 </script>
 </head>

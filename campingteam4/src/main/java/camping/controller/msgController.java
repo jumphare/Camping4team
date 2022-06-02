@@ -58,8 +58,8 @@ public class msgController {
 		int pnum = 1;
 		if (page!=null) 
 			pnum=Integer.parseInt(page);	
-		int startRow=(pnum-1)*10+1;
-		int endRow=startRow+10-1;
+		int startRow=(pnum-1)*7+1;
+		int endRow=startRow+7-1;
 		msg mg=new msg();
 		mg.setRecv_id(recv_id);
 		mg.setStartRow(startRow);
@@ -68,9 +68,9 @@ public class msgController {
 		int cnt=sv.allcnt_rd(recv_id);
 		
 		// 총페이지수 (페이지 당 10개씩)
-		int pageCount = cnt / 10 + ((cnt % 10 == 0) ? 0 : 1);
-		int startPage = ((pnum - 1) / 10) * 10 + 1; 
-		int endPage = startPage + 10 - 1; 
+		int pageCount = cnt / 7 + ((cnt % 7 == 0) ? 0 : 1);
+		int startPage = ((pnum - 1) / 7) * 7 + 1; 
+		int endPage = startPage + 7 - 1; 
 		if (endPage > pageCount)
 				endPage = pageCount;
 		
@@ -86,10 +86,11 @@ public class msgController {
 	@RequestMapping("/sendlist.do")
 	public String sendlist(@RequestParam("id") String id, String page, Model model) {
 		int pnum = 1;
+		System.out.println(page);
 		if (page!=null) 
 			pnum=Integer.parseInt(page);	
-		int startRow=(pnum-1)*10+1;
-		int endRow=startRow+10-1;
+		int startRow=(pnum-1)*7+1;
+		int endRow=startRow+7-1;
 		msg mg=new msg();
 		mg.setId(id);
 		mg.setStartRow(startRow);
@@ -98,9 +99,9 @@ public class msgController {
 		int cnt=sv.allcnt_sd(id);
 		
 		// 총페이지수 (페이지 당 10개씩)
-		int pageCount = cnt / 10 + ((cnt % 10 == 0) ? 0 : 1);
-		int startPage = ((pnum - 1) / 10) * 10 + 1; 
-		int endPage = startPage + 10 - 1; 
+		int pageCount = cnt / 7 + ((cnt % 10 == 0) ? 0 : 1);
+		int startPage = ((pnum - 1) / 7) * 7 + 1; 
+		int endPage = startPage + 7 - 1; 
 		if (endPage > pageCount)
 				endPage = pageCount;
 		
@@ -134,6 +135,18 @@ public class msgController {
 		out.print(data);
 		return null;
 	}
+	
+	@ResponseBody 
+	@RequestMapping(value="/not_me.do", method = RequestMethod.POST)
+	public String not_me(HttpServletResponse response, @RequestParam("id") String id, @RequestParam("recv_id") String recv_id) throws Exception{
+		int data=1;
+		if(id==recv_id)
+			data=0;
+		PrintWriter out = response.getWriter();
+		out.print(data);
+		return null;
+	}
+	
 	//쪽지 개별 삭제
 	@ResponseBody 
 	@RequestMapping(value="/delmsg.do", method = RequestMethod.POST)
@@ -162,8 +175,9 @@ public class msgController {
 	}
 	//다중 삭제
 	@RequestMapping("/muldel.do")
-	public String mulddel(HttpSession session, RedirectAttributes redirect, String page, @RequestParam("num") int num, int[] chk, Model model) {
+	public String mulddel(HttpSession session, RedirectAttributes redirect, @RequestParam("page") String page, @RequestParam("num") int num, int[] chk, Model model) {
 		String id=(String)session.getAttribute("id");
+		System.out.println(chk[0]);
 		for(int i=0; i<chk.length; i++)
 			sv.delmsg(chk[i], id);
 		String result="";
@@ -179,5 +193,7 @@ public class msgController {
 		}
 		return result;
 	}
+	
+
 
 }

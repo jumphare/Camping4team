@@ -11,7 +11,7 @@
 <title>예약목록</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
   
@@ -69,12 +69,12 @@ text-decoration:none;
 		<div style="font-weight:bolder;">${fn:substring(r.start_date,0,10)}  ~  ${fn:substring(r.end_date,0,10)}</div>
 		<div><a href='./reserveView.do?res_no=${r.res_no}'>[${cname[i]}] ${sname[i]}</a> </div>
 		<div>
-		<c:if test="${compare[i]>=0 }">
+		<c:if test="${compare2[i]>0 }">
 		<c:if test="${r.state eq '0' }" ><span style="color:#CD1039">결제대기</span></c:if>
 		<c:if test="${r.state eq '1' || r.state eq '3'}" ><span style="color:#006400">예약완료</span></c:if>
 		<c:if test="${r.state eq '2'}" ><span style="color:#828282">예약취소</span></c:if>
 		</c:if>
-		<c:if test="${compare[i]<0 }"><span style="color:#828282">지난예약</span></c:if>
+		<c:if test="${compare2[i]<=0 }"><span style="color:#828282">지난예약</span></c:if>
 		</div></td>
 		<td> 
 		<div><a href="./reserveView.do?res_no=${r.res_no}" style="color:#834683; font-weight:bolder;">상세내역</a></div>
@@ -83,10 +83,10 @@ text-decoration:none;
 		<td>
 		<c:if test="${compare[i]<=0 && re_no[i]==0 && (r.state==1 || r.state==3)}">
 <%-- 		<input type="button" class="btn btn-outline-info btn-lg" value="리뷰 작성" onclick="location.href='./re_insertform.do?res_no=${r.res_no}&sp_no=${r.sp_no}' "> --%>
-			<a href="./re_insertform.do?res_no=${r.res_no}&sp_no=${r.sp_no}">리뷰작성</a>
+			<a href="./re_insertform.do?res_no=${r.res_no}&sp_no=${r.sp_no}" style="color:#006400;">리뷰작성</a>
 		</c:if>
 		<c:if test="${compare[i]>0 || (r.state==0 || r.state==2)}">
-			<p style="font-size:1.6rem;">리뷰작성불가</p>
+			<p style="font-size:1.6rem;">작성불가</p>
 		</c:if>
 		<c:if test="${re_no[i]!=0 && (r.state==1||r.state==3)}">
 			<a href="./reviewdetail.do?re_no=${re_no[i]}&page=1&ch=1">리뷰보기</a>

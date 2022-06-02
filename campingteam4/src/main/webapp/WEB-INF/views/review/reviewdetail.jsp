@@ -13,15 +13,39 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <title>상세페이지</title>
 <!-- 별점 출력 -->
 <style>
-h2 {font-size:15px;}
+.heart {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: url(https://cssanimation.rocks/images/posts/steps/heart.png) no-repeat;
+  background-position: 0 0;
+  cursor: pointer;
+  animation: fave-heart 1s steps(28);
+}
+.heart:hover {
+  background-position: -2800px 0;
+  transition: background 1s steps(28);
+}
+@keyframes fave-heart {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: -2800px 0;
+  }
+}
+h2 {font-size:15px;} 
 .star-rating {width:143px; }
-.star-rating,.star-rating span {display:inline-block; height:24px; overflow:hidden; background:url(img/star.png)no-repeat; }
+.star-rating,.star-rating span {display:inline-block; height:21px; overflow:hidden; background:url(img/star.png)no-repeat; }
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
 html { font-size:10px; } 
   @font-face {
@@ -167,7 +191,10 @@ input[type="text"]{
 
 </head>
 <body>
-<h1>상단바</h1><br><br>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:50px;">--</h1>
 		<div class="container">
 		<div class="title">후기 상세</div>
 		 <form class="container">
@@ -227,6 +254,8 @@ input[type="text"]{
 									<input type="button" value="좋아요취소" class="btn btn-success" style="font-size:1.0em;"
 										onclick="location.href='reviewdelete.do?re_no=${review.re_no}&page=${page}'">
 								</c:if>
+								
+								
 								좋아요 수: ${likecount}
 							</form></td>
 			</table>
@@ -242,7 +271,7 @@ input[type="text"]{
 					value="${review.res_no}">
 				<div class="title">댓글 작성</div>
 				<input type="text" class="" rows="3" cols="50" style="height:80%; width:90%;" name="content" >&nbsp;&nbsp;
-				<input type="submit" value="확인" class="btn btn-success" style="font-size:1.5em;">
+				<input type="submit" value="확인" class="btn btn-success" style="font-size:1.0em;">
 				</table>
 				<!-- 댓글 list 불러오는곳 -->
 				

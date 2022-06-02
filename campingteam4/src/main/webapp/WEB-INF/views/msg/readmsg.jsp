@@ -68,8 +68,7 @@ $(function(){
           		  return false;
           	  }  
             }
-
-          });//$.ajax 		
+          });//$.ajax 			
     }); //click
     
     $("#delmsg").click(function(){

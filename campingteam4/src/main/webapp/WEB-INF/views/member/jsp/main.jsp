@@ -9,7 +9,7 @@
 <title>마이페이지</title>
  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" type="text/css" href="./css/main.css" />
@@ -42,7 +42,7 @@ a:hover{
 text-decoration:none;
 }
 
-.container {
+.container1 {
   position: absolute;
   height: 400px;
   margin-left: -200px;
@@ -54,7 +54,10 @@ text-decoration:none;
 </style>
 </head>
 <body>
-<h1>상단바</h1><br><br>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<div class="container">
 <c:if test="${sessionScope.id == null }"> 
   <script>
    alert("다시 로그인 해주세요!");
@@ -63,9 +66,8 @@ text-decoration:none;
 </c:if> 
 
 <c:if test="${sessionScope.id != null }"> 
- <div class="container">
-   <div class="title">마이페이지</div>  
-   <form method="post" action="member_logout.do"> 
+   <form class="container1" method="post" action="member_logout.do"> 
+      <div class="title">마이페이지</div>  
    <table class="">
     
     
@@ -94,15 +96,8 @@ text-decoration:none;
     <tr><th>
     	<a href="memberlist.do">회원 목록</a>
     </th></tr>
-    <tr>
-    	<th>
-    	<a href="pbList.do">동행찾기</a>
-    	</th>
-    </tr>
-   </table>   
-   </form>
-   <br><br><br>
-   <input type = "button" value="채팅하기" onclick="chat()" class="btn btn-success" style="font-size:1.5em;"/>
+   </table><br>
+   <div>
    <script type="text/javascript">
 	function chat() {
 		// 함수 동작 테스트 
@@ -114,13 +109,15 @@ text-decoration:none;
 	</script>
 	<tr>
      <th colspan="2">
-     <input type="button" value="정보수정" class="btn btn-success" style="font-size:1.5em;"
+     <input type="button" value="정보수정" class="btn btn-success" style="font-size:1.0em;"
      		onclick="location='member_edit.do'" />
-     <input type="button" value="회원탈퇴" class="btn btn-success" style="font-size:1.5em;"
+     <input type="button" value="회원탈퇴" class="btn btn-success" style="font-size:1.0em;"
      		onclick="location='member_del.do'" />
-     <input type="submit" value="로그아웃" class="btn btn-success" style="font-size:1.5em;" />     
+     <input type="submit" value="로그아웃" class="btn btn-success" style="font-size:1.0em;" />     
      </th>
     </tr>
+    </div>
+      </form>
  </div>
 </c:if>
 	

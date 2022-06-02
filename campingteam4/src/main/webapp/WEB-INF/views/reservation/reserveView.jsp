@@ -7,7 +7,7 @@
  <!DOCTYPE html>
 <html>
 <head>
-  <script type="text/javascript" src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
+<!--   <script type="text/javascript" src='https://code.jquery.com/jquery-3.1.0.min.js'></script> -->
 <script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -81,7 +81,7 @@ padding: 2rem;
 <div class=mg">&nbsp;</div>
 <div class="title">캠핑정보</div>
 <table class="table restable">
-<tr><td rowspan=4 style="width:40%;">${spot.image }</td>
+<tr><td rowspan=4 style="width:40%; text-align:center;"><img style="height:20rem; width:20rem;" src="${path }/campupload/${spot.image }"></td>
 	<th>장소</th><td>[${camp.name }] ${spot.sp_name }</td>	</tr>
 <tr><th>타입</th> <td>${spot.type }</td>	</tr>
 <tr><th>동행인원</th><td>${res.num }</td> </tr>
@@ -134,12 +134,12 @@ padding: 2rem;
 <table style="margin-left: auto; margin-right: auto;">
 	<tr>
 		<td colspan=2  >
-		<c:if test="${res.payment eq '0'}" >
+		<c:if test="${res.payment eq '0' && cpmpare2<=0}" >
 			<button id="paying" type="button" class="btn btn-success btn-lg">결제</button>
 		</c:if>
 			<c:if test="${res.state eq '0' || res.state eq '2'}" ><input type="button" value="내역삭제" class="btn btn-secondary btn-lg" onclick="location.href='./res_del.do?res_no=${res.res_no}';" ></c:if>
 			<c:if test="${res.state eq '1' && compare>0}" ><input type="button" value="예약취소" class="btn btn-danger btn-lg"  onclick="cancelPay()"></c:if>
-			<c:if test="${(res.state eq '1' || res.state eq '3') && compare<=0 && re_no==0}" ><input type="button" value="리뷰작성" class="btn btn-success btn-lg"  onclick="location.href="./re_insertform.do?res_no=${res.res_no}&sp_no=${res.sp_no}""></c:if>
+			<c:if test="${(res.state eq '1' || res.state eq '3') && compare<=0 && re_no==0}" ><input type="button" value="리뷰작성" class="btn btn-success btn-lg"  onclick="location.href='./re_insertform.do?res_no=${res.res_no}&sp_no=${res.sp_no}'"></c:if>
 			<input type="button" class="btn btn-light btn-lg" value="목록" onclick="history.back()">
 		</td>
 	</tr>

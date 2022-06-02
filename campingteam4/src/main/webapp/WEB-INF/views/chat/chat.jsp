@@ -125,6 +125,22 @@ color:#000;
 background-color:#eeeeee;
  height: 300px;
   width: 400px;
+  
+    padding-left:0;
+
+    margin:0;
+
+    list-style-type:none;
+
+    display:flex;
+
+    flex-direction: column-reverse;
+
+    overflow-y:auto;
+
+    border-top:2px solid #fff;
+
+    border-bottom:2px solid #fff;
 }
 	
 	</style>
