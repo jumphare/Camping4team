@@ -47,12 +47,12 @@ a:hover{
 text-decoration:none;
 }
 
-/* .container {
+/* .container1 {
   position: absolute;
   height: 400px;
   margin-left: -200px;
   margin-top: -200px;
-  left: 30%;
+  left: 25%;
   top: 45%;
 };  */
 </style>
@@ -64,15 +64,16 @@ text-decoration:none;
 <h1 style="margin-bottom:50px;">--</h1> 
 <div class="container" >
 <div class="title">전체 리뷰 목록</div>
+<form class="container1">
 		<table class="table" align=center width=900>
 		 <thead><tr class="cent" >
 				<th>대표이미지</th>
 				<th>제목</th>
 				<th>별점</th>
 				<th>장소</th>
-				<th>좋아요</th>
-				<th>작성자</th>
-				<th>조회수</th>
+				<th width=100>좋아요</th>
+				<th width=100>작성자</th>
+				<th width=100>조회수</th>
 		 </tr></thead>
 			
 		<c:forEach var = "r" items="${relist}" varStatus="status">
@@ -102,6 +103,7 @@ text-decoration:none;
 		</c:forEach>
 	
 		</table>
+		</form>
 <!-- 페이지처리 -->
 <center>
 <c:if test="${listcount>0}">

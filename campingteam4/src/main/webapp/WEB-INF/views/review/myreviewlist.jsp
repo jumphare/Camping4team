@@ -72,9 +72,9 @@ text-decoration:none;
 				<th>제목</th>
 				<th>별점</th>
 				<th>장소</th>
-				<th>좋아요</th>
-				<th>작성자</th>
-				<th>조회수</th>
+				<th width=100>좋아요</th>
+				<th width=100>작성자</th>
+				<th width=100>조회수</th>
 			</tr></thead>
 		<c:forEach var = "r" items="${mylist}" varStatus="status">
 
