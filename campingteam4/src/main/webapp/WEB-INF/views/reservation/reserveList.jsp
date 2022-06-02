@@ -69,12 +69,12 @@ text-decoration:none;
 		<div style="font-weight:bolder;">${fn:substring(r.start_date,0,10)}  ~  ${fn:substring(r.end_date,0,10)}</div>
 		<div><a href='./reserveView.do?res_no=${r.res_no}'>[${cname[i]}] ${sname[i]}</a> </div>
 		<div>
-		<c:if test="${compare[i]>=0 }">
+		<c:if test="${compare2[i]>0 }">
 		<c:if test="${r.state eq '0' }" ><span style="color:#CD1039">결제대기</span></c:if>
 		<c:if test="${r.state eq '1' || r.state eq '3'}" ><span style="color:#006400">예약완료</span></c:if>
 		<c:if test="${r.state eq '2'}" ><span style="color:#828282">예약취소</span></c:if>
 		</c:if>
-		<c:if test="${compare[i]<0 }"><span style="color:#828282">지난예약</span></c:if>
+		<c:if test="${compare2[i]<=0 }"><span style="color:#828282">지난예약</span></c:if>
 		</div></td>
 		<td> 
 		<div><a href="./reserveView.do?res_no=${r.res_no}" style="color:#834683; font-weight:bolder;">상세내역</a></div>

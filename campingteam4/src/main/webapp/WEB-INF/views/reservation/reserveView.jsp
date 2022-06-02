@@ -81,7 +81,7 @@ padding: 2rem;
 <div class=mg">&nbsp;</div>
 <div class="title">캠핑정보</div>
 <table class="table restable">
-<tr><td rowspan=4 style="width:40%; text-align:center;"><img style="height:15rem; width:15rem;" src="${path }/campupload/${spot.image }"></td>
+<tr><td rowspan=4 style="width:40%; text-align:center;"><img style="height:20rem; width:20rem;" src="${path }/campupload/${spot.image }"></td>
 	<th>장소</th><td>[${camp.name }] ${spot.sp_name }</td>	</tr>
 <tr><th>타입</th> <td>${spot.type }</td>	</tr>
 <tr><th>동행인원</th><td>${res.num }</td> </tr>

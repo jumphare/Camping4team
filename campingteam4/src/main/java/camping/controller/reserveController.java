@@ -56,21 +56,12 @@ public class reserveController {
         // REST API 키와 REST API secret 를 아래처럼 순서대로 입력한다.
         this.api = new IamportClient("1805390383174152","936358a44a352394888a377a92dbcfd64cc7ac63162eb1d8ce0ff197f01a54fe70d1a0d732e32c3b");
     }
-	
-	
-	// 임의 메인 페이지 - 로그인 세션 공유 위해 생성
-	@RequestMapping("/resmain.do")
-	public String resmain(HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession();
-		session.setAttribute("id", "test");
-		return "/reservation/resmain";
-	}
 
-	// 임의 장소, 자리 페이지 - DB값 받아서 예약 페이지로 넘기는 과정 위해 생성
+
 	@RequestMapping("/reservePage.do")
 	public String loc(reservation res, Model model) {
 		// 장소 DB
-		camp_loc loc = sv.loc(res.getCamp_no()); // 임의의 1번 장소 DB 불러오기
+		camp_loc loc = sv.loc(res.getCamp_no()); 
 		// 자리 DB
 		spot spot = sv.spot(res.getSp_no());
 		// 옵션 DB
@@ -128,6 +119,7 @@ public class reserveController {
 		String[] cname = new String[reslist.size()];
 		String[] sname = new String[reslist.size()];
 		int[] compare = new int[reslist.size()];
+		int[] compare2 = new int[reslist.size()];
 		int[] re_no=new int[reslist.size()];
 		// 예약마다 장소, 자리명 불러와서 배열 저장
 		for (reservation res : reslist) {
@@ -139,10 +131,11 @@ public class reserveController {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");		 
 			//비교할 date와 today를데이터 포맷으로 변경
 			Date date = new Date(dateFormat.parse(res.getEnd_date()).getTime()); 
+			Date date2 = new Date(dateFormat.parse(res.getStart_date()).getTime()); 
 			Date today = new Date(dateFormat.parse(todayfm).getTime());	 
 			//compareTo메서드를 통한 날짜비교 -> +일 경우 현재예약
 			compare[i] = date.compareTo(today); 
-			
+			compare2[i] = date2.compareTo(today); 
 			//리뷰 목록 가져와서 해당 res_no에 리뷰가 달려있으면 그 리뷰 넘버 가져오기
 			cnt=rv.revexist(res.getRes_no());
 			if(cnt==0) re_no[i]=0;			//리뷰 작성 안돼있으면 0 
@@ -162,6 +155,7 @@ public class reserveController {
 		
 		model.addAttribute("re_no", re_no);
 		model.addAttribute("compare", compare);
+		model.addAttribute("compare2", compare2);
 		model.addAttribute("rlist", reslist);
 		model.addAttribute("cname", cname);
 		model.addAttribute("sname", sname);

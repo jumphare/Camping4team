@@ -11,7 +11,7 @@
 	<html> 
 	<head>
 	<meta charset="UTF-8">
-	<title>내 리뷰 목록</title>
+	<title>회원관리</title>
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
 	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
@@ -38,7 +38,8 @@
 	  }
 	  
 	  table{
-	  font-size:2.3rem;
+	  font-size:1.6rem;
+	  width:80%;
 	  }
 	 
 	
@@ -50,12 +51,13 @@
 	}
 	
 	.container1 {
-	  position: absolute;
+	  position: fixed;
 	  height: 400px;
 	  margin-left: -100px;
-	  margin-top: -200px;
-	  left: 10%;
+	  margin-top: -100px;
+	  left: 15%;
 	  top: 28%;
+	 background-color:white;
 	};
 	</style>
 	</head>
@@ -63,10 +65,11 @@
 	<header>
 <%@ include file="../include/top.jsp" %>
 </header>
-	<div class="container" >
+<h1 style="margin-bottom:50px;">--</h1>
+<div class="container" style="background-color:white; ">
 	 <form class="container1">
 	<div class="title">회원 관리</div>
-			<table class="table" border="1" align=center width=900>
+			<table class="table" align=center>
 				<thead><tr class="cent" >
 					<th>아이디</th>
 					<th>패스워드</th>
