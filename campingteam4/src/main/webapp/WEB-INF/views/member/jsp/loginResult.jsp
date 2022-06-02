@@ -5,7 +5,7 @@
 
 <c:if test="${result == 1}">
 	<script>
-		alert("등록되지 않는 회원 입니다.");
+		alert("등록되지 않은 회원 입니다.");
 		history.go(-1);
 	</script>
 </c:if>   

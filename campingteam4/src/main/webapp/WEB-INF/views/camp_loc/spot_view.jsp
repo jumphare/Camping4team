@@ -84,10 +84,14 @@ text-decoration:none;
 </style>
 </head>
 <body>
-<br>
+<header>
+<%@ include file="../include/top.jsp" %>
+</header>
+<h1 style="margin-bottom:30px;">--</h1>
 <div class=container>
 
 <div class="title">${spot.sp_name}</div>
+<c:if test="${spot.reservecheck == 0}">
 <form align=center method=post id="selectdata"
 					action="<%=request.getContextPath()%>/reservePage.do">
 					<input type="hidden" id="start_date" name="start_date"
@@ -98,6 +102,7 @@ text-decoration:none;
 						value="${spot.camp_no}"> <input type="hidden" id="sp_no"
 						name="sp_no" value="${spot.sp_no}"> <input type="submit" class=myButton
 						value="예약하러가기"></form>
+		</c:if>				
 	<table class=table align=center>
 		<caption>상세</caption>
 		<tr>
