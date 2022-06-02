@@ -189,9 +189,11 @@ public class reserveController {
 		//예약 때 추가한 장비에 대한 정보만 가져와 리스트에 저장
 //		List<equipment> eqlist = sv.eqm(res.getCamp_no());
 		List<equipment> eqlist=new ArrayList<equipment>();
+		if(eqm_no!=null) {
 		for(int i=0; i<eqm_no.length; i++) {
 			equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
 			eqlist.add(eqm);
+		}
 		}
 		//오늘 날짜와 비교해서 날짜 안지났음 양수 지났음 음수를 int 배열에 저장하고 출력할 때 조건 달아 리뷰 버튼 뜨게 하기
 		//오늘날짜 yyyy-MM-dd로 생성
@@ -257,9 +259,11 @@ public class reserveController {
 		camp_loc loc = sv.loc(res.getCamp_no());
 		spot spot = sv.spot(res.getSp_no());
 		List<equipment> eqlist = new ArrayList<equipment>();
+		if(eqm_no!=null) {
 		for(int i=0; i<eqm_no.length; i++) {
 			equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
 			eqlist.add(eqm);
+		}
 		}
 		System.out.println(eqlist);
 		
@@ -286,12 +290,12 @@ public class reserveController {
 	
 	//결제완료 페이지로
 	@RequestMapping("/pay_result.do")
-	public String pay_result(HttpSession session, @RequestParam(value= "imp_uid") String imp_uid, Locale locale, Model model) throws IamportResponseException, IOException{
+	public String pay_result(HttpSession session, @RequestParam(value= "imp_uid") String imp_uid, @RequestParam(value= "res_no") int res_no, Locale locale, Model model) throws IamportResponseException, IOException{
 		String id = (String) session.getAttribute("id");
 	System.out.println("결제완료 페이지로 넘어감"+id);
 		member mem=sv.memdetail(id);
 		//id로 저장된 가장 최근 예약내역 가져오기
-		reservation res=sv.recentone(id);
+		reservation res=sv.resdetail(res_no);
 		IamportResponse<Payment> resp=api.paymentByImpUid(imp_uid);
 	System.out.println(resp.getResponse().getMerchantUid());
 		//payment 테이블 저장

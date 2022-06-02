@@ -81,11 +81,11 @@ text-decoration:none;
 		<c:if test="${r.state ne '1' && re_no[i]==0}" ><a href="./res_del.do?res_no=${r.res_no}" style="color:#A52A2A; font-weight:bolder;">내역삭제</a></c:if>
 		</td>
 		<td>
-		<c:if test="${compare[i]<=0 && re_no[i]==0 && (r.state==1 || r.state==3)}">
+		<c:if test="${compare2[i]<=0 && re_no[i]==0 && (r.state==1 || r.state==3)}">
 <%-- 		<input type="button" class="btn btn-outline-info btn-lg" value="리뷰 작성" onclick="location.href='./re_insertform.do?res_no=${r.res_no}&sp_no=${r.sp_no}' "> --%>
 			<a href="./re_insertform.do?res_no=${r.res_no}&sp_no=${r.sp_no}" style="color:#006400;">리뷰작성</a>
 		</c:if>
-		<c:if test="${compare[i]>0 || (r.state==0 || r.state==2)}">
+		<c:if test="${compare2[i]>0 || (r.state==0 || r.state==2)}">
 			<p style="font-size:1.6rem;">작성불가</p>
 		</c:if>
 		<c:if test="${re_no[i]!=0 && (r.state==1||r.state==3)}">

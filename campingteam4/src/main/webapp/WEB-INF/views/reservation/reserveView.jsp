@@ -134,12 +134,12 @@ padding: 2rem;
 <table style="margin-left: auto; margin-right: auto;">
 	<tr>
 		<td colspan=2  >
-		<c:if test="${res.payment eq '0' && cpmpare2<=0}" >
+		<c:if test="${res.state eq '0' && compare2>0}" >
 			<button id="paying" type="button" class="btn btn-success btn-lg">결제</button>
 		</c:if>
 			<c:if test="${res.state eq '0' || res.state eq '2'}" ><input type="button" value="내역삭제" class="btn btn-secondary btn-lg" onclick="location.href='./res_del.do?res_no=${res.res_no}';" ></c:if>
-			<c:if test="${res.state eq '1' && compare>0}" ><input type="button" value="예약취소" class="btn btn-danger btn-lg"  onclick="cancelPay()"></c:if>
-			<c:if test="${(res.state eq '1' || res.state eq '3') && compare<=0 && re_no==0}" ><input type="button" value="리뷰작성" class="btn btn-success btn-lg"  onclick="location.href='./re_insertform.do?res_no=${res.res_no}&sp_no=${res.sp_no}'"></c:if>
+			<c:if test="${res.state eq '1' && compare2>0}" ><input type="button" value="예약취소" class="btn btn-danger btn-lg"  onclick="cancelPay()"></c:if>
+			<c:if test="${(res.state eq '1' || res.state eq '3') && compare2<=0 && re_no==0}" ><input type="button" value="리뷰작성" class="btn btn-success btn-lg"  onclick="location.href='./re_insertform.do?res_no=${res.res_no}&sp_no=${res.sp_no}'"></c:if>
 			<input type="button" class="btn btn-light btn-lg" value="목록" onclick="history.back()">
 		</td>
 	</tr>
@@ -182,7 +182,7 @@ $("#paying").click(function(){
         	// 위의 rsp.paid_amount 와 data.response.amount를 비교한후 로직 실행 (import 서버검증)
         	if(rsp.paid_amount == data.response.amount){
 	        	alert("결제 및 결제검증완료");
-	        	location.href="./pay_result.do?imp_uid="+rsp.imp_uid;
+	        	location.href="./pay_result.do?res_no=${res.res_no}&imp_uid="+rsp.imp_uid;
         	} else {
         		alert("결제 실패");
         	}
