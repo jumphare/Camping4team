@@ -81,17 +81,30 @@ font-size:1.6rem;
 		</tr>
 			<tr><th>옵션</th>
 
-			<td ><input type=checkbox id = "noti_flag_check" name="noti_flag_check" value="1"  onclick="copyValue()" <c:if test="${board.noti_flag =='1'}">checked</c:if>>공지글
+			<td >
+			<div id="check" style="width:100px;float:left;">
+			 <input type=checkbox id = "noti_flag_check" name="noti_flag_check" value="1"  onclick="copyValue()" <c:if test="${board.noti_flag =='1'}">checked</c:if>>공지글
 			   <input type="hidden" name="noti_flag" id="noti_flag" value="0" >
+			 </div>  
+			  <div id="noti" style="width:100px;float:left;display:none;">
+			   	<select name="board" id="board">
+				  <option value="">-선택-</option>		
+			      <option value="aaaaa"  <c:if test="${board.board =='aaaaa'}">selected</c:if>>aaaaa</option>
+			      <option value="bbbbb"  <c:if test="${board.board =='bbbbb'}">selected</c:if>>bbbbb</option>
+			      <option value="ccccc"  <c:if test="${board.board =='ccccc'}">selected</c:if>>ccccc</option>
+			   </select>
+			   </div>
+			 
 			 <script>
 					 function copyValue(){
 							var checked = $('#noti_flag_check').is(':checked');
 							if(checked){
 								$("#noti_flag").val(1);
+								$("#noti").css("display","block");
 							}else{
 								$("#noti_flag").val(0);	
+								$("#noti").css("display","none")
 							}
-		 
 					 }
 					 <c:if test="${board.noti_flag =='1'}">copyValue()</c:if>
 			 </script>  			
@@ -99,7 +112,7 @@ font-size:1.6rem;
 			</td>
 		</tr>	
 		<tr><th>내용</th>
-			<td><textarea cols = 23 rows = 5 id = "content" name = "content" required = "required"  style="width:100%" value="${board.content}"></textarea>
+			<td><textarea cols = 23 rows = 5 id = "content" name = "content" required = "required"  style="width:100%">${board.content}</textarea>
 		</tr> 
 	
 		<tr>

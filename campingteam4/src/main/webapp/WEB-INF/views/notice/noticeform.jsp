@@ -82,8 +82,21 @@ font-size:1.6rem;
 			<td><input type=text id = "subject" name="subject" required="required" autofocus="autofocus"  style="width:100%" ></td>
 		</tr>
 			<tr><th>옵션</th>
-			<td ><input type=checkbox id = "noti_flag_check" name="noti_flag_check" value="1" onclick="copyValue()" >공지글
+			<td >
+			<div id="check" style="width:100px;float:left;">
+			<input type=checkbox id = "noti_flag_check" name="noti_flag_check" value="1" onclick="copyValue()" >공지글
 			   <input type="hidden" name="noti_flag" id="noti_flag" value="0">
+			 </div>  
+		    	<div id="noti" style="width:100px;float:left;display:none;">
+				<select name="board" id="board">
+					  <option value="">-선택-</option>		
+				     <option value="aaaaa">aaaaa</option>
+				     <option value="bbbbb">bbbbb</option>
+				     <option value="ccccc">ccccc</option>
+				   </select>
+				 </div>	 
+				   
+				   
 			 <script>
 			 function copyValue(){
 				 
@@ -91,8 +104,10 @@ font-size:1.6rem;
 					
 					if(checked){
 						$("#noti_flag").val(1);
+						$("#noti").css("display","block");
 					}else{
 						$("#noti_flag").val(0);	
+						$("#noti").css("display","none")
 					}
  
 			 }
@@ -109,7 +124,7 @@ font-size:1.6rem;
 				<div align="center" style="font-weight:bold; ">파일</div>
 			</td>
 			<td>
-				<input name="not_file1" type="file" style="width:100%;"/>
+				<input  type="file"  name="not_file1" style="width:100%;"/>
 			</td>
 		</tr>
 		

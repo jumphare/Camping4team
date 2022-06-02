@@ -74,7 +74,7 @@ text-align:center;
 
 			<c:forEach var="n" items="${notiList}">
 			<tr>
-				<td>공지글
+				<td>${n.board}
 				</td>
 				<td>
 					<a href="noticecontent.do?not_no=${n.not_no}&page=${page}">

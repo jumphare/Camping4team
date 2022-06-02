@@ -15,7 +15,7 @@
 						, noti_flag
 		            )values(
 		                 notice_num_seq.nextval
-		                 ,'공지게시판'
+		                 ,#{board}
 		                 ,#{subject}
 		                 ,#{content}
 		                 ,sysdate
@@ -66,11 +66,15 @@
 		update 
 		      notice 
 		   set 
-		      subject=#{subject}
+		       board = #{board}
+		     , subject=#{subject}
 		     ,content=#{content}
-		     ,no_date=sysdate
+		     ,no_date=sysdate      	     
+	         <if test="not_file != null">
+              ,not_file = #{not_file, jdbcType=VARCHAR}
+              </if>		      	      	     
 		     ,noti_flag = #{noti_flag, jdbcType=VARCHAR}
-		     ,not_file=#{not_file}
+		     
 		 where 
 		      not_no=#{not_no} 
 	</update>

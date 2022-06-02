@@ -32,6 +32,10 @@ public class noticeController {
 	public String noticeInsert(@RequestParam("not_file1") MultipartFile mf, notice not, HttpServletRequest request,
 			Model model) throws Exception {
 
+	
+		
+  if( !mf.getOriginalFilename().equals("")) {
+
 		String filename = mf.getOriginalFilename();
 		int size = (int) mf.getSize(); // 첨부파일의 크기 (단위:Byte)
 
@@ -77,12 +81,15 @@ public class noticeController {
 			mf.transferTo(new File(path + "/" + newfilename));
 
 		}
-
+		
 		not.setNot_file(newfilename);
+  } // 방어로직 끝
 
 		int result1 = service.insert(not);
-
 		model.addAttribute("result", result1);
+		
+		
+		
 
 		return "notice/insertResult";
 	}
@@ -180,6 +187,9 @@ public class noticeController {
 						       HttpServletRequest request,
 						       Model model) throws Exception {
 
+		
+  if( !mf.getOriginalFilename().equals("")) {		
+		
 		String filename = mf.getOriginalFilename();
 		int size = (int) mf.getSize(); // 첨부파일의 크기 (단위:Byte)
 
@@ -232,6 +242,8 @@ public class noticeController {
 			not.setNot_file(board.getNot_file());
 		}
 
+  }	
+		
 		int result1 = service.update(not);
 
 		model.addAttribute("result", result1);

@@ -9,9 +9,6 @@
 <body>
 
  <script type="text/javascript">
-   
-	
- 
 
 		location.href = "./layout2.do";
 		</script>
