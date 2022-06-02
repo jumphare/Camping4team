@@ -42,11 +42,11 @@ text-align:center;
 } 
  a:hover{text-decoration:none;}
 
- .wrb{
+/*  .wrb{
 	position : absolute;
 	font-weight : bold;
 	right : 60px;
-} 
+}  */
 .div1{
 	margin : 10px 50px;
 } 
@@ -57,13 +57,14 @@ text-align:center;
 <%@ include file="../include/top.jsp" %>
 
 </header>
-<h1 style="margin-bottom:30px;">--</h1>
+
+		<div class = "container" style="width:80%; background-color:white;">
+		<h1 style="margin-bottom:50px;">--</h1>
 		<h2 class="title">공지 게시판</h2>
 
 <c:if test="${sessionScope.id == 'admin'}">
-   <a href="noticeform.do" class = "wrb">글작성</a>  <br>
+   <div style="float:right; "><a href="noticeform.do" class ="wrb" style="text-align:center;font-weight: bolder; font-size:2rem;">글작성</a> </div>
 </c:if>
-		<div class = "div1">
 		<table class="table eqtable" align = center text-align = center style="width:100%">
 			<tr class = "headb" align = center font-weight = bold>	
 				<th>번호</th>

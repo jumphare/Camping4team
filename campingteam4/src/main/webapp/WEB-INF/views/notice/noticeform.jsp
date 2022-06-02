@@ -90,7 +90,7 @@ font-size:1.6rem;
 		    	<div id="noti" style="width:100px;float:left;display:none;">
 				<select name="board" id="board">
 				    <option value="">-선택-</option>		
-			      	<option value="전체공기"  <c:if test="${board.board =='전체공기'}">selected</c:if>>전체공기</option>
+			      	<option value="전체공지"  <c:if test="${board.board =='전체공지'}">selected</c:if>>전체공지</option>
 			      	<option value="동행찾기"  <c:if test="${board.board =='동행찾기'}">selected</c:if>>동행찾기</option>
 			      	<option value="리뷰"  <c:if test="${board.board =='리뷰'}">selected</c:if>>리뷰</option>
 				  </select>
