@@ -433,7 +433,7 @@ public class MemberController {
 
 		String newfilename = "";
 
-		if (filename != null) { // 첨부파일이 전송된 경우
+		if (size > 0) { // 첨부파일이 전송된 경우
 
 			// 파일 중복문제 해결
 			String extension = filename.substring(filename.lastIndexOf("."), filename.length());
@@ -467,7 +467,10 @@ public class MemberController {
 		if (size > 0) { // 첨부파일이 전송된 경우
 
 			mf.transferTo(new File(path + "/" + newfilename));
-
+			member.setProfile(newfilename);
+		}else {
+			String basicprofile = "basic_image.png";
+			member.setProfile(basicprofile);
 		}
 
 		String id = (String) session.getAttribute("id");
@@ -485,12 +488,10 @@ public class MemberController {
 
 		member editm = this.memberService.userCheck(id);	
 
-		if (size > 0) { // 첨부 파일이 수정되면
-			member.setProfile(newfilename);
-		} else { // 첨부파일이 수정되지 않으면
-			member.setProfile(editm.getProfile());
-		}
-
+		/*
+		 * if (size > 0) { // 첨부 파일이 수정되면 member.setProfile(newfilename); } else { //
+		 * 첨부파일이 수정되지 않으면 member.setProfile(editm.getProfile()); }
+		 */
 		member.setId(id);
 		member.setJumin(jumin);
 		member.setPhone(phone);
