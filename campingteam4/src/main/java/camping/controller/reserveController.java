@@ -136,6 +136,8 @@ public class reserveController {
 			//compareTo메서드를 통한 날짜비교 -> +일 경우 현재예약
 			compare[i] = date.compareTo(today); 
 			compare2[i] = date2.compareTo(today); 
+			System.out.println("compare:"+compare[i]);
+			System.out.println("compare2:"+compare2[i]);
 			//리뷰 목록 가져와서 해당 res_no에 리뷰가 달려있으면 그 리뷰 넘버 가져오기
 			cnt=rv.revexist(res.getRes_no());
 			if(cnt==0) re_no[i]=0;			//리뷰 작성 안돼있으면 0 
@@ -255,6 +257,7 @@ public class reserveController {
 		if(res.getRes_no()==0)
 			result=sv.res_save(res);
 		System.out.println(result);
+		res=sv.recentone(id);
 		//장소,자리,장비 정보 가져옴
 		camp_loc loc = sv.loc(res.getCamp_no());
 		spot spot = sv.spot(res.getSp_no());
