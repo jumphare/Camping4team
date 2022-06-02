@@ -40,7 +40,7 @@ h2 {
 
 .star-rating, .star-rating span {
 	display: inline-block;
-	height: 24px;
+	height: 20px;
 	overflow: hidden;
 	background: url(img/star.png) no-repeat;
 }

@@ -16,7 +16,7 @@
 <style>
 h2 {font-size:15px;}
 .star-rating {width:140px; }
-.star-rating,.star-rating span {display:inline-block;margin-right:39px; height:24px; overflow:hidden; background:url(img/star.png)no-repeat; }
+.star-rating,.star-rating span {display:inline-block;margin-right:39px; height:20px; overflow:hidden; background:url(img/star.png)no-repeat; }
 .star-rating span{background-position:left bottom; line-height:0; vertical-align:top; }
  .myButton {
 	box-shadow: inset 0px 1px 0px 0px #fce2c1;
