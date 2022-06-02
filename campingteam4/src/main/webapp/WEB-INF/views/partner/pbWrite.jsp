@@ -108,7 +108,7 @@ color:#000;
 	</tr>
 
 	<tr><th>시작일</th>
-		<td><input type="date" name = "start_date" id="startDate" required = "required">
+		<td><input type="text" name = "start_date" id="startDate" required = "required">
        	</td> 
 	</tr> 
 	<tr><th>종료일</th>
