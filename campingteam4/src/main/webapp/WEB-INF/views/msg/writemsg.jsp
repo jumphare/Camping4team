@@ -52,27 +52,28 @@ padding:1.5rem;
 </style>
 <script>
 $(function(){	
-    $("#sendmsg").click(function(){
+     $("#sendmsg").click(function(){
     	$("#smsg").submit();
-    	alert("전송되었습니다");
-        setTimeout(function() {   
-            window.close();
-         }, 100);
+ //   	alert("전송되었습니다"); 
+/*     	clo();
+    	window.open("about:blank","_self").close(); */
+ //   	self.close();    	
+    
     });
-    var id="${id}";
+   /*  var id="${id}";
     $.ajax({
        type:"POST",
-       url:"./not_me.do?recv_id=${recv_id}",
-       data: {"id":id},        
+       url:"./not_me.do",
+       data: {"recv_id":id},        
        success: function (data) { 
      	  if(data==1){	//타인에게 쪽지를 보냄
-     		window.open("./writemsg.do?recv_id=${msg.id}","쪽지 보내기", "width=600, height=500, left=100, top=50");
+     		window.open("./writemsg.do?recv_id="+id, "쪽지 보내기", "width=600, height=500, left=100, top=50");
      	  }else{	//나한테 쪽지를 보냄
      		  alert("자신에게 쪽지를 보낼 수 없습니다.");
      		  window.close();
      	  }  
        }
-     });//$.ajax 
+     });//$.ajax  */
     
  });
 </script>
@@ -85,7 +86,7 @@ $(function(){
 <div class="form-group" style="height:400px;">
       <textarea class="form-control" id="comment" name="content" ></textarea>
 </div>
-<input type="button" id="sendmsg" class="btn btn-info btn-sm"  value="보내기" style=" font-size:1.6rem;" >
+<input type="button" id="sendmsg" class="btn btn-info btn-sm"  value="보내기" style="font-size:1.6rem;">
 </form>
 </div>
 </body>

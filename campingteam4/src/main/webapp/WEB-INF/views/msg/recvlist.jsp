@@ -104,6 +104,11 @@ color:#000;
 	<a href="javascript:;" onclick="pagin(${epage })"><i class="fa-solid fa-angles-right"></i></a>
 </div>
 
+<div style="float:left;">
+<c:if test="${id ne 'admin' }">
+<input type="button" class="btn btn-success" id="qna" style=" font-size:1.6rem;" value="문의하기" onclick="qna()">
+</c:if>
+</div>
 </div>
 
 <script>
@@ -129,7 +134,9 @@ function table(value){
 	else
 		location.href='./sendlist.do?id=${id}';
 }
-
+function qna(){
+	window.open("./writemsg.do?recv_id=admin","쪽지보내기", "width=600, height=500, left=100, top=50");
+}
  $(function() {
 	$("#allchk").click(function(){
 		if($("#allchk").is(":checked")) $("input[name=chk]").prop("checked", true);

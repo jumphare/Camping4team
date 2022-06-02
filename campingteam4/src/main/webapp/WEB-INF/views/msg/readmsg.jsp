@@ -56,13 +56,14 @@ $(function(){
     $("#remsg").click(function(){
     	console.log("답장 클릭");
     	var id="${msg.id}";
+    	console.log(id);
          $.ajax({
             type:"POST",
             url:"./mb_chk.do",
             data: {"id":id},        
             success: function (data) { 
           	  if(data==1){	//존재하는 회원
-          		window.open("./writemsg.do?recv_id=${msg.id}","쪽지 보내기", "width=600, height=500, left=100, top=50");
+          		window.open("./writemsg.do?recv_id="+id,"쪽지보내기", "width=600, height=500, left=100, top=50");
           	  }else{	//탈퇴 회원
           		  alert("존재하지 않는 회원입니다.");
           		  return false;

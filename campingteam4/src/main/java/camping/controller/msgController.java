@@ -42,6 +42,12 @@ public class msgController {
 		sv.sendmsg(msg);
 		return "/msg/result";
 	}
+	
+	//쪽지닫음
+	@RequestMapping("/msgclose.do")
+	public String msgclose() {
+		return "/msg/close";
+	}
 
 	//받은 쪽지함
 	@RequestMapping("/recvlist.do")
@@ -118,25 +124,29 @@ public class msgController {
 		return "/msg/readmsg";
 	}
 	//탈퇴 회원 확인
-	@ResponseBody 
+//	@ResponseBody 
 	@RequestMapping(value="/mb_chk.do", method = RequestMethod.POST)
-	public String mb_chk(HttpServletResponse response, @RequestParam("id") String id) throws Exception {
+	public String mb_chk(String id, Model model) throws Exception {
+		System.out.println(id);
 		int data=msv.checkMemberId(id);
-		PrintWriter out = response.getWriter();
-		out.print(data);
-		return null;
+//		PrintWriter out = response.getWriter();
+//		out.print(data);
+		
+		model.addAttribute("data", data);
+		return "/msg/resultmsg";
 	}
 	
-	@ResponseBody 
-	@RequestMapping(value="/not_me.do", method = RequestMethod.POST)
-	public String not_me(HttpServletResponse response, @RequestParam("id") String id, @RequestParam("recv_id") String recv_id) throws Exception{
-		int data=1;
-		if(id==recv_id)
-			data=0;
-		PrintWriter out = response.getWriter();
-		out.print(data);
-		return null;
-	}
+	/*
+	 * @ResponseBody
+	 * 
+	 * @RequestMapping(value="/not_me.do", method = RequestMethod.POST) public
+	 * String not_me(HttpServletResponse response, HttpSession
+	 * session, @RequestParam("recv_id") String recv_id) throws Exception{ String
+	 * id=(String) session.getAttribute("id");
+	 * 
+	 * int data=1; if(id==recv_id) data=0; PrintWriter out = response.getWriter();
+	 * out.print(data); return null; }
+	 */
 	
 	//쪽지 개별 삭제
 	@ResponseBody 

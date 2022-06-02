@@ -8,8 +8,7 @@
 </head>
 <body>
 <script>
-alert("전송되었습니다");
-location.href="./msgclose.do";
+self.close();
 </script>
 </body>
 </html>
