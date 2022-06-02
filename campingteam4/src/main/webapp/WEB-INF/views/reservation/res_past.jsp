@@ -74,8 +74,8 @@ $(function(){
 function campfilter(value){
 	var formData = "sort=res_date&page=${page}&camp_no="+value;
 	$.post('./res_past.do',formData, function(data) {
-		$('#past').html(data);
-	});
+		$('#past').html(data); 
+ 	}); 
 }
 function st(value){
 	var cp=${camp_no};
@@ -106,8 +106,8 @@ function pagin(value){
 <header>
 <%@ include file="../include/top.jsp" %>
 </header>
-<h1 style="margin-bottom:50px;">--</h1>
 <div class="container" id="past" style="background-color:white;">
+<h1 style="margin-bottom:50px;">--</h1>
 <div class="title">지난예약관리</div>
 
 <div style="text-align:center;">

@@ -168,8 +168,10 @@ public class msgController {
 	@RequestMapping("/msgchk.do")
 	public String msgchk(HttpSession session, RedirectAttributes redirect, String page, int[] chk, Model model) {
 		String id=(String)session.getAttribute("id");
+		if(chk!=null) {
 		for(int i=0; i<chk.length; i++)
 			sv.msgchk(chk[i]);
+		}
 		redirect.addAttribute("recv_id", id);
 		redirect.addAttribute("page", page);
 		return "redirect:/recvlist.do";

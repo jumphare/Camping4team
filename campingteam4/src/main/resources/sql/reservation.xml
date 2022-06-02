@@ -69,10 +69,10 @@
     	select count(*) from reservation
     	<where>
 			<if test="camp_no==0 or camp_no==null">
-				end_date &gt;= sysdate
+				end_date &gt;= sysdate+1
 			</if>
 			<if test="camp_no!=0">
-				end_date &gt;= sysdate and camp_no=#{camp_no}
+				end_date &gt;= sysdate+1 and camp_no=#{camp_no}
 			</if>
 		</where> 
     </select>  
@@ -82,10 +82,10 @@
 			select * from reservation
 			<where>
 			<if test="camp_no==0 or camp_no==null">
-				end_date &gt;= sysdate
+				end_date &gt;= sysdate+1
 			</if>
 			<if test="camp_no!=0">
-				end_date &gt;= sysdate and camp_no=#{camp_no}
+				end_date &gt;= sysdate+1 and camp_no=#{camp_no}
 			</if>
 		</where> 
 			<choose>
@@ -101,10 +101,10 @@
 	    select count(*) from reservation
 	    	<where>
 				<if test="camp_no==0 or camp_no==null">
-					end_date &lt; sysdate and (state=1 
+					end_date &lt; sysdate+1 and (state=1 
 				</if>
 				<if test="camp_no!=0">
-					end_date &lt; sysdate and camp_no=#{camp_no} and (state=1 
+					end_date &lt; sysdate+1 and camp_no=#{camp_no} and (state=1 
 				</if>
 			</where>
 			<choose>
@@ -118,10 +118,10 @@
 			select * from reservation
 			<where>
 			<if test="camp_no==0 or camp_no==null">
-				end_date &lt; sysdate and (state=1 
+				end_date &lt; sysdate+1 and (state=1 
 			</if>
 			<if test="camp_no!=0">
-				end_date &lt; sysdate and camp_no=#{camp_no} and (state=1
+				end_date &lt; sysdate+1 and camp_no=#{camp_no} and (state=1
 			</if>
 		</where> 
 			<choose>

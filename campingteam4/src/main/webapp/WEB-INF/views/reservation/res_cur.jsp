@@ -74,9 +74,9 @@ $(function(){
 });
 function campfilter(value){
 	var formData = "sort=res_date&page=${page}&camp_no="+value;
-	$.post('./res_cur.do',formData, function(data) {
+ 	$.post('./res_cur.do',formData, function(data) {
 		$('#cur').html(data);
-	});
+	}); 
 }
 function st(value){
 	var cp=${camp_no};
@@ -100,8 +100,8 @@ function table(value){
 <header>
 <%@ include file="../include/top.jsp" %>
 </header>
-<h1 style="margin-bottom:50px;">--</h1>
 <div class="container" id="cur" style="background-color:white;">
+<h1 style="margin-bottom:50px;">--</h1>
 <div class="title">현재예약관리</div>
 <div style="text-align:center;">
 <input type="button" value="현재예약"  class="btn btn-info" onclick="table(1)" style=" font-size:1.6rem;">

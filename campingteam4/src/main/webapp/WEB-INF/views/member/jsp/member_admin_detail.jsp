@@ -162,9 +162,14 @@ a:hover {
 										</c:if>
 									</div>
 								</td>
-								<td align=center><input type=button value="강제 예약 취소"
+								
+								<td align=center>
+								<c:if test="${rv.state eq '1' }">
+								<input type=button value="강제 예약 취소"
 								class="btn btn-outline-danger btn-sm" style="font-size:1.6rem;"
-									onClick="location.href='<%=request.getContextPath()%>/res_cancel.do?res_no=${rv.res_no}'"></td>
+									onClick="location.href='<%=request.getContextPath()%>/res_cancel.do?res_no=${rv.res_no}'">
+									</c:if>
+									</td>
 								
 							</tr>
 								<c:set var="i" value="${i+1 }"/>

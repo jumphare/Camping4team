@@ -634,8 +634,6 @@ public class MemberController {
 		sname[i] = spot.getSp_name();
 		i++;
 	}
-	System.out.println(cname[0]);
-	System.out.println(sname[0]);
 /*	int page = 1; // 페이지 초기값
 	int limit = 10; // 한화면에 나올 데이터 개수 정의
 

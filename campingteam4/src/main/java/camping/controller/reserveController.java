@@ -518,6 +518,7 @@ public class reserveController {
 		
 		if(rs.getState()==1) {	//반납보류 상태 -> 반납처리
 			//장비 반납 -> rm_num에 eqm_num만큼 더해줌
+			if(eqm_no!=null) {
 			for(int i=0; i<eqm_no.length; i++) {
 				equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
 				int rm=eqm.getRm_num();  //기존 장비 여분수량
@@ -526,9 +527,11 @@ public class reserveController {
 			}	
 			//반납처리
 			sv.eqrt(res_no);
+			}
 		}
 		if(rs.getState()==3) {	//반납완료 상태 -> 반납취소
 			//반납 취소 -> rm_num에 eqm_num만큼 빼줌
+			if(eqm_no!=null) {
 			for(int i=0; i<eqm_no.length; i++) {
 				equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
 				int rm=eqm.getRm_num();  //기존 장비 여분수량
@@ -537,6 +540,7 @@ public class reserveController {
 			}	
 			//취소처리
 			sv.ccrt(res_no);
+			}
 		}
 		redirect.addAttribute("camp_no", res.getCamp_no());
 		redirect.addAttribute("page", page);
@@ -567,13 +571,15 @@ public class reserveController {
 					eqm_no=rs.getEq_no().split("-");
 					eqm_num=rs.getEq_num().split("-");
 				}
+				if(eqm_no!=null) {
 				for(int i=0; i<eqm_no.length; i++) {
 					equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
 					int rm=eqm.getRm_num();  //기존 장비 여분수량
 					eqm.setRm_num(rm+Integer.parseInt(eqm_num[i]));  //rm_num=rm+eqm_num
 					eqv.eq_rm(eqm);  //수량 업데이트
-				}	
+				}
 				sv.eqrt(rs.getRes_no());
+				}
 			}
 		}
 		redirect.addAttribute("camp_no", res.getCamp_no());
@@ -603,9 +609,11 @@ public class reserveController {
 		//예약 때 추가한 장비에 대한 정보만 가져와 리스트에 저장
 //		List<equipment> eqlist = sv.eqm(res.getCamp_no());
 		List<equipment> eqlist=new ArrayList<equipment>();
+		if(eqm_no!=null) {
 		for(int i=0; i<eqm_no.length; i++) {
 			equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
 			eqlist.add(eqm);
+		}
 		}
 		//오늘날짜 yyyy-MM-dd로 생성
 		String todayfm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
