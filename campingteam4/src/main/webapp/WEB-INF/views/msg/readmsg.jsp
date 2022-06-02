@@ -110,7 +110,12 @@ $(function(){
 <div style="text-align:center;">
 <c:if test="${msg.recv_id eq id }"><input type="button" id="remsg" class="btn btn-info btn-sm" value="답장" style=" font-size:1.6rem;"></c:if>
 <input type="button" id="delmsg" class="btn btn-danger btn-sm" value="삭제" style=" font-size:1.6rem;">
-<input type="button" id="back" value="목록" class="btn btn-secondary btn-sm" onclick="history.back()" style=" font-size:1.6rem;">
+<c:if test="${msg.recv_id eq id }">
+	<input type="button" id="back" value="목록" class="btn btn-secondary btn-sm" onclick="location.href='./recvlist.do?recv_id=${id}&page=${page }'" style=" font-size:1.6rem;">
+</c:if>
+<c:if test="${msg.id eq id }">
+	<input type="button" id="back" value="목록" class="btn btn-secondary btn-sm" onclick="location.href='./sendlist.do?id=${id}&page=${page }'" style=" font-size:1.6rem;">
+</c:if>
 </div>
 
 </div>

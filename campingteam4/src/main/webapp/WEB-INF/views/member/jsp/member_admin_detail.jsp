@@ -14,13 +14,11 @@
 <meta charset="UTF-8">
 <title>내 리뷰 목록</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<link rel="stylesheet"	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
 h2 {
 	font-size: 15px;
@@ -44,11 +42,12 @@ h2 {
 }
 
 html {
-	font-size: 8px;
+	font-size: 10px;
 }
 
 @font-face {
 	font-family: 'GmarketSansBold';
+
 	src:
 		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff')
 		format('woff');
@@ -56,16 +55,30 @@ html {
 	font-style: normal;
 }
 
-.title {
-	margin-top: 3rem;
-	font-family: 'GmarketSansBold';
-	font-size: 3.2rem;
-	color: #E35E0A;
-	margin-bottom: 1rem;
+ .title{
+  margin-top:1rem;
+   font-family: 'GmarketSansBold';
+   font-size:3.2rem;
+   color:#E35E0A;
+   margin-bottom:1rem;
+  }
+  .title2{
+    margin-top:4rem;
+   font-family: 'GmarketSansBold';
+   font-size:2.6rem;
+   color:#E8894F;
+   margin-bottom:1rem;
+  }
+
+.pmt{
+border:dotted #a0a0a0; 
+padding: 2rem;
+padding-left:3rem;
+padding-right:3rem;
 }
 
 table {
-	font-size: 2.3rem;
+	font-size: 1.6rem;
 }
 
 a {
@@ -94,50 +107,38 @@ a:hover {
 	<header>
 <%@ include file="../include/top.jsp" %>
 </header>
-	<br>
-	<br>
-	<div class="container">
+<h1 style="margin-bottom:50px;">--</h1>
+<div class="container" style="background-color:white; width:80%">
 		<div class="title">회원 상세</div>
-		<table class="table" border="1" align=center width=900;>
+		<table class="table" align=center width=900; style="text-align:center">
 			<thead>
-				<tr class="cent" width=500>
-					<th>아이디</th>
-					<th>패스워드</th>
-					<th>이름</th>
-					<th>주민번호</th>
-					<th>주소</th>
-					<th>휴대폰번호</th>
-					<th width=250;>이메일</th>
+				<tr class="cent" width=50rem >
+					<th width=20%>아이디</th>
+					<th width=15%>이름</th>
+					<th width=30%>주소</th>
+					<th width=15%>휴대폰번호</th>
+					<th width=20%>이메일</th>
 				</tr>
 			</thead>
 			<tr>
 				<td>${member.id}</td>
-				<td>${member.pwd}</td>
 				<td>${member.name}</td>
-				<td>${member.jumin}</td>
 				<td>${member.addr1}</td>
 				<td>${member.phone}</td>
 				<td>${member.email}</td>
 			</tr>
 		</table>
 
-		<div style="margin-top: 1%; margin-left: 20%; width: 60%;"
-			style="font-family: 'Nanum Gothic', sans-serif;">
-			<ul class="nav nav-tabs" role="tablist">
-				<li class="nav-item"><a class="nav-link active"
-					data-toggle="tab" href="#tab1">예약내역/건</a></li>
-				<li class="nav-item"><a class="nav-link" data-toggle="tab"
-					href="#tab2">리뷰내역/건</a></li>
-			</ul>
-			<div class="tab-content">
-				<div id="tab1" class="container tab-pane active">
-					<br>
-					<table border="0" width="100%" align="center"
-						class="table-bordered">
-						<tr bgcolor=lightgrey align=center>
-							<th width="5%">예약일</th>
-							<th width="25%">예약정보</th>
+
+<div class="title2" >예약내역/건</div>
+<div class="pmt">
+		<table width="100%" align="center"	class="table-bordered">
+				<tr bgcolor=lightgrey align=center>
+							<th width="15%">예약일</th>
+							<th width="70%">예약정보</th>
+							<th width="15%">예약취소</th>
 						</tr>
+						<c:set var="i" value="0"/>
 						<c:forEach var="rv" items="${reslist}">
 							<tr style="vertical-align: middle; text-align: center;">
 								<td><fmt:formatDate value="${rv.res_date}"
@@ -162,16 +163,104 @@ a:hover {
 									</div>
 								</td>
 								<td align=center><input type=button value="강제 예약 취소"
-								class="btn btn-outline-danger btn-sm"
-									onClick="location.href='<%=request.getContextPath()%>/res_cancel.do?res_no=${rv.res_no}'"></td>>
+								class="btn btn-outline-danger btn-sm" style="font-size:1.6rem;"
+									onClick="location.href='<%=request.getContextPath()%>/res_cancel.do?res_no=${rv.res_no}'"></td>
 								
+							</tr>
+								<c:set var="i" value="${i+1 }"/>
+						</c:forEach>
+			</table>
+</div>
+
+<div class="title2" >리뷰내역/건</div>
+<div class="pmt">
+		<table width="100%" align="center"	class="table-bordered">
+						<tr bgcolor=lightgrey align=center>
+							<th width="5%">No.</th>
+							<th width="20%">제목</th>
+							<th width="50%">내용</th>
+							<th width="10%">등록일</th>
+							<th width="15%">리뷰삭제</th>
+						</tr>
+						<c:forEach var="r" items="${rlist}">
+							<tr style="vertical-align: middle; text-align: center; ">
+								<td>${r.re_no}</td>
+								<td>${r.subject}</td>
+								<td>${r.content}</td>
+								<td><fmt:formatDate value="${r.r_date}"
+										pattern="yyyy-MM-dd" /></td>
+								<td align=center><input type=button value="강제 리뷰 삭제"
+									class="btn btn-outline-danger btn-sm" style="font-size:1.6rem;"
+									onClick="location.href='<%=request.getContextPath()%>/reviewdeleteform.do?re_no=${r.re_no}&page=${page}'"></td>
 							</tr>
 						</c:forEach>
 					</table>
-				</div>
-				<div id="tab2" class="container tab-pane fade">
+</div>
+
+			
+	<%-- 				
+					
+					
+					
+					
+		<div style="margin-top: 1%; width: 80%; text-align:center;"
+			style="font-family: 'Nanum Gothic', sans-serif;">
+			<ul class="nav nav-tabs">
+			    <li class="nav-item">
+			      <a class="nav-link active" data-toggle="tab" href="#menu1">예약내역/건</a>
+			    </li>
+			    <li class="nav-item">
+			      <a class="nav-link" data-toggle="tab" href="#menu2">리뷰내역/건</a>
+			    </li>
+			  </ul>
+			
+			 <div class="tab-content">
+				<div id="menu1" class="container tab-pane active">
 					<br>
-					<table border="0" width="100%" align="center"
+					<table width="100%" align="center"
+						class="table-bordered">
+						<tr bgcolor=lightgrey align=center>
+							<th width="15%">예약일</th>
+							<th width="70%">예약정보</th>
+							<th width="15%">예약취소</th>
+						</tr>
+						<c:set var="i" value="0"/>
+						<c:forEach var="rv" items="${reslist}">
+							<tr style="vertical-align: middle; text-align: center;">
+								<td><fmt:formatDate value="${rv.res_date}"
+										pattern="yyyy.MM.dd" /></td>
+								<td class="info">
+									<div style="font-weight: bolder;">${fn:substring(rv.start_date,0,10)}
+										~ ${fn:substring(rv.end_date,0,10)}</div>
+									<div>
+										<a href='./reserveView.do?res_no=${rv.res_no}'>[${cname[i]}]
+											${sname[i]}</a>
+									</div>
+									<div>
+										<c:if test="${rv.state eq '0' }">
+											<span style="color: #CD1039">결제대기</span>
+										</c:if>
+										<c:if test="${rv.state eq '1' }">
+											<span style="color: #006400">예약완료</span>
+										</c:if>
+										<c:if test="${rv.state eq '2'}">
+											<span style="color: #828282">예약취소</span>
+										</c:if>
+									</div>
+								</td>
+								<td align=center><input type=button value="강제 예약 취소"
+								class="btn btn-outline-danger btn-sm" style="font-size:1.6rem;"
+									onClick="location.href='<%=request.getContextPath()%>/res_cancel.do?res_no=${rv.res_no}'"></td>
+								
+							</tr>
+								<c:set var="i" value="${i+1 }"/>
+						</c:forEach>
+					</table>
+				</div>
+
+				<div id="menu2" class="container tab-pane fade">
+					<br>
+					<table width="100%" align="center"
 						class="table-bordered">
 						<tr bgcolor=lightgrey align=center>
 							<th width="5%">No.</th>
@@ -194,8 +283,10 @@ a:hover {
 					</table>
 				</div>
 			</div>
-		</div>
-		<!-- 페이지처리 -->
+		</div> --%>
+		
+		
+<%-- 		<!-- 페이지처리 -->
 		<center>
 			<c:if test="${listcount>0}">
 
@@ -226,9 +317,15 @@ a:hover {
 				<a href="reviewlist.do?page=${pageCount}"
 					style="text-decoration: none"> >> </a>
 			</c:if>
-		</center>
+		</center> --%>
+		
+		<br>
 	</div>
+	<br>
+<br>
+<br>
+<br>
 </body>
 </html>
-}
+
 

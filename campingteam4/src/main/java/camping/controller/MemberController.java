@@ -28,6 +28,7 @@ import camping.model.review;
 import camping.model.spot;
 import camping.service.MemberServiceImpl;
 import camping.service.msgService;
+import camping.service.reserveService;
 
 @Controller
 public class MemberController {
@@ -36,7 +37,8 @@ public class MemberController {
 	private MemberServiceImpl memberService;
 	@Autowired
 	private msgService msv;
-	
+	@Autowired
+	private reserveService rv;	
 	
 	// ID중복검사 ajax함수로 처리부분
 	@RequestMapping(value = "member_idcheck.do", method = RequestMethod.POST)
@@ -621,19 +623,32 @@ public class MemberController {
 	List<reservation> reslist = memberService.reslist(id); 
 	
 	List<review> rlist = memberService.memberlist(id);
-	
-	int page = 1; // 페이지 초기값
+	System.out.println(rlist.size());
+	int i=0;
+	String[] cname = new String[reslist.size()];
+	String[] sname = new String[reslist.size()];
+	for (reservation res : reslist) {
+		camp_loc loc = rv.loc(res.getCamp_no());
+		spot spot = rv.spot(res.getSp_no());
+		cname[i] = loc.getName();
+		sname[i] = spot.getSp_name();
+		i++;
+	}
+	System.out.println(cname[0]);
+	System.out.println(sname[0]);
+/*	int page = 1; // 페이지 초기값
 	int limit = 10; // 한화면에 나올 데이터 개수 정의
 
 	if (request.getParameter("page") != null) {
 		page = Integer.parseInt(request.getParameter("page"));
-	}
+	}*/
 
+	model.addAttribute("cname", cname);
+	model.addAttribute("sname", sname);
 	model.addAttribute("member", member);
 	model.addAttribute("reslist", reslist);
 	model.addAttribute("rlist", rlist);
-	model.addAttribute("page", page);
+/*	model.addAttribute("page", page);*/
 	return "member/jsp/member_admin_detail";
 	}
 	}
-

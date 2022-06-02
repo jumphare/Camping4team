@@ -26,16 +26,7 @@ public class msgController {
 	@Autowired
 	private MemberServiceImpl msv;
 
-	//임의의 로그인 메인
-	@RequestMapping("/msglogin.do")
-	public String msglogin(HttpSession session, String id, Model model) {
-		System.out.println(id);
-		session.setAttribute("id", id);
-		//안 읽은 쪽지 카운트
-		int cnt=sv.msgcnt(id);
-		model.addAttribute("cnt", cnt);
-		return "/msg/msgmain";
-	}
+
 	//쪽지 작성창으로
 	@RequestMapping("/writemsg.do")
 	public String writemsg(String recv_id, Model model) {

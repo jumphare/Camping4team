@@ -94,7 +94,7 @@ text-decoration:none;
     	<a href="myreviewlist.do">내 리뷰 목록 보기</a>
     </th></tr>
     <tr><th>
-    	<a href="memberlist.do">회원 목록</a>
+<!--     	<a href="memberlist.do">회원 목록</a> -->
     </th></tr>
    </table><br>
    <div>

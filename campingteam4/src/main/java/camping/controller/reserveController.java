@@ -144,7 +144,7 @@ public class reserveController {
 			camp_loc loc = sv.loc(res.getCamp_no());
 			spot spot = sv.spot(res.getSp_no());
 			cname[i] = loc.getName();
-			sname[i] = spot.getType();
+			sname[i] = spot.getSp_name();
 			System.out.println(res.getRes_date());
 			i++;
 		}
@@ -555,7 +555,7 @@ public class reserveController {
 	}
 	//예약 상세 (관리자 view)
 	@RequestMapping("/res_adminview.do")
-	public String res_adminview(reservation res, Model model) {
+	public String res_adminview(reservation res, Model model) throws ParseException {
 		System.out.println("관리자 예약 상세 페이지 진입");
 		reservation rs=sv.resdetail(res.getRes_no());	//해당 예약 정보
 		member mem=sv.memdetail(rs.getId());		//예약자 정보
@@ -579,7 +579,18 @@ public class reserveController {
 			equipment eqm=eqv.eqdetail(Integer.parseInt(eqm_no[i]));
 			eqlist.add(eqm);
 		}
-		
+		//오늘날짜 yyyy-MM-dd로 생성
+		String todayfm = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
+		 
+		//yyyy-MM-dd 포맷 설정
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");		 
+		//비교할 date와 today를데이터 포맷으로 변경
+		Date date = new Date(dateFormat.parse(rs.getEnd_date()).getTime()); 
+		Date today = new Date(dateFormat.parse(todayfm).getTime());	 
+		//compareTo메서드를 통한 날짜비교 -> +일 경우 현재예약
+		int compare = date.compareTo(today); 
+		System.out.println(compare);
+		model.addAttribute("compare", compare);
 		model.addAttribute("res", rs);
 		model.addAttribute("mem", mem);
 		model.addAttribute("camp", loc);

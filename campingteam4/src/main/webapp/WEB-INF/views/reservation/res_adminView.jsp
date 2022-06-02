@@ -65,6 +65,10 @@ padding: 2rem;
 function sending(value){
 	window.open("./writemsg.do?recv_id="+value, "쪽지 보내기", "width=600, height=500, left=100, top=50");
 }
+$(function(){	
+	var com='${compare}';
+	console.log(com);
+});
 </script>
 <header>
 <%@ include file="../include/top.jsp" %>
@@ -91,7 +95,7 @@ function sending(value){
 <div class="title">예약상품</div>
 
 <table class="table restable">
-<tr><td rowspan=4 style="width:40%;">${spot.image }</td>
+<tr><td rowspan=4 style="width:40%; text-align:center;"><img style="height:20rem; width:20rem;" src="${path }/campupload/${spot.image }"></td>
 	<th>장소</th><td>[${camp.name }] ${spot.sp_name }</td>	</tr>
 <tr><th>타입</th> <td>${spot.type }</td>	</tr>
 <tr><th>동행인원</th><td>${res.num }</td> </tr>
@@ -143,9 +147,11 @@ function sending(value){
 <table style="margin-left: auto; margin-right: auto;">
 	<tr>
 		<td colspan=2>
-			<button class="btn btn-success btn-lg" style=" font-size:1.6rem;" type="button" onclick="./eq_returnview.do?res_no=${res.res_no}">
+		<c:if test="${compare<=0 }">
+			<button class="btn btn-success btn-lg" style=" font-size:1.6rem;" type="button" onclick="location.href='./eq_returnview.do?res_no=${res.res_no}'">
 			<c:if test="${res.state==1 }">장비반납</c:if><c:if test="${res.state==3 }">반납취소</c:if></button>
-			 <input type="button" class="btn btn-light btn-lg" value="목록" style=" font-size:1.6rem;" onclick="history.back()">
+		</c:if>
+			 <input type="button" class="btn btn-light btn-lg" value="목록" style=" font-size:1.6rem;" onclick="history.back(-1);">
 		</td>
 	</tr>
 </table>
