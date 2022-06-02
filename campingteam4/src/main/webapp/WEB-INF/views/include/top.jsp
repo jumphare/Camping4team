@@ -95,10 +95,9 @@ function rcvlist(){
 		</div> -->
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	    	<img src="img/camp.png" href="./layout2.do">
-<!-- 	    	<a class="navbar-brand" href="./layout2.do">LOGO <span>Magazine</span></a> -->
+	    	<a href="./layout2.do"><img src="img/camp.png" ></a>
+  
 
- 
 
 <!-- 	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
 	        <span class="fa fa-bars"></span>
