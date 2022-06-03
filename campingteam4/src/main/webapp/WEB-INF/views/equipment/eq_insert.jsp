@@ -50,7 +50,7 @@ $(function() {
 	$("#isrt").click(function(){
     	$("#form").submit();
     	alert("등록되었습니다");
-    	opener.parent.location.reload();
+    	opener.location.reload();
         setTimeout(function() {   
             window.close();
          }, 100);

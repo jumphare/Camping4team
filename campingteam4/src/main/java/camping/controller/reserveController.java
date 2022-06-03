@@ -133,6 +133,9 @@ public class reserveController {
 			Date date = new Date(dateFormat.parse(res.getEnd_date()).getTime()); 
 			Date date2 = new Date(dateFormat.parse(res.getStart_date()).getTime()); 
 			Date today = new Date(dateFormat.parse(todayfm).getTime());	 
+			System.out.println("date1:"+date);
+			System.out.println("date2:"+date2);
+			System.out.println("today:"+today);
 			//compareTo메서드를 통한 날짜비교 -> +일 경우 현재예약
 			compare[i] = date.compareTo(today); 
 			compare2[i] = date2.compareTo(today); 
