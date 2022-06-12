@@ -1,5 +1,7 @@
 # 한강캠핑
-**[:link: ppt](https://pitch.com/public/570ab20d-f0ad-4e01-8a49-387e29b09c81)** 
+**[:link: Project PDF](https://github.com/simjin1212/Camping4team/files/8885501/_.pdf)** 
+
+**[:link: web ppt](https://pitch.com/public/570ab20d-f0ad-4e01-8a49-387e29b09c81)** 
 
 ![title](https://user-images.githubusercontent.com/96432168/172875800-71b9aae1-ff1f-4d33-bfef-92ac2a724b27.png)
 
