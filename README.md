@@ -42,7 +42,7 @@
 ### 예약 & 결제
 > * Javascript function
 > * 주문서 저장 : 결제대기 상태로 예약내역에서 확인 가능
-> * 아임포트 API : 결제 후 검증 과정 추가
+> * 아임포트 API : 결제 후 검증 과정 추가 (REST API)
 
 ![image](https://user-images.githubusercontent.com/96432168/172882853-a6b0d7a7-6719-47ae-b82d-1f1574ae46b2.png)
 ![image](https://user-images.githubusercontent.com/96432168/172882986-f9906846-944f-41eb-842b-f7461fa57131.png)
@@ -52,7 +52,7 @@
 > * Javascript function
 > * 결제상태 : 결제대기, 예약완료, 예약취소 -> 예약이 확정되지 않은 주문은 목록에서 삭제 가능
 > * 캠핑일이 지났을 때 지난예약 처리 : 리뷰 작성 활성화 -> 리뷰를 작성한 주문은 리뷰 확인 가능
-> * 예약상세 : 예약취소 -> 아임포트 API : 금액 검증 후 환불
+> * 예약상세 : 예약취소 -> 아임포트 API : 금액 검증 후 환불 (REST API)
 
 ![image](https://user-images.githubusercontent.com/96432168/172886477-7af124ac-f8b5-447b-8f7d-8759ccf29ce3.png)
 ![image](https://user-images.githubusercontent.com/96432168/172886581-ef41c5a7-2d97-4093-b16d-4a9080d43b95.png)
